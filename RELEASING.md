@@ -34,5 +34,27 @@ release** and redirects to the matching asset:
 5. After ~5 minutes, check that <https://gittree.app/api/download/macos> and
    <https://gittree.app/api/download/windows> download the new files.
 
+## In-app updates (once the updater is enabled)
+
+The app checks for updates at fixed addresses in **this** repository, frozen from the first
+updater-enabled build:
+
+| Channel | Manifest the app reads |
+|---|---|
+| Stable | `https://github.com/eslamfaisal/git-tree/releases/latest/download/latest.json` |
+| Beta | `https://github.com/eslamfaisal/git-tree/releases/download/beta/latest.json` |
+
+So every updater-enabled release also attaches:
+
+- the updater archives and their signatures that `tauri build` writes next to the installers
+  (`Git.Tree_universal.app.tar.gz` + `.sig` for macOS, the NSIS updater bundle + `.sig` for Windows);
+- a **`latest.json`** made with `tooling/render-update-manifest.py` (in the source repository) from
+  those `.sig` files and **this release's own asset URLs**. The script refuses URLs of any other
+  repository; never upload a `latest.json` that names the private repository.
+
+A stable release puts `latest.json` on the release itself. A beta (`-beta.N`) updates the assets of
+the moving pre-release tagged `beta` instead. Neither the `.tar.gz` archives nor `latest.json` are
+ever picked by the website's download buttons.
+
 Never attach source code or anything from the private repositories to a release: GitHub's automatic *Source code*
 archives contain only this public repository.
