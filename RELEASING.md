@@ -8,7 +8,7 @@ page is the checklist that keeps the website's download buttons and the README's
 
 | Where | Link | How it resolves |
 |---|---|---|
-| Website and README buttons | `https://gittree.app/api/download/macos` · `…/windows` | The site asks GitHub for this repository's published releases, takes the **highest stable version**, and redirects to that release's installer file — a direct download, not the release page. It reuses GitHub's answer for about 5 minutes. |
+| Website and README buttons | `https://gittree.app/api/download/macos` · `…/windows` | The site asks GitHub for this repository's published releases, takes the **highest stable version**, and redirects to that release's installer file — a direct download, not the release page. It reuses GitHub's answer for a few minutes, so a new release reaches the buttons within about 10. |
 | If GitHub's API cannot be asked (rate limit, outage) | the same buttons | They redirect to GitHub's permanent link below instead, so a download still starts. |
 | Permanent links, no website needed | `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` · `…/Git-Tree-Windows-setup.exe` | GitHub redirects `latest/download/<name>` to the file of that name on the **latest release**. The names never change, so these links never break. |
 
@@ -49,9 +49,15 @@ repository). A tag with a suffix (`v0.1.0-beta.1`) is published as a pre-release
 ## By hand (fallback)
 
 1. Build and sign locally, or take `installers-*` from the workflow run's artifacts.
-2. Name the files as in the table above. Then:
+2. Name the files as in the table above. Tauri writes `Git Tree_X.Y.Z_universal.dmg` and
+   `Git Tree_X.Y.Z_x64-setup.exe` (with a space); from the folder holding them:
    ```bash
-   shasum -a 256 Git-Tree_*_universal.dmg Git-Tree_*_x64-setup.exe Git-Tree-macOS.dmg Git-Tree-Windows-setup.exe > SHA256SUMS.txt
+   V=0.0.1
+   cp "Git Tree_${V}_universal.dmg" "Git-Tree_${V}_universal.dmg"
+   cp "Git Tree_${V}_universal.dmg" Git-Tree-macOS.dmg
+   cp "Git Tree_${V}_x64-setup.exe" "Git-Tree_${V}_x64-setup.exe"
+   cp "Git Tree_${V}_x64-setup.exe" Git-Tree-Windows-setup.exe
+   shasum -a 256 Git-Tree_"${V}"_universal.dmg Git-Tree_"${V}"_x64-setup.exe Git-Tree-macOS.dmg Git-Tree-Windows-setup.exe > SHA256SUMS.txt
    ```
 3. Create the release: tag `vX.Y.Z` (SemVer), title `Git Tree vX.Y.Z`, release notes, and attach the five files.
 4. Leave **Set as a pre-release** unticked and **Set as the latest release** ticked for a stable version, then
@@ -61,9 +67,7 @@ repository). A tag with a suffix (`v0.1.0-beta.1`) is published as a pre-release
 
 1. Open `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` and the Windows
    link: each must start a download.
-2. After ~5 minutes, `https://gittree.app/api/download/macos` and `…/windows` must download the same files.
-3. Raise `latestVersion` for each platform in the account service's `app_configs` documents, **after** the
-   downloads work (a forced update pointing at a missing installer locks users out).
+2. Within about 10 minutes, `https://gittree.app/api/download/macos` and `…/windows` must download the same files.
 
 ## In-app updates (once the updater is enabled)
 
