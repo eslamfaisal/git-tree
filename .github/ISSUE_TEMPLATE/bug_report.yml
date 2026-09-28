@@ -29,7 +29,7 @@ body:
     attributes:
       label: Git Tree version
       description: Shown at the bottom-right of the window.
-      placeholder: v1.0.0
+      placeholder: v0.0.1
     validations:
       required: true
   - type: dropdown

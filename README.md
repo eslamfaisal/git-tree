@@ -74,6 +74,10 @@ Both links always fetch the installer of the **newest release** straight from th
 Every version, with its release notes and checksums, is listed on the [**Releases page**](https://github.com/eslamfaisal/git-tree/releases).
 You can also download from the website: [gittree.app/en/download](https://gittree.app/en/download).
 
+Prefer to skip the website? These links are served by GitHub itself, never change, and always point to the newest release:
+[`Git-Tree-macOS.dmg`](https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg) ·
+[`Git-Tree-Windows-setup.exe`](https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-Windows-setup.exe).
+
 > [!NOTE]
 > Git Tree uses **your own Git** (version 2.39 or newer). If Git is not installed, the app tells you how to install it — see [Install Git](#install-git).
 
@@ -86,7 +90,7 @@ This is the **public home of Git Tree**: its releases, its public files and its 
 
 | You'll find here | |
 |---|---|
-| **Releases** | Signed installers for macOS (`.dmg`) and Windows (`.exe`), release notes and SHA-256 checksums, on the [Releases page](https://github.com/eslamfaisal/git-tree/releases). |
+| **Releases** | Installers for macOS (`.dmg`) and Windows (`.exe`), release notes and SHA-256 checksums, on the [Releases page](https://github.com/eslamfaisal/git-tree/releases). |
 | **Issues** | Bug reports and feature requests — [open one](https://github.com/eslamfaisal/git-tree/issues/new/choose). |
 | **Public files** | The logo and screenshots used in this README (`.github/assets/`). |
 
@@ -273,11 +277,11 @@ Git Tree covers the commands developers use every day, plus the advanced ones yo
 ### macOS
 
 1. [Download the `.dmg`](https://gittree.app/api/download/macos) — one universal app for Apple silicon and Intel.
-2. Open the downloaded `Git.Tree_<version>_universal.dmg`.
+2. Open the downloaded `Git-Tree_<version>_universal.dmg`.
 3. Drag **Git Tree** into **Applications**.
 4. Open **Git Tree** from Applications, Launchpad or Spotlight.
 
-The app is signed with the author's Apple Developer ID and notarized by Apple, so macOS opens it without a warning. To check the signature yourself:
+A release that is signed with an Apple Developer ID and notarized opens without a warning; its notes say so. Until then macOS asks you to confirm the first launch: **Control-click** (right-click) **Git Tree** in Applications, choose **Open**, then **Open** again. If macOS reports that the app "is damaged", the download was quarantined without a signature; run `xattr -dr com.apple.quarantine "/Applications/Git Tree.app"` once and open it again. To check a signed build yourself:
 
 ```bash
 codesign --verify --deep --strict --verbose=2 "/Applications/Git Tree.app"
@@ -286,7 +290,7 @@ spctl --assess --type execute --verbose "/Applications/Git Tree.app"   # "accept
 
 ### Windows
 
-1. [Download the installer](https://gittree.app/api/download/windows) — `Git.Tree_<version>_x64-setup.exe`.
+1. [Download the installer](https://gittree.app/api/download/windows) — `Git-Tree_<version>_x64-setup.exe`.
 2. Run it. Git Tree installs for all users on the computer, so Windows asks for administrator permission.
 3. Open **Git Tree** from the Start menu.
 
@@ -308,16 +312,16 @@ Check your version with `git --version`. For Git LFS: `brew install git-lfs` on 
 
 ### Verify your download (optional)
 
-Each release lists the SHA-256 checksum of every installer. Compare it with the file you downloaded:
+Each release attaches `SHA256SUMS.txt` with the SHA-256 checksum of every installer. Compare the line for your file with the one you downloaded:
 
 ```bash
 # macOS
-shasum -a 256 ~/Downloads/Git.Tree_*_universal.dmg
+shasum -a 256 ~/Downloads/Git-Tree*.dmg
 ```
 
 ```powershell
 # Windows (PowerShell)
-Get-FileHash "$env:USERPROFILE\Downloads\Git.Tree_*_x64-setup.exe" -Algorithm SHA256
+Get-FileHash "$env:USERPROFILE\Downloads\Git-Tree*setup.exe" -Algorithm SHA256
 ```
 
 ## Getting started
@@ -327,6 +331,7 @@ Get-FileHash "$env:USERPROFILE\Downloads\Git.Tree_*_x64-setup.exe" -Algorithm SH
    - Browser didn't come back? The website shows a one-time code: choose **Manually enter authentication code** in the app and paste it.
    - The account is free. Git Tree asks GitHub only for your public profile and email address; your repositories stay on your computer.
 3. **Open a repository.** From the start page choose **Open** (a folder on your computer), **Clone** (from a URL or your connected accounts) or **Init** (a new repository). **Scan for Repositories** finds the ones you already have in a folder.
+   - **Pull requests and issues.** Signing in to Git Tree does not connect your hosting account. For a repository on GitHub (or Bitbucket, GitLab, Azure DevOps) the sidebar shows **Connect github.com to see pull requests and issues…**; choose it (or open **Preferences → Integrations**) and connect the account once. The sidebar then lists the repository's open pull requests, with their checks, and its issues.
 4. **Find your way around.**
 
    | Area | What it shows |
@@ -486,6 +491,7 @@ Disconnect your hosting accounts in **Preferences → Integrations** first if yo
 | The browser doesn't return to the app after signing in | Use **Manually enter authentication code** in the app and paste the one-time code the website shows. Enter it only in the app that started the sign-in. |
 | The download button opens the Releases page instead of downloading | No installer for your platform is published yet, or GitHub couldn't be reached — pick the file from the release's **Assets** list. |
 | Windows SmartScreen warning | Check the file's SHA-256 against the release ([Verify your download](#verify-your-download-optional)), then **More info → Run anyway**. |
+| macOS: *"Git Tree can't be opened because Apple cannot check it"* | The release is not notarized yet. Control-click **Git Tree** in Applications → **Open** → **Open** ([Installation](#macos)). |
 | A remote asks for credentials every time | Connect the account in **Preferences → Integrations**, or set up an SSH key there; secrets are kept in your keychain. |
 | Something else | [Open an issue](https://github.com/eslamfaisal/git-tree/issues/new/choose) with your Git Tree version (bottom-right of the window), your OS version and the steps to reproduce. |
 
