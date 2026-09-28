@@ -1,0 +1,249 @@
+name: release
+
+# Builds the two installers from the PRIVATE source repository and publishes them as a release of THIS
+# public repository. Standard GitHub-hosted runners are free and unlimited for public repositories, so
+# this costs nothing on the free plan (the private repository's own release workflow would spend its
+# monthly minutes: macOS counts ten times, Windows twice).
+#
+# Run it by hand: Actions > release > Run workflow, with the version tag (e.g. v1.0.0). Nothing else
+# starts it, so only people with write access here can. The tag is created here by the release; the
+# source is read from `source_ref` of the private repository and its version must equal the tag.
+#
+# Setup (owner, once; see RELEASING.md): an environment named `release` with required reviewers and the
+# secrets SOURCE_REPO_TOKEN (a fine-grained token with Contents: read on the private source repository
+# only) and, for a signed and notarized macOS build, the APPLE_* secrets. Build logs of a public
+# repository are public: they can show file names and compiler messages of the private source.
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Version tag to build and publish, e.g. v1.0.0 (must equal the version in the source)'
+        required: true
+        type: string
+      source_ref:
+        description: 'Branch, tag or commit of the source repository to build'
+        required: false
+        default: main
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+env:
+  SOURCE_REPO: eslamfaisal/open-git-tree
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+  RUSTUP_TOOLCHAIN: 1.98.1
+
+jobs:
+  versions:
+    name: the source's version matches the tag
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: release
+    env:
+      TAG: ${{ inputs.tag }}
+    steps:
+      - name: the tag is a version
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || { echo "::error::'$TAG' is not vMAJOR.MINOR.PATCH"; exit 1; }
+      - name: the source token is set
+        env:
+          SOURCE_REPO_TOKEN: ${{ secrets.SOURCE_REPO_TOKEN }}
+        run: |
+          [ -n "$SOURCE_REPO_TOKEN" ] || { echo "::error::The SOURCE_REPO_TOKEN secret is missing from the release environment (RELEASING.md)."; exit 1; }
+      - uses: actions/checkout@v5
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ inputs.source_ref }}
+          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          path: source
+          persist-credentials: false
+      - run: python3 source/tooling/check-versions.py "$TAG"
+      - run: python3 tooling/check-capabilities.py
+        working-directory: source
+      - name: which commit is built
+        run: |
+          echo "Source commit: $(git -C source rev-parse HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
+
+  build:
+    name: build (${{ matrix.name }})
+    needs: versions
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macos-universal
+            os: macos-latest
+            sidecar: universal-apple-darwin
+            args: --target universal-apple-darwin
+            rust-targets: aarch64-apple-darwin,x86_64-apple-darwin
+            bundles: target/universal-apple-darwin/release/bundle
+          - name: windows-x64
+            os: windows-latest
+            sidecar: x86_64-pc-windows-msvc
+            args: --target x86_64-pc-windows-msvc
+            rust-targets: x86_64-pc-windows-msvc
+            bundles: target/x86_64-pc-windows-msvc/release/bundle
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 120
+    environment: release
+    env:
+      TAG: ${{ inputs.tag }}
+      HAS_APPLE_SIGNING: ${{ secrets.APPLE_SIGNING_IDENTITY != '' }}
+    defaults:
+      run:
+        working-directory: source
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ inputs.source_ref }}
+          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          path: source
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.98.1
+          targets: ${{ matrix.rust-targets }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: source
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: source/package.json
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: source/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+
+      - name: helper sidecar
+        shell: bash
+        run: tooling/prepare-sidecar.sh ${{ matrix.sidecar }}
+
+      - name: official backend and GitHub OAuth App
+        shell: bash
+        run: node tooling/official-build.mjs --github-env >> "$GITHUB_ENV"
+
+      # No tagName or releaseId: tauri-action only builds; the publish job creates the release here.
+      - name: build and sign
+        uses: tauri-apps/tauri-action@v0
+        env:
+          OGT_GITLAB_CLIENT_ID: ${{ secrets.OGT_GITLAB_CLIENT_ID }}
+          OGT_AZURE_CLIENT_ID: ${{ secrets.OGT_AZURE_CLIENT_ID }}
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_PATH: ${{ secrets.APPLE_API_KEY_PATH }}
+        with:
+          projectPath: source/apps/desktop
+          tauriScript: pnpm tauri
+          args: ${{ matrix.args }} --config src-tauri/tauri.release.conf.json
+          includeUpdaterJson: false
+
+      - name: size budgets
+        shell: bash
+        run: python3 tooling/check-bundle-size.py "${{ matrix.bundles }}"
+
+      - name: verify the macOS signature, notarization and staple
+        if: runner.os == 'macOS' && env.HAS_APPLE_SIGNING == 'true'
+        run: |
+          app="$(find "${{ matrix.bundles }}/macos" -maxdepth 1 -name '*.app' | head -n 1)"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          codesign --verify --strict --verbose=2 "$app/Contents/MacOS/ogt-helper"
+          spctl --assess --type execute --verbose "$app"
+          xcrun stapler validate "$app"
+
+      # Stable names make releases/latest/download/<name> a permanent direct link; the versioned copies keep the
+      # version in the file name. Tauri's own names contain a space, which GitHub rewrites.
+      - name: stage the installers
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${TAG#v}"
+          mkdir -p ../staged
+          dmg="$(find "${{ matrix.bundles }}/dmg" -type f -name '*.dmg' 2>/dev/null | head -n 1 || true)"
+          exe="$(find "${{ matrix.bundles }}/nsis" -type f -name '*-setup.exe' 2>/dev/null | head -n 1 || true)"
+          if [ -n "$dmg" ]; then
+            cp "$dmg" "../staged/Git-Tree_${version}_universal.dmg"
+            cp "$dmg" "../staged/Git-Tree-macOS.dmg"
+          fi
+          if [ -n "$exe" ]; then
+            cp "$exe" "../staged/Git-Tree_${version}_x64-setup.exe"
+            cp "$exe" "../staged/Git-Tree-Windows-setup.exe"
+          fi
+          ls -l ../staged
+          test -n "$(ls -A ../staged)"
+      - uses: actions/upload-artifact@v5
+        with:
+          name: installers-${{ matrix.name }}
+          path: staged/*
+          if-no-files-found: error
+          retention-days: 30
+
+  # Only after every platform built: never a release with one installer missing.
+  publish:
+    name: publish the release
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: release
+    env:
+      TAG: ${{ inputs.tag }}
+      GH_TOKEN: ${{ github.token }}
+      HAS_APPLE_SIGNING: ${{ secrets.APPLE_SIGNING_IDENTITY != '' }}
+    steps:
+      # Only the script that renders the release notes is needed from the source.
+      - uses: actions/checkout@v5
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ inputs.source_ref }}
+          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          path: source
+          sparse-checkout: tooling
+          persist-credentials: false
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: installers-*
+          path: installers
+          merge-multiple: true
+      - name: checksums
+        run: |
+          set -euo pipefail
+          cd installers
+          sha256sum -- * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+      - name: release notes
+        run: python3 source/tooling/render-release-notes.py "$TAG" > release-notes.md
+        env:
+          SIGNED_MACOS: ${{ env.HAS_APPLE_SIGNING }}
+          SIGNED_WINDOWS: ${{ vars.SIGNPATH_CONFIGURED == 'true' }}
+      - name: publish
+        run: |
+          set -euo pipefail
+          prerelease=()
+          latest="--latest"
+          if [[ "$TAG" == *-* ]]; then
+            prerelease=(--prerelease)
+            latest="--latest=false"
+          fi
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" installers/* --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$TAG" installers/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$GITHUB_SHA" \
+              --title "Git Tree $TAG" \
+              --notes-file release-notes.md \
+              "${prerelease[@]}" "$latest"
+          fi
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url,assets \
+            --jq '.url, (.assets[] | "  " + .name + "  " + (.size | tostring) + " bytes")'
