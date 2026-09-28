@@ -1,7 +1,7 @@
 # Publishing a release
 
 The installers users download are attached to a release of **this** repository. The maintainer's build
-pipeline does it on a version tag (below); the manual route at the end is the fallback. Either way, this
+release workflow here does it (below); the manual route at the end is the fallback. Either way, this
 page is the checklist that keeps the website's download buttons and the README's links working.
 
 ## How users get the installer
@@ -37,14 +37,26 @@ What the website picks (first match):
 Never attach source code or anything from the private repositories: GitHub's automatic *Source code* archives
 contain only this public repository.
 
-## Automatic: push the tag
+## Automatic: run the release workflow (free)
 
-In the source repository, `git tag vX.Y.Z && git push origin vX.Y.Z` (the version in the code must match; the
-run refuses otherwise). Its release workflow builds and signs both installers, checks their sizes, and once
-**both** exist creates this repository's release `vX.Y.Z` with the files above, `SHA256SUMS.txt` and release
-notes. It needs the owner-side setup listed in that repository's `docs/05-release/OWNER_ACTIONS.md`
-(GitHub Actions minutes, the `release` environment's signing secrets, and a token allowed to write to this
-repository). A tag with a suffix (`v0.1.0-beta.1`) is published as a pre-release and never becomes *Latest*.
+**Actions › release › Run workflow**, with the version tag (`v1.0.0`; the source's version must equal it).
+The workflow checks out the maintainer's private source repository, builds and signs both installers on
+GitHub's macOS and Windows runners, checks their sizes, and once **both** exist creates the release
+`vX.Y.Z` here with the files above, `SHA256SUMS.txt` and release notes. It lives in this public
+repository on purpose: standard runners are free and unlimited for public repositories, so it costs
+nothing on GitHub's free plan. Only people with write access here can start it. A tag with a suffix
+(`v1.1.0-beta.1`) is published as a pre-release and never becomes *Latest*.
+
+One-time setup, by the owner (Settings › Environments › New environment `release`, with required reviewers):
+
+| Secret in the `release` environment | What |
+|---|---|
+| `SOURCE_REPO_TOKEN` | required: a fine-grained personal access token limited to the private source repository, permission *Contents: Read-only* |
+| `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_API_ISSUER`, `APPLE_API_KEY`, `APPLE_API_KEY_PATH` | optional: Developer ID signing and notarization. Without them the `.dmg` is unsigned and the release notes say so |
+
+Build logs of a public repository are public: a failing build can print file names and compiler
+messages of the private source. Keep the environment's required reviewer on, and never pass the source
+token to anything but the checkout steps.
 
 ## By hand (fallback)
 
