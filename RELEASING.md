@@ -1,7 +1,7 @@
 # Publishing a release
 
-The installers users download are attached to a release of **this** repository. The maintainer's build
-release workflow here does it (below); the manual route at the end is the fallback. Either way, this
+The installers users download are attached to a release of **this** repository. The release workflow here
+builds and publishes them (below); the manual route at the end is the fallback. Either way, this
 page is the checklist that keeps the website's download buttons and the README's links working.
 
 ## How users get the installer
