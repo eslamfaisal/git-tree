@@ -52,7 +52,7 @@ repository). A tag with a suffix (`v0.1.0-beta.1`) is published as a pre-release
 2. Name the files as in the table above. Tauri writes `Git Tree_X.Y.Z_universal.dmg` and
    `Git Tree_X.Y.Z_x64-setup.exe` (with a space); from the folder holding them:
    ```bash
-   V=0.0.1
+   V=1.0.0
    cp "Git Tree_${V}_universal.dmg" "Git-Tree_${V}_universal.dmg"
    cp "Git Tree_${V}_universal.dmg" Git-Tree-macOS.dmg
    cp "Git Tree_${V}_x64-setup.exe" "Git-Tree_${V}_x64-setup.exe"
