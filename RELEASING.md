@@ -1,38 +1,69 @@
 # Publishing a release
 
-Releases are built, signed and uploaded **by hand** by the maintainer. This page is the checklist that keeps the
-website's download buttons working.
+The installers users download are attached to a release of **this** repository. The maintainer's build
+pipeline does it on a version tag (below); the manual route at the end is the fallback. Either way, this
+page is the checklist that keeps the website's download buttons and the README's links working.
 
-## How the website finds the installer
+## How users get the installer
 
-The download buttons on [gittree.app](https://gittree.app) (and in this README) link to
-`https://gittree.app/api/download/macos` and `…/windows`. Each click asks GitHub for this repository's **latest
-release** and redirects to the matching asset:
+| Where | Link | How it resolves |
+|---|---|---|
+| Website and README buttons | `https://gittree.app/api/download/macos` · `…/windows` | The site asks GitHub for this repository's published releases, takes the **highest stable version**, and redirects to that release's installer file — a direct download, not the release page. It reuses GitHub's answer for about 5 minutes. |
+| If GitHub's API cannot be asked (rate limit, outage) | the same buttons | They redirect to GitHub's permanent link below instead, so a download still starts. |
+| Permanent links, no website needed | `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` · `…/Git-Tree-Windows-setup.exe` | GitHub redirects `latest/download/<name>` to the file of that name on the **latest release**. The names never change, so these links never break. |
 
-| Platform | Asset picked (first match) |
+What the website picks (first match):
+
+| Platform | Asset |
 |---|---|
-| macOS | a `.dmg` whose name contains `universal`, else any `.dmg` |
-| Windows | a `…-setup.exe`, else any `.exe`, else a `.msi` |
+| macOS | a `.dmg` whose name contains `universal` (`Git-Tree_X.Y.Z_universal.dmg`), else any `.dmg` (`Git-Tree-macOS.dmg`) |
+| Windows | `…_x64-setup.exe` (`Git-Tree_X.Y.Z_x64-setup.exe`), else any `…-setup.exe`, any `.exe`, then a `.msi` |
 
-- **Drafts and pre-releases are never served.** Only the release GitHub marks **Latest** counts.
-- A new release reaches the buttons within about **5 minutes** (the website reuses GitHub's answer that long).
+- **Drafts, pre-releases and tags that are not `vX.Y.Z` are never served.**
 - With no release, or no matching asset, the buttons open the Releases page instead of failing.
+- Every release must therefore carry the **four installer names** below — the two stable ones are what the
+  permanent links need.
 
-## Checklist
+## Every release attaches
 
-1. Build and sign locally: the macOS universal `.dmg` (Developer ID signed, notarized and stapled) and the Windows
-   `…_x64-setup.exe`. Keep Tauri's default names, e.g. `Git.Tree_1.2.0_universal.dmg` and
-   `Git.Tree_1.2.0_x64-setup.exe` (GitHub turns the space in `Git Tree` into a dot).
-2. Write the checksums:
+| File | What |
+|---|---|
+| `Git-Tree_X.Y.Z_universal.dmg` | the macOS installer (Apple silicon and Intel) |
+| `Git-Tree_X.Y.Z_x64-setup.exe` | the Windows installer |
+| `Git-Tree-macOS.dmg` | the same `.dmg` under a name that never changes |
+| `Git-Tree-Windows-setup.exe` | the same installer under a name that never changes |
+| `SHA256SUMS.txt` | SHA-256 of every file above |
+
+Never attach source code or anything from the private repositories: GitHub's automatic *Source code* archives
+contain only this public repository.
+
+## Automatic: push the tag
+
+In the source repository, `git tag vX.Y.Z && git push origin vX.Y.Z` (the version in the code must match; the
+run refuses otherwise). Its release workflow builds and signs both installers, checks their sizes, and once
+**both** exist creates this repository's release `vX.Y.Z` with the files above, `SHA256SUMS.txt` and release
+notes. It needs the owner-side setup listed in that repository's `docs/05-release/OWNER_ACTIONS.md`
+(GitHub Actions minutes, the `release` environment's signing secrets, and a token allowed to write to this
+repository). A tag with a suffix (`v0.1.0-beta.1`) is published as a pre-release and never becomes *Latest*.
+
+## By hand (fallback)
+
+1. Build and sign locally, or take `installers-*` from the workflow run's artifacts.
+2. Name the files as in the table above. Then:
    ```bash
-   shasum -a 256 Git.Tree_*_universal.dmg Git.Tree_*_x64-setup.exe > SHA256SUMS.txt
+   shasum -a 256 Git-Tree_*_universal.dmg Git-Tree_*_x64-setup.exe Git-Tree-macOS.dmg Git-Tree-Windows-setup.exe > SHA256SUMS.txt
    ```
-3. Create the release on GitHub: tag `vX.Y.Z` (SemVer; a `-beta.N` suffix makes it a pre-release), title
-   `Git Tree vX.Y.Z`, release notes, and attach the `.dmg`, the `.exe` and `SHA256SUMS.txt`.
+3. Create the release: tag `vX.Y.Z` (SemVer), title `Git Tree vX.Y.Z`, release notes, and attach the five files.
 4. Leave **Set as a pre-release** unticked and **Set as the latest release** ticked for a stable version, then
    **Publish release**.
-5. After ~5 minutes, check that <https://gittree.app/api/download/macos> and
-   <https://gittree.app/api/download/windows> download the new files.
+
+## After publishing
+
+1. Open `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` and the Windows
+   link: each must start a download.
+2. After ~5 minutes, `https://gittree.app/api/download/macos` and `…/windows` must download the same files.
+3. Raise `latestVersion` for each platform in the account service's `app_configs` documents, **after** the
+   downloads work (a forced update pointing at a missing installer locks users out).
 
 ## In-app updates (once the updater is enabled)
 
@@ -55,6 +86,3 @@ So every updater-enabled release also attaches:
 A stable release puts `latest.json` on the release itself. A beta (`-beta.N`) updates the assets of
 the moving pre-release tagged `beta` instead. Neither the `.tar.gz` archives nor `latest.json` are
 ever picked by the website's download buttons.
-
-Never attach source code or anything from the private repositories to a release: GitHub's automatic *Source code*
-archives contain only this public repository.
