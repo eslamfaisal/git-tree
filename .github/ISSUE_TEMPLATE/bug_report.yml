@@ -41,13 +41,15 @@ body:
         - macOS (Intel)
         - Windows 11
         - Windows 10
+        - Linux (Ubuntu or Debian)
+        - Linux (other)
     validations:
       required: true
   - type: input
     id: os-version
     attributes:
       label: OS version
-      placeholder: macOS 15.3 / Windows 11 24H2
+      placeholder: macOS 15.3 / Windows 11 24H2 / Ubuntu 24.04
   - type: input
     id: git-version
     attributes:
@@ -58,4 +60,4 @@ body:
     id: extra
     attributes:
       label: Screenshots or logs
-      description: Anything else that helps. Remove secrets and private paths first.
+      description: Anything else that helps. Remove secrets and private paths first. If Git Tree crashed, use the Crash report form instead.

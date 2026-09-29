@@ -8,9 +8,9 @@ page is the checklist that keeps the website's download buttons and the README's
 
 | Where | Link | How it resolves |
 |---|---|---|
-| Website and README buttons | `https://gittree.app/api/download/macos` · `…/windows` | The site asks GitHub for this repository's published releases, takes the **highest stable version**, and redirects to that release's installer file — a direct download, not the release page. It reuses GitHub's answer for a few minutes, so a new release reaches the buttons within about 10. |
+| Website and README buttons | `https://gittree.app/api/download/macos` · `…/windows` · `…/linux` (the `.deb`) · `…/linux-appimage` | The site asks GitHub for this repository's published releases, takes the **highest stable version**, and redirects to that release's installer file — a direct download, not the release page. It reuses GitHub's answer for a few minutes, so a new release reaches the buttons within about 10. |
 | If GitHub's API cannot be asked (rate limit, outage) | the same buttons | They redirect to GitHub's permanent link below instead, so a download still starts. |
-| Permanent links, no website needed | `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` · `…/Git-Tree-Windows-setup.exe` | GitHub redirects `latest/download/<name>` to the file of that name on the **latest release**. The names never change, so these links never break. |
+| Permanent links, no website needed | `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` · `…/Git-Tree-Windows-setup.exe` · `…/Git-Tree-Linux.deb` · `…/Git-Tree-Linux.AppImage` | GitHub redirects `latest/download/<name>` to the file of that name on the **latest release**. The names never change, so these links never break. |
 
 What the website picks (first match):
 
@@ -18,10 +18,12 @@ What the website picks (first match):
 |---|---|
 | macOS | a `.dmg` whose name contains `universal` (`Git-Tree_X.Y.Z_universal.dmg`), else any `.dmg` (`Git-Tree-macOS.dmg`) |
 | Windows | `…_x64-setup.exe` (`Git-Tree_X.Y.Z_x64-setup.exe`), else any `…-setup.exe`, any `.exe`, then a `.msi` |
+| Linux (`.deb`) | `…_amd64.deb` (`Git-Tree_X.Y.Z_amd64.deb`), else any `.deb` (`Git-Tree-Linux.deb`) |
+| Linux (AppImage) | `…_amd64.AppImage` (`Git-Tree_X.Y.Z_amd64.AppImage`), else any `.AppImage` (`Git-Tree-Linux.AppImage`); a `.AppImage.sig` or `.AppImage.tar.gz` is never picked |
 
 - **Drafts, pre-releases and tags that are not `vX.Y.Z` are never served.**
 - With no release, or no matching asset, the buttons open the Releases page instead of failing.
-- Every release must therefore carry the **four installer names** below — the two stable ones are what the
+- Every release must therefore carry the **six installer names** below — the three stable ones are what the
   permanent links need.
 
 ## Every release attaches
@@ -30,8 +32,12 @@ What the website picks (first match):
 |---|---|
 | `Git-Tree_X.Y.Z_universal.dmg` | the macOS installer (Apple silicon and Intel) |
 | `Git-Tree_X.Y.Z_x64-setup.exe` | the Windows installer |
+| `Git-Tree_X.Y.Z_amd64.deb` | the Debian / Ubuntu package (64-bit; Ubuntu 22.04 and later, Debian 12 and later) |
+| `Git-Tree_X.Y.Z_amd64.AppImage` | the portable Linux app (same systems) |
 | `Git-Tree-macOS.dmg` | the same `.dmg` under a name that never changes |
 | `Git-Tree-Windows-setup.exe` | the same installer under a name that never changes |
+| `Git-Tree-Linux.deb` | the same `.deb` under a name that never changes |
+| `Git-Tree-Linux.AppImage` | the same AppImage under a name that never changes |
 | `SHA256SUMS.txt` | SHA-256 of every file above |
 
 Never attach source code or anything from the private repositories: GitHub's automatic *Source code* archives
@@ -40,8 +46,10 @@ contain only this public repository.
 ## Automatic: run the release workflow (free)
 
 **Actions › release › Run workflow**, with the version tag (`v1.0.0`; the source's version must equal it).
-The workflow checks out the maintainer's private source repository, builds and signs both installers on
-GitHub's macOS and Windows runners, checks their sizes, and once **both** exist creates the release
+The workflow checks out the maintainer's private source repository, builds the installers on
+GitHub's macOS, Windows and Ubuntu runners (macOS and Windows are signed when the secrets below are set; the Linux
+`.deb` and AppImage are not signed, `SHA256SUMS.txt` is how users verify them), checks their sizes, and once
+**all three** exist creates the release
 `vX.Y.Z` here with the files above, `SHA256SUMS.txt` and release notes. It lives in this public
 repository on purpose: standard runners are free and unlimited for public repositories, so it costs
 nothing on GitHub's free plan. Only people with write access here can start it. A tag with a suffix
@@ -54,6 +62,8 @@ One-time setup, by the owner (Settings › Environments › New environment `rel
 | `SOURCE_REPO_TOKEN` | required: a fine-grained personal access token limited to the private source repository, permission *Contents: Read-only* |
 | `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_API_ISSUER`, `APPLE_API_KEY`, `APPLE_API_KEY_PATH` | optional: Developer ID signing and notarization. Without them the `.dmg` is unsigned and the release notes say so |
 
+The Linux leg needs no secret of its own.
+
 Build logs of a public repository are public: a failing build can print file names and compiler
 messages of the private source. Keep the environment's required reviewer on, and never pass the source
 token to anything but the checkout steps.
@@ -61,25 +71,35 @@ token to anything but the checkout steps.
 ## By hand (fallback)
 
 1. Build and sign locally, or take `installers-*` from the workflow run's artifacts.
-2. Name the files as in the table above. Tauri writes `Git Tree_X.Y.Z_universal.dmg` and
-   `Git Tree_X.Y.Z_x64-setup.exe` (with a space); from the folder holding them:
+2. Name the files as in the table above. Tauri writes `Git Tree_X.Y.Z_universal.dmg`,
+   `Git Tree_X.Y.Z_x64-setup.exe`, `Git Tree_X.Y.Z_amd64.deb` and `Git Tree_X.Y.Z_amd64.AppImage` (with a space);
+   from the folder holding them:
    ```bash
    V=1.0.0
    cp "Git Tree_${V}_universal.dmg" "Git-Tree_${V}_universal.dmg"
    cp "Git Tree_${V}_universal.dmg" Git-Tree-macOS.dmg
    cp "Git Tree_${V}_x64-setup.exe" "Git-Tree_${V}_x64-setup.exe"
    cp "Git Tree_${V}_x64-setup.exe" Git-Tree-Windows-setup.exe
-   shasum -a 256 Git-Tree_"${V}"_universal.dmg Git-Tree_"${V}"_x64-setup.exe Git-Tree-macOS.dmg Git-Tree-Windows-setup.exe > SHA256SUMS.txt
+   cp "Git Tree_${V}_amd64.deb" "Git-Tree_${V}_amd64.deb"
+   cp "Git Tree_${V}_amd64.deb" Git-Tree-Linux.deb
+   cp "Git Tree_${V}_amd64.AppImage" "Git-Tree_${V}_amd64.AppImage"
+   cp "Git Tree_${V}_amd64.AppImage" Git-Tree-Linux.AppImage
+   chmod +x Git-Tree_"${V}"_amd64.AppImage Git-Tree-Linux.AppImage
+   sha256sum Git-Tree_"${V}"_universal.dmg Git-Tree_"${V}"_x64-setup.exe Git-Tree_"${V}"_amd64.deb Git-Tree_"${V}"_amd64.AppImage \
+     Git-Tree-macOS.dmg Git-Tree-Windows-setup.exe Git-Tree-Linux.deb Git-Tree-Linux.AppImage > SHA256SUMS.txt
    ```
-3. Create the release: tag `vX.Y.Z` (SemVer), title `Git Tree vX.Y.Z`, release notes, and attach the five files.
+3. Create the release: tag `vX.Y.Z` (SemVer), title `Git Tree vX.Y.Z`, release notes, and attach the nine files.
 4. Leave **Set as a pre-release** unticked and **Set as the latest release** ticked for a stable version, then
    **Publish release**.
 
 ## After publishing
 
-1. Open `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` and the Windows
-   link: each must start a download.
-2. Within about 10 minutes, `https://gittree.app/api/download/macos` and `…/windows` must download the same files.
+1. Open `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` and the Windows,
+   Linux `.deb` and Linux AppImage links: each must start a download.
+2. Within about 10 minutes, `https://gittree.app/api/download/macos`, `…/windows`, `…/linux` and
+   `…/linux-appimage` must download the same files.
+3. On an Ubuntu machine, `sudo apt install ./Git-Tree-Linux.deb` must succeed and **Git Tree** must open from the
+   application menu.
 
 ## In-app updates (once the updater is enabled)
 
