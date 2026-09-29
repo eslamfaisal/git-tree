@@ -154,18 +154,25 @@ jobs:
         shell: bash
         run: node tooling/official-build.mjs --github-env >> "$GITHUB_ENV"
 
+      # The AppImage tools and runtime, from pinned URLs and checked against
+      # source/tooling/appimage-tools.sha256. The next step then downloads nothing.
+      - name: pinned AppImage tools
+        if: runner.os == 'Linux'
+        run: tooling/prepare-appimage-tools.sh
+
       # No tagName or releaseId: tauri-action only builds; the publish job creates the release here.
       - name: build and sign
         uses: tauri-apps/tauri-action@v0
         env:
           OGT_GITLAB_CLIENT_ID: ${{ secrets.OGT_GITLAB_CLIENT_ID }}
           OGT_AZURE_CLIENT_ID: ${{ secrets.OGT_AZURE_CLIENT_ID }}
-          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
-          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
-          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
-          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
-          APPLE_API_KEY_PATH: ${{ secrets.APPLE_API_KEY_PATH }}
+          # The Apple signing secrets reach only the macOS leg; the others get an empty value.
+          APPLE_CERTIFICATE: ${{ matrix.name == 'macos-universal' && secrets.APPLE_CERTIFICATE || '' }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ matrix.name == 'macos-universal' && secrets.APPLE_CERTIFICATE_PASSWORD || '' }}
+          APPLE_SIGNING_IDENTITY: ${{ matrix.name == 'macos-universal' && secrets.APPLE_SIGNING_IDENTITY || '' }}
+          APPLE_API_ISSUER: ${{ matrix.name == 'macos-universal' && secrets.APPLE_API_ISSUER || '' }}
+          APPLE_API_KEY: ${{ matrix.name == 'macos-universal' && secrets.APPLE_API_KEY || '' }}
+          APPLE_API_KEY_PATH: ${{ matrix.name == 'macos-universal' && secrets.APPLE_API_KEY_PATH || '' }}
         with:
           projectPath: source/apps/desktop
           tauriScript: pnpm tauri
@@ -196,6 +203,9 @@ jobs:
           appimage="$(realpath "$(find "${{ matrix.bundles }}/appimage" -maxdepth 1 -type f -name '*.AppImage' | head -n 1)")"
           dpkg-deb --info "$deb"
           dpkg-deb --contents "$deb" | grep -E ' (\./)?usr/bin/ogt-helper$'
+          # Every entry owned by root (tar lists it as root/root or 0/0).
+          dpkg-deb --contents "$deb" | awk '{ n++ } $2 !~ /^(root|0)\/(root|0)$/ { print "not owned by root: " $0; bad = 1 } END { exit (bad || n == 0) }'
+          [ "$(dpkg-deb --field "$deb" Package)" = git-tree ]
           unpacked="$(mktemp -d)"
           dpkg-deb --extract "$deb" "$unpacked"
           desktop="$(find "$unpacked/usr/share/applications" -name '*.desktop' | head -n 1)"
