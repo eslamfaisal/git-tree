@@ -8,7 +8,7 @@
 
 <p align="center">
   <strong>The visual Git client that keeps your work on your computer.</strong><br>
-  A free, local-first Git GUI for macOS and Windows: a fast commit graph, line-level staging,<br>
+  A free, local-first Git GUI for macOS, Windows and Linux: a fast commit graph, line-level staging,<br>
   merge and rebase with undo, and your GitHub and Bitbucket accounts built in.
 </p>
 
@@ -17,6 +17,7 @@
   <a href="https://github.com/eslamfaisal/git-tree/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/eslamfaisal/git-tree/total?style=flat-square&color=22c55e"></a>
   <img alt="macOS 13 or later" src="https://img.shields.io/badge/macOS-13%2B%20%C2%B7%20Apple%20silicon%20%26%20Intel-111827?logo=apple&style=flat-square">
   <img alt="Windows 10 and 11" src="https://img.shields.io/badge/Windows-10%20%C2%B7%2011%20(x64)-0078D6?style=flat-square">
+  <img alt="Ubuntu 22.04 or later and Debian 12 or later" src="https://img.shields.io/badge/Linux-Ubuntu%2022.04%2B%20%C2%B7%20Debian%2012%2B%20(x64)-E95420?logo=linux&logoColor=white&style=flat-square">
   <img alt="Free" src="https://img.shields.io/badge/price-free-a855f7?style=flat-square">
   <img alt="Zero telemetry" src="https://img.shields.io/badge/telemetry-zero-14b8a6?style=flat-square">
 </p>
@@ -25,6 +26,8 @@
   <a href="https://gittree.app/api/download/macos"><strong>Download for macOS</strong></a>
   &nbsp;·&nbsp;
   <a href="https://gittree.app/api/download/windows"><strong>Download for Windows</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://gittree.app/api/download/linux"><strong>Download for Linux</strong></a>
   &nbsp;·&nbsp;
   <a href="https://gittree.app">Website</a>
   &nbsp;·&nbsp;
@@ -69,17 +72,20 @@
 |---|---|---|---|
 | **macOS** | macOS 13 Ventura or later, Apple silicon (M1–M4) and Intel | One universal `.dmg` | [**Download for macOS**](https://gittree.app/api/download/macos) |
 | **Windows** | Windows 10 (22H2) or Windows 11, 64-bit | x64 installer `…_x64-setup.exe` | [**Download for Windows**](https://gittree.app/api/download/windows) |
+| **Linux** | Ubuntu 22.04 LTS or later, Debian 12 or later (and derivatives with WebKitGTK 4.1, such as Linux Mint 21+), 64-bit | Debian package `…_amd64.deb` (recommended) · portable `…_amd64.AppImage` | [**Download the .deb**](https://gittree.app/api/download/linux) · [AppImage](https://gittree.app/api/download/linux-appimage) |
 
-Both links always fetch the installer of the **newest release** straight from this repository — there is nothing to pick.
+These links always fetch the installer of the **newest release** straight from this repository — there is nothing to pick.
 Every version, with its release notes and checksums, is listed on the [**Releases page**](https://github.com/eslamfaisal/git-tree/releases).
 You can also download from the website: [gittree.app/en/download](https://gittree.app/en/download).
 
 Prefer to skip the website? These links are served by GitHub itself, never change, and always point to the newest release:
 [`Git-Tree-macOS.dmg`](https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg) ·
-[`Git-Tree-Windows-setup.exe`](https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-Windows-setup.exe).
+[`Git-Tree-Windows-setup.exe`](https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-Windows-setup.exe) ·
+[`Git-Tree-Linux.deb`](https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-Linux.deb) ·
+[`Git-Tree-Linux.AppImage`](https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-Linux.AppImage).
 
 > [!NOTE]
-> Git Tree uses **your own Git** (version 2.39 or newer). If Git is not installed, the app tells you how to install it — see [Install Git](#install-git).
+> Git Tree uses **your own Git** (version 2.39 or newer). If Git is not installed, the app tells you how to install it — see [Install Git](#install-git). Ubuntu 22.04 ships an older Git, so it needs one extra step there.
 
 > [!TIP]
 > Pre-releases (betas) are marked **Pre-release** on the Releases page. The download buttons only ever serve stable releases.
@@ -90,7 +96,7 @@ This is the **public home of Git Tree**: its releases, its public files and its 
 
 | You'll find here | |
 |---|---|
-| **Releases** | Installers for macOS (`.dmg`) and Windows (`.exe`), release notes and SHA-256 checksums, on the [Releases page](https://github.com/eslamfaisal/git-tree/releases). |
+| **Releases** | Installers for macOS (`.dmg`), Windows (`.exe`) and Linux (`.deb`, `.AppImage`), release notes and SHA-256 checksums, on the [Releases page](https://github.com/eslamfaisal/git-tree/releases). |
 | **Issues** | Bug reports and feature requests — [open one](https://github.com/eslamfaisal/git-tree/issues/new/choose). |
 | **Public files** | The logo and screenshots used in this README (`.github/assets/`). |
 
@@ -268,7 +274,7 @@ Git Tree covers the commands developers use every day, plus the advanced ones yo
 
 - **Your code stays local** — repositories stay on your computer; signing in uses only your GitHub profile.
 - **Zero telemetry** — no analytics, tracking or usage reporting of any kind.
-- **Secrets in the keychain** — tokens and passphrases live only in the macOS Keychain or the Windows Credential Manager.
+- **Secrets in the keychain** — tokens and passphrases live only in the macOS Keychain, the Windows Credential Manager or, on Linux, the system keyring (Secret Service: GNOME Keyring, KeePassXC).
 - **Untrusted repositories** cannot run hooks or change settings until you trust them.
 - **Your config stays yours** — Git Tree never edits your Git config, repository or `~/.ssh` without you asking.
 
@@ -299,6 +305,37 @@ Git Tree uses Microsoft Edge **WebView2**, which Windows 11 includes; on Windows
 > [!IMPORTANT]
 > Only install Git Tree from [gittree.app](https://gittree.app) or this repository's [Releases page](https://github.com/eslamfaisal/git-tree/releases). If Windows SmartScreen says *"Windows protected your PC"* for a brand-new release, check the file's checksum (below) before choosing **More info → Run anyway**.
 
+### Linux (Ubuntu and Debian)
+
+Git Tree needs Git 2.39 or newer. Ubuntu 24.04 and Debian 12 already have it. **Ubuntu 22.04 and Linux Mint 21 ship Git 2.34**, so add a current Git first:
+
+```bash
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
+sudo apt install git
+```
+
+1. [Download the `.deb`](https://gittree.app/api/download/linux) — `Git-Tree_<version>_amd64.deb` (or the stable name `Git-Tree-Linux.deb`).
+2. Install it; apt also installs what it needs (Git, WebKitGTK, GTK):
+   ```bash
+   sudo apt install ./Git-Tree_<version>_amd64.deb
+   ```
+3. Open **Git Tree** from the application menu.
+
+**Sign-in and passwords.** The app keeps your sign-in and tokens in the system keyring through the Secret Service. GNOME Keyring comes with Ubuntu; on other desktops install `gnome-keyring` or turn on KeePassXC's Secret Service integration. The keyring must be unlocked and have a default collection; if none answers, Git Tree tells you what to install and keeps nothing anywhere else. When Git asks for an HTTPS password or an SSH passphrase, the app shows the prompt with `zenity` or `kdialog` (recommended by the package).
+
+**Prefer a portable file?** Download the [AppImage](https://gittree.app/api/download/linux-appimage), then:
+
+```bash
+chmod +x Git-Tree_<version>_amd64.AppImage
+./Git-Tree_<version>_amd64.AppImage
+```
+
+Keep the AppImage in a folder only you can write to. If it does not start because FUSE is missing, install it with `sudo apt install fuse3`. An AppImage registers nothing with your system, so after signing in the browser cannot hand you back to the app: choose **Manually enter authentication code** in the app and paste the code the website shows (the `.deb` handles the return automatically).
+
+> [!IMPORTANT]
+> The Linux packages are not signed. Verify the download against `SHA256SUMS.txt` ([Verify your download](#verify-your-download-optional)) and install only from [gittree.app](https://gittree.app) or this repository's [Releases page](https://github.com/eslamfaisal/git-tree/releases).
+
 ### Install Git
 
 Git Tree never bundles or installs Git for you — it uses yours (2.39 or newer).
@@ -307,8 +344,9 @@ Git Tree never bundles or installs Git for you — it uses yours (2.39 or newer)
 |---|---|
 | **macOS** | `xcode-select --install` (Xcode Command Line Tools), or `brew install git` with [Homebrew](https://brew.sh) |
 | **Windows** | Install [Git for Windows](https://git-scm.com/download/win), then restart Git Tree |
+| **Linux** | Ubuntu 24.04 and Debian 12: `sudo apt install git`. Ubuntu 22.04 and Linux Mint 21: add the [Git PPA](https://launchpad.net/~git-core/+archive/ubuntu/ppa) first (`sudo add-apt-repository ppa:git-core/ppa && sudo apt update`), then `sudo apt install git`. Restart Git Tree afterwards |
 
-Check your version with `git --version`. For Git LFS: `brew install git-lfs` on macOS; on Windows it comes with Git for Windows (or `winget install GitHub.GitLFS`).
+Check your version with `git --version`. For Git LFS: `brew install git-lfs` on macOS; on Windows it comes with Git for Windows (or `winget install GitHub.GitLFS`); on Ubuntu and Debian `sudo apt install git-lfs`.
 
 ### Verify your download (optional)
 
@@ -323,6 +361,13 @@ shasum -a 256 ~/Downloads/Git-Tree*.dmg
 # Windows (PowerShell)
 Get-FileHash "$env:USERPROFILE\Downloads\Git-Tree*setup.exe" -Algorithm SHA256
 ```
+
+```bash
+# Linux: put SHA256SUMS.txt next to the downloads, then
+cd ~/Downloads && sha256sum -c --ignore-missing SHA256SUMS.txt
+```
+
+`SHA256SUMS.txt` is published in the same place as the installers, so it catches a corrupted or truncated download, not a tampered release. Download only from the sources named above.
 
 ## Getting started
 
@@ -426,9 +471,9 @@ Resets, discards, branch deletions and rebases save a recoverable snapshot befor
 
 ## Keyboard shortcuts
 
-<kbd>⌘</kbd> on macOS is <kbd>Ctrl</kbd> on Windows. Every shortcut can be changed in Preferences; <kbd>⌘</kbd><kbd>/</kbd> shows the full list in the app.
+<kbd>⌘</kbd> on macOS is <kbd>Ctrl</kbd> on Windows and Linux. Every shortcut can be changed in Preferences; <kbd>⌘</kbd><kbd>/</kbd> shows the full list in the app.
 
-| Action | macOS | Windows |
+| Action | macOS | Windows and Linux |
 |---|---|---|
 | Command palette | <kbd>⌘</kbd><kbd>⇧</kbd><kbd>P</kbd> | <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>P</kbd> |
 | Keyboard shortcuts | <kbd>⌘</kbd><kbd>/</kbd> | <kbd>Ctrl</kbd><kbd>/</kbd> |
@@ -461,7 +506,7 @@ What the account stores, and what it doesn't, is spelled out in the [Privacy pol
 
 - **No telemetry, ever.** No analytics, crash reporting or usage tracking leaves your computer.
 - **Your repositories stay local.** Git Tree has no cloud copy of your code. With default settings the app only talks to the Git remotes you fetch from and push to, the hosting accounts you connect, the Git Tree account service for sign-in, and an update check you can switch off.
-- **Secrets live only in your OS keychain** — the macOS Keychain or the Windows Credential Manager — never in files, logs or URLs.
+- **Secrets live only in your OS keychain** — the macOS Keychain, the Windows Credential Manager or the Linux Secret Service (GNOME Keyring, KeePassXC) — never in files, logs or URLs. Other programs of your desktop session that you allow to use the Secret Service can see the same unlocked keyring, as with any Linux app.
 - **Safe by design.** Snapshots before destructive operations, Undo/Redo, `--force-with-lease`, Cancel as the default in dangerous dialogs, and untrusted repositories can't run hooks.
 - **Hands off your setup.** Git Tree never edits your Git config, a repository or `~/.ssh` without an explicit action from you.
 
@@ -469,7 +514,7 @@ Read the full [Privacy policy](https://gittree.app/en/privacy) and [Terms of use
 
 ## Updating and uninstalling
 
-**Updating.** Download the newest version from the website or the [Releases page](https://github.com/eslamfaisal/git-tree/releases/latest) and install it over the current one. Your settings, repositories list and sign-in stay as they are. Watch this repository (**Watch → Custom → Releases**) to be told about each new version.
+**Updating.** Download the newest version from the website or the [Releases page](https://github.com/eslamfaisal/git-tree/releases/latest) and install it over the current one (on Ubuntu and Debian, `sudo apt install ./Git-Tree_<version>_amd64.deb` upgrades in place; with the AppImage, replace the file). Your settings, repositories list and sign-in stay as they are. Watch this repository (**Watch → Custom → Releases**) to be told about each new version.
 
 **Uninstalling on macOS.** Quit Git Tree and move **Git Tree** from Applications to the Bin. To also remove its settings, caches and logs, delete:
 
@@ -481,6 +526,16 @@ Read the full [Privacy policy](https://gittree.app/en/privacy) and [Terms of use
 
 **Uninstalling on Windows.** *Settings → Apps → Installed apps → Git Tree → Uninstall.* To also remove its settings and caches, delete `%APPDATA%\com.eslamfaisal.opengittree` and `%LOCALAPPDATA%\com.eslamfaisal.opengittree`.
 
+**Uninstalling on Linux.** `sudo apt remove git-tree` (or delete the AppImage). To also remove its settings, caches and logs, delete:
+
+```text
+~/.config/com.eslamfaisal.opengittree
+~/.local/share/com.eslamfaisal.opengittree      # includes logs/
+~/.cache/com.eslamfaisal.opengittree
+```
+
+(The locations follow `XDG_CONFIG_HOME`, `XDG_DATA_HOME` and `XDG_CACHE_HOME` if you set them.) Entries kept in the keyring are removed by disconnecting your accounts first, as below.
+
 Disconnect your hosting accounts in **Preferences → Integrations** first if you want their tokens removed from your keychain.
 
 ## Troubleshooting
@@ -489,6 +544,9 @@ Disconnect your hosting accounts in **Preferences → Integrations** first if yo
 |---|---|
 | *"Git was not found"* | Install Git 2.39 or newer ([Install Git](#install-git)), then restart Git Tree. |
 | The browser doesn't return to the app after signing in | Use **Manually enter authentication code** in the app and paste the one-time code the website shows. Enter it only in the app that started the sign-in. |
+| Ubuntu 22.04 or Linux Mint 21: *"This Git is too old"* | Those systems ship Git 2.34. Add the Git PPA and update Git ([Linux](#linux-ubuntu-and-debian)), then choose **Check again**. |
+| Linux: Git Tree says no Secret Service answered | Install and start GNOME Keyring (`sudo apt install gnome-keyring`) or enable KeePassXC's Secret Service integration, make sure the default keyring is unlocked, then try again. |
+| Linux: the file watcher reports a limit | Your system's inotify limit is reached. The message shows the exact `sysctl` setting to raise. |
 | The download button opens the Releases page instead of downloading | No installer for your platform is published yet, or GitHub couldn't be reached — pick the file from the release's **Assets** list. |
 | Windows SmartScreen warning | Check the file's SHA-256 against the release ([Verify your download](#verify-your-download-optional)), then **More info → Run anyway**. |
 | macOS: *"Git Tree can't be opened because Apple cannot check it"* | The release is not notarized yet. Control-click **Git Tree** in Applications → **Open** → **Open** ([Installation](#macos)). |
@@ -500,7 +558,7 @@ Disconnect your hosting accounts in **Preferences → Integrations** first if yo
 <details>
 <summary><strong>What is Git Tree?</strong></summary>
 
-A free desktop Git client (a Git GUI) for macOS and Windows. It shows your repository as an interactive commit graph and lets you stage, commit, branch, merge, rebase, stash and push without typing Git commands.
+A free desktop Git client (a Git GUI) for macOS, Windows and Linux. It shows your repository as an interactive commit graph and lets you stage, commit, branch, merge, rebase, stash and push without typing Git commands.
 </details>
 
 <details>
@@ -524,13 +582,13 @@ No. There is no telemetry and no cloud copy of your code. Your account stores on
 <details>
 <summary><strong>Which systems are supported?</strong></summary>
 
-macOS 13 Ventura or later on Apple silicon and Intel (one universal app), and 64-bit Windows 10 (22H2) and Windows 11.
+macOS 13 Ventura or later on Apple silicon and Intel (one universal app), 64-bit Windows 10 (22H2) and Windows 11, and 64-bit Linux: Ubuntu 22.04 LTS or later and Debian 12 or later (and derivatives with WebKitGTK 4.1).
 </details>
 
 <details>
 <summary><strong>Is there a Linux version?</strong></summary>
 
-Not yet. The first releases focus on macOS and Windows, and nothing in the design rules Linux out.
+Yes, for 64-bit Ubuntu and Debian: a `.deb` package and a portable AppImage. It needs Ubuntu 22.04 or later or Debian 12 or later, and Git 2.39 or newer (Ubuntu 22.04 needs the Git PPA first). Other distributions may run the AppImage if they ship WebKitGTK 4.1, but only Ubuntu and Debian are tested. There is no arm64, Flatpak or Snap build yet.
 </details>
 
 <details>
@@ -579,7 +637,7 @@ No. Git Tree's source code is private; this repository hosts its releases, publi
 
 © 2026 Eslam Faisal. All rights reserved. Git Tree is free to download and use under its [Terms of use](https://gittree.app/en/terms); it is provided as is, without warranty of any kind.
 
-Git and the Git logo are trademarks of the Software Freedom Conservancy. GitHub, Bitbucket, GitLab, Azure DevOps, macOS and Windows are trademarks of their respective owners. Git Tree is an independent project and is not affiliated with or endorsed by any of them.
+Git and the Git logo are trademarks of the Software Freedom Conservancy. GitHub, Bitbucket, GitLab, Azure DevOps, macOS, Windows, Linux, Ubuntu and Debian are trademarks of their respective owners. Git Tree is an independent project and is not affiliated with or endorsed by any of them.
 
 ---
 
@@ -587,11 +645,12 @@ Git and the Git logo are trademarks of the Software Freedom Conservancy. GitHub,
 
 <div dir="rtl">
 
-**Git Tree** عميل Git مرئي ومجاني لنظامَي macOS وWindows: رسم بياني سريع للإيداعات، وتجهيز الملفات حتى مستوى السطر، ودمج وإعادة تأسيس مع إمكانية التراجع، وحساباتك على GitHub وBitbucket مدمجة. مستودعاتك تبقى على جهازك، ولا يُرسل التطبيق أي بيانات استخدام.
+**Git Tree** عميل Git مرئي ومجاني لأنظمة macOS وWindows وLinux: رسم بياني سريع للإيداعات، وتجهيز الملفات حتى مستوى السطر، ودمج وإعادة تأسيس مع إمكانية التراجع، وحساباتك على GitHub وBitbucket مدمجة. مستودعاتك تبقى على جهازك، ولا يُرسل التطبيق أي بيانات استخدام.
 
 - **تنزيل لنظام macOS** (macOS 13 أو أحدث، معالجات Apple وIntel): [gittree.app/api/download/macos](https://gittree.app/api/download/macos)
 - **تنزيل لنظام Windows** (Windows 10 ‏22H2 أو Windows 11، ‏64 بت): [gittree.app/api/download/windows](https://gittree.app/api/download/windows)
-- يحتاج التطبيق إلى Git بالإصدار 2.39 أو أحدث مثبتًا على جهازك.
+- **تنزيل لنظام Linux** (Ubuntu 22.04 أو أحدث، أو Debian 12 أو أحدث، ‏64 بت): حزمة `.deb` من [gittree.app/api/download/linux](https://gittree.app/api/download/linux) أو ملف AppImage المحمول من [gittree.app/api/download/linux-appimage](https://gittree.app/api/download/linux-appimage)
+- يحتاج التطبيق إلى Git بالإصدار 2.39 أو أحدث مثبتًا على جهازك (في Ubuntu 22.04 أضِف أولًا مستودع Git PPA؛ راجع قسم التثبيت على Linux).
 - الموقع بالعربية: [gittree.app/ar](https://gittree.app/ar) — الميزات: [gittree.app/ar/features](https://gittree.app/ar/features)
 - للإبلاغ عن مشكلة أو اقتراح ميزة: [افتح Issue](https://github.com/eslamfaisal/git-tree/issues/new/choose)
 
