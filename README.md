@@ -551,6 +551,7 @@ Disconnect your hosting accounts in **Preferences → Integrations** first if yo
 | Windows SmartScreen warning | Check the file's SHA-256 against the release ([Verify your download](#verify-your-download-optional)), then **More info → Run anyway**. |
 | macOS: *"Git Tree can't be opened because Apple cannot check it"* | The release is not notarized yet. Control-click **Git Tree** in Applications → **Open** → **Open** ([Installation](#macos)). |
 | A remote asks for credentials every time | Connect the account in **Preferences → Integrations**, or set up an SSH key there; secrets are kept in your keychain. |
+| Git Tree crashed or closed unexpectedly | Choose **Report on GitHub** in the crash window (or **Crash Reports…** later) to open the [crash report form](https://github.com/eslamfaisal/git-tree/issues/new?template=crash_report.yml). |
 | Something else | [Open an issue](https://github.com/eslamfaisal/git-tree/issues/new/choose) with your Git Tree version (bottom-right of the window), your OS version and the steps to reproduce. |
 
 ## FAQ
@@ -612,6 +613,7 @@ No. Git Tree's source code is private; this repository hosts its releases, publi
 ## Feedback and support
 
 - 🐞 **Found a bug?** [Open a bug report](https://github.com/eslamfaisal/git-tree/issues/new?template=bug_report.yml).
+- 💥 **Did Git Tree crash?** In the crash window choose **Report on GitHub**: it copies the report and opens the [crash report form](https://github.com/eslamfaisal/git-tree/issues/new?template=crash_report.yml) here for you to paste it into. Nothing is ever sent from the app itself. Reports from earlier sessions are under **Crash Reports…**; on Linux they are saved in `~/.local/share/com.eslamfaisal.opengittree/logs`. Read the report before you post it.
 - 💡 **Have an idea?** [Request a feature](https://github.com/eslamfaisal/git-tree/issues/new?template=feature_request.yml).
 - 🔒 **Security issue?** Please don't open a public issue. Report it privately through [**Security → Report a vulnerability**](https://github.com/eslamfaisal/git-tree/security/advisories/new).
 - ⭐ **Like Git Tree?** Star this repository and share [gittree.app](https://gittree.app).
