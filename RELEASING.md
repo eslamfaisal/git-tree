@@ -101,24 +101,27 @@ token to anything but the checkout steps.
 3. On an Ubuntu machine, `sudo apt install ./Git-Tree-Linux.deb` must succeed and **Git Tree** must open from the
    application menu.
 
-## In-app updates (once the updater is enabled)
+## In-app updates
 
-The app checks for updates at fixed addresses in **this** repository, frozen from the first
-updater-enabled build:
+Git Tree updates itself from **this** repository's releases (ADR-0021 in the source repository). At launch,
+unless the user turned **Automatically check for updates** off, it reads
+`https://api.github.com/repos/eslamfaisal/git-tree/releases`, picks the newest newer release that has an
+installer for the machine, and offers it in its update bar. On the user's click it downloads that installer,
+checks its SHA-256, and installs it: the `.dmg` replaces the app bundle, the Windows installer runs passively and
+relaunches the app, the `.deb` goes through the administrator prompt (`pkexec apt-get install`), and an AppImage
+is replaced beside itself. When that is impossible it opens the installer for the user.
 
-| Channel | Manifest the app reads |
-|---|---|
-| Stable | `https://github.com/eslamfaisal/git-tree/releases/latest/download/latest.json` |
-| Beta | `https://github.com/eslamfaisal/git-tree/releases/download/beta/latest.json` |
+So every release must keep what the app reads, exactly as the tables above describe:
 
-So every updater-enabled release also attaches:
+- the tag `vX.Y.Z` (`vX.Y.Z-beta.N` for a pre-release, which only users on the beta channel are offered);
+  a draft, or a tag of any other shape, is never offered;
+- the **versioned installer names** (`Git-Tree_X.Y.Z_universal.dmg`, `…_x64-setup.exe`, `…_amd64.deb`,
+  `…_amd64.AppImage`); the stable-name copies are the fallback;
+- **`SHA256SUMS.txt`** listing each installer. The app compares the download with that line and with the
+  SHA-256 GitHub records for the uploaded file; a mismatch is deleted and never installed, and an installer
+  that neither states is refused.
 
-- the updater archives and their signatures that `tauri build` writes next to the installers
-  (`Git.Tree_universal.app.tar.gz` + `.sig` for macOS, the NSIS updater bundle + `.sig` for Windows);
-- a **`latest.json`** made with `tooling/render-update-manifest.py` (in the source repository) from
-  those `.sig` files and **this release's own asset URLs**. The script refuses URLs of any other
-  repository; never upload a `latest.json` that names the private repository.
-
-A stable release puts `latest.json` on the release itself. A beta (`-beta.N`) updates the assets of
-the moving pre-release tagged `beta` instead. Neither the `.tar.gz` archives nor `latest.json` are
-ever picked by the website's download buttons.
+Once the owner generates the updater key pair (`P00-T28` in the source repository), each installer also gets a
+minisign signature `<installer name>.sig` (for example `Git-Tree_1.2.0_amd64.deb.sig`), and from the first build
+that embeds the public key the app refuses an installer without a valid one. There is no `latest.json`. The
+website's download buttons never pick a `.sig`.

@@ -514,7 +514,13 @@ Read the full [Privacy policy](https://gittree.app/en/privacy) and [Terms of use
 
 ## Updating and uninstalling
 
-**Updating.** Download the newest version from the website or the [Releases page](https://github.com/eslamfaisal/git-tree/releases/latest) and install it over the current one (on Ubuntu and Debian, `sudo apt install ./Git-Tree_<version>_amd64.deb` upgrades in place; with the AppImage, replace the file). Your settings, repositories list and sign-in stay as they are. Watch this repository (**Watch → Custom → Releases**) to be told about each new version.
+**Updating.** Versions after 1.0.1 update themselves. At launch Git Tree checks this repository's releases, and when a newer version exists a bar at the top of the window offers it with its release notes. Click **Download** to fetch it (the bar shows the progress; Git Tree checks the file against its published SHA-256 before anything is installed), then **Install and restart**:
+
+- **macOS** replaces the app in Applications and reopens it.
+- **Windows** runs the installer without questions after the administrator prompt, and reopens Git Tree.
+- **Ubuntu and Debian** ask for your password (the system's administrator prompt) and upgrade the `git-tree` package; an **AppImage** is replaced where it is.
+
+If Git Tree cannot install it for you (no permission to its folder, or you dismissed the prompt), it opens the installer so you can finish by hand. Git Tree waits for running Git operations and asks before closing open terminals; your settings, repositories list and sign-in stay as they are. Turn the launch check off in **Preferences → General → Automatically check for updates**; **Check for Updates…** in the command palette still works. You can also always download the newest version from the website or the [Releases page](https://github.com/eslamfaisal/git-tree/releases/latest) and install it over the current one (on Ubuntu and Debian, `sudo apt install ./Git-Tree_<version>_amd64.deb`; with the AppImage, replace the file). Watch this repository (**Watch → Custom → Releases**) to be told about each new version.
 
 **Uninstalling on macOS.** Quit Git Tree and move **Git Tree** from Applications to the Bin. To also remove its settings, caches and logs, delete:
 
@@ -612,7 +618,7 @@ No. Git Tree's source code is private; this repository hosts its releases, publi
 
 ## Feedback and support
 
-- 🐞 **Found a bug?** [Open a bug report](https://github.com/eslamfaisal/git-tree/issues/new?template=bug_report.yml).
+- 🐞 **Found a bug?** Click the **bug** button at the top right of Git Tree: it opens the [bug report form](https://github.com/eslamfaisal/git-tree/issues/new?template=bug_report.yml) with your Git Tree, system and Git versions filled in. Nothing is sent from the app; you describe the problem and submit it.
 - 💥 **Did Git Tree crash?** In the crash window choose **Report on GitHub**: it copies the report and opens the [crash report form](https://github.com/eslamfaisal/git-tree/issues/new?template=crash_report.yml) here for you to paste it into. Nothing is ever sent from the app itself. Reports from earlier sessions are under **Crash Reports…**; on Linux they are saved in `~/.local/share/com.eslamfaisal.opengittree/logs`. Read the report before you post it.
 - 💡 **Have an idea?** [Request a feature](https://github.com/eslamfaisal/git-tree/issues/new?template=feature_request.yml).
 - 🔒 **Security issue?** Please don't open a public issue. Report it privately through [**Security → Report a vulnerability**](https://github.com/eslamfaisal/git-tree/security/advisories/new).
@@ -654,7 +660,8 @@ Git and the Git logo are trademarks of the Software Freedom Conservancy. GitHub,
 - **تنزيل لنظام Linux** (Ubuntu 22.04 أو أحدث، أو Debian 12 أو أحدث، ‏64 بت): حزمة `.deb` من [gittree.app/api/download/linux](https://gittree.app/api/download/linux) أو ملف AppImage المحمول من [gittree.app/api/download/linux-appimage](https://gittree.app/api/download/linux-appimage)
 - يحتاج التطبيق إلى Git بالإصدار 2.39 أو أحدث مثبتًا على جهازك (في Ubuntu 22.04 أضِف أولًا مستودع Git PPA؛ راجع قسم التثبيت على Linux).
 - الموقع بالعربية: [gittree.app/ar](https://gittree.app/ar) — الميزات: [gittree.app/ar/features](https://gittree.app/ar/features)
-- للإبلاغ عن مشكلة أو اقتراح ميزة: [افتح Issue](https://github.com/eslamfaisal/git-tree/issues/new/choose)
+- التحديثات: الإصدارات بعد 1.0.1 تحدّث نفسها. عند فتح التطبيق يتحقق من الإصدارات المنشورة هنا، ويظهر شريط أعلى النافذة عند توفر إصدار أحدث: اضغط **Download** للتنزيل (مع شريط تقدم وفحص SHA-256 للملف)، ثم **Install and restart** للتثبيت وإعادة التشغيل. يمكنك إيقاف الفحص التلقائي من **Preferences → General**.
+- للإبلاغ عن مشكلة: اضغط زر **الحشرة (Bug)** أعلى يمين التطبيق لفتح نموذج البلاغ مع تعبئة إصدار التطبيق والنظام وGit تلقائيًا، أو [افتح Issue](https://github.com/eslamfaisal/git-tree/issues/new/choose) لاقتراح ميزة.
 
 </div>
 
