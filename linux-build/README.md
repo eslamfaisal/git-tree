@@ -1,11 +1,11 @@
-# Linux build for the v1.0.0 release (local build)
+# Linux build for the v1.0.1 release (local build)
 
-The Debian/Ubuntu package for Git Tree 1.0.0, built and tested on Ubuntu 24.04 (x86_64) so it can be attached to the GitHub release by hand
+The Debian/Ubuntu package for Git Tree 1.0.1, built and tested on Ubuntu 24.04 (x86_64) so it can be attached to the GitHub release by hand
 (see [`RELEASING.md`](../RELEASING.md), "By hand"). It is **unsigned**; `SHA256SUMS.txt` lists its checksum.
 
 | File | Use |
 |---|---|
-| `Git-Tree_1.0.0_amd64.deb` | attach to the release under this name |
+| `Git-Tree_1.0.1_amd64.deb` | attach to the release under this name |
 | `Git-Tree-Linux.deb` | the same file under the stable name the website's download link uses (`releases/latest/download/Git-Tree-Linux.deb`) |
 | `SHA256SUMS.txt` | attach as well, or merge these lines into the release's `SHA256SUMS.txt` |
 
