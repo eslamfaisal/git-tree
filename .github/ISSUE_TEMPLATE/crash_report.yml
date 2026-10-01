@@ -1,13 +1,13 @@
 name: Crash report
 description: Git Tree crashed, froze or closed unexpectedly. The app's "Report on GitHub" button opens this form.
 title: "[Crash]: "
-labels: [bug, crash]
+labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
         Thanks for reporting a crash. Git Tree never sends anything on its own: this form was opened by you, and you decide what to post.
-        In the crash window choose **Report on GitHub**, which copies the full report so you can paste it below. For a crash saved from an earlier session, use **Crash Reports…** in the app, then **Show file** and paste the file's text.
+        In the crash window (or **Help › Crash Reports…** for a crash from an earlier session) choose **Report on GitHub**. The app shows you the report first: copy the full report, or only a short summary, then paste it below. Nothing is copied or sent until you choose.
         **Read the report before you post it.** It is redacted, but remove anything private, such as folder names, repository names or e-mail addresses. Never paste tokens or passwords.
   - type: textarea
     id: what-happened
@@ -49,6 +49,7 @@ body:
     id: os-version
     attributes:
       label: OS version
+      description: Filled in by the app when it can read it; otherwise type it.
       placeholder: macOS 15.3 / Windows 11 24H2 / Ubuntu 24.04
   - type: input
     id: git-version
