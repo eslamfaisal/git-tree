@@ -12,19 +12,34 @@ page is the checklist that keeps the website's download buttons and the README's
 | If GitHub's API cannot be asked (rate limit, outage) | the same buttons | They redirect to GitHub's permanent link below instead, so a download still starts. |
 | Permanent links, no website needed | `https://github.com/eslamfaisal/git-tree/releases/latest/download/Git-Tree-macOS.dmg` · `…/Git-Tree-Windows-setup.exe` · `…/Git-Tree-Linux.deb` · `…/Git-Tree-Linux.AppImage` | GitHub redirects `latest/download/<name>` to the file of that name on the **latest release**. The names never change, so these links never break. |
 
-What the website picks (first match):
+## Release asset contract (binding)
 
-| Platform | Asset |
-|---|---|
-| macOS | a `.dmg` whose name contains `universal` (`Git-Tree_X.Y.Z_universal.dmg`), else any `.dmg` (`Git-Tree-macOS.dmg`) |
-| Windows | `…_x64-setup.exe` (`Git-Tree_X.Y.Z_x64-setup.exe`), else any `…-setup.exe`, any `.exe`, then a `.msi` |
-| Linux (`.deb`) | `…_amd64.deb` (`Git-Tree_X.Y.Z_amd64.deb`), else any `.deb` (`Git-Tree-Linux.deb`) |
-| Linux (AppImage) | `…_amd64.AppImage` (`Git-Tree_X.Y.Z_amd64.AppImage`), else any `.AppImage` (`Git-Tree-Linux.AppImage`); a `.AppImage.sig` or `.AppImage.tar.gz` is never picked |
+One table, read the same way by the website's download buttons, the in-app updater and the release gate
+(`tooling/release-gate.py` in the source repository). `V` is the tag without its `v` (`v1.2.0` → `1.2.0`,
+`v1.3.0-beta.1` → `1.3.0-beta.1`). A download or an update takes the **versioned** name, else the **stable** name,
+compared exactly (case and all). **No other file is ever picked**: never an installer for another architecture
+(`…_aarch64.dmg`, `…_x64.dmg`, `…_arm64-setup.exe`, `…_arm64.deb`, `…_aarch64.AppImage`), never a `.msi`, and never a
+`.sig`, `.zsync` or `.tar.gz` beside an installer. When a release has neither name for a platform, that platform is
+explicitly *unavailable* for it: the website sends the visitor to the releases list, the app says there is no
+installer for this computer yet.
 
-- **Drafts, pre-releases and tags that are not `vX.Y.Z` are never served.**
-- With no release, or no matching asset, the buttons open the Releases page instead of failing.
-- Every release must therefore carry the **six installer names** below — the three stable ones are what the
-  permanent links need.
+| Platform (install format) | Versioned name | Stable name |
+|---|---|---|
+| macOS, Apple silicon **and** Intel (one universal `.dmg`) | `Git-Tree_V_universal.dmg` | `Git-Tree-macOS.dmg` |
+| Windows x64 (NSIS installer) | `Git-Tree_V_x64-setup.exe` | `Git-Tree-Windows-setup.exe` |
+| Linux x86_64 / amd64 (Debian package) | `Git-Tree_V_amd64.deb` | `Git-Tree-Linux.deb` |
+| Linux x86_64 / amd64 (AppImage) | `Git-Tree_V_amd64.AppImage` | `Git-Tree-Linux.AppImage` |
+
+Beside each installer: `<installer name>.sig` (its minisign signature, once the updater key exists, below) and one
+`SHA256SUMS.txt` listing every file. The stable-name copy has exactly the bytes of the versioned file.
+
+- **Drafts, pre-releases and tags that are not `vX.Y.Z` are never served by the website**, even when no stable
+  release exists. Pre-releases (`vX.Y.Z-pre`, or GitHub's *pre-release* flag) reach only app users who chose the
+  beta channel.
+- The highest version wins, not the most recently created release: a hotfix of an older line published later
+  never takes the downloads or the update back.
+- The website and the app read **every page** of the release list, so the newest stable release is found behind
+  any number of pre-releases.
 
 ## Every release attaches
 
@@ -88,7 +103,9 @@ token to anything but the checkout steps.
    sha256sum Git-Tree_"${V}"_universal.dmg Git-Tree_"${V}"_x64-setup.exe Git-Tree_"${V}"_amd64.deb Git-Tree_"${V}"_amd64.AppImage \
      Git-Tree-macOS.dmg Git-Tree-Windows-setup.exe Git-Tree-Linux.deb Git-Tree-Linux.AppImage > SHA256SUMS.txt
    ```
-3. Create the release: tag `vX.Y.Z` (SemVer), title `Git Tree vX.Y.Z`, release notes, and attach the nine files.
+3. Create the release: tag `vX.Y.Z` (SemVer), title `Git Tree vX.Y.Z`, release notes, and attach the nine files,
+   plus every `<installer>.sig` once the updater key exists (below). `tooling/publish-release.sh` in the source
+   repository stages, signs, checks (the release gate) and publishes in one go; prefer it to these steps.
 4. Leave **Set as a pre-release** unticked and **Set as the latest release** ticked for a stable version, then
    **Publish release**.
 
@@ -121,7 +138,47 @@ So every release must keep what the app reads, exactly as the tables above descr
   SHA-256 GitHub records for the uploaded file; a mismatch is deleted and never installed, and an installer
   that neither states is refused.
 
-Once the owner generates the updater key pair (`P00-T28` in the source repository), each installer also gets a
-minisign signature `<installer name>.sig` (for example `Git-Tree_1.2.0_amd64.deb.sig`), and from the first build
-that embeds the public key the app refuses an installer without a valid one. There is no `latest.json`. The
-website's download buttons never pick a `.sig`.
+## Updater signatures — a release gate
+
+The app checks each download against `SHA256SUMS.txt` and the digest GitHub records. Both come from this
+repository, so they catch a corrupt, truncated or swapped download, not a compromised release. A minisign signature
+made with the owner's offline key covers that:
+
+1. **Once, the owner** generates the key pair (`pnpm tauri signer generate -w ~/.tauri/git-tree-updater.key`,
+   `P00-T28` in the source repository), keeps the private key offline and backed up, puts its public key (the
+   `.pub` file's base64, as printed) into `UPDATER_PUBLIC_KEY` in the source
+   (`crates/ogt-infrastructure/src/updater/mod.rs`), and adds the private key and its password as the
+   `TAURI_SIGNING_PRIVATE_KEY` and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` secrets of the `release` environment here
+   (and of the source repository's, if its own workflow publishes). The private key never enters any repository.
+2. **Every release:** the workflow's first job refuses a **stable** tag unless the source embeds the key and the
+   secret is set (a pre-release may go unsigned, with a warning, until then; once a key is embedded every release
+   must be signed). The publish job signs every installer (`<installer>.sig`), verifies each signature with the
+   app's own verifier and embedded key, writes `SHA256SUMS.txt`, and checks the folder against the contract above
+   before anything is published. A build that embeds the key refuses an installer without a valid signature.
+
+There is no `latest.json`. The website's download buttons never pick a `.sig`.
+
+## If an update is interrupted
+
+- **macOS:** the new app is copied next to the running one, then the two are exchanged in one step
+  (`renamex_np(RENAME_SWAP)` on APFS, which `/Applications` is on every supported macOS). At no moment is there no
+  app: an interruption (the app killed, the Mac shut down) leaves the old or the new app in place, and the next
+  launch removes the leftover hidden `.Git Tree.app.update-<pid>` folder. On a volume that cannot exchange (HFS+,
+  some network or external drives) the app falls back to two renames, putting the old app back if the second
+  fails; only a power cut between those two renames leaves no app in place, and reinstalling from
+  `https://gittree.app/en/download` restores it (settings and repositories are not inside the app).
+- **Windows:** the NSIS installer replaces the files itself; an interrupted install is re-run from the downloaded
+  installer or the website.
+- **Linux `.deb`:** `apt` installs it as one package transaction; `sudo dpkg --configure -a` finishes an
+  interrupted one.
+- **Linux AppImage:** the new file is written beside the old one and renamed over it in one step.
+
+## Per-platform release procedure
+
+1. Publish the release here (workflow or by hand) with the installers of the contract above, checksums and, once
+   the key exists, signatures. Check *After publishing*.
+2. Only then raise the account service's release gate for each platform you shipped, one Firestore document per
+   platform: `app_configs/macos`, `app_configs/windows` and `app_configs/linux` (the backend repository's
+   `docs/SETUP.md`, "Releasing a version"). `app_configs/default` is the development fallback that Linux reads only
+   while `app_configs/linux` does not exist; keep it equal to `linux` until then. Never point a gate at a version
+   whose installer is not published for that platform.

@@ -71,6 +71,13 @@ jobs:
       - run: python3 source/tooling/check-versions.py "$TAG"
       - run: python3 tooling/check-capabilities.py
         working-directory: source
+      # The in-app updater's release gate (ADR-0021 in the source repository): a
+      # stable tag needs the updater's public key embedded in the source and the
+      # TAURI_SIGNING_PRIVATE_KEY secret in this environment.
+      - name: updater signing gate
+        env:
+          SIGNING_KEY_SET: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY != '' }}
+        run: python3 source/tooling/release-gate.py key "$TAG"
       - name: which commit is built
         run: |
           echo "Source commit: $(git -C source rev-parse HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
@@ -255,6 +262,7 @@ jobs:
           fi
           ls -l ../staged
           test -n "$(ls -A ../staged)"
+          python3 tooling/release-gate.py assets ../staged "$TAG" --allow-partial
       - uses: actions/upload-artifact@v5
         with:
           name: installers-${{ matrix.name }}
@@ -267,33 +275,69 @@ jobs:
     name: publish the release
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # Signing builds the app's verifier (a release compile of one crate).
+    timeout-minutes: 45
     environment: release
     env:
       TAG: ${{ inputs.tag }}
       GH_TOKEN: ${{ github.token }}
       HAS_APPLE_SIGNING: ${{ secrets.APPLE_SIGNING_IDENTITY != '' }}
+      SIGNING_KEY_SET: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY != '' }}
     steps:
-      # Only the script that renders the release notes is needed from the source.
+      # The release-notes script, the release gate and, when signing, the Tauri
+      # CLI and the app's own signature verifier come from the source.
       - uses: actions/checkout@v5
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ inputs.source_ref }}
           token: ${{ secrets.SOURCE_REPO_TOKEN }}
           path: source
-          sparse-checkout: tooling
           persist-credentials: false
       - uses: actions/download-artifact@v5
         with:
           pattern: installers-*
           path: installers
           merge-multiple: true
+      # Each installer gets `<installer>.sig` (ADR-0021), signed only in this job,
+      # behind the environment's reviewers, then checked with exactly the verifier
+      # and public key the app embeds.
+      - uses: pnpm/action-setup@v4
+        if: env.SIGNING_KEY_SET == 'true'
+        with:
+          package_json_file: source/package.json
+      - uses: actions/setup-node@v6
+        if: env.SIGNING_KEY_SET == 'true'
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: source/pnpm-lock.yaml
+      - if: env.SIGNING_KEY_SET == 'true'
+        run: pnpm install --frozen-lockfile
+        working-directory: source
+      - uses: dtolnay/rust-toolchain@master
+        if: env.SIGNING_KEY_SET == 'true'
+        with:
+          toolchain: 1.98.1
+      - name: sign the installers for the in-app updater
+        if: env.SIGNING_KEY_SET == 'true'
+        working-directory: source
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          for file in "$GITHUB_WORKSPACE"/installers/*; do
+            pnpm --filter @ogt/desktop exec tauri signer sign "$file"
+          done
+          cargo run --locked --release -p ogt-infrastructure --example verify-update-signatures -- "$GITHUB_WORKSPACE/installers" "$TAG"
       - name: checksums
         run: |
           set -euo pipefail
           cd installers
           sha256sum -- * > SHA256SUMS.txt
           cat SHA256SUMS.txt
+      - name: the release matches the asset contract
+        run: python3 source/tooling/release-gate.py assets installers "$TAG" --signatures-if-key
       - name: release notes
         run: python3 source/tooling/render-release-notes.py "$TAG" > release-notes.md
         env:
