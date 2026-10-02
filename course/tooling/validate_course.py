@@ -20,8 +20,8 @@ COURSE = Path(__file__).resolve().parent.parent
 STATUSES = ["planned", "scripted", "recorded", "reviewed", "published"]
 LANGS = ["en", "ar"]
 # Other products' names must not appear in course files (titles, tags, thumbnails, scripts). Built from parts so this
-# file does not contain them itself.
-BANNED = [re.compile(p, re.I) for p in ("git" + "kraken", "source" + "tree", r"\bfork\b(?! of)", "git" + "hub desktop", "tower\\b", "smart" + "git")]
+# file does not contain them itself. ('fork' is a Git term and is not on the list.)
+BANNED = [re.compile(p, re.I) for p in ("git" + "kraken", "source" + "tree", "git" + "hub desktop", "tower\\b", "smart" + "git")]
 LFS_EXT = {".mp4", ".webm", ".mov", ".mkv", ".wav", ".flac", ".m4a", ".mp3", ".psd", ".zip"}
 SMALL = 1_000_000
 problems: list[str] = []
