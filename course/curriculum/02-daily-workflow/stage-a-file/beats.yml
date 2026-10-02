@@ -1,0 +1,113 @@
+# One entry per beat: the words, and the picture they play over (see course/AUTHORING.md).
+beats:
+  - id: hook
+    chapter: "Why stage a file"
+    scene:
+      template: hook
+      data:
+        tag: "Daily workflow · Staging"
+        kicker: "GitTree lesson"
+        title: "Stage one file, leave the rest"
+        subtitle: "Two changes in two unrelated files. One commit should not hold both."
+        question: "How do you choose which file goes in?"
+        snippet:
+          file: "git status --short"
+          lines:
+            - [ctx, " M", "README.md"]
+            - [ctx, " M", "src/tags.ts"]
+    vo: "You changed two files today. One is a new helper in your code. The other is a note in the README. They have nothing to do with each other, so they should not share a commit. In this video you will stage one file in {GitTree|git tree}, and commit only that one."
+
+  - id: lists-idea
+    chapter: "Two lists, one rule"
+    scene:
+      template: cards
+      data:
+        tag: "Daily workflow · Staging"
+        title: "Two lists, one rule"
+        cards:
+          - {label: "Unstaged Files", title: "Changed, not chosen", text: "Edits that are not part of the next commit yet."}
+          - {label: "Staged Files", title: "Chosen", text: "Edits that the next commit will contain.", highlight: true}
+        footer: "Staging a file moves it from the first list to the second."
+    vo: "{GitTree|git tree} shows your changed files in two lists. Unstaged Files are edits that are not part of the next commit. Staged Files are the edits the next commit will contain. Staging a file moves it from the first list to the second."
+
+  - id: open-changes
+    chapter: "Open the working changes"
+    app: {from: start, to: wip-after, camera: full}
+    overlays:
+      - {type: step, n: 1, text: "Open the working changes"}
+    vo: "Here is {GitTree|git tree} with a small demo project. The working changes row at the top of the graph says that files have changed. Click it."
+
+  - id: pick-file
+    app: {from: wip-after, to: stage-before, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 2, text: "Two files, both unstaged"}
+      - {type: box, rect: readme-row, from: files-before, to: pick-before, pad: 3, color: [240, 138, 74]}
+      - {type: box, rect: tags-row, from: files-before, to: stage-before, pad: 3, color: [176, 124, 240]}
+    vo: "Both files wait under Unstaged Files: the README, and the tags file in the source folder. Click the tags file, and {GitTree|git tree} shows its change: a new helper that sorts tags."
+
+  - id: stage
+    chapter: "Stage a file"
+    app: {from: stage-before, to: stage-after, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 3, text: "Click Stage File"}
+      - {type: box, rect: stage-button, from: stage-button, to: stage-after, pad: 5, color: [176, 124, 240]}
+    vo: "Point at the row, and a Stage File button appears. Click it. The whole file moves to the staging area, in one step."
+
+  - id: lists
+    chapter: "Check the two lists"
+    app: {from: lists-begin, to: lists-end, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 4, text: "One file staged, one not"}
+      - {type: box, rect: unstaged-row, from: lists-begin, to: lists-mid, pad: 3, color: [240, 138, 74]}
+      - {type: box, rect: staged-row, from: lists-mid, to: lists-end, pad: 3, color: [176, 124, 240]}
+    vo: "Now the tags file is under Staged Files. The README is still under Unstaged Files, untouched. The next commit will contain the tags file only."
+
+  - id: commit
+    chapter: "Commit"
+    app: {from: msg-before, to: left-end, camera: {center: [776, 420], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 5, text: "Write the message and commit"}
+      - {type: box, rect: left-row, from: left-begin, to: left-end, pad: 3, color: [240, 138, 74]}
+    vo: "Write a commit message, and commit. The button says Commit Changes to 1 File, because only one file is staged. The README is not in this commit. It is still waiting under Unstaged Files, ready for a commit of its own."
+
+  - id: shortcut
+    chapter: "A keyboard shortcut"
+    app: {from: key-before, to: end, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 6, text: "Select a file and press S"}
+      - {type: keys, keys: ["S"], from: key-ready, to: key-after}
+    vo: "There is a keyboard shortcut too. Select a file in the list, and press S. It moves to Staged Files. And Stage All does the same for every changed file at once."
+
+  - id: git-command
+    chapter: "The same in plain Git"
+    scene:
+      template: terminal
+      data:
+        tag: "Daily workflow · Staging"
+        cwd: "lumen — git 2.43"
+        lines:
+          - {k: cmd, t: "git status --short"}
+          - {k: del, t: " M README.md"}
+          - {k: del, t: " M src/tags.ts"}
+          - {k: cmd, t: "git add src/tags.ts"}
+          - {k: cmd, t: "git status --short"}
+          - {k: del, t: " M README.md"}
+          - {k: add, t: "M  src/tags.ts"}
+        keys:
+          - ["git add", "stage a file"]
+          - ["status", "both lists, short"]
+        note: "Red: not staged. Green: staged. GitTree runs git add with the file's path when you click Stage File."
+    vo: "In plain Git, you stage a file with git add and its path. Then git status shows the two lists. The tags file is staged, and the README is not. {GitTree|git tree} runs this for you, with one click."
+
+  - id: recap
+    chapter: "Recap"
+    scene:
+      template: recap
+      data:
+        tag: "Daily workflow · Staging"
+        points:
+          - "Changed files start under Unstaged Files."
+          - "Stage File, or the S key, moves a file to Staged Files."
+          - "A commit takes only what is staged."
+        next: "Next: <b>stage a single hunk</b>"
+    vo: "To recap: changed files start under Unstaged Files, Stage File moves one to Staged Files, and a commit takes only what is staged. Download {GitTree|git tree} free at {gittree.app|gittree dot app}. Next, how to stage just one hunk of a file."

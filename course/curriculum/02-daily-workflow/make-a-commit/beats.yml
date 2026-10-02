@@ -1,0 +1,117 @@
+# One entry per beat: the words, and the picture they play over (see course/AUTHORING.md).
+beats:
+  - id: hook
+    chapter: "Why make a commit"
+    scene:
+      template: hook
+      data:
+        tag: "Commits · Create"
+        kicker: "GitTree lesson"
+        title: "Make a commit, step by step"
+        subtitle: "Save a snapshot of your work with a message."
+        question: "How do you save just the readme as a commit?"
+        snippet:
+          file: "git status --short"
+          lines:
+            - [add, "M ", "README.md"]
+            - [del, " M", "src/tags.ts"]
+    vo: "You changed two files, but only one of them is ready. If you save everything at once, your history gets muddy. In this video you will make a commit in {GitTree|git tree}: stage the readme, write a message, and save a snapshot of just that file."
+
+  - id: idea
+    chapter: "A commit is a snapshot of the staging area"
+    scene:
+      template: cards
+      data:
+        tag: "Commits · Create"
+        title: "What a commit saves"
+        cards:
+          - {label: "your files", title: "Working folder", text: "Edits you have not staged stay here, untouched."}
+          - {label: "the index", title: "Staging area", text: "Exactly this is saved in the commit.", highlight: true}
+          - {label: ".git", title: "Repository", text: "The new commit is added to your history."}
+        footer: "A commit is a snapshot of the staging area, not of your folder."
+    vo: "A commit is a snapshot of the staging area, not of your working folder. Whatever is staged goes in. Whatever is not staged stays out, and keeps its changes for the next commit."
+
+  - id: stage
+    chapter: "Stage what belongs in the commit"
+    app: {from: start, to: summary-before, camera: {center: [776, 400], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 1, text: "Stage the readme"}
+      - {type: box, rect: staged-box, from: stage-after, to: summary-before, pad: 4, color: [176, 124, 240]}
+    vo: "Start by staging the readme. You already know how to take a file out of this list, and now we put one in. Hover its row, and click Stage File. The tags helper stays unstaged, so it will not be in this commit."
+
+  - id: summary
+    chapter: "Write the summary"
+    app: {from: summary-before, to: summary-end, camera: {center: [776, 420], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 2, text: "Write a short summary"}
+      - {type: box, rect: summary, from: summary-before, to: summary-end, pad: 4, color: [176, 124, 240]}
+    vo: "Click the Summary box and write the first line of the message. Say what this commit does, in a few words. The counter beside it shows how long the line is."
+
+  - id: description
+    chapter: "Add a description"
+    app: {from: description-before, to: description-end, camera: {center: [776, 420], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 3, text: "Add a description, if it helps"}
+      - {type: box, rect: description, from: description-before, to: description-end, pad: 4, color: [240, 138, 74]}
+    vo: "The Description below it is optional. Use it for the reason behind the change, for anyone who reads the history later."
+
+  - id: submit
+    chapter: "Commit with Ctrl+Enter"
+    app: {from: submit-before, to: submit-after, camera: {center: [776, 420], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 4, text: "Click Commit, or press Ctrl+Enter"}
+      - {type: box, rect: commit-button, from: submit-before, to: key-press, pad: 5, color: [176, 124, 240]}
+      - {type: keys, keys: ["Ctrl", "Enter"], from: key-press, to: submit-after}
+    vo: "The button reads Commit Changes to 1 File. Click it, or press Control and Enter, which works even while you are typing the message. On a Mac, the shortcut is Command and Enter."
+
+  - id: rest
+    chapter: "The other file is still waiting"
+    app: {from: submit-after, to: rest-end, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 5, text: "The tags helper is still unstaged"}
+      - {type: box, rect: left-box, from: rest-before, to: rest-end, pad: 4, color: [240, 138, 74]}
+    vo: "GitTree confirms with the short id of the new commit. The readme has left the list, but the tags helper is still under Unstaged Files, with its edit intact, ready for its own commit."
+
+  - id: verify
+    chapter: "Check the new commit"
+    app: {from: commit-view-before, to: end, camera: full}
+    overlays:
+      - {type: step, n: 6, text: "Select the new commit in the graph"}
+      - {type: box, rect: new-commit-row, from: commit-view-before, to: commit-selected, pad: 4, color: [176, 124, 240]}
+    vo: "The new commit sits at the top of the graph. Select it, and you see your summary, your description, and the one file it changed."
+
+  - id: git-command
+    chapter: "The same in plain Git"
+    scene:
+      template: terminal
+      data:
+        tag: "Commits · Create"
+        cwd: "lumen — git 2.43"
+        lines:
+          - {k: cmd, t: "git add README.md"}
+          - {k: cmd, t: "git commit -m \"docs(readme): add a Tags section\" \\"}
+          - {k: cmd, t: "    -m \"Show how to tag a note.\""}
+          - {k: dim, t: "[main f47c1be] docs(readme): add a Tags section"}
+          - {k: dim, t: " 1 file changed, 4 insertions(+)"}
+          - {k: cmd, t: "git log --oneline -3"}
+          - {k: add, t: "f47c1be docs(readme): add a Tags section"}
+          - {k: dim, t: "83dd564 docs: mention tags and sync"}
+          - {k: dim, t: "b5978a4 feat(core): filter notes by tag"}
+        keys:
+          - ["-m", "the summary; repeat it for the description"]
+          - ["f47c1be", "the short id of the new commit"]
+        note: "GitTree runs git commit with your message sent on standard input, so nothing needs quoting."
+    vo: "In plain Git, you stage with {git add|git add}, then run {git commit|git commit} with dash m. Use dash m once for the summary, and again for the description. Git answers with the short id and a count of the changes. Then {git log --oneline|git log dash dash oneline} shows your new commit on top."
+
+  - id: recap
+    chapter: "Recap"
+    scene:
+      template: recap
+      data:
+        tag: "Commits · Create"
+        points:
+          - "A commit is a snapshot of what is <b>staged</b>."
+          - "Write a short <b>Summary</b>, and a Description if it helps."
+          - "Click Commit, or press <b>Ctrl+Enter</b>."
+        next: "Next: <b>better messages with GitTree hints</b>"
+    vo: "To recap: a commit saves what is staged. Write a summary, add a description if it helps, and click Commit, or press Control and Enter. Download {GitTree|git tree} free at {gittree.app|gittree dot app}. In the next video, you will write better commit messages."

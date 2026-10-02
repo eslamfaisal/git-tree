@@ -1,7 +1,7 @@
 id: 00-13
 series: 00-start-here
 slug: tour-of-the-window
-status: planned
+status: scripted
 title: 'GitTree window tour: sidebar, graph, inspector, drawer'
 promise: Learn where the four areas of the window are and how to toggle each one.
 concept: 'The window is a view over one repository: refs on the left, history in the centre, details on the right.'
@@ -14,6 +14,60 @@ requires:
 - 00-08
 platforms:
 - linux
+recorded_against: "GitTree 1.2.1 (Linux, debug e2e build)"
 notes: 'Shortcuts Mod+J (sidebar), Mod+K (inspector), Alt+T (drawer), Escape (Back). No default chord exists for Push, Pull,
   Fetch, Stash, Branch or Undo: use the toolbar.'
 youtube: null
+objectives:
+- Name the four areas of the GitTree window (sidebar, graph, inspector, drawer) and the toolbar along the top
+- Select a commit in the graph and read its details in the inspector
+- Show and hide the sidebar, the inspector and the bottom drawer with Ctrl+J, Ctrl+K and Alt+T (Cmd instead of Ctrl on a Mac)
+- Use Escape to go back from a diff to the graph
+keywords:
+  primary: gittree window tour
+  secondary:
+  - git gui sidebar graph inspector
+  - git commit graph explained
+  - gittree keyboard shortcuts
+  question: where is everything in the gittree window
+takeaways:
+- The sidebar lists branches and tags, the graph shows history, the inspector shows the selected commit, the drawer holds the terminal and the activity log
+- Ctrl+J, Ctrl+K and Alt+T show and hide the sidebar, the inspector and the drawer; the three buttons at the right of the toolbar do the same
+- Escape means Back
+quiz:
+- q: Which shortcut shows and hides the inspector?
+  options:
+  - Ctrl+J
+  - Ctrl+K
+  - Alt+T
+  - Escape
+  answer: 1
+  why: Ctrl+K (Cmd+K on a Mac) is Toggle Inspector. Ctrl+J toggles the sidebar and Alt+T the bottom drawer.
+- q: What does the Activity Log tab in the bottom drawer show?
+  options:
+  - The commits of the current branch
+  - The Git commands GitTree has run
+  - The files you have changed
+  - The tags of the repository
+  answer: 1
+  why: Every Git command the app runs is listed there, with its output.
+- q: You opened a file and its diff replaced the graph. How do you get back to the graph?
+  options:
+  - Press Escape
+  - Press Ctrl+J
+  - Close the tab
+  - Restart GitTree
+  answer: 0
+  why: Escape is Back; it closes the diff and shows the graph again.
+exercise:
+  checkpoint: clean
+  steps:
+  - "Build the practice repository: course/demo-repo/build.sh ~/lumen clean, then open ~/lumen in GitTree"
+  - Click a commit in the graph and read its author and changed files in the inspector
+  - Press Ctrl+J, then Ctrl+J again (Cmd+J on a Mac) and watch the sidebar fold to a thin strip and come back
+  - Press Ctrl+K twice to hide and show the inspector, then Alt+T twice to open and close the drawer
+  - Open the Activity Log tab in the drawer, open a changed file from the inspector, then press Escape
+  expected: Each toggle hides and shows its area; Escape returns from the diff to the graph. Nothing in the repository changes.
+commands_note: This lesson uses no Git commands; it is a tour of the window.
+social:
+  hook: Sidebar, graph, inspector, drawer. Learn where everything is in GitTree, and the three keys that show and hide it.

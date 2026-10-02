@@ -1,7 +1,7 @@
 id: 02-03
 series: 02-daily-workflow
 slug: stage-single-lines
-status: planned
+status: scripted
 title: Stage single lines in GitTree (partial commit)
 promise: Pick individual changed lines and stage only those.
 concept: A patch can be narrowed to single lines before it enters the index.
@@ -16,6 +16,63 @@ requires:
 - 02-02
 platforms:
 - linux
+recorded_against: GitTree 1.2.1 (Linux, debug e2e build)
 notes: Shift+click picks a range of lines. Binary files, renames, LFS pointers, mode changes and submodules are staged whole
-  (staging-whole-only), mention in one sentence.
+  (staging-whole-only), mention in one sentence. The terminal scene uses git add -p with s (split), which works here because
+  unchanged lines separate the two changes; e (edit) is needed when changed lines touch, and is only named, not shown,
+  because it opens an editor. Unstage Lines is described from the app source and labels, not recorded on screen (VERIFY on
+  the next recording).
 youtube: null
+objectives:
+- Explain why Stage Hunk is too coarse when two ideas share one hunk
+- Pick a range of changed lines with a click and Shift+click, and stage only those with Stage Lines
+- Check the staged copy of the file, commit it, and confirm the other change is still unstaged
+- Name the kinds of change that are always staged whole, and run the same job with git add -p
+keywords:
+  primary: git stage lines
+  secondary:
+  - git add -p
+  - stage part of a hunk
+  - partial commit
+  question: how do I stage only some lines of a change in git
+takeaways:
+- Every changed line has a checkbox; click one line, Shift+click another to pick the range between them
+- Stage Lines stages only the picked lines, and the others stay in the working changes
+- Binary files, renames, Git LFS pointers, mode changes and submodules are always staged whole
+quiz:
+- q: Why pick single lines instead of using Stage Hunk?
+  options:
+  - Because Stage Hunk is slower
+  - Because one hunk can hold two unrelated changes, and Stage Hunk takes the whole hunk
+  - Because hunks cannot be committed
+  - Because lines are committed without a message
+  answer: 1
+  why: A hunk is the smallest block Git groups together. When two ideas land in the same block, only line-level staging separates them.
+- q: How do you pick a range of lines in the diff?
+  options:
+  - Click the first line, then Shift+click the last line
+  - Double-click the hunk header
+  - Press S twice
+  - Drag the file into the Staged Files list
+  answer: 0
+  why: A click picks one line; Shift+click picks every changed line between it and the previous pick.
+- q: Which of these is always staged whole, never line by line?
+  options:
+  - A TypeScript source file
+  - A README
+  - A binary file
+  answer: 2
+  why: Binary files, renames, Git LFS pointers, mode changes and submodule changes cannot be split, so GitTree stages them whole.
+exercise:
+  checkpoint: mixed-lines
+  steps:
+  - "Build the practice repository: course/demo-repo/build.sh ~/lumen mixed-lines, then open ~/lumen in GitTree"
+  - Click the working changes row, then select src/search/index.ts
+  - Click the checkbox of the doc comment line of the new size() method, then Shift+click the last added line below it
+  - Click Stage Lines and open the staged copy of the file to check that only the size() method is there
+  - Commit with the message "feat(search): add size()"
+  - Select the file again and confirm that the tags change is still unstaged
+  expected: One new commit that adds only the size() method; the line that indexes tags is still uncommitted.
+commands_note: In a terminal, git add -p src/search/index.ts, then s to split the hunk, n for the tags change and y for size(), then git diff --staged --stat do the same job; press e to edit a hunk by hand when changes touch. GitTree applies a narrowed patch with git apply --cached.
+social:
+  hook: One hunk, two ideas. Here is how to stage only the lines you want, and keep the rest for the next commit.

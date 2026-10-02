@@ -1,0 +1,109 @@
+# Create a new repository with the Init dialog: path, first branch, starting files, then the same in plain Git.
+beats:
+  - id: hook
+    chapter: "Why you need a repository"
+    scene:
+      template: hook
+      data:
+        tag: "Start here · Init"
+        kicker: "GitTree lesson"
+        title: "Turn a folder into a Git repository"
+        subtitle: "Start tracking a new project in one dialog."
+        question: "How do you start a project from nothing?"
+    vo: "You have a new project and no history yet. Until the folder is a Git repository, nothing is tracked, and no commit can be made. In this video you will create a repository with the Init dialog in {GitTree|git tree}, and choose its first branch."
+
+  - id: idea
+    chapter: "What git init does"
+    scene:
+      template: cards
+      data:
+        tag: "Start here · Init"
+        title: "What git init does"
+        cards:
+          - {label: "Before", title: "A plain folder", text: "Files, but no history."}
+          - {label: "Creates", title: "The .git folder", text: "Where Git keeps your commits and branches.", highlight: true}
+          - {label: "Names", title: "The first branch", text: "Usually main."}
+        footer: "A new repository is empty: no commits yet."
+    vo: "The command is git init. It does two things. It creates a hidden folder called {.git|dot git}, where Git keeps your commits and branches. And it names the first branch. A new repository is empty: it has no commits yet."
+
+  - id: open-init
+    chapter: "Open the Init dialog"
+    app: {from: start, to: location-before, camera: full}
+    overlays:
+      - {type: step, n: 1, text: "Click Init on the New Tab page"}
+      - {type: box, rect: init-card, from: card-before, to: dialog-open, pad: 4, color: [176, 124, 240]}
+      - {type: box, rect: dialog-box, from: dialog-open, to: location-before, pad: 2, color: [240, 138, 74]}
+    vo: "This is the New Tab page. Click Init, and a dialog opens. Nothing is written until you click Initialize."
+
+  - id: location
+    chapter: "Choose the folder"
+    app: {from: location-before, to: branch-before, camera: full}
+    overlays:
+      - {type: step, n: 2, text: "Type the folder path in Location"}
+      - {type: box, rect: location-box, from: location-before, to: branch-before, pad: 4, color: [176, 124, 240]}
+    vo: "Type the full path of the folder in Location. It can be a new folder, or an empty one."
+
+  - id: branch
+    chapter: "Name the first branch"
+    app: {from: branch-before, to: templates-before, camera: full}
+    overlays:
+      - {type: step, n: 3, text: "Initial branch: main"}
+      - {type: box, rect: branch-box, from: branch-before, to: bare-before, pad: 4, color: [176, 124, 240]}
+      - {type: box, rect: bare-box, from: bare-before, to: templates-before, pad: 4, color: [240, 138, 74]}
+    vo: "Initial branch is main by default. Type another name if you prefer one. Leave Bare repository unchecked: a bare repository has history, but no working files."
+
+  - id: templates
+    chapter: "Add starting files"
+    app: {from: templates-before, to: open-after-before, camera: full}
+    overlays:
+      - {type: step, n: 4, text: "Optional: a .gitignore template and a licence"}
+      - {type: box, rect: gitignore-box, from: templates-before, to: gitignore-chosen, pad: 4, color: [176, 124, 240]}
+      - {type: box, rect: licence-box, from: gitignore-chosen, to: licence-chosen, pad: 4, color: [176, 124, 240]}
+      - {type: box, rect: holder-box, from: licence-chosen, to: open-after-before, pad: 4, color: [240, 138, 74]}
+    vo: "You can also add starting files. Pick a .gitignore template, such as Node.js, and a licence, such as MIT, with the copyright holder. {GitTree|git tree} writes both files into the folder, but does not commit them."
+
+  - id: create
+    chapter: "Initialize"
+    app: {from: open-after-before, to: end, camera: full}
+    overlays:
+      - {type: step, n: 5, text: "Click Initialize"}
+      - {type: box, rect: open-after-box, from: open-after-before, to: submit-before, pad: 4, color: [240, 138, 74]}
+      - {type: box, rect: submit-box, from: submit-before, to: created, pad: 5, color: [176, 124, 240]}
+      - {type: box, rect: wip-row, from: wip-before, to: end, pad: 4, color: [240, 138, 74]}
+    vo: "Keep Open after creating checked, and click Initialize. {GitTree|git tree} opens the new repository. The branch reads No commits yet, because a new repository has no history. The two files we chose are waiting as working changes."
+
+  - id: git-command
+    chapter: "The same in plain Git"
+    scene:
+      template: terminal
+      data:
+        tag: "Start here · Init"
+        cwd: "projects"
+        lines:
+          - {k: cmd, t: "git init --initial-branch main recipe-box"}
+          - {k: dim, t: "Initialized empty Git repository in /tmp/projects/recipe-box/.git/"}
+          - {k: cmd, t: "cd recipe-box"}
+          - {k: cmd, t: "git status"}
+          - {k: dim, t: "On branch main"}
+          - {k: dim, t: ""}
+          - {k: dim, t: "No commits yet"}
+          - {k: dim, t: ""}
+          - {k: dim, t: "nothing to commit (create/copy files and use \"git add\" to track)"}
+        keys:
+          - ["--initial-branch", "the first branch's name"]
+          - ["recipe-box", "the folder to create"]
+        note: "GitTree runs git init with the branch name and the folder you typed."
+    vo: "In plain Git, you type {git init --initial-branch main|git init, dash dash initial dash branch, main}, then the folder name. Git says it initialized an empty repository. {git status|git status} confirms that you are on main, with no commits yet."
+
+  - id: recap
+    chapter: "Recap"
+    scene:
+      template: recap
+      data:
+        tag: "Start here · Init"
+        points:
+          - "git init turns a folder into a repository and names its first branch."
+          - "In GitTree: Init, then a folder path, a branch name and optional starting files."
+          - "A new repository has no commits yet."
+        next: "Next: <b>recent repositories and the New Tab page</b>"
+    vo: "To recap: git init turns a folder into a repository and names its first branch. In {GitTree|git tree}, click Init, give a folder path and a branch name, and add starting files if you like. Download {GitTree|git tree} free at {gittree.app|gittree dot app}. Next, the New Tab page and your recent repositories."

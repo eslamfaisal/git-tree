@@ -1,7 +1,7 @@
 id: 00-11
 series: 00-start-here
 slug: init-a-repository
-status: planned
+status: scripted
 title: Create a new Git repository in GitTree (git init)
 promise: Initialise a new repository with a first branch name and an optional .gitignore template and licence.
 concept: git init creates the object database and the first branch.
@@ -15,4 +15,58 @@ requires:
 - 00-07
 platforms:
 - linux
+recorded_against: "GitTree 1.2.1 (Linux, debug e2e build)"
 youtube: null
+objectives:
+- Explain what git init creates (the .git folder and the first branch)
+- Create a repository from the New Tab page with the Init dialog, choosing the folder and the initial branch
+- Add an optional .gitignore template and licence, and know they are written uncommitted
+- Run the same job in the terminal with git init --initial-branch main
+keywords:
+  primary: git init
+  secondary:
+  - create a git repository
+  - git init initial branch main
+  - start a new git project
+  question: how do I create a new git repository
+takeaways:
+- git init turns a folder into a repository by creating the .git folder, and names the first branch
+- A new repository has no commits yet, so the branch picker says No commits yet
+- GitTree can write a .gitignore and a licence into the new folder, but it never commits them for you
+quiz:
+- q: What does git init create?
+  options:
+  - A remote copy on a server
+  - A hidden .git folder that holds the history, and the first branch
+  - A first commit with all your files
+  - A new branch from an existing repository
+  answer: 1
+  why: git init sets up the repository's database in the .git folder and points the first branch at no commit yet.
+- q: In the Init dialog, what happens to the .gitignore and licence files you choose?
+  options:
+  - They are committed immediately
+  - They are written into the folder as working changes, uncommitted
+  - They are uploaded to a website
+  - They replace any file with the same name
+  answer: 1
+  why: The files are written uncommitted, so you decide when to commit them. A file that already exists is kept, never replaced.
+- q: Which option sets the first branch's name from the terminal?
+  options:
+  - --bare
+  - --quiet
+  - --initial-branch
+  - --template
+  answer: 2
+  why: git init --initial-branch main creates the repository with main as its first branch.
+exercise:
+  checkpoint: no-repo
+  steps:
+  - Choose a folder that does not exist yet, for example ~/projects/recipe-box, inside a folder that exists
+  - Open GitTree and click Init on the New Tab page
+  - Type the full path in Location, keep Initial branch as main, and pick the Node.js template and the MIT licence with your name
+  - Click Initialize and leave Open after creating checked
+  - "Check in a terminal: git -C ~/projects/recipe-box status shows On branch main and No commits yet"
+  expected: A new repository on branch main with no commits, and .gitignore and LICENSE as untracked files.
+commands_note: In a terminal, git init --initial-branch main recipe-box then git status do the same job (without the starting files).
+social:
+  hook: A folder of files is not a repository yet. Here is how to start one in GitTree, and the one Git command behind it.

@@ -1,0 +1,108 @@
+# One entry per beat: the words, and the picture they play over (see course/AUTHORING.md).
+beats:
+  - id: hook
+    chapter: "Why unstage a file"
+    scene:
+      template: hook
+      data:
+        tag: "Staging · Unstage"
+        kicker: "GitTree lesson"
+        title: "Take a file out of the next commit"
+        subtitle: "Undo git add without losing a single edit."
+        question: "How do you remove one file from what is staged?"
+        snippet:
+          file: "git status --short"
+          lines:
+            - [add, "M", "README.md"]
+            - [add, "M", "src/tags.ts"]
+    vo: "You staged two files, and then you notice that one of them does not belong in this commit. Maybe it is half finished, or you added it by accident. You do not have to undo the edit. In this video you will unstage a file in {GitTree|git tree}, so it leaves the next commit and keeps every change."
+
+  - id: idea
+    chapter: "Unstaging does not touch your work"
+    scene:
+      template: cards
+      data:
+        tag: "Staging · Unstage"
+        title: "Three places, one small move"
+        cards:
+          - {label: "your files", title: "Working folder", text: "Your edits live here. Unstaging never changes them."}
+          - {label: "the index", title: "Staging area", text: "The list of what the next commit will hold. A file leaves it.", highlight: true}
+          - {label: ".git", title: "Repository", text: "Your saved commits. Nothing is written yet."}
+        footer: "Unstage removes a file from the list, not from your disk."
+    vo: "Unstaging does not touch your work. Your edits live in the working folder. The staging area is only a list of what the next commit will hold. Unstaging takes a file off that list, and the file on disk stays exactly as you left it."
+
+  - id: open-staged
+    chapter: "Find the staged files"
+    app: {from: start, to: unstage-before, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 1, text: "Look under Staged Files"}
+      - {type: box, rect: staged-box, from: open-staged, to: unstage-before, pad: 4, color: [176, 124, 240]}
+    vo: "Here is the demo project. In the lesson on staging a file, you learned how a file gets into this list. Two files are staged, the readme and the tags helper, so both would go into the next commit. We want to commit only the readme."
+
+  - id: unstage
+    chapter: "Click Unstage File"
+    app: {from: unstage-before, to: unstage-after, camera: {center: [776, 300], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 2, text: "Click Unstage File on the tags helper"}
+      - {type: box, rect: unstage-button, from: unstage-button, to: unstage-after, pad: 5, color: [176, 124, 240]}
+    vo: "Point at the file you want to remove, here the tags helper. A minus button appears at the end of its row, named Unstage File. Click it."
+
+  - id: lists
+    chapter: "The file moves to Unstaged Files"
+    app: {from: lists-begin, to: lists-end, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 3, text: "Back under Unstaged Files"}
+      - {type: box, rect: unstaged-row, from: lists-begin, to: lists-mid, pad: 4, color: [240, 138, 74]}
+      - {type: box, rect: staged-row, from: lists-mid, to: lists-end, pad: 4, color: [176, 124, 240]}
+    vo: "The tags helper is back under Unstaged Files. Only the readme is left under Staged Files, so only the readme goes into the next commit."
+
+  - id: still-there
+    chapter: "Your edit is still there"
+    app: {from: still-before, to: still-end, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 4, text: "Open the file: the edit is intact"}
+      - {type: box, rect: still-diff, from: still-diff, to: still-end, pad: 4, color: [176, 124, 240]}
+    vo: "Nothing was lost. Open the file, and the function you added is still there, waiting in your working folder."
+
+  - id: shortcut
+    chapter: "The U shortcut"
+    app: {from: key-before, to: end, camera: {center: [776, 330], zoom: 1.27}}
+    overlays:
+      - {type: step, n: 5, text: "Or select a staged file and press U"}
+      - {type: keys, keys: ["U"], from: key-press, to: key-after}
+    vo: "There is a faster way. Click a staged file, then press U. It runs the same command, Unstage, and it works whenever the file list has focus. The readme moved back too, and now nothing is staged."
+
+  - id: git-command
+    chapter: "The same in plain Git"
+    scene:
+      template: terminal
+      data:
+        tag: "Staging · Unstage"
+        cwd: "lumen — git 2.43"
+        lines:
+          - {k: cmd, t: "git status --short"}
+          - {k: add, t: "M  README.md"}
+          - {k: add, t: "M  src/tags.ts"}
+          - {k: cmd, t: "git restore --staged -- src/tags.ts"}
+          - {k: cmd, t: "git status --short"}
+          - {k: add, t: "M  README.md"}
+          - {k: del, t: " M src/tags.ts"}
+        keys:
+          - ["--staged", "touch only the staging area"]
+          - ["M ", "first column: staged"]
+          - [" M", "second column: not staged"]
+        note: "Unstage All runs git reset -q, which empties the staging area the same way."
+    vo: "In plain Git, the command is {git restore --staged|git restore dash dash staged}, followed by the path. Run {git status --short|git status dash dash short} before and after. The first column is the staging area, and the second is the working folder. After the restore, the tags helper has its letter in the second column only. To unstage everything at once, {git reset -q|git reset dash q} does it, and {GitTree|git tree} has an Unstage All button."
+
+  - id: recap
+    chapter: "Recap"
+    scene:
+      template: recap
+      data:
+        tag: "Staging · Unstage"
+        points:
+          - "Unstaging takes a file out of the next commit."
+          - "Your edit stays in the working folder, untouched."
+          - "Click <b>Unstage File</b>, or select the file and press <b>U</b>."
+        next: "Next: <b>make a commit</b>"
+    vo: "To recap: unstaging takes a file out of the next commit, and never touches your edit. Use the Unstage File button, or press U. Download {GitTree|git tree} free at {gittree.app|gittree dot app}. In the next video, you will write a message and make the commit."

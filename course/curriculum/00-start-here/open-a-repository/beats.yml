@@ -1,0 +1,108 @@
+# One entry per beat: the words, and the picture they play over. See course/AUTHORING.md.
+# The app beats are one continuous take of journey.mjs (the New Tab page, the system folder picker, the repository tab).
+# Dropping a folder on the window cannot be driven in a recording: it is only spoken, over the hint the page shows.
+beats:
+  - id: hook
+    chapter: "Why open a repository"
+    scene:
+      template: hook
+      data:
+        tag: "Start here · Open a repository"
+        kicker: "GitTree lesson"
+        title: "Open a Git repository"
+        subtitle: "Show GitTree your project in one step."
+        question: "Where is your project?"
+    vo: "You start GitTree, and the window is empty. Your project is somewhere on your computer. How do you show it to GitTree? In this video you will open a repository, and see what happens when a folder is not one."
+
+  - id: what
+    chapter: "What a repository is"
+    scene:
+      template: cards
+      data:
+        tag: "Start here · Open a repository"
+        title: "What GitTree needs: a repository"
+        cards:
+          - {label: "folder", title: "Working folder", text: "Your files: src, README.md, package.json."}
+          - {label: ".git", title: "Hidden .git folder", text: "Your commits, branches and tags.", highlight: true}
+          - {label: "GitTree", title: "Opens the folder", text: "It finds the .git and shows the history."}
+        footer: "A folder with a .git inside is a repository."
+    vo: "A repository is a folder with a hidden folder inside it, named {.git|dot git}. That hidden folder holds your whole history. The folder around it holds your files. Open a folder like that, and GitTree can show it all."
+
+  - id: new-tab
+    chapter: "The New Tab page"
+    app: {from: start, to: new-tab-end, camera: full}
+    overlays:
+      - {type: step, n: 1, text: "The New Tab page"}
+      - {type: box, rect: open-card, from: open-card, to: drop-hint-begin, pad: 4, color: [176, 124, 240]}
+      - {type: box, rect: drop-hint, from: drop-hint, to: new-tab-end, pad: 4, color: [240, 138, 74]}
+    vo: "This is the New Tab page. It has three cards: Open, for a folder you already have, Clone, to copy one from a web address, and Init, to start a new one. At the bottom, a hint says you can also drop a folder onto the window, and GitTree opens it."
+
+  - id: click-open
+    chapter: "Open with the folder picker"
+    app: {from: click-open, to: choose-begin, camera: {center: [640, 360], zoom: 1.2}}
+    overlays:
+      - {type: step, n: 2, text: "Click Open"}
+    vo: "Click Open. A folder picker appears. It is your system's own picker, not GitTree's. Choose the folder that holds your project, the one with a {.git|dot git} inside."
+
+  - id: choose
+    app: {from: choose-begin, to: choose-end, camera: {center: [640, 360], zoom: 1.2}}
+    overlays:
+      - {type: step, n: 3, text: "Choose the folder and press Open"}
+    vo: "Type the path, and the list shows its {.git|dot git} folder. Then press Open."
+
+  - id: opened
+    chapter: "Your repository opens"
+    app: {from: opened, to: opened-end, camera: full}
+    overlays:
+      - {type: step, n: 4, text: "It opens in its own tab"}
+      - {type: box, rect: tab, from: tab, to: opened-end, pad: 5, color: [176, 124, 240]}
+    vo: "The repository opens in a new tab, named after its folder. The graph shows its history. GitTree also remembers the folder, for next time."
+
+  - id: shortcut
+    chapter: "Open with Ctrl+O"
+    app: {from: shortcut-begin, to: plain-begin, camera: full}
+    overlays:
+      - {type: step, n: 5, text: "Press Ctrl+O from any tab"}
+      - {type: keys, keys: ["Ctrl", "O"], from: shortcut-begin, to: plain-begin}
+    vo: "Next time, press Control O to open the picker from any tab. On a Mac, press Command O."
+
+  - id: refused
+    chapter: "When the folder is not a repository"
+    app: {from: plain-begin, to: end, camera: full}
+    overlays:
+      - {type: step, n: 6, text: "A folder without a .git is refused"}
+      - {type: box, rect: refused, from: refused, to: end, pad: 6, color: [240, 138, 74]}
+    vo: "Now pick a folder that is not a repository. GitTree tells you so. It names the folder, and offers to initialize a repository there, or to choose another folder. It changes nothing on its own. Click Close, and you are back where you were."
+
+  - id: git-command
+    chapter: "The same in plain Git"
+    scene:
+      template: terminal
+      data:
+        tag: "Start here · Open a repository"
+        cwd: "projects/lumen: git 2.43"
+        lines:
+          - {k: cmd, t: "git rev-parse --git-dir --is-inside-work-tree"}
+          - {k: dim, t: ".git"}
+          - {k: dim, t: "true"}
+          - {k: cmd, t: "cd ../recipes"}
+          - {k: cmd, t: "git rev-parse --git-dir --is-inside-work-tree"}
+          - {k: del, t: "fatal: not a git repository (or any of the parent directories): .git"}
+        keys:
+          - ["--git-dir", "the hidden folder"]
+          - ["--is-inside-work-tree", "true or false"]
+        note: "GitTree asks Git a longer version of this question before it opens a folder."
+    vo: "In plain Git, {git rev-parse --git-dir --is-inside-work-tree|git rev-parse dash dash git dir, dash dash is inside work tree} asks the same question. Inside a repository, it prints the hidden folder, and true. Anywhere else, it stops with: fatal, not a git repository. GitTree asks Git a longer version of this question before it opens a folder."
+
+  - id: recap
+    chapter: "Recap"
+    scene:
+      template: recap
+      data:
+        tag: "Start here · Open a repository"
+        points:
+          - "A repository is a folder with a .git folder inside."
+          - "Open it from the New Tab page, with Ctrl+O, or by dropping the folder."
+          - "A folder without a .git is refused, and nothing changes."
+        next: "Next: <b>reopen a repository from the Recent list</b>"
+    vo: "To recap: a repository is a folder with a {.git|dot git} inside. Open it with the Open card, with Control O, or by dropping the folder. A folder without one is refused. Download {GitTree|git tree} free at {gittree.app|gittree dot app}. Next, how to reopen a repository from the Recent list."

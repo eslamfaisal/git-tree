@@ -1,7 +1,7 @@
 id: 02-05
 series: 02-daily-workflow
 slug: make-a-commit
-status: planned
+status: scripted
 title: Make a Git commit in GitTree step by step
 promise: Write a summary and description and commit the staged changes.
 concept: A commit snapshots the index, not the working folder.
@@ -10,10 +10,83 @@ commands:
 - git commit --no-edit -F - --cleanup=strip
 checkpoint: two-files-modified
 journey: make-a-commit
-duration_min: 4
+duration_min: 3.5
 requires:
 - 02-01
+- 02-04
 platforms:
 - linux
-notes: Shortcut Mod+Enter.
+recorded_against: GitTree 1.2.1 (Linux, debug e2e build)
+notes: Shortcut Mod+Enter (Ctrl+Enter on Linux and Windows, Cmd+Enter on macOS); it works while the message box has focus.
 youtube: null
+objectives:
+- Explain that a commit is a snapshot of the staging area, not of the working folder
+- Write a Summary and a Description in the commit composer
+- Commit with the Commit Changes button or with Ctrl+Enter (Cmd+Enter on a Mac)
+- Confirm that a file you did not stage stays in your working changes
+- Run the same job in the terminal with git commit -m and read git log --oneline
+keywords:
+  primary: how to make a git commit
+  secondary:
+  - git commit message
+  - git commit -m
+  - commit staged changes
+  question: how do I make a commit in git with a summary and a description
+takeaways:
+- A commit saves exactly what is staged; unstaged edits stay in the working folder
+- The Summary is the first line of the message; the Description is optional and explains why
+- Ctrl+Enter (Cmd+Enter on a Mac) commits from anywhere in the composer
+quiz:
+- q: What does a commit save?
+  options:
+  - Every change in the working folder
+  - Only what is in the staging area
+  - Only the files you opened last
+  - Only the files that are not staged
+  answer: 1
+  why: A commit is a snapshot of the staging area. Anything unstaged stays in the working folder for a later commit.
+- q: In the commit composer, which part is the first line of the message?
+  options:
+  - The Description
+  - The Summary
+  - The branch name
+  - The counter
+  answer: 1
+  why: The Summary is the first line. The Description is an optional body below it.
+- q: Which shortcut commits on Linux and Windows?
+  options:
+  - Ctrl+Enter
+  - Ctrl+Shift+C
+  - Alt+Enter
+  - U
+  answer: 0
+  why: The command Commit is bound to Mod+Enter, and Mod is Ctrl on Linux and Windows, Cmd on macOS.
+- q: After you commit only README.md, where is the edit to src/tags.ts?
+  options:
+  - In the new commit
+  - Lost
+  - Still in your working changes, under Unstaged Files
+  - On the stash
+  answer: 2
+  why: The file was never staged, so the commit did not include it and its edit is untouched.
+- q: How do you give git commit both a summary and a description in a terminal?
+  options:
+  - Use -m twice
+  - Use --amend
+  - Use git log --oneline
+  - Use git restore --staged
+  answer: 0
+  why: The first -m is the summary and the second is the description, separated by a blank line.
+exercise:
+  checkpoint: two-files-modified
+  steps:
+  - "Build the practice repository: course/demo-repo/build.sh ~/lumen two-files-modified, then open ~/lumen in GitTree"
+  - Click the working changes row, hover README.md under Unstaged Files and click Stage File
+  - Click Summary and type "docs(readme): add a Tags section"
+  - Click Description and type one sentence about why
+  - Press Ctrl+Enter (Cmd+Enter on a Mac) and check the Committed message
+  - Confirm that src/tags.ts is still under Unstaged Files, then select the new commit in the graph
+  expected: One new commit that changes only README.md; the sortTags edit in src/tags.ts is still uncommitted.
+commands_note: In a terminal, git add README.md then git commit -m "summary" -m "description" does the same; GitTree runs git commit --no-edit -F - --cleanup=strip and sends the message on standard input.
+social:
+  hook: You have two changed files and only one is ready. Here is how to commit just that one, with a proper message.

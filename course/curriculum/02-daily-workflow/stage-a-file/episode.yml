@@ -1,7 +1,7 @@
 id: 02-01
 series: 02-daily-workflow
 slug: stage-a-file
-status: planned
+status: scripted
 title: Stage a file in GitTree (git add explained)
 promise: Stage one changed file so that it goes into the next commit and the others do not.
 concept: Staging copies a file's changes into the index, which is the next commit.
@@ -12,9 +12,64 @@ commands:
 checkpoint: two-files-modified
 journey: stage-a-file
 duration_min: 3
-requires:
-- 01-05
+requires: []
 platforms:
 - linux
-notes: Shortcut S works when the file list has focus. Path and Tree layout (staging-layout) is shown in passing.
+recorded_against: GitTree 1.2.1 (Linux, debug e2e build)
+notes: Shortcut S works when the file list has focus. Path and Tree layout (staging-layout) is shown in passing. The
+  terminal scene shows `git add <path>`; GitTree itself runs `git add -A -- <path>` (inventory), whose -A also records a
+  deleted file. The lesson does not show the layout switch (Path / Tree); leave it to its own episode.
 youtube: null
+objectives:
+- Explain the two lists of the Working Changes panel, Unstaged Files and Staged Files
+- Stage one of two changed files with the Stage File button and see it move to Staged Files
+- Commit only the staged file and confirm the other file is still waiting under Unstaged Files
+- Stage the selected file with the S key, and run the same job in the terminal with git add and git status
+keywords:
+  primary: git stage file
+  secondary:
+  - git add
+  - git staging area
+  - commit one file
+  question: how do I commit only one file in git
+takeaways:
+- Changed files start under Unstaged Files; staged files are the ones the next commit will contain
+- Stage File moves one file to Staged Files; S does the same for the selected file, Stage All for every file
+- A commit takes only what is staged, so the other file stays in your working changes
+quiz:
+- q: What does staging a file do?
+  options:
+  - It commits the file
+  - It puts the file's changes in the staging area, so the next commit will include them
+  - It deletes the file's changes
+  - It uploads the file to the remote
+  answer: 1
+  why: Staging copies the file's changes into the index, which is the next commit. Nothing is committed or sent anywhere yet.
+- q: You change two files, stage only one and commit. Where is the other file?
+  options:
+  - In the commit as well
+  - Deleted from the working folder
+  - Still under Unstaged Files, with its changes intact
+  - In the staging area
+  answer: 2
+  why: A commit takes only what is staged. The file you did not stage keeps its changes in the working folder.
+- q: Which key stages the selected file when the file list has focus?
+  options:
+  - U
+  - S
+  - Enter
+  answer: 1
+  why: S stages the selected files and U unstages them; both only act while the matching list has focus.
+exercise:
+  checkpoint: two-files-modified
+  steps:
+  - "Build the practice repository: course/demo-repo/build.sh ~/lumen two-files-modified, then open ~/lumen in GitTree"
+  - Click the working changes row at the top of the graph
+  - Point at src/tags.ts under Unstaged Files and click Stage File
+  - Check that src/tags.ts is under Staged Files and README.md is still under Unstaged Files
+  - Commit with the message "feat(tags): add sortTags"
+  - Select README.md and press S, then look at the Staged Files list
+  expected: One new commit that contains only src/tags.ts; README.md is staged afterwards and ready for its own commit.
+commands_note: In a terminal, git add src/tags.ts then git status --short do the same job. GitTree runs git add -A -- with the file's path.
+social:
+  hook: Two files changed, and only one belongs in this commit. Here is how to stage exactly the file you want.

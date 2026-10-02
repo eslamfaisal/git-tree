@@ -1,0 +1,103 @@
+# The GitTree window tour: four areas (sidebar, graph, inspector, drawer), the toolbar, three toggles and Back.
+beats:
+  - id: hook
+    chapter: "Where is everything?"
+    scene:
+      template: hook
+      data:
+        tag: "Start here · The window"
+        kicker: "GitTree lesson"
+        title: "A tour of the GitTree window"
+        subtitle: "Four areas, three shortcuts, one repository."
+        question: "Where does everything live?"
+    vo: "You open {GitTree|git tree} and there is a lot on the screen. Where do the branches live? Where do the details of a commit go? In this video you will learn the four areas of the window, and the keys that show and hide them."
+
+  - id: areas
+    chapter: "The four areas"
+    scene:
+      template: cards
+      data:
+        tag: "Start here · The window"
+        title: "Four areas, one repository"
+        cards:
+          - {label: "Left", title: "Sidebar", text: "Local branches, remote branches and tags."}
+          - {label: "Centre", title: "Graph", text: "Your history, one commit per row."}
+          - {label: "Right", title: "Inspector", text: "One commit in detail.", highlight: true}
+          - {label: "Bottom", title: "Drawer", text: "The terminal and the activity log."}
+        footer: "The toolbar along the top holds the actions."
+    vo: "The window has four areas. The sidebar on the left lists your branches and tags. The graph in the middle shows your history. The inspector on the right shows one commit in detail. And the drawer at the bottom holds the terminal and the activity log."
+
+  - id: toolbar
+    chapter: "The toolbar"
+    app: {from: start, to: sidebar-start, camera: full}
+    overlays:
+      - {type: step, n: 1, text: "The toolbar"}
+      - {type: box, rect: toolbar-box, from: toolbar-start, to: panel-buttons-start, pad: 2, color: [176, 124, 240]}
+      - {type: box, rect: panel-buttons, from: panel-buttons-start, to: sidebar-start, pad: 4, color: [240, 138, 74]}
+    vo: "Along the top runs the toolbar. It holds the actions you use most: undo and redo, pull and push, create a branch, stash, and the terminal. The last three buttons show and hide the sidebar, the drawer and the inspector."
+
+  - id: sidebar
+    chapter: "The sidebar"
+    app: {from: sidebar-start, to: graph-start, camera: full}
+    overlays:
+      - {type: step, n: 2, text: "The sidebar"}
+      - {type: box, rect: sidebar-box, from: sidebar-start, to: filter-before, pad: 2, color: [176, 124, 240]}
+      - {type: box, rect: filter-box, from: filter-before, to: graph-start, pad: 4, color: [240, 138, 74]}
+    vo: "Now the sidebar. It lists your local branches, the remote branches, and your tags. Type in the filter box to find one fast."
+
+  - id: graph
+    chapter: "The graph"
+    app: {from: graph-start, to: inspector-start, camera: full}
+    overlays:
+      - {type: step, n: 3, text: "The graph: one row per commit"}
+      - {type: box, rect: graph-box, from: graph-start, to: row-before, pad: 2, color: [176, 124, 240]}
+      - {type: box, rect: row-box, from: row-before, to: inspector-start, pad: 3, color: [240, 138, 74]}
+    vo: "The graph is your history, with the newest commit on top. Each row is one commit. Click a row to select it."
+
+  - id: inspector
+    chapter: "The inspector"
+    app: {from: inspector-start, to: toggles-start, camera: full}
+    overlays:
+      - {type: step, n: 4, text: "The inspector: the selected commit"}
+      - {type: box, rect: inspector-box, from: inspector-start, to: toggles-start, pad: 2, color: [176, 124, 240]}
+    vo: "The inspector fills in with that commit: who wrote it, when, and which files it changed."
+
+  - id: toggles
+    chapter: "Show and hide with the keyboard"
+    app: {from: toggles-start, to: drawer-start, camera: full}
+    overlays:
+      - {type: step, n: 5, text: "Sidebar and inspector shortcuts"}
+      - {type: keys, keys: ["Ctrl", "J"], from: keys-j, to: keys-k}
+      - {type: keys, keys: ["Ctrl", "K"], from: keys-k, to: drawer-start}
+    vo: "You can hide any area. Press {Ctrl+J|control jay} to fold the sidebar into a thin strip, and press it again to bring it back. {Ctrl+K|control kay} does the same for the inspector. On a Mac, use Command instead of Control."
+
+  - id: drawer
+    chapter: "The drawer"
+    app: {from: drawer-start, to: back-start, camera: full}
+    overlays:
+      - {type: step, n: 6, text: "The drawer"}
+      - {type: keys, keys: ["Alt", "T"], from: keys-t, to: activity-before}
+      - {type: box, rect: drawer-box, from: activity-before, to: keys-t-close, pad: 2, color: [176, 124, 240]}
+      - {type: keys, keys: ["Alt", "T"], from: keys-t-close, to: drawer-end}
+    vo: "The drawer opens with {Alt+T|alt tee}. The Terminal tab is a shell in your repository folder. The Activity Log tab lists the Git commands {GitTree|git tree} has run. Press {Alt+T|alt tee} again to close it."
+
+  - id: back
+    chapter: "Escape goes back"
+    app: {from: back-start, to: end, camera: full}
+    overlays:
+      - {type: step, n: 7, text: "Escape means Back"}
+      - {type: keys, keys: ["Esc"], from: keys-esc, to: end}
+    vo: "One more key: Escape. It means Back. Open a file to see its diff, press Escape, and you are on the graph again."
+
+  - id: recap
+    chapter: "Recap"
+    scene:
+      template: recap
+      data:
+        tag: "Start here · The window"
+        points:
+          - "The sidebar lists branches and tags, the graph shows history, the inspector shows one commit."
+          - "The drawer holds the terminal and the activity log."
+          - "Ctrl+J, Ctrl+K and Alt+T show and hide them. Escape goes back."
+        next: "Next: <b>what a commit is</b>"
+    vo: "To recap: the sidebar lists your branches, the graph shows history, the inspector shows one commit, and the drawer holds the terminal. {Ctrl+J|control jay}, {Ctrl+K|control kay} and {Alt+T|alt tee} toggle them. Download {GitTree|git tree} free at {gittree.app|gittree dot app}. Next, we look at what a commit is."

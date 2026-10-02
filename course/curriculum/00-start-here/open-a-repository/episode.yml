@@ -1,7 +1,7 @@
 id: 00-08
 series: 00-start-here
 slug: open-a-repository
-status: planned
+status: scripted
 title: Open a Git repository in GitTree (folder or drag and drop)
 promise: Open an existing repository from the New Tab page, the Open shortcut or a dropped folder.
 concept: A repository is a working folder plus a .git directory.
@@ -15,5 +15,68 @@ requires:
 - 00-07
 platforms:
 - linux
-notes: Shortcut Mod+O (Cmd on macOS, Ctrl on Windows and Linux).
+recorded_against: GitTree 1.2.1 (Linux, debug e2e build)
+notes: >-
+  Shortcut Mod+O (Cmd on macOS, Ctrl on Windows and Linux). The journey starts on the New Tab page (openRepo false),
+  clicks the Open card, and drives the real system folder picker (GTK on Linux, outside the webview) with xdotool,
+  keyboard only: the picker is sized and centred by the journey because no window manager runs under Xvfb, so it
+  appears for a fraction of a second at the wrong size before it is placed (trim or accept in the edit). Then Ctrl+O
+  from the repository tab, and a plain folder (no .git) to show the refusal dialog "This folder is not a Git
+  repository". Dragging a folder onto the window cannot be driven (native drag and drop): it is spoken over the hint
+  "You can also drop a folder onto this window to open it." and never shown happening. VERIFY: the picker looks
+  different on macOS and Windows (native pickers); the Cmd+O line is spoken, not shown. The recording uses the
+  paths /tmp/projects/lumen and /tmp/projects/recipes (the journey creates them in prepare).
 youtube: null
+objectives:
+- Explain what a Git repository is: a working folder with a hidden .git folder inside
+- Open a repository from the New Tab page with the Open card and the folder picker
+- Open the picker from any tab with Ctrl+O (Cmd+O on a Mac), and know that dropping a folder on the window also works
+- Read the message GitTree shows for a folder that is not a repository
+keywords:
+  primary: open git repository
+  secondary:
+  - open folder in git gui
+  - git rev-parse is-inside-work-tree
+  - drag and drop repository
+  question: how do I open an existing git repository in a git gui
+takeaways:
+- A repository is a folder with a .git folder inside; that is what GitTree needs
+- Open from the New Tab page, with Ctrl+O (Cmd+O on a Mac), or by dropping a folder on the window
+- A folder without a .git is refused with a clear message, and nothing is changed
+quiz:
+- q: What makes a folder a Git repository?
+  options:
+  - It has a README file
+  - It has a hidden .git folder that holds the history
+  - It is stored on a cloud drive
+  - It contains at least ten files
+  answer: 1
+  why: The .git folder holds the commits, branches and tags. The folder around it is the working folder.
+- q: Which shortcut opens the folder picker on Linux and Windows?
+  options:
+  - Ctrl+T
+  - Ctrl+W
+  - Ctrl+O
+  - Ctrl+N
+  answer: 2
+  why: Ctrl+O runs Open Repository. On a Mac the same shortcut is Cmd+O.
+- q: You choose a folder with no .git in it or above it. What does GitTree do?
+  options:
+  - It deletes the folder
+  - It opens an empty tab anyway
+  - It shows a message that the folder is not a Git repository, with options to initialize one or choose another
+  - It closes the app
+  answer: 2
+  why: GitTree asks Git first and refuses a folder that is not a repository. It changes nothing on its own.
+exercise:
+  checkpoint: clean
+  steps:
+  - "Build the practice repository: course/demo-repo/build.sh ~/lumen clean"
+  - "Start GitTree, and on the New Tab page click Open, then choose ~/lumen"
+  - "Close the tab, then press Ctrl+O (Cmd+O on a Mac) and open ~/lumen again"
+  - "Create an empty folder, for example ~/recipes, press Ctrl+O and choose it: read the message, then click Close"
+  - "In a terminal, run git rev-parse --git-dir --is-inside-work-tree in ~/lumen and in ~/recipes and compare"
+  expected: ~/lumen opens in a tab named lumen with its history; ~/recipes is refused; git prints .git and true in lumen, and a fatal error in recipes.
+commands_note: In a terminal, git rev-parse --git-dir --is-inside-work-tree prints the .git folder and true inside a repository, and fatal: not a git repository anywhere else.
+social:
+  hook: Your project is on your computer, but GitTree shows nothing. Here is how to open a repository, and what a repository really is.

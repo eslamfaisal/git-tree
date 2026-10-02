@@ -1,7 +1,7 @@
 id: 02-04
 series: 02-daily-workflow
 slug: unstage-a-file
-status: planned
+status: scripted
 title: Unstage a file in GitTree (undo git add)
 promise: Move a staged file back to the unstaged list without losing any edit.
 concept: Unstaging resets the index entry and leaves the file on disk untouched.
@@ -16,5 +16,66 @@ requires:
 - 02-01
 platforms:
 - linux
+recorded_against: GitTree 1.2.1 (Linux, debug e2e build)
 notes: Shortcut U works when the file list has focus.
 youtube: null
+objectives:
+- Explain what unstaging does, and why it never changes the file on disk
+- Unstage a file in GitTree with the Unstage File button and check it in the Unstaged Files list
+- Unstage a selected file with the U key, and know that Unstage All empties the staging area
+- Run the same job in the terminal with git restore --staged and read git status --short
+keywords:
+  primary: git unstage file
+  secondary:
+  - git restore --staged
+  - undo git add
+  question: how do I unstage a file in git without losing my changes
+takeaways:
+- The staging area is the list of what the next commit will hold; unstaging takes a file off that list
+- Unstage File moves a file back to Unstaged Files and leaves every edit on disk
+- Select a staged file and press U for the same result
+quiz:
+- q: What happens to your edits when you unstage a file?
+  options:
+  - They are deleted from the file
+  - They stay in the working folder, and the file only leaves the staging area
+  - They are saved into a new commit
+  - They are moved to the stash
+  answer: 1
+  why: Unstaging changes only the index, the list of what the next commit holds. The file on disk is not touched.
+- q: After you unstage src/tags.ts, where does GitTree list it?
+  options:
+  - Under Staged Files
+  - Under Unstaged Files
+  - It disappears from the panel
+  - In the last commit
+  answer: 1
+  why: The file still has changes that are not in the next commit, so it moves to Unstaged Files.
+- q: Which command unstages one file in a terminal?
+  options:
+  - git add -- src/tags.ts
+  - git restore --staged -- src/tags.ts
+  - git commit -- src/tags.ts
+  - git stash -- src/tags.ts
+  answer: 1
+  why: git restore --staged resets the file's entry in the staging area to match the last commit and leaves the working file alone.
+- q: Which key unstages the selected file in the Staged Files list?
+  options:
+  - S
+  - U
+  - Ctrl+Enter
+  - Delete
+  answer: 1
+  why: U runs Unstage when the file list has focus. S is its opposite, Stage.
+exercise:
+  checkpoint: two-files-modified
+  steps:
+  - "Build the practice repository: course/demo-repo/build.sh ~/lumen two-files-modified, then open ~/lumen in GitTree"
+  - Click the working changes row and use Stage All Changes, so README.md and src/tags.ts are both staged
+  - Hover src/tags.ts under Staged Files and click Unstage File
+  - Open src/tags.ts under Unstaged Files and check that the sortTags function is still in the diff
+  - Select README.md under Staged Files and press U, then run git status --short in a terminal to read the two columns
+  expected: Nothing is committed, both files are listed under Unstaged Files, and every edit is still in the working folder.
+commands_note: In a terminal, git restore --staged -- src/tags.ts does the same job; git reset -q unstages everything.
+social:
+  hook: You staged a file by mistake. Here is how to take it back out of the commit without losing a single edit.
