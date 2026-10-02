@@ -1,0 +1,9 @@
+0:00 Why unstage a file
+0:15 Unstaging does not touch your work
+0:28 Find the staged files
+0:41 Click Unstage File
+0:50 The file moves to Unstaged Files
+0:58 Your edit is still there
+1:04 The U shortcut
+1:17 The same in plain Git
+1:40 Recap

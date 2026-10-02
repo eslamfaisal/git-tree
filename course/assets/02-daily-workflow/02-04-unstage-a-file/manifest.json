@@ -1,0 +1,67 @@
+{
+  "episode": "02-04-unstage-a-file",
+  "recorded_against": "GitTree 1.2.1 (Linux, debug e2e build)",
+  "files": [
+    {
+      "path": "video/02-04-unstage-a-file.1080p.mp4",
+      "kind": "video",
+      "tier": "lfs (pending upload)",
+      "size": 11404286,
+      "sha256": "e886713f298deae32035e52d138429f8e6736902e1e006993fcfc12ed639d5a2",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/unstage-a-file --height 1080",
+      "quality": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "codec": "h264",
+        "duration_s": 114.27,
+        "lufs": -14.2,
+        "true_peak_db": -1.2,
+        "pass": true
+      }
+    },
+    {
+      "path": "video/02-04-unstage-a-file.chapters.jpg",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 201725,
+      "sha256": "9b788d2abae3304c22b8d2101136df933718aef6bf000dca24ffb6c07677fc68"
+    },
+    {
+      "path": "video/02-04-unstage-a-file.chapters.txt",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 241,
+      "sha256": "1c975b54968718b766d00251d226a1c610e139de937e3dcf5c4a1a3a325d3c31"
+    },
+    {
+      "path": "video/02-04-unstage-a-file.srt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 2954,
+      "sha256": "36a284aef1d575bd05f3a5ecfb121352a408a1eb7862bec5ebddd8e5e47ffc7c"
+    },
+    {
+      "path": "video/02-04-unstage-a-file.verification.md",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 1570,
+      "sha256": "52b607783e5239460f2b512e8672f476b0984bb8806e9e3b39bc3dfa799eb787"
+    },
+    {
+      "path": "audio/02-04-unstage-a-file.voice.flac",
+      "kind": "voice-over",
+      "tier": "lfs (pending upload)",
+      "size": 8550918,
+      "sha256": "be0f8451de8df8149e2efac406117f717c7f8a0f837a6f6e004470b6338a024a",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/unstage-a-file --height 1080"
+    },
+    {
+      "path": "video/02-04-unstage-a-file.vtt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 2878,
+      "sha256": "27bedac096cb31b68490c127fcbd0518d68f36754196caa6e4c81a1e8fdc1a9c"
+    }
+  ]
+}
