@@ -1,0 +1,74 @@
+{
+  "episode": "02-02-stage-a-single-hunk",
+  "recorded_against": "GitTree 1.2.1 (Linux, debug e2e build)",
+  "files": [
+    {
+      "path": "video/02-02-stage-a-single-hunk.1080p.mp4",
+      "kind": "video",
+      "tier": "lfs (pending upload)",
+      "size": 15736105,
+      "sha256": "9c99dfd1f29d4f70e76477368150f164954313b1d05f06a842b7ae1ce5bafe1a",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --height 1080",
+      "quality": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "codec": "h264",
+        "duration_s": 150.2,
+        "lufs": -14.2,
+        "true_peak_db": -1.4,
+        "pass": true
+      }
+    },
+    {
+      "path": "video/02-02-stage-a-single-hunk.chapters.jpg",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 205489,
+      "sha256": "f2be527b934122d554bce001dd69d9127b45bfcef970faa9a31d2d95ca248472"
+    },
+    {
+      "path": "video/02-02-stage-a-single-hunk.chapters.txt",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 248,
+      "sha256": "0b7d3cf064acf8c3e4d6ed8a44da4fbeb8af9bbc4ebc34e960878060904a9b78"
+    },
+    {
+      "path": "video/02-02-stage-a-single-hunk.srt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 3492,
+      "sha256": "c26caecb8725ffb8996fbbb6d7f51d36ffc09f84682da21f74835f6aa0958ba7"
+    },
+    {
+      "path": "video/02-02-stage-a-single-hunk.verification.md",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 1749,
+      "sha256": "f22895c6e0635118083715243194bd1749165b98e8c7bbc18fafbe29eed49356"
+    },
+    {
+      "path": "audio/02-02-stage-a-single-hunk.voice.flac",
+      "kind": "voice-over",
+      "tier": "lfs (pending upload)",
+      "size": 10282962,
+      "sha256": "e27b03483ad42b45639e9a0aa8dfe7f952f1b4882e4705275e28966592688727",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --height 1080"
+    },
+    {
+      "path": "video/02-02-stage-a-single-hunk.vtt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 3386,
+      "sha256": "9b085010675668ee0f438c06e357d23ddc21cbf035719e70ab6f55b292c97d1a"
+    },
+    {
+      "path": "thumbnails/thumbnail.jpg",
+      "kind": "thumbnail",
+      "tier": "git",
+      "size": 74169,
+      "sha256": "f9e055e3df5770bfeca27d3d16c5ec87760b4839550e110b3c7c0322d3839fbc"
+    }
+  ]
+}

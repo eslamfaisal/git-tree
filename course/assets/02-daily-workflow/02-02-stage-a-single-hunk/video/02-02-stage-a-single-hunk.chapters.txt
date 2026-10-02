@@ -1,0 +1,10 @@
+0:00 Why commit only part of a file
+0:14 What is a hunk?
+0:24 The three places Git keeps your work
+0:38 Open the working changes
+0:56 Stage a hunk
+1:04 One file, two lists
+1:22 Commit
+1:43 The same in plain Git: git add -p
+2:01 Two tips
+2:14 Recap
