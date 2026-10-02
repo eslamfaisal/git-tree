@@ -1,0 +1,64 @@
+# The course as one product, for every platform that sells or hosts it. Sections are the series of ../curriculum.yml;
+# lectures are the episodes. `tooling/publish.py` turns this and the episode files into the platform exports in ./out/.
+title: "Git Visually: Learn Git From Zero With GitTree"
+short_title: "Git Visually with GitTree"
+subtitle: "One short lesson per Git idea: see it on the commit graph, do it in the app, and learn the git command behind it."
+language: English
+level: All levels (beginner to intermediate)
+instructor:
+  name: Eslam Faisal
+  title: Software Engineer & Instructor
+  bio: "Eslam builds GitTree, a visual Git client for macOS, Windows and Linux, and teaches Git the way he wishes it had been taught to him: one idea at a time, on a real repository."
+description: |
+  Git is easier to learn when you can see it. In this course every lesson teaches exactly one Git idea and one task,
+  in 2 to 4 minutes, using GitTree: a free visual Git client for macOS, Windows and Linux. You watch the idea on a
+  real commit graph, do it in the app, and see the equivalent git command, so you can work in either world.
+
+  There is no filler. Each lesson starts from a named checkpoint of a practice repository that you can download, so
+  you can follow along from exactly the same state, and ends with a short quiz and a practice task.
+audience:
+  - Developers who use Git but only know a few commands and want to understand the rest
+  - Beginners starting Git for the first time
+  - Developers who prefer a visual client and want to know what happens underneath
+  - Team leads who want a shared, safe way to review, rebase and recover
+requirements:
+  - A computer with macOS, Windows or Linux (Ubuntu or Debian)
+  - Git 2.39 or newer installed (the first lessons show how)
+  - GitTree, which is free (https://gittree.app)
+  - No prior Git knowledge is needed
+outcomes:
+  - Explain commits, branches, HEAD, the staging area and remotes in your own words
+  - Stage whole files, single hunks and individual lines, and write better commits
+  - Create, merge, rebase and delete branches without fear, and resolve conflicts
+  - Rewrite history safely with interactive rebase, and undo mistakes with Undo, the reflog and recovery snapshots
+  - Collaborate through remotes and pull requests, and force-push safely
+  - Use stash, worktrees, submodules and Git LFS
+  - Work faster with the command palette, shortcuts and custom commands
+  - Read the git command behind every action, so you can move between GitTree and the terminal
+platform_notes:
+  youtube: "Free. Playlists per section; a full-course playlist in lecture order; Shorts per lecture. See ../seo/README.md."
+  udemy: "Course landing page, curriculum (sections and lectures with descriptions), captions per lecture, downloadable resources, quizzes. Check Udemy's current content and quality requirements before submitting."
+  linkedin_learning: "Needs a proposal accepted by the platform; the export is a proposal outline (audience, objectives, chapter and video outline). Check the current submission process."
+  other: "The same exports work for any course platform that takes a curriculum, captions and resources."
+resources:
+  - Practice repository: course/demo-repo (build.sh <checkpoint>), one start state per lecture
+  - Command cheat sheet per section (generated from the lectures' commands)
+  - Keyboard shortcut card (from the app's keymap)
+  - Transcript and captions (SRT, VTT) for every lecture
+sections:
+  - id: 00-start-here
+    outcome: Install GitTree on your system, sign in, and open, clone or create your first repository.
+  - id: 01-git-foundations
+    outcome: Understand the ideas every Git operation is built on, each shown with one feature of the app.
+  - id: 02-daily-workflow
+    outcome: Stage, commit, amend and review your work with confidence, and park work in progress.
+  - id: 03-branching-and-merging
+    outcome: Branch, tag, merge and resolve conflicts, and run a Gitflow release.
+  - id: 04-rewriting-history
+    outcome: Rebase, cherry-pick, revert and reset on purpose, and recover from any mistake.
+  - id: 05-collaboration
+    outcome: Share work through remotes, pull requests and hosting providers, and push safely.
+  - id: 06-power-features
+    outcome: Use worktrees, submodules, LFS, search and the terminal to handle bigger projects.
+  - id: 07-customise-and-troubleshoot
+    outcome: Make GitTree fit the way you work and fix the problems people hit most.

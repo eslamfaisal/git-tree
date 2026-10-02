@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><!--KIT--><style>
+.l { position: absolute; top: 170px; inset-inline-start: 120px; width: 1030px; display: grid; gap: 30px; }
+.item { display: flex; gap: 28px; align-items: center; padding: 30px 38px; font-size: 40px; line-height: 1.35; }
+.item .n { flex: none; width: 70px; height: 70px; border-radius: 50%; background: var(--accent-solid); display: grid; place-items: center; font-size: 36px; font-weight: 700; }
+.cta { position: absolute; top: 170px; inset-inline-start: 1230px; width: 570px; height: 640px; padding: 44px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; border-color: var(--accent); }
+.cta img { width: 190px; height: 190px; } .cta h2 { font-size: 52px; } .cta .url { font: 700 46px var(--mono); color: var(--accent); direction: ltr; } .cta .free { font-size: 32px; color: var(--text-2); line-height: 1.5; }
+.next { position: absolute; top: 880px; inset-inline-start: 120px; font-size: 34px; color: var(--text-2); } .next b { color: var(--text-1); }
+</style></head><body>
+<div class="brand"><img src="{{KIT}}/brand/mark.svg" alt=""><b>GitTree</b></div>
+<div class="tag" data-i="tag"></div>
+<div class="l" id="l"></div>
+<div class="cta card pop" style="--at:.6"><img src="{{KIT}}/brand/mark.svg" alt=""><h2>Download GitTree</h2><div class="url">gittree.app</div><div class="free">Free for macOS, Windows and Linux</div></div>
+<div class="next in" style="--at:.78" data-i="next"></div>
+<script>window.TEXT = {{DATA}};</script>
+<script>
+(() => { const T = window.TEXT, n = T.points.length;
+  document.getElementById('l').innerHTML = T.points.map((t, i) => `<div class="item card in" style="--at:${(0.04 + (0.5 / n) * i).toFixed(3)}"><div class="n">${i + 1}</div><div>${t}</div></div>`).join(''); })();
+</script>
+</body></html>

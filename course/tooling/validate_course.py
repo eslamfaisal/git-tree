@@ -56,14 +56,32 @@ def check_episode(ep: Path) -> None:
         bad(f"{rel}: checkpoint {meta.get('checkpoint')!r} has no demo-repo/checkpoints script")
     beats_file = ep / "beats.yml"
     if meta.get("status") != "planned":
+        # a lecture that is scripted must be publishable: objectives, a quiz, an exercise, a keyword, social text
+        if len(meta.get("objectives") or []) < 3:
+            bad(f"{rel}: at least 3 objectives are required once an episode is scripted")
+        quiz = meta.get("quiz") or []
+        if len(quiz) < 3:
+            bad(f"{rel}: at least 3 quiz questions are required once an episode is scripted")
+        for i, q in enumerate(quiz, 1):
+            if not (isinstance(q.get("answer"), int) and 0 <= q["answer"] < len(q.get("options", [])) and q.get("why") and len(q["options"]) >= 3):
+                bad(f"{rel}: quiz question {i} needs 3+ options, a valid `answer` index and `why`")
+        if not (meta.get("exercise") or {}).get("steps"):
+            bad(f"{rel}: an exercise with steps is required once an episode is scripted")
+        if not (meta.get("keywords") or {}).get("primary"):
+            bad(f"{rel}: keywords.primary is required once an episode is scripted")
+        if not (meta.get("social") or {}).get("hook"):
+            bad(f"{rel}: social.hook is required once an episode is scripted")
         if not beats_file.exists():
             bad(f"{rel}: beats.yml missing")
             return
         for beat in yaml.safe_load(beats_file.read_text())["beats"]:
             if not isinstance(beat.get("vo"), str) or not beat["vo"].strip():
                 bad(f"{rel}: beat {beat['id']} needs a voice-over string")
-            if "scene" in beat and not (ep / "scenes" / f"{beat['scene']}.html").exists():
-                bad(f"{rel}: beat {beat['id']} scene '{beat['scene']}' not found")
+            if "scene" in beat:
+                sc = beat["scene"]
+                path = ep / "scenes" / f"{sc}.html" if isinstance(sc, str) else COURSE / "visuals" / "templates" / f"{sc.get('template')}.html"
+                if not path.exists():
+                    bad(f"{rel}: beat {beat['id']} scene {sc!r} not found")
             if "scene" not in beat and "app" not in beat:
                 bad(f"{rel}: beat {beat['id']} has neither scene nor app")
 

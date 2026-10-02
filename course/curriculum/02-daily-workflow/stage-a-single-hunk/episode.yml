@@ -17,3 +17,55 @@ platforms:
 - linux
 recorded_against: GitTree 1.2.1 (Linux, debug e2e build)
 youtube: null
+objectives:
+- Explain what a hunk is and why a commit is built from the staging area
+- Stage one hunk of a file in GitTree with Stage Hunk and check the result in the Staged Files list
+- Commit only that hunk and confirm the other hunk is still in your working changes
+- Run the same job in the terminal with git add -p
+keywords:
+  primary: git stage hunk
+  secondary:
+  - git add -p
+  - commit part of a file
+  question: how do I commit only part of a file in git
+takeaways:
+- A hunk is a block of changed lines plus a few lines of context around it
+- Stage Hunk moves one hunk to the staging area; Unstage Hunk moves it back
+- A commit contains only what is staged
+quiz:
+- q: What is a hunk?
+  options:
+  - A whole file that changed
+  - A block of changed lines with a few unchanged lines around it
+  - A commit that was rewritten
+  - A branch that has not been merged
+  answer: 1
+  why: Git groups changed lines into blocks; each block with its surrounding context is a hunk.
+- q: After you click Stage Hunk on the first of two hunks, where is the second hunk?
+  options:
+  - In the staging area, with the first
+  - Deleted from the file
+  - Still in the working changes, listed under Unstaged Files
+  - In the last commit
+  answer: 2
+  why: Only the hunk you staged moved. The other one stays in the working tree until you stage it.
+- q: Which git command lets you pick hunks one by one in the terminal?
+  options:
+  - git add -p
+  - git commit --amend
+  - git stash pop
+  - git reset --hard
+  answer: 0
+  why: git add -p (patch mode) shows each hunk and asks whether to stage it.
+exercise:
+  checkpoint: two-hunks
+  steps:
+  - "Build the practice repository: course/demo-repo/build.sh ~/lumen two-hunks, then open ~/lumen in GitTree"
+  - Click the working changes row, then select src/search/index.ts
+  - Click Stage Hunk on the first hunk (the comment) and open the staged copy of the file to check it
+  - Commit with the message "docs(search): describe the inverted index"
+  - Confirm that the query change is still listed under Unstaged Files
+  expected: One new commit that adds only the comment line; the limit change is still uncommitted.
+commands_note: In a terminal, git add -p src/search/index.ts then git diff --staged do the same job.
+social:
+  hook: You fixed one bug and changed something else in the same file. Here is how to commit only the part you want.

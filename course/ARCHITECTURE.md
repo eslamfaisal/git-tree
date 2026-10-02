@@ -25,7 +25,8 @@ voice-over and the published videos. YouTube is where people watch; this reposit
 course/
   README.md  ARCHITECTURE.md  CONTRIBUTING.md  inventory.md  glossary.md  verify-list.md  roadmap.md  CHANGELOG.md
   curriculum/<NN>-<series>/<slug>/       one folder per episode (episode id = <series number>-<order>)
-    episode.yml                          id, status, title, concept, feature, commands, checkpoint, journey, YouTube ids
+    episode.yml                          id, status, title, concept, feature, commands, checkpoint, journey, objectives,
+                                         quiz, exercise, keywords, social, YouTube id
     beats.yml                            the script: per beat the words and the picture (scene or app span)
     journey.mjs                          the recorded real-app journey (markers the beats refer to)
     scenes/*.html                        diagram scenes for this episode
@@ -34,6 +35,8 @@ course/
   assets/shared/  assets/downloads/      intro/outro, music (with licences), fonts · demo-repo bundle, cheat sheets
   demo-repo/                             build.sh, lumen-history.sh, checkpoints/<name>.sh
   visuals/kit/                           scene.css, kit.js, brand assets (the scene runtime)
+  publishing/                            course.yml (the course as a product: sections, outcomes, audience) and out/ (generated
+                                         exports for YouTube, Udemy, LinkedIn Learning, social posts, transcripts, cheat sheets)
   audio/  seo/  qa/  presenter/  tooling/
 ```
 

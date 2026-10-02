@@ -23,27 +23,12 @@ from pathlib import Path
 
 import numpy as np
 import soundfile as sf
+from scripttext import display_text, sentences, spoken_text  # noqa: F401  (re-exported)
 
 COURSE = Path(__file__).resolve().parent.parent
 PIPER_RELEASE = "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models"
 PIPER_VOICE = ("vits-piper-en_US-ryan-high", "en_US-ryan-high.onnx")
-SENTENCE_END = re.compile(r"(?<=[.!?…])\s+")
-MARKUP = re.compile(r"\{([^{}|]*)\|([^{}]*)\}")
 TARGET_RMS_DB = -20.0  # every sentence is levelled to this RMS before mixing, so the delivery is even
-
-
-def display_text(text: str) -> str:
-    return MARKUP.sub(lambda m: m.group(1), text)
-
-
-def spoken_text(text: str) -> str:
-    return MARKUP.sub(lambda m: m.group(2), text)
-
-
-def sentences(text: str) -> list[str]:
-    """The beat's sentences, in the display form (captions): one synthesis call and one caption each."""
-    parts = [p.strip() for p in SENTENCE_END.split(" ".join(text.split()))]
-    return [p for p in parts if p]
 
 
 def backend() -> str:
@@ -100,21 +85,66 @@ def _piper(text: str, out: Path, rate: float) -> None:
         voice.synthesize_wav(text, wav, syn_config=SynthesisConfig(length_scale=1.0 / rate))
 
 
-def synth(cache: Path, text: str, rate: float = 1.0) -> Clip:
+# Speaking speed per backend. The cloned voice, like its sample, speaks unhurriedly; a lecture needs a little more pace.
+DEFAULT_RATE = {"clone": 1.12, "piper": 1.0}
+
+
+def _key(which: str, spoken: str, rate: float) -> str:
+    return hashlib.sha256(f"{which}|{_prompt_fingerprint() if which == 'clone' else PIPER_VOICE[1]}|{rate}|{spoken}".encode()).hexdigest()[:20]
+
+
+def prefetch(cache: Path, items: list[tuple[str, float | None]]) -> None:
+    """Generates the raw takes of every sentence not yet cached, in a separate process that is restarted if the native
+    engine crashes."""
+    if backend() != "clone":
+        return
+    import json
+    import sys
+
+    jobs = []
+    for text, rate in items:
+        spoken = spoken_text(text)
+        r = DEFAULT_RATE["clone"] if rate is None else rate
+        final = cache / "vo" / f"clone-{_key('clone', spoken, r)}.wav"
+        raw = final.with_suffix(".raw.wav")
+        if not final.exists() and not raw.exists():
+            jobs.append({"text": spoken, "out": str(raw), "speed": 1.0})  # speeds above 1.05 crash the engine on some inputs: stretch afterwards
+    if not jobs:
+        return
+    (cache / "vo").mkdir(parents=True, exist_ok=True)
+    jobs_file = cache / "vo" / "jobs.json"
+    for attempt in range(len(jobs) + 3):
+        pending = [j for j in jobs if not Path(j["out"]).exists()]
+        if not pending:
+            return
+        jobs_file.write_text(json.dumps(pending))
+        proc = subprocess.run([sys.executable, str(Path(__file__).with_name("voice_clone.py")), "batch", str(jobs_file)], capture_output=True, text=True)
+        if proc.returncode != 0:
+            first = next(j for j in pending if not Path(j["out"]).exists())
+            print(f"voice engine stopped on: {first['text'][:60]!r} (attempt {attempt + 1})")
+    raise SystemExit("voice synthesis kept failing; see the sentences above")
+
+
+def synth(cache: Path, text: str, rate: float | None = None) -> Clip:
     """One sentence -> a mono WAV in the cache, keyed by backend, voice, speed and the spoken words."""
     spoken = spoken_text(text)
     which = backend()
-    key = hashlib.sha256(f"{which}|{_prompt_fingerprint() if which == 'clone' else PIPER_VOICE[1]}|{rate}|{spoken}".encode()).hexdigest()[:20]
-    path = cache / "vo" / f"{which}-{key}.wav"
+    rate = DEFAULT_RATE[which] if rate is None else rate
+    path = cache / "vo" / f"{which}-{_key(which, spoken, rate)}.wav"
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
         raw = path.with_suffix(".raw.wav")
-        if which == "clone":
-            import voice_clone
+        if not raw.exists():
+            if which == "clone":
+                import voice_clone
 
-            voice_clone.say(spoken, raw, speed=rate)
-        else:
-            _piper(spoken, raw, rate)
+                voice_clone.say(spoken, raw, speed=1.0)
+            else:
+                _piper(spoken, raw, rate)
+        if which == "clone" and abs(rate - 1.0) > 1e-3:  # pitch-preserving time stretch (the engine's own speed option can crash)
+            stretched = raw.with_suffix(".stretch.wav")
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-af", f"atempo={rate}", str(stretched)], check=True)
+            stretched.replace(raw)
         x, sr = sf.read(str(raw), dtype="float32")
         if x.ndim > 1:
             x = x.mean(axis=1)

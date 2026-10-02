@@ -31,7 +31,7 @@ import quality  # noqa: E402
 import voice  # noqa: E402
 
 FPS = 30
-LEAD, TAIL, GAP = 0.45, 0.70, 0.28  # silence before the first sentence, after the last, between sentences (s)
+LEAD, TAIL, GAP = 0.30, 0.45, 0.22  # silence before the first sentence, after the last, between sentences (s)
 MIN_SPEED, MAX_SPEED = 0.6, 3.2
 LOUDNESS_PRE_LIMITER = -14.0  # the final loudnorm in voice.mux_audio sets the delivered level
 OGT = Path(os.environ.get("OGT_REPO", COURSE.parent.parent / "open-git-tree")).resolve()
@@ -64,7 +64,7 @@ class Beat:
             self.recorded = recorded
         else:
             self.recorded = None
-            self.clips = [voice.synth(cache, s, rate=float(raw.get("rate", 1.0))) for s in voice.sentences(text)]
+            self.clips = [voice.synth(cache, s, rate=raw.get("rate")) for s in voice.sentences(text)]
         speech = sum(c.seconds for c in self.clips) + GAP * (len(self.clips) - 1)
         self.seconds = max(LEAD + speech + TAIL, float(raw.get("min_sec", 0)))
         self.frames = frames_of(self.seconds)
@@ -121,8 +121,23 @@ def mix_voice(beats: list[Beat], total: float, out: Path) -> list[float]:
 
 
 # ───────────────────────────── scenes ──────────────────────────────────────
+def scene_html(ep: Path, beat: Beat, work: Path) -> Path:
+    """The scene's HTML: a file in the episode's scenes/ folder, or a template from visuals/templates filled with data.
+
+        scene: hook                               -> scenes/hook.html
+        scene: {template: recap, data: {...}}     -> visuals/templates/recap.html with window.TEXT = data
+    """
+    spec = beat.raw["scene"]
+    if isinstance(spec, str):
+        return ep / "scenes" / f"{spec}.html"
+    template = COURSE / "visuals" / "templates" / f"{spec['template']}.html"
+    out = work / f"scene-{beat.id}.src.html"
+    out.write_text(template.read_text().replace("{{DATA}}", json.dumps(spec.get("data", {}))))
+    return out
+
+
 def render_scene(ep: Path, beat: Beat, height: int, work: Path, presenter: dict, speak: list[float]) -> Path:
-    html = ep / "scenes" / f"{beat.raw['scene']}.html"
+    html = scene_html(ep, beat, work)
     out = work / f"scene-{beat.id}.mkv"
     key = hashlib.sha256(
         json.dumps([html.read_text(), (HERE.parent / "visuals" / "kit" / "scene.css").read_text(), beat.frames, height, presenter, [round(x, 2) for x in speak]], sort_keys=True).encode()
@@ -291,13 +306,14 @@ def main() -> None:
     cache = COURSE / ".work" / "cache"
     plan = yaml.safe_load((ep / "beats.yml").read_text())
     audio_dir = COURSE / "assets" / meta["series"] / f"{meta['id']}-{meta['slug']}" / "audio"
+    voice.prefetch(cache, [(s, r.get("rate")) for r in plan["beats"] for s in voice.sentences(r["vo"])])
     beats = [Beat(r, cache, audio_dir) for r in plan["beats"]]
     total = build_timeline(beats)
     print(f"{meta['id']} [{voice.backend()} voice] {len(beats)} beats, {total:.1f} s")
 
     import scene_lint
 
-    scene_files = sorted({ep / "scenes" / f"{b.raw['scene']}.html" for b in beats if b.kind == "scene"})
+    scene_files = sorted({scene_html(ep, b, work) for b in beats if b.kind == "scene"})
     problems = [p for f in scene_files for p in scene_lint.lint(f, 20.0, {"name": "x", "title": "y", "initials": "EF", "photo": None})]
     if problems:
         raise SystemExit("scene layout problems (fix before rendering):\n  " + "\n  ".join(problems))

@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><!--KIT--><style>
+.head { position: absolute; top: 120px; inset-inline: 120px; } .head h2 { font-size: 68px; }
+.col { position: absolute; top: 300px; width: 780px; min-height: 520px; padding: 40px; }
+.col.a { inset-inline-start: 120px; border-color: var(--accent); } .col.b { inset-inline-start: 1020px; }
+.col h3 { font-size: 40px; margin-bottom: 26px; } .col.a h3 { color: var(--accent); }
+.col li { list-style: none; font-size: 33px; line-height: 1.45; margin-bottom: 16px; padding-inline-start: 0; }
+.col code { font-family: var(--mono); direction: ltr; background: #12151b; padding: 8px 16px; border-radius: 10px; display: inline-block; font-size: 32px; }
+</style></head><body>
+<div class="brand"><img src="{{KIT}}/brand/mark.svg" alt=""><b>GitTree</b></div>
+<div class="tag" data-i="tag"></div>
+<div class="head"><h2 class="in" style="--at:.02" data-i="title"></h2></div>
+<div class="col a card in" style="--at:.15"><h3>In GitTree</h3><ul id="a"></ul></div>
+<div class="col b card in" style="--at:.5"><h3>In the terminal</h3><ul id="b"></ul></div>
+<script>window.TEXT = {{DATA}};</script>
+<script>
+(() => { const T = window.TEXT, li = (a, base) => a.map((t, i) => `<li class="fade" style="--at:${(base + 0.06 * i).toFixed(2)}">${t}</li>`).join('');
+  document.getElementById('a').innerHTML = li(T.gittree, 0.22); document.getElementById('b').innerHTML = li(T.terminal, 0.57); })();
+</script>
+</body></html>

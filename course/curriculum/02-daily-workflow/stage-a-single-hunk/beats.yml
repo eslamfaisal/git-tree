@@ -6,21 +6,25 @@
 beats:
   - id: hook
     scene: hook
-    vo: "You fixed one thing. And while you were in the same file, you changed something else. Now Git sees one big edit. If you commit it all together, your history gets muddy. Which change was this commit about? In this video, you will learn how to stage just one hunk in GitTree, and commit only that part."
+    vo: "You fixed one bug, and in the same file you changed something else. If you commit both together, your history gets muddy. Which change was this commit about? In this video you will stage just one hunk in GitTree, and commit only that part."
+    chapter: "Why commit only part of a file"
 
   - id: hunk-what
     scene: hunk-what
-    vo: "First, what is a hunk? When Git compares two versions of a file, it groups the changed lines into blocks. Each block, together with a few unchanged lines around it, is a hunk. In our file there are two. The first is a new comment above the class. The second adds a limit to the query function."
+    vo: "A hunk is a block of changed lines, plus a few unchanged lines around it. This file has two. The first is a new comment above the class. The second adds a limit to the query function."
+    chapter: "What is a hunk?"
 
   - id: three-areas
     scene: three-areas
-    vo: "Git keeps your work in three places. The working tree holds the files you edit. The staging area holds what the next commit will contain. And the repository holds your commits. A commit takes only what is in the staging area. So to commit one hunk, move just that hunk into the staging area, then commit. The other hunk stays in your working tree."
+    vo: "Git keeps your work in three places: the working tree, the staging area, and the repository. A commit takes only what is staged. So to commit one hunk, stage that hunk, then commit. The other hunk stays in your working tree."
+    chapter: "The three places Git keeps your work"
 
   - id: open-changes
     app: {from: start, to: wip-after, camera: full}
     overlays:
       - {type: step, n: 1, text: "Open the working changes"}
-    vo: "Here is GitTree, with a small demo project open. At the top of the graph, the working changes row tells us that files have changed. Click it."
+    vo: "Here is {GitTree|git tree} with a small demo project. The working changes row at the top shows that files have changed. Click it."
+    chapter: "Open the working changes"
 
   - id: pick-file
     app: {from: wip-after, to: stage-before, camera: {center: [776, 330], zoom: 1.27}}
@@ -28,14 +32,15 @@ beats:
       - {type: step, n: 2, text: "Select the file"}
       - {type: box, rect: hunk1, from: hunks-shown, to: stage-before, pad: 4, color: [176, 124, 240]}
       - {type: box, rect: hunk2, from: hunks-shown, to: stage-before, pad: 4, color: [240, 138, 74]}
-    vo: "Select the file. GitTree shows its diff, already split into hunks. Hunk one is the comment. Hunk two is the query change."
+    vo: "Select the file. {GitTree|git tree} shows its diff, already split into hunks. Hunk one is the comment. Hunk two is the query change."
 
   - id: stage
     app: {from: stage-before, to: stage-after, camera: {center: [776, 300], zoom: 1.27}}
     overlays:
       - {type: step, n: 3, text: "Click Stage Hunk on the first hunk"}
       - {type: box, rect: stage-button, from: stage-before, to: stage-after, pad: 5, color: [176, 124, 240]}
-    vo: "Every hunk has its own Stage Hunk button. Click it on the first hunk, and that hunk moves to the staging area."
+    vo: "Every hunk has its own Stage Hunk button. Click it on the first hunk, and it moves to the staging area."
+    chapter: "Stage a hunk"
 
   - id: lists
     app: {from: lists-begin, to: lists-end, camera: {center: [776, 330], zoom: 1.27}}
@@ -43,20 +48,22 @@ beats:
       - {type: step, n: 4, text: "One file, now in two lists"}
       - {type: box, rect: unstaged-row, from: lists-begin, to: lists-mid, pad: 4, color: [240, 138, 74]}
       - {type: box, rect: staged-row, from: lists-mid, to: lists-end, pad: 4, color: [176, 124, 240]}
-    vo: "Now look at the file lists. The same file appears twice. Under Unstaged Files, it still holds the hunk we left behind. Under Staged Files, it holds the hunk we picked."
+    vo: "Now the same file appears twice. Under Unstaged Files, it still holds the hunk we left. Under Staged Files, it holds the hunk we picked."
+    chapter: "One file, two lists"
 
   - id: staged-view
     app: {from: staged-view-before, to: staged-view-end, camera: {center: [776, 330], zoom: 1.27}}
     overlays:
       - {type: step, n: 5, text: "Review what is staged"}
       - {type: box, rect: staged-view, from: staged-view, to: staged-view-end, pad: 4, color: [176, 124, 240]}
-    vo: "Click the staged copy to see exactly what will be committed. Only the comment is there."
+    vo: "Click the staged copy to see exactly what the commit will contain. Only the comment is there."
 
   - id: commit
     app: {from: msg-before, to: commit-after, camera: {center: [776, 420], zoom: 1.27}}
     overlays:
       - {type: step, n: 6, text: "Write the message and commit"}
-    vo: "Write a commit message, and commit. This commit contains only the comment change."
+    vo: "Write a commit message, and commit. This commit holds only the comment change."
+    chapter: "Commit"
 
   - id: rest
     app: {from: commit-after, to: rest-end, camera: {center: [776, 330], zoom: 1.27}}
@@ -68,16 +75,19 @@ beats:
     app: {from: close-before, to: end, camera: full}
     overlays:
       - {type: step, n: 8, text: "Check the new commit"}
-    vo: "Close the diff, and select the new commit in the graph. It changed one file, with a single added line. That is how you keep every commit about one thing."
+    vo: "Close the diff, and select the new commit. One file changed, one line added. That is how every commit stays about one thing."
 
   - id: git-command
     scene: git-command
-    vo: "In plain Git, the same job is done with {git add -p|git add dash p}. Git shows you each hunk, and asks what to do. Press y to stage it, n to skip it, and s to split it into smaller hunks. Here we staged the first and skipped the second. Then {git diff --staged|git diff dash dash staged} shows what the commit will contain. GitTree does the same, with one click per hunk."
+    vo: "In plain Git, the same job is {git add -p|git add dash p}. Git shows each hunk and asks what to do: y to stage it, n to skip it, s to split it. Then {git diff --staged|git diff dash dash staged} shows what the commit will contain. {GitTree|git tree} does the same with one click per hunk."
+    chapter: "The same in plain Git: git add -p"
 
   - id: tips
     scene: tips
-    vo: "Two tips. First, if you change your mind, the same button reads Unstage Hunk on the staged side. Second, if one hunk mixes two ideas, pick individual lines instead of the whole hunk. That is the next video."
+    vo: "Two tips. If you change your mind, the same button reads Unstage Hunk on the staged side. And if one hunk mixes two ideas, pick individual lines instead. That is the next video."
+    chapter: "Two tips"
 
   - id: recap
     scene: recap
-    vo: "To recap. A hunk is a block of changed lines. Stage Hunk moves it to the staging area. And a commit takes only what is staged. Download GitTree for free at {gittree.app|gittree dot app}, and see you in the next video."
+    vo: "To recap: a hunk is a block of changed lines, Stage Hunk moves it to the staging area, and a commit takes only what is staged. Download {GitTree|git tree} free at {gittree.app|gittree dot app}. See you in the next video."
+    chapter: "Recap"

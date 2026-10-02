@@ -109,11 +109,27 @@ def similarity(a: Path, b: Path) -> float:
     return float(np.dot(ea, eb) / (np.linalg.norm(ea) * np.linalg.norm(eb)))
 
 
+def batch(jobs_file: Path) -> None:
+    """Synthesises every job {text, out, speed} whose output does not exist yet, one file at a time.
+
+    Meant to run in its own process: the native engine can crash on a rare input, and a crash must lose one sentence,
+    not the whole episode (voice.prefetch restarts it, skipping what is done)."""
+    import json
+
+    for job in json.loads(jobs_file.read_text()):
+        out = Path(job["out"])
+        if not out.exists():
+            say(job["text"], out, speed=job["speed"])
+            print("done", out.name, flush=True)
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "prepare":
         print(prepare())
     elif cmd == "say":
         print(f"{say(sys.argv[2], Path(sys.argv[3])):.1f} s")
+    elif cmd == "batch":
+        batch(Path(sys.argv[2]))
     elif cmd == "score":
         print(f"{similarity(Path(sys.argv[2]), Path(sys.argv[3])):.3f}")

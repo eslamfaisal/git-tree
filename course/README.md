@@ -36,6 +36,7 @@ A free video course that teaches Git from first principles **and** shows how to 
 | [`visuals/`](visuals/) | The scene kit: diagrams and motion graphics as HTML and CSS |
 | [`audio/`](audio/) | Voice brief for the speakers, pronunciation list, loudness spec |
 | [`seo/`](seo/) | Channel, playlists, keywords, title and description rules |
+| [`publishing/`](publishing/) | The course as a product, and ready-made exports for YouTube, Udemy, LinkedIn Learning and social posts |
 | [`qa/`](qa/) | The review checklist and the review log |
 | [`tooling/`](tooling/) | Build, lint and quality scripts |
 | [`inventory.md`](inventory.md) | Every GitTree feature, checked against the app |

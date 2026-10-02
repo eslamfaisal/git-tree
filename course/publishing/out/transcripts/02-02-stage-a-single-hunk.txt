@@ -1,0 +1,36 @@
+Stage a single hunk in GitTree (commit part of a file)
+
+
+[Why commit only part of a file]
+You fixed one bug, and in the same file you changed something else. If you commit both together, your history gets muddy. Which change was this commit about? In this video you will stage just one hunk in GitTree, and commit only that part.
+
+[What is a hunk?]
+A hunk is a block of changed lines, plus a few unchanged lines around it. This file has two. The first is a new comment above the class. The second adds a limit to the query function.
+
+[The three places Git keeps your work]
+Git keeps your work in three places: the working tree, the staging area, and the repository. A commit takes only what is staged. So to commit one hunk, stage that hunk, then commit. The other hunk stays in your working tree.
+
+[Open the working changes]
+Here is GitTree with a small demo project. The working changes row at the top shows that files have changed. Click it.
+Select the file. GitTree shows its diff, already split into hunks. Hunk one is the comment. Hunk two is the query change.
+
+[Stage a hunk]
+Every hunk has its own Stage Hunk button. Click it on the first hunk, and it moves to the staging area.
+
+[One file, two lists]
+Now the same file appears twice. Under Unstaged Files, it still holds the hunk we left. Under Staged Files, it holds the hunk we picked.
+Click the staged copy to see exactly what the commit will contain. Only the comment is there.
+
+[Commit]
+Write a commit message, and commit. This commit holds only the comment change.
+The other hunk is still in your working changes, ready for its own commit.
+Close the diff, and select the new commit. One file changed, one line added. That is how every commit stays about one thing.
+
+[The same in plain Git: git add -p]
+In plain Git, the same job is git add -p. Git shows each hunk and asks what to do: y to stage it, n to skip it, s to split it. Then git diff --staged shows what the commit will contain. GitTree does the same with one click per hunk.
+
+[Two tips]
+Two tips. If you change your mind, the same button reads Unstage Hunk on the staged side. And if one hunk mixes two ideas, pick individual lines instead. That is the next video.
+
+[Recap]
+To recap: a hunk is a block of changed lines, Stage Hunk moves it to the staging area, and a commit takes only what is staged. Download GitTree free at gittree.app. See you in the next video.
