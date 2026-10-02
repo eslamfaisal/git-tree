@@ -39,7 +39,11 @@
 </p>
 
 <p align="center">
-  <img src=".github/assets/screenshots/graph.webp" alt="Git Tree: the commit graph with colour-coded branch lanes, the reference sidebar and the commit details panel" width="100%">
+  <img src=".github/assets/demo.gif" alt="GitTree in use: a branch is merged and the merge dialog warns of a conflict before anything happens; the conflict is resolved in the three-way editor and the merge is committed, adding a merge commit to the colour-coded commit graph" width="100%">
+</p>
+
+<p align="center">
+  <sub>Recorded from the real app, not a mock-up.</sub>
 </p>
 
 ---
@@ -49,6 +53,7 @@
 - [Download](#download)
 - [About this repository](#about-this-repository)
 - [Why Git Tree](#why-git-tree)
+- [How it compares](#how-it-compares)
 - [Features](#features)
 - [Installation](#installation)
 - [Getting started](#getting-started)
@@ -110,6 +115,23 @@ The website, [**gittree.app**](https://gittree.app), downloads from this reposit
 - **Local-first, zero telemetry.** Your repositories never leave your computer. No analytics, no tracking, no usage reporting — the only network traffic is what you start.
 - **Your own Git.** Every command runs through the Git you already have, so everything matches what the command line would do.
 - **Native on both platforms.** A small, fast desktop app built with Rust that respects each platform's window controls, shortcuts, keychain and file system.
+
+## How it compares
+
+Honest, neutral and short: only rows where each answer is known. GitTree's column describes what is in the app today; roadmap items are never ticked.
+
+| | **GitTree** | GitKraken Desktop | Sourcetree | Fork |
+|---|---|---|---|---|
+| **Price** | Free, private repositories included | Free for local and public repositories; private remotes need a paid plan after a 14-day trial | Free <!-- VERIFY --> | One-time licence after a free evaluation <!-- VERIFY --> |
+| **macOS · Windows · Linux** | ✅ ✅ ✅ (Ubuntu and Debian, x86_64) | ✅ ✅ ✅ | ✅ ✅ ❌ <!-- VERIFY --> | ✅ ✅ ❌ <!-- VERIFY --> |
+| **Account to sign in** | Free GitTree account | GitKraken account | Atlassian account <!-- VERIFY --> | None <!-- VERIFY --> |
+| **Commit graph** | ✅ | ✅ | ✅ <!-- VERIFY --> | ✅ <!-- VERIFY --> |
+| **Interactive rebase** | ✅ | ✅ | ✅ <!-- VERIFY --> | ✅ <!-- VERIFY --> |
+| **Built-in conflict editor** | ✅ three-way | ✅ | External merge tool <!-- VERIFY --> | ✅ <!-- VERIFY --> |
+| **Undo for rebases, resets and discards** | ✅ toolbar Undo and Redo | ✅ | No undo button <!-- VERIFY --> | No undo button <!-- VERIFY --> |
+| **Conflict warning before a merge** | ✅ in the merge dialog | Paid plan <!-- VERIFY --> | ❌ <!-- VERIFY --> | ❌ <!-- VERIFY --> |
+
+<sub>Last checked: 2 October 2026, against the vendors' own sites ([GitKraken](https://www.gitkraken.com/pricing), [Sourcetree](https://www.sourcetreeapp.com), [Fork](https://git-fork.com)). Plans and features change; if a cell is out of date, please [open an issue](https://github.com/eslamfaisal/git-tree/issues/new/choose). GitKraken, Sourcetree and Fork are trademarks of their owners; GitTree is not affiliated with or endorsed by them.</sub>
 
 ## Features
 
