@@ -1,0 +1,100 @@
+{
+  "episode": "02-02-stage-a-single-hunk",
+  "recorded_against": "GitTree 1.2.1 (Linux, debug e2e build)",
+  "files": [
+    {
+      "path": "video/en/02-02-stage-a-single-hunk.en.srt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 4480,
+      "sha256": "22821cea560c82525ead8122a5c25d044294ea6221c3ccb3d94071e3302f47a8"
+    },
+    {
+      "path": "video/en/02-02-stage-a-single-hunk.en.vtt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 4332,
+      "sha256": "f38ceda73ca1de481afc87ef5a7e4ce39081f411c842e51f414e54e26e11d750"
+    },
+    {
+      "path": "thumbnails/en/thumbnail.en.jpg",
+      "kind": "thumbnail",
+      "tier": "git",
+      "size": 74169,
+      "sha256": "f9e055e3df5770bfeca27d3d16c5ec87760b4839550e110b3c7c0322d3839fbc"
+    },
+    {
+      "path": "video/en/02-02-stage-a-single-hunk.en.1080p.mp4",
+      "kind": "video",
+      "tier": "lfs (pending upload)",
+      "size": 18263354,
+      "sha256": "b8b57d8b3e88b22b7f42f69260bfcc4dff893d3429db473ef912c0e90a2715d6",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --lang en --height 1080",
+      "quality": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "codec": "h264",
+        "duration_s": 167.87,
+        "lufs": -14.2,
+        "true_peak_db": -1.2,
+        "pass": true
+      }
+    },
+    {
+      "path": "audio/en/02-02-stage-a-single-hunk.en.voice.flac",
+      "kind": "voice-over (scratch)",
+      "tier": "lfs (pending upload)",
+      "size": 11766753,
+      "sha256": "d94a41caf64783a6c2f3dca4bcb10c98fff324f9a15d5c88b27a457fc11e77d0",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --lang en --height 1080"
+    },
+    {
+      "path": "video/ar/02-02-stage-a-single-hunk.ar.srt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 5768,
+      "sha256": "a52150b06259d830bef03f22873de9493059e4042581b342e19dd7a3d65053c5"
+    },
+    {
+      "path": "video/ar/02-02-stage-a-single-hunk.ar.vtt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 5623,
+      "sha256": "58a65b9f8029fa800de5ac204a1524017d44666e97dbc7c9a6d27719f33a9ab4"
+    },
+    {
+      "path": "thumbnails/ar/thumbnail.ar.jpg",
+      "kind": "thumbnail",
+      "tier": "git",
+      "size": 70654,
+      "sha256": "eba5918a1914c0089860ae2f24f7bbb75e68db78ad564a4f9d4b5de134c9f080"
+    },
+    {
+      "path": "video/ar/02-02-stage-a-single-hunk.ar.1080p.mp4",
+      "kind": "video",
+      "tier": "lfs (pending upload)",
+      "size": 22049942,
+      "sha256": "7138e01aa31a867841d91aa134bf4cc1df0d794cfff8873d70fb123a00c8a06e",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --lang ar --height 1080",
+      "quality": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "codec": "h264",
+        "duration_s": 220.47,
+        "lufs": -14.4,
+        "true_peak_db": -1.6,
+        "pass": true
+      }
+    },
+    {
+      "path": "audio/ar/02-02-stage-a-single-hunk.ar.voice.flac",
+      "kind": "voice-over (scratch)",
+      "tier": "lfs (pending upload)",
+      "size": 15674177,
+      "sha256": "9dc33c6559b611d8c3065f3daa55aef2ceb40a5e8b25ccd1afc0bfa313188514",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --lang ar --height 1080"
+    }
+  ]
+}

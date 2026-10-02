@@ -103,9 +103,28 @@ def loudness_gain_db(samples, rate: int, target: float = -14.0) -> float:
     return target - meter.integrated_loudness(samples)
 
 
-def mux_audio(wav_in: Path, out: Path) -> None:
-    """Float WAV -> AAC 256 kbps with a true-peak limiter at -1 dBTP."""
-    subprocess.run(
-        ["ffmpeg", "-v", "error", "-y", "-i", str(wav_in), "-af", "alimiter=limit=0.841:level=disabled", "-c:a", "aac", "-b:a", "256k", "-ar", "48000", str(out)],
-        check=True,
-    )
+def mux_audio(wav_in: Path, out: Path, target: float = -14.0, ceiling_db: float = -1.5) -> float:
+    """Float WAV -> AAC 256 kbps at `target` LUFS integrated, true peak held under -1 dBTP.
+
+    A gain and a limiter, calibrated against a measurement of the encoded file itself (two passes), because the
+    limiter and the AAC encoder both move the level a little. Returns the measured loudness.
+    """
+    import quality
+
+    gain = 0.0
+    measured = target
+    for _ in range(5):
+        limit = 10 ** (ceiling_db / 20)
+        subprocess.run(
+            ["ffmpeg", "-v", "error", "-y", "-i", str(wav_in), "-af", f"volume={gain:.2f}dB,alimiter=limit={limit:.3f}:level=disabled",
+             "-c:a", "aac", "-b:a", "256k", "-ar", "48000", str(out)],
+            check=True,
+        )
+        measured, peak = quality.loudness(out)
+        if peak > -1.05:  # AAC can overshoot the limiter between samples: lower the ceiling and the gain follows
+            ceiling_db -= 0.8
+            continue
+        if abs(measured - target) <= 0.3:
+            break
+        gain += target - measured
+    return measured

@@ -34,6 +34,7 @@ import voice  # noqa: E402
 FPS = 30
 LEAD, TAIL, GAP = 0.45, 0.70, 0.28  # silence before the first sentence, after the last, between sentences (s)
 MIN_SPEED, MAX_SPEED = 0.6, 3.2
+LOUDNESS_PRE_LIMITER = -14.0  # the final loudnorm in voice.mux_audio sets the delivered level
 OGT = Path(os.environ.get("OGT_REPO", COURSE.parent.parent / "open-git-tree")).resolve()
 SIZES = {1080: (1920, 1080), 1440: (2560, 1440), 2160: (3840, 2160)}
 
@@ -108,7 +109,7 @@ def mix_voice(beats: list[Beat], total: float, out: Path) -> list[float]:
     raw = out.with_suffix(".raw.wav")
     run(cmd + ["-filter_complex", flt, "-map", "[m]", "-ac", "1", "-c:a", "pcm_f32le", raw])
     data, rate = sf.read(str(raw), dtype="float32")
-    gain_db = voice.loudness_gain_db(data, rate, -14.0)
+    gain_db = voice.loudness_gain_db(data, rate, LOUDNESS_PRE_LIMITER)
     data = data * (10 ** (gain_db / 20))
     sf.write(str(out), data, rate, subtype="FLOAT")
     raw.unlink()
@@ -228,8 +229,8 @@ def write_captions(beats: list[Beat], stem: Path) -> list[tuple[float, float, st
         for c in b.clips:
             cues.append((t, t + c.seconds, c.text))
             t += c.seconds + GAP
-    stem.with_suffix(".srt").write_text("".join(f"{i}\n{ts(a, True)} --> {ts(z, True)}\n{x}\n\n" for i, (a, z, x) in enumerate(cues, 1)))
-    stem.with_suffix(".vtt").write_text("WEBVTT\n\n" + "".join(f"{ts(a, False)} --> {ts(z, False)}\n{x}\n\n" for a, z, x in cues))
+    stem.with_name(stem.name + ".srt").write_text("".join(f"{i}\n{ts(a, True)} --> {ts(z, True)}\n{x}\n\n" for i, (a, z, x) in enumerate(cues, 1)))
+    stem.with_name(stem.name + ".vtt").write_text("WEBVTT\n\n" + "".join(f"{ts(a, False)} --> {ts(z, False)}\n{x}\n\n" for a, z, x in cues))
     return cues
 
 
@@ -332,8 +333,9 @@ def main() -> None:
     concat.write_text("".join(f"file '{c}'\n" for c in clips))
     out_dir = (ns.out or work_root / "out").resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
+    base = out_dir / f"{meta['id']}-{meta['slug']}.{lang}"  # captions and voice do not depend on the resolution
     stem = out_dir / f"{meta['id']}-{meta['slug']}.{lang}.{ns.height}p"
-    cues = write_captions(beats, stem)
+    cues = write_captions(beats, base)
 
     aac = work / "voice.m4a"
     voice.mux_audio(wav, aac)
@@ -343,20 +345,20 @@ def main() -> None:
     enc = ["-c:v", "libx264", "-preset", "slow", "-crf", crf, "-profile:v", "high", "-level", "5.1" if ns.height == 2160 else "4.2",
            "-r", FPS, "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv",
            "-c:a", "copy", "-movflags", "+faststart", "-shortest"]
-    mp4 = stem.with_suffix(".mp4")
+    mp4 = stem.with_name(stem.name + ".mp4")
     run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", concat, "-i", aac, "-vf", vf, *enc, mp4])
     if ns.burn:
         font = "Noto Sans Arabic" if lang == "ar" else "Inter"
         style = f"FontName={font},FontSize={int(h * 0.036)},PrimaryColour=&HFFFFFF&,OutlineColour=&H101010&,BorderStyle=3,Outline=1,Shadow=0,MarginV={int(h * 0.075)}"
-        burned = stem.with_name(stem.name + ".captioned").with_suffix(".mp4")
+        burned = stem.with_name(stem.name + ".captioned.mp4")
         run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", concat, "-i", aac,
-             "-vf", f"{vf},subtitles={stem.with_suffix('.srt')}:force_style='{style}'", *enc, burned])
+             "-vf", f"{vf},subtitles={base.with_name(base.name + '.srt')}:force_style='{style}'", *enc, burned])
     import soundfile as sf
     data, rate = sf.read(str(wav), dtype="float32")
-    flac = stem.with_suffix(".voice.flac")
+    flac = base.with_name(base.name + ".voice.flac")
     sf.write(str(flac), data, rate, format="FLAC", subtype="PCM_24")
     result = quality.check(mp4, 1080, FPS)
-    (stem.with_suffix(".quality.json")).write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    stem.with_name(stem.name + ".quality.json").write_text(json.dumps(result, indent=2, ensure_ascii=False))
     print(json.dumps({k: result[k] for k in ("width", "height", "duration_s", "size_mb", "lufs", "true_peak_db", "pass")}))
     for name, ok in result["checks"].items():
         print(("  ok   " if ok else "  FAIL ") + name)
