@@ -1,8 +1,8 @@
 # Publishing a release
 
-The installers users download are attached to a release of **this** repository. The release workflow here
-builds and publishes them (below); the manual route at the end is the fallback. Either way, this
-page is the checklist that keeps the website's download buttons and the README's links working.
+The installers users download are attached to a release of **this** repository. Build them locally
+from the private source repository and publish them here with its `tooling/publish-release.sh`.
+This checklist keeps the website's download buttons and the README's links working.
 
 ## How users get the installer
 
@@ -58,62 +58,12 @@ Beside each installer: `<installer name>.sig` (its minisign signature, once the 
 Never attach source code or anything from the private repositories: GitHub's automatic *Source code* archives
 contain only this public repository.
 
-## Automatic: run the release workflow (free)
+## Build and publish locally
 
-**Actions › release › Run workflow**, with the version tag (`v1.0.0`; the source's version must equal it).
-The workflow checks out the maintainer's private source repository, builds the installers on
-GitHub's macOS, Windows and Ubuntu runners (macOS requires Developer ID signing and notarization; Windows is signed when configured; the Linux
-`.deb` and AppImage are not signed, `SHA256SUMS.txt` is how users verify them), checks their sizes, and once
-**all three** exist creates the release
-`vX.Y.Z` here with the files above, `SHA256SUMS.txt` and release notes. It lives in this public
-repository on purpose: standard runners are free and unlimited for public repositories, so it costs
-nothing on GitHub's free plan. Only people with write access here can start it. A tag with a suffix
-(`v1.1.0-beta.1`) is published as a pre-release and never becomes *Latest*.
-
-One-time setup, by the owner (Settings › Environments › New environment `release`, with required reviewers):
-
-| Secret in the `release` environment | What |
-|---|---|
-| `SOURCE_REPO_SSH_KEY` | required: SSH private key whose public half is a read-only deploy key on the private source repository |
-| `APPLE_CERTIFICATE` | base64 of the Developer ID Application `.p12` exported with its private key |
-| `APPLE_CERTIFICATE_PASSWORD` | password used for that `.p12` |
-| `APPLE_SIGNING_IDENTITY` | `Developer ID Application: Eslam Faisal (CDRX96YDNZ)` |
-| `APPLE_API_ISSUER`, `APPLE_API_KEY` | issuer and key ID of a dedicated Git Tree App Store Connect API key with Developer access |
-| `APPLE_API_KEY_P8_BASE64` | base64 of that key's downloaded `AuthKey_<KEYID>.p8` file |
-
-The macOS build fails if any Apple credential is missing, if notarization fails, or if the app and
-DMG cannot be verified. The workflow writes the API key to the runner's temporary directory and
-passes its path to Tauri. The Linux leg needs no secret of its own.
-
-Build logs of a public repository are public: a failing build can print file names and compiler
-messages of the private source. Keep the environment's required reviewer on, and never pass the source
-deploy key to anything but the checkout steps.
-
-## By hand (fallback)
-
-1. Build and sign locally, or take `installers-*` from the workflow run's artifacts.
-2. Name the files as in the table above. Tauri writes `Git Tree_X.Y.Z_universal.dmg`,
-   `Git Tree_X.Y.Z_x64-setup.exe`, `Git Tree_X.Y.Z_amd64.deb` and `Git Tree_X.Y.Z_amd64.AppImage` (with a space);
-   from the folder holding them:
-   ```bash
-   V=1.0.0
-   cp "Git Tree_${V}_universal.dmg" "Git-Tree_${V}_universal.dmg"
-   cp "Git Tree_${V}_universal.dmg" Git-Tree-macOS.dmg
-   cp "Git Tree_${V}_x64-setup.exe" "Git-Tree_${V}_x64-setup.exe"
-   cp "Git Tree_${V}_x64-setup.exe" Git-Tree-Windows-setup.exe
-   cp "Git Tree_${V}_amd64.deb" "Git-Tree_${V}_amd64.deb"
-   cp "Git Tree_${V}_amd64.deb" Git-Tree-Linux.deb
-   cp "Git Tree_${V}_amd64.AppImage" "Git-Tree_${V}_amd64.AppImage"
-   cp "Git Tree_${V}_amd64.AppImage" Git-Tree-Linux.AppImage
-   chmod +x Git-Tree_"${V}"_amd64.AppImage Git-Tree-Linux.AppImage
-   sha256sum Git-Tree_"${V}"_universal.dmg Git-Tree_"${V}"_x64-setup.exe Git-Tree_"${V}"_amd64.deb Git-Tree_"${V}"_amd64.AppImage \
-     Git-Tree-macOS.dmg Git-Tree-Windows-setup.exe Git-Tree-Linux.deb Git-Tree-Linux.AppImage > SHA256SUMS.txt
-   ```
-3. Create the release: tag `vX.Y.Z` (SemVer), title `Git Tree vX.Y.Z`, release notes, and attach the nine files,
-   plus every `<installer>.sig` once the updater key exists (below). `tooling/publish-release.sh` in the source
-   repository stages, signs, checks (the release gate) and publishes in one go; prefer it to these steps.
-4. Leave **Set as a pre-release** unticked and **Set as the latest release** ticked for a stable version, then
-   **Publish release**.
+1. Check out the exact private source commit for the version, run `python3 tooling/check-versions.py vX.Y.Z`, and run the release gate. Keep the signing key outside both repositories.
+2. On macOS, build the universal Developer ID signed and notarized DMG with `tooling/build-signed-macos.sh`. On an Ubuntu 22.04 x86_64 environment, build the `.deb` and AppImage with `pnpm tauri:official build --target x86_64-unknown-linux-gnu --bundles deb,appimage --config src-tauri/tauri.release.conf.json`. Build the Windows x64 NSIS installer on Windows or with Tauri's documented NSIS cross compilation toolchain. Verify each artifact on its platform before publishing.
+3. Put the four Tauri output files in one local folder. From the private source checkout, set `TAURI_SIGNING_PRIVATE_KEY` to the contents of the owner's updater private key and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` to its password. Run `SIGNED_MACOS=true tooling/publish-release.sh vX.Y.Z <folder> --dry-run`, then run the same command without `--dry-run`. This signs every installer with a detached `.sig`, verifies signatures with the key embedded in the app, checks sizes and checksums, and uploads the complete release directly with `gh`.
+4. Confirm the release is public, stable and complete before changing Firestore. The Linux packages carry detached updater signatures; the `.deb` and AppImage are not OS package signed. Windows Authenticode signing requires a separately configured certificate; report its actual state in the release notes.
 
 ## After publishing
 
@@ -153,14 +103,11 @@ made with the owner's offline key covers that:
 1. **Once, the owner** generates the key pair (`pnpm tauri signer generate -w ~/.tauri/git-tree-updater.key`,
    `P00-T28` in the source repository), keeps the private key offline and backed up, puts its public key (the
    `.pub` file's base64, as printed) into `UPDATER_PUBLIC_KEY` in the source
-   (`crates/ogt-infrastructure/src/updater/mod.rs`), and adds the private key and its password as the
-   `TAURI_SIGNING_PRIVATE_KEY` and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` secrets of the `release` environment here
-   (and of the source repository's, if its own workflow publishes). The private key never enters any repository.
-2. **Every release:** the workflow's first job refuses a **stable** tag unless the source embeds the key and the
-   secret is set (a pre-release may go unsigned, with a warning, until then; once a key is embedded every release
-   must be signed). The publish job signs every installer (`<installer>.sig`), verifies each signature with the
-   app's own verifier and embedded key, writes `SHA256SUMS.txt`, and checks the folder against the contract above
-   before anything is published. A build that embeds the key refuses an installer without a valid signature.
+   (`crates/ogt-infrastructure/src/updater/mod.rs`), and keeps the private key and password outside the repositories. The local publisher reads them from
+   `TAURI_SIGNING_PRIVATE_KEY` and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`. The private key never enters a repository.
+2. **Every release:** `tooling/publish-release.sh` refuses a stable version unless the app embeds the public
+   key and the private key is supplied. It signs every installer (`<installer>.sig`), verifies each signature
+   with the app's own verifier, writes `SHA256SUMS.txt`, and checks the asset contract before publishing.
 
 There is no `latest.json`. The website's download buttons never pick a `.sig`.
 
@@ -181,7 +128,7 @@ There is no `latest.json`. The website's download buttons never pick a `.sig`.
 
 ## Per-platform release procedure
 
-1. Publish the release here (workflow or by hand) with the installers of the contract above, checksums and, once
+1. Publish the release here from the local source checkout with the installers of the contract above, checksums and, once
    the key exists, signatures. Check *After publishing*.
 2. Only then raise the account service's release gate for each platform you shipped, one Firestore document per
    platform: `app_configs/macos`, `app_configs/windows` and `app_configs/linux` (the backend repository's
