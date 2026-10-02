@@ -1,0 +1,9 @@
+0:00 Why stage a file
+0:14 Two lists, one rule
+0:27 Open the working changes
+0:45 Stage a file
+0:52 Check the two lists
+1:01 Commit
+1:15 A keyboard shortcut
+1:25 The same in plain Git
+1:37 Recap

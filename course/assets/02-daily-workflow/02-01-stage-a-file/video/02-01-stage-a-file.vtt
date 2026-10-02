@@ -1,0 +1,101 @@
+WEBVTT
+
+00:00:00.300 --> 00:00:01.866
+You changed two files today.
+
+00:00:02.086 --> 00:00:04.062
+One is a new helper in your code.
+
+00:00:04.282 --> 00:00:05.689
+The other is a note in the README.
+
+00:00:05.909 --> 00:00:09.121
+They have nothing to do with each other, so they should not share a commit.
+
+00:00:09.341 --> 00:00:13.751
+In this video you will stage one file in GitTree, and commit only that one.
+
+00:00:14.533 --> 00:00:17.028
+GitTree shows your changed files in two lists.
+
+00:00:17.248 --> 00:00:20.191
+Unstaged Files are edits that are not part of the next commit.
+
+00:00:20.411 --> 00:00:23.464
+Staged Files are the edits the next commit will contain.
+
+00:00:23.684 --> 00:00:26.538
+Staging a file moves it from the first list to the second.
+
+00:00:27.300 --> 00:00:29.545
+Here is GitTree with a small demo project.
+
+00:00:29.765 --> 00:00:34.025
+The working changes row at the top of the graph says that files have changed. Click it.
+
+00:00:34.800 --> 00:00:39.839
+Both files wait under Unstaged Files: the README, and the tags file in the source folder.
+
+00:00:40.059 --> 00:00:44.818
+Click the tags file, and GitTree shows its change: a new helper that sorts tags.
+
+00:00:45.600 --> 00:00:48.783
+Point at the row, and a Stage File button appears. Click it.
+
+00:00:49.003 --> 00:00:52.096
+The whole file moves to the staging area, in one step.
+
+00:00:52.867 --> 00:00:55.720
+Now the tags file is under Staged Files.
+
+00:00:55.940 --> 00:00:58.854
+The README is still under Unstaged Files, untouched.
+
+00:00:59.074 --> 00:01:01.488
+The next commit will contain the tags file only.
+
+00:01:02.267 --> 00:01:04.053
+Write a commit message, and commit.
+
+00:01:04.273 --> 00:01:08.912
+The button says Commit Changes to 1 File, because only one file is staged.
+
+00:01:09.132 --> 00:01:10.669
+The README is not in this commit.
+
+00:01:10.889 --> 00:01:14.610
+It is still waiting under Unstaged Files, ready for a commit of its own.
+
+00:01:15.367 --> 00:01:16.943
+There is a keyboard shortcut too.
+
+00:01:17.163 --> 00:01:19.588
+Select a file in the list, and press S.
+
+00:01:19.808 --> 00:01:21.454
+It moves to Staged Files.
+
+00:01:21.674 --> 00:01:24.946
+And Stage All does the same for every changed file at once.
+
+00:01:25.700 --> 00:01:28.913
+In plain Git, you stage a file with git add and its path.
+
+00:01:29.133 --> 00:01:31.318
+Then git status shows the two lists.
+
+00:01:31.538 --> 00:01:34.341
+The tags file is staged, and the README is not.
+
+00:01:34.561 --> 00:01:36.906
+GitTree runs this for you, with one click.
+
+00:01:37.667 --> 00:01:45.668
+To recap: changed files start under Unstaged Files, Stage File moves one to Staged Files, and a commit takes only what is staged.
+
+00:01:45.888 --> 00:01:48.333
+Download GitTree free at gittree.app.
+
+00:01:48.553 --> 00:01:51.047
+Next, how to stage just one hunk of a file.
+

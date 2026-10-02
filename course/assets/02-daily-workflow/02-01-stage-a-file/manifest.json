@@ -1,0 +1,67 @@
+{
+  "episode": "02-01-stage-a-file",
+  "recorded_against": "GitTree 1.2.1 (Linux, debug e2e build)",
+  "files": [
+    {
+      "path": "video/02-01-stage-a-file.1080p.mp4",
+      "kind": "video",
+      "tier": "lfs (pending upload)",
+      "size": 10682356,
+      "sha256": "911be126c850866614bce3f91df6c54a6833fdaf999f44c15cf8644d45c47c46",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-file --height 1080",
+      "quality": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "codec": "h264",
+        "duration_s": 111.5,
+        "lufs": -14.2,
+        "true_peak_db": -1.3,
+        "pass": true
+      }
+    },
+    {
+      "path": "video/02-01-stage-a-file.chapters.jpg",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 160302,
+      "sha256": "fe53b8cc72389c174e0f42063250530144bc302464092a1927581db73c059bfb"
+    },
+    {
+      "path": "video/02-01-stage-a-file.chapters.txt",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 195,
+      "sha256": "2e610e6b7fe5416237c437fbfdc063afb0f98ffa91eeb7799d8df04bfad436fa"
+    },
+    {
+      "path": "video/02-01-stage-a-file.srt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 2926,
+      "sha256": "abf7a4cf34e75d71d8813e61f5b98fa850b883f7a96c7878b78fc65ff9aacd9a"
+    },
+    {
+      "path": "video/02-01-stage-a-file.verification.md",
+      "kind": "chapters / verification",
+      "tier": "git",
+      "size": 1499,
+      "sha256": "c815dc6d6bd1333eb25c22cc4504fe53aca9a378a2a8099101dd36d2ea2571bf"
+    },
+    {
+      "path": "audio/02-01-stage-a-file.voice.flac",
+      "kind": "voice-over",
+      "tier": "lfs (pending upload)",
+      "size": 8335706,
+      "sha256": "26df880975d886671391de622f5d2ab010f0b0f7ec87d160259e3b3cbf781dcb",
+      "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-file --height 1080"
+    },
+    {
+      "path": "video/02-01-stage-a-file.vtt",
+      "kind": "captions",
+      "tier": "git",
+      "size": 2844,
+      "sha256": "a83b908e58434a3796092f934c8a3d5c7d37abca97783f20e0b3ed95d747dce2"
+    }
+  ]
+}
