@@ -11,8 +11,8 @@ name: release
 # source is read from `source_ref` of the private repository and its version must equal the tag.
 #
 # Setup (owner, once; see RELEASING.md): an environment named `release` with required reviewers and the
-# secrets SOURCE_REPO_TOKEN (a fine-grained token with Contents: read on the private source repository
-# only) and the APPLE_* secrets for a signed and notarized macOS build. Build logs of a public
+# secrets SOURCE_REPO_SSH_KEY (a read-only deploy key on the private source repository)
+# and the APPLE_* secrets for a signed and notarized macOS build. Build logs of a public
 # repository are public: they can show file names and compiler messages of the private source.
 #
 # Linux (ADR-0018 in the source repository) builds on ubuntu-22.04, whose glibc 2.35 is the floor the
@@ -56,16 +56,16 @@ jobs:
       - name: the tag is a version
         run: |
           [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || { echo "::error::'$TAG' is not vMAJOR.MINOR.PATCH"; exit 1; }
-      - name: the source token is set
+      - name: the source deploy key is set
         env:
-          SOURCE_REPO_TOKEN: ${{ secrets.SOURCE_REPO_TOKEN }}
+          SOURCE_REPO_SSH_KEY: ${{ secrets.SOURCE_REPO_SSH_KEY }}
         run: |
-          [ -n "$SOURCE_REPO_TOKEN" ] || { echo "::error::The SOURCE_REPO_TOKEN secret is missing from the release environment (RELEASING.md)."; exit 1; }
+          [ -n "$SOURCE_REPO_SSH_KEY" ] || { echo "::error::The SOURCE_REPO_SSH_KEY secret is missing from the release environment (RELEASING.md)."; exit 1; }
       - uses: actions/checkout@v5
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ inputs.source_ref }}
-          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          ssh-key: ${{ secrets.SOURCE_REPO_SSH_KEY }}
           path: source
           persist-credentials: false
       - run: python3 source/tooling/check-versions.py "$TAG"
@@ -122,7 +122,7 @@ jobs:
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ inputs.source_ref }}
-          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          ssh-key: ${{ secrets.SOURCE_REPO_SSH_KEY }}
           path: source
           persist-credentials: false
       # Tauri's Ubuntu prerequisites, plus what the AppImage step runs.
@@ -344,7 +344,7 @@ jobs:
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ inputs.source_ref }}
-          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          ssh-key: ${{ secrets.SOURCE_REPO_SSH_KEY }}
           path: source
           persist-credentials: false
       - uses: actions/download-artifact@v5

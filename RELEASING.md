@@ -74,7 +74,7 @@ One-time setup, by the owner (Settings › Environments › New environment `rel
 
 | Secret in the `release` environment | What |
 |---|---|
-| `SOURCE_REPO_TOKEN` | required: a fine-grained personal access token limited to the private source repository, permission *Contents: Read-only* |
+| `SOURCE_REPO_SSH_KEY` | required: SSH private key whose public half is a read-only deploy key on the private source repository |
 | `APPLE_CERTIFICATE` | base64 of the Developer ID Application `.p12` exported with its private key |
 | `APPLE_CERTIFICATE_PASSWORD` | password used for that `.p12` |
 | `APPLE_SIGNING_IDENTITY` | `Developer ID Application: Eslam Faisal (CDRX96YDNZ)` |
@@ -87,7 +87,7 @@ passes its path to Tauri. The Linux leg needs no secret of its own.
 
 Build logs of a public repository are public: a failing build can print file names and compiler
 messages of the private source. Keep the environment's required reviewer on, and never pass the source
-token to anything but the checkout steps.
+deploy key to anything but the checkout steps.
 
 ## By hand (fallback)
 
