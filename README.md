@@ -54,6 +54,7 @@
 - [About this repository](#about-this-repository)
 - [Why Git Tree](#why-git-tree)
 - [How it compares](#how-it-compares)
+- [Learn GitTree](#learn-gittree)
 - [Features](#features)
 - [Installation](#installation)
 - [Getting started](#getting-started)
@@ -132,6 +133,11 @@ Honest, neutral and short: only rows where each answer is known. GitTree's colum
 | **Conflict warning before a merge** | ✅ in the merge dialog | Paid plan <!-- VERIFY --> | ❌ <!-- VERIFY --> | ❌ <!-- VERIFY --> |
 
 <sub>Last checked: 2 October 2026, against the vendors' own sites ([GitKraken](https://www.gitkraken.com/pricing), [Sourcetree](https://www.sourcetreeapp.com), [Fork](https://git-fork.com)). Plans and features change; if a cell is out of date, please [open an issue](https://github.com/eslamfaisal/git-tree/issues/new/choose). GitKraken, Sourcetree and Fork are trademarks of their owners; GitTree is not affiliated with or endorsed by them.</sub>
+
+## Learn GitTree
+
+A free video course in **English and Arabic**: one short lesson per Git idea, each showing the same task in the real
+app and with the plain `git` command. Follow along with the same demo repository. See [`course/`](course/).
 
 ## Features
 
