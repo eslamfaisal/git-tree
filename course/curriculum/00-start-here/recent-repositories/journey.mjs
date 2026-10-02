@@ -143,7 +143,9 @@ export default {
     await ui.hoverSelector(remove, { duration: 900 });
     await ui.mark('remove-button', remove);
     await ui.sleep(2600);
-    await ui.clickSelector(remove, { after: 800 });
+    await ui.clickSelector(remove, { after: 100 });
+    await ui.hoverSelector('body', { at: [0.8, 0.6], duration: 700 }); // off the row that slid under the pointer
+    await ui.sleep(500);
     await ui.mark('removed');
     const list3 = await recent();
     await ui.mark('recent-after', list3);
