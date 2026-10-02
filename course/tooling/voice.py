@@ -1,9 +1,8 @@
 """Voice-over for the course (English).
 
-Backends:
-  clone  the author's own voice, cloned from a sample with ZipVoice (voice_clone.py). Default when
-         presenter/voice/prompt.wav exists.
-  piper  a neural scratch voice (Piper en_US-ryan), the fallback when no sample is present.
+Backends (presenter/narrator.yml, `voice:`):
+  piper  a clean neural voice (Piper en_US-ryan). The default.
+  clone  the author's own voice, cloned from a denoised sample with ZipVoice (voice_clone.py).
 
 A narrator's real recording of a beat always wins: see compose.py ("audio/<beat-id>.wav").
 
@@ -32,7 +31,12 @@ TARGET_RMS_DB = -20.0  # every sentence is levelled to this RMS before mixing, s
 
 
 def backend() -> str:
-    return "clone" if (COURSE / "presenter" / "voice" / "prompt.wav").exists() else "piper"
+    """`clone` or `piper`: course/presenter/narrator.yml decides (`voice:`); `clone` also needs the author's sample."""
+    import yaml
+
+    cfg = COURSE / "presenter" / "narrator.yml"
+    wanted = (yaml.safe_load(cfg.read_text()) or {}).get("voice", "piper") if cfg.exists() else "piper"
+    return "clone" if wanted == "clone" and (COURSE / "presenter" / "voice" / "prompt.wav").exists() else "piper"
 
 
 def _prompt_fingerprint() -> str:
