@@ -11,8 +11,8 @@ name: release
 # source is read from `source_ref` of the private repository and its version must equal the tag.
 #
 # Setup (owner, once; see RELEASING.md): an environment named `release` with required reviewers and the
-# secrets SOURCE_REPO_TOKEN (a fine-grained token with Contents: read on the private source repository
-# only) and, for a signed and notarized macOS build, the APPLE_* secrets. Build logs of a public
+# secrets SOURCE_REPO_SSH_KEY (a read-only deploy key on the private source repository)
+# and the APPLE_* secrets for a signed and notarized macOS build. Build logs of a public
 # repository are public: they can show file names and compiler messages of the private source.
 #
 # Linux (ADR-0018 in the source repository) builds on ubuntu-22.04, whose glibc 2.35 is the floor the
@@ -56,16 +56,16 @@ jobs:
       - name: the tag is a version
         run: |
           [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || { echo "::error::'$TAG' is not vMAJOR.MINOR.PATCH"; exit 1; }
-      - name: the source token is set
+      - name: the source deploy key is set
         env:
-          SOURCE_REPO_TOKEN: ${{ secrets.SOURCE_REPO_TOKEN }}
+          SOURCE_REPO_SSH_KEY: ${{ secrets.SOURCE_REPO_SSH_KEY }}
         run: |
-          [ -n "$SOURCE_REPO_TOKEN" ] || { echo "::error::The SOURCE_REPO_TOKEN secret is missing from the release environment (RELEASING.md)."; exit 1; }
+          [ -n "$SOURCE_REPO_SSH_KEY" ] || { echo "::error::The SOURCE_REPO_SSH_KEY secret is missing from the release environment (RELEASING.md)."; exit 1; }
       - uses: actions/checkout@v5
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ inputs.source_ref }}
-          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          ssh-key: ${{ secrets.SOURCE_REPO_SSH_KEY }}
           path: source
           persist-credentials: false
       - run: python3 source/tooling/check-versions.py "$TAG"
@@ -114,7 +114,6 @@ jobs:
     environment: release
     env:
       TAG: ${{ inputs.tag }}
-      HAS_APPLE_SIGNING: ${{ secrets.APPLE_SIGNING_IDENTITY != '' }}
     defaults:
       run:
         working-directory: source
@@ -123,7 +122,7 @@ jobs:
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ inputs.source_ref }}
-          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          ssh-key: ${{ secrets.SOURCE_REPO_SSH_KEY }}
           path: source
           persist-credentials: false
       # Tauri's Ubuntu prerequisites, plus what the AppImage step runs.
@@ -167,6 +166,31 @@ jobs:
         if: runner.os == 'Linux'
         run: tooling/prepare-appimage-tools.sh
 
+      - name: require macOS release credentials and prepare notarization key
+        if: runner.os == 'macOS'
+        shell: bash
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_P8_BASE64: ${{ secrets.APPLE_API_KEY_P8_BASE64 }}
+        run: |
+          set -euo pipefail
+          for name in APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY \
+            APPLE_API_ISSUER APPLE_API_KEY APPLE_API_KEY_P8_BASE64; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is required in the release environment for a signed, notarized macOS build"
+              exit 1
+            fi
+          done
+          key_path="$RUNNER_TEMP/AuthKey_${APPLE_API_KEY}.p8"
+          printf '%s' "$APPLE_API_KEY_P8_BASE64" | base64 -D > "$key_path"
+          chmod 600 "$key_path"
+          openssl pkey -in "$key_path" -noout
+          echo "APPLE_API_KEY_PATH=$key_path" >> "$GITHUB_ENV"
+
       # No tagName or releaseId: tauri-action only builds; the publish job creates the release here.
       - name: build and sign
         uses: tauri-apps/tauri-action@v0
@@ -179,7 +203,7 @@ jobs:
           APPLE_SIGNING_IDENTITY: ${{ matrix.name == 'macos-universal' && secrets.APPLE_SIGNING_IDENTITY || '' }}
           APPLE_API_ISSUER: ${{ matrix.name == 'macos-universal' && secrets.APPLE_API_ISSUER || '' }}
           APPLE_API_KEY: ${{ matrix.name == 'macos-universal' && secrets.APPLE_API_KEY || '' }}
-          APPLE_API_KEY_PATH: ${{ matrix.name == 'macos-universal' && secrets.APPLE_API_KEY_PATH || '' }}
+          # APPLE_API_KEY_PATH comes from the preparation step above.
         with:
           projectPath: source/apps/desktop
           tauriScript: pnpm tauri
@@ -190,14 +214,44 @@ jobs:
         shell: bash
         run: python3 tooling/check-bundle-size.py "${{ matrix.bundles }}"
 
+      - name: notarize and staple the downloadable DMG
+        if: runner.os == 'macOS'
+        env:
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+        run: |
+          set -euo pipefail
+          dmg="$(find "${{ matrix.bundles }}/dmg" -maxdepth 1 -name '*.dmg' | head -n 1)"
+          if ! xcrun stapler validate "$dmg" >/dev/null 2>&1; then
+            xcrun notarytool submit "$dmg" --key "$APPLE_API_KEY_PATH" \
+              --key-id "$APPLE_API_KEY" --issuer "$APPLE_API_ISSUER" \
+              --wait --timeout 60m --output-format json > "$RUNNER_TEMP/git-tree-dmg-notarization.json"
+            python3 -c 'import json,sys; result=json.load(open(sys.argv[1])); print("DMG notarization:",result.get("status")); sys.exit(result.get("status") != "Accepted")' \
+              "$RUNNER_TEMP/git-tree-dmg-notarization.json"
+            xcrun stapler staple "$dmg"
+          fi
+
       - name: verify the macOS signature, notarization and staple
-        if: runner.os == 'macOS' && env.HAS_APPLE_SIGNING == 'true'
+        if: runner.os == 'macOS'
         run: |
           app="$(find "${{ matrix.bundles }}/macos" -maxdepth 1 -name '*.app' | head -n 1)"
           codesign --verify --deep --strict --verbose=2 "$app"
           codesign --verify --strict --verbose=2 "$app/Contents/MacOS/ogt-helper"
+          codesign -dv --verbose=4 "$app" 2>&1 | grep -F 'TeamIdentifier=CDRX96YDNZ'
           spctl --assess --type execute --verbose "$app"
           xcrun stapler validate "$app"
+          dmg="$(find "${{ matrix.bundles }}/dmg" -maxdepth 1 -name '*.dmg' | head -n 1)"
+          xcrun stapler validate "$dmg"
+          spctl --assess --type open --context context:primary-signature --verbose "$dmg"
+          mount_dir="$RUNNER_TEMP/git-tree-release-dmg"
+          mkdir -p "$mount_dir"
+          hdiutil attach -readonly -nobrowse -mountpoint "$mount_dir" "$dmg" >/dev/null
+          trap 'hdiutil detach "$mount_dir" >/dev/null' EXIT
+          payload="$mount_dir/Git Tree.app"
+          codesign --verify --deep --strict --verbose=2 "$payload"
+          codesign -dv --verbose=4 "$payload" 2>&1 | grep -F 'TeamIdentifier=CDRX96YDNZ'
+          spctl --assess --type execute --verbose "$payload"
+          xcrun stapler validate "$payload"
 
       # The packages are unsigned: the helper beside the app, a valid desktop entry that registers
       # opengittree://, and the glibc floor of every binary and bundled library (weak symbols are
@@ -290,7 +344,7 @@ jobs:
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ inputs.source_ref }}
-          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+          ssh-key: ${{ secrets.SOURCE_REPO_SSH_KEY }}
           path: source
           persist-credentials: false
       - uses: actions/download-artifact@v5
