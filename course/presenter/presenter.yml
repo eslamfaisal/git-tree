@@ -1,0 +1,11 @@
+# The on-screen lecturer: a circular photo with the name plate, ringed by a glow that pulses with the voice.
+# Drop the photo at course/presenter/profile.jpg (any size; square-cropped from the upper part, face first).
+# Without it the monogram is drawn, so a fresh clone still renders.
+name:
+  en: Eslam Faisal
+  ar: إسلام فيصل          # VERIFY: spelling of the name in Arabic is the owner's to confirm
+title:
+  en: Software Engineer & Instructor
+  ar: مهندس برمجيات ومحاضر
+initials: EF
+photo: profile.jpg

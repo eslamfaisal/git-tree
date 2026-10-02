@@ -1,0 +1,28 @@
+[
+ {
+  "id": "02-02",
+  "series": "02-daily-workflow",
+  "slug": "stage-a-single-hunk",
+  "status": "scripted",
+  "title": {
+   "en": "Stage a single hunk in GitTree (commit part of a file)",
+   "ar": "كيف تُجهِّز Hunk واحدًا في GitTree وتحفظ جزءًا من الملف"
+  },
+  "promise": {
+   "en": "Commit only one of two changes in the same file, without touching the other.",
+   "ar": "احفظ تعديلًا واحدًا من تعديلين في الملف نفسه دون المساس بالآخر."
+  },
+  "feature": "staging-hunk",
+  "concept": "The staging area (index) decides what a commit contains; a hunk is the unit of a change.",
+  "commands": [
+   "git add -p",
+   "git diff --staged"
+  ],
+  "checkpoint": "two-hunks",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/stage-a-single-hunk"
+ }
+]
