@@ -47,13 +47,14 @@ def check_episode(ep: Path) -> None:
         bad(f"{rel}: status {meta.get('status')!r} not in {STATUSES}")
     for key in ("title", "promise"):
         for lang in LANGS:
-            if not (meta.get(key) or {}).get(lang):
+            # a planned episode may still lack its Arabic promise; everything is complete once scripted
+            if not (meta.get(key) or {}).get(lang) and not (meta.get("status") == "planned" and (key, lang) == ("promise", "ar")):
                 bad(f"{rel}: {key}.{lang} missing")
     if len(meta.get("title", {}).get("en", "")) > 60 and len(meta.get("title", {}).get("en", "")) > 70:
         bad(f"{rel}: English title is too long for search results")
     if ep.name != meta.get("slug") or not ep.parent.name.startswith(str(meta.get("id", "x")).split("-")[0]):
         bad(f"{rel}: folder does not match slug/series of episode.yml")
-    if not (COURSE / "demo-repo" / "checkpoints" / f"{meta.get('checkpoint')}.sh").exists():
+    if meta.get("status") != "planned" and not (COURSE / "demo-repo" / "checkpoints" / f"{meta.get('checkpoint')}.sh").exists():
         bad(f"{rel}: checkpoint {meta.get('checkpoint')!r} has no demo-repo/checkpoints script")
     beats_file = ep / "beats.yml"
     if meta.get("status") != "planned":

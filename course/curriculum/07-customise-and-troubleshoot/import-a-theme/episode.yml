@@ -1,0 +1,23 @@
+id: 07-20
+series: 07-customise-and-troubleshoot
+slug: import-a-theme
+status: planned
+title:
+  en: Import a custom theme into GitTree
+  ar: استيراد مظهر مخصص إلى GitTree
+promise:
+  en: Import a theme file and use it next to the built-in themes.
+concept: A theme is data that GitTree reads, not code it runs.
+feature: theme-import
+commands: []
+checkpoint: clean
+journey: import-a-theme
+duration_min: 3
+requires:
+- 07-02
+platforms:
+- linux
+notes: Prepare a sample theme file for the demo.
+youtube:
+  en: null
+  ar: null

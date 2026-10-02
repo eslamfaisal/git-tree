@@ -1,0 +1,25 @@
+id: 02-08
+series: 02-daily-workflow
+slug: commit-options
+status: planned
+title:
+  en: 'Git commit options: sign-off, skip hooks, other author'
+  ar: 'خيارات commit في Git: التوقيع وتخطي الـ hooks ومؤلف آخر'
+promise:
+  en: Open the Commit Options menu and use sign-off, a different author and recent messages.
+concept: A commit records an author and a committer separately, and can carry a sign-off trailer.
+feature: commit-options
+commands:
+- git commit --signoff
+- git commit --no-verify
+checkpoint: two-files-modified
+journey: commit-options
+duration_min: 5
+requires:
+- 02-05
+platforms:
+- linux
+notes: Co-authors have their own video (02-09). Signing commits is 07-08.
+youtube:
+  en: null
+  ar: null

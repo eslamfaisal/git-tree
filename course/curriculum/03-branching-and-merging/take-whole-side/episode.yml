@@ -1,0 +1,25 @@
+id: 03-16
+series: 03-branching-and-merging
+slug: take-whole-side
+status: planned
+title:
+  en: Resolve a Git conflict by taking one whole side
+  ar: حل التعارض في Git بأخذ أحد الطرفين بالكامل
+promise:
+  en: Resolve a file by keeping ours or theirs entirely, including delete versus modify.
+concept: --ours and --theirs pick a whole version of a conflicted file.
+feature: conflict-whole-file
+commands:
+- git checkout --ours -- <path>
+- git checkout --theirs -- <path>
+- git rm -- <path>
+checkpoint: merge-in-progress
+journey: take-whole-side
+duration_min: 4
+requires:
+- 03-14
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

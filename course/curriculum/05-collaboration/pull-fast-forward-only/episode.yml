@@ -1,0 +1,24 @@
+id: 05-03
+series: 05-collaboration
+slug: pull-fast-forward-only
+status: planned
+title:
+  en: Git pull --ff-only in GitTree
+  ar: git pull --ff-only في GitTree
+promise:
+  en: Pull with fast-forward only and see it refuse when histories have diverged.
+concept: Pull is a fetch followed by an integration; fast-forward only refuses when branches diverged.
+feature: sync-pull-ff
+commands:
+- git pull --ff-only --no-rebase
+checkpoint: behind-remote
+journey: pull-fast-forward-only
+duration_min: 3
+requires:
+- 01-09
+platforms:
+- linux
+notes: Reached from the Pull caret ('Pull options').
+youtube:
+  en: null
+  ar: null

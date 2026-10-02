@@ -1,0 +1,24 @@
+id: 06-09
+series: 06-power-features
+slug: lfs-content
+status: planned
+title:
+  en: Download and prune Git LFS content in GitTree
+  ar: تنزيل محتوى Git LFS وتنظيفه في GitTree
+promise:
+  en: Download LFS file content and prune old content.
+concept: An LFS pointer is replaced by the real file only when the content is downloaded.
+feature: lfs-content
+commands:
+- git lfs pull
+- git lfs prune --dry-run --verbose
+checkpoint: lfs-repo
+journey: lfs-content
+duration_min: 4
+requires:
+- 06-07
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

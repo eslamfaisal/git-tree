@@ -1,0 +1,26 @@
+id: 00-01
+series: 00-start-here
+slug: install-gittree-on-macos
+status: planned
+title:
+  en: Install GitTree on macOS (Apple silicon and Intel)
+  ar: تثبيت GitTree على macOS (آبل سيليكون وإنتل)
+promise:
+  en: Install the universal GitTree disk image on a Mac and get past the first-launch warning.
+concept: GitTree is a front end for the Git already on your computer, so Git must be installed first.
+feature: install-macos
+commands:
+- git --version
+- xcode-select --install
+checkpoint: no-repo
+journey: install-gittree-on-macos
+duration_min: 4
+requires: []
+platforms:
+- macos
+notes: 'VERIFY V5: Gatekeeper wording is from ALPHA_NOTES (v0.1.0), no 1.2.1 first-launch run recorded. Installer not notarized
+  (P12-T04 blocked), so show the context-menu open. macOS 13 or later. Ledger verified on Linux only: a macOS recording is
+  a new observation.'
+youtube:
+  en: null
+  ar: null

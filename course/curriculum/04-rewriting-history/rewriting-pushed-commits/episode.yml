@@ -1,0 +1,23 @@
+id: 04-07
+series: 04-rewriting-history
+slug: rewriting-pushed-commits
+status: planned
+title:
+  en: Why rewriting pushed Git commits is risky
+  ar: لماذا إعادة كتابة commits مدفوعة في Git أمر خطير
+promise:
+  en: See the warning GitTree shows when commits you are about to rewrite are already on a remote.
+concept: Rewriting shared history forces everyone else to reconcile it.
+feature: rebase-published-guard
+commands:
+- git rev-list <commits> --not --remotes
+checkpoint: pushed-commits
+journey: rewriting-pushed-commits
+duration_min: 4
+requires:
+- 04-02
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

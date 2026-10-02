@@ -1,0 +1,25 @@
+id: 02-13
+series: 02-daily-workflow
+slug: discard-a-single-hunk
+status: planned
+title:
+  en: Discard a single hunk in GitTree (undo part of a file)
+  ar: تجاهل Hunk واحد في GitTree (التراجع عن جزء من الملف)
+promise:
+  en: Throw away one hunk of a file and keep the other.
+concept: A hunk can be reverse-applied to the working tree on its own.
+feature: staging-hunk
+commands:
+- git apply -R
+checkpoint: two-hunks
+journey: discard-a-single-hunk
+duration_min: 3
+requires:
+- 02-02
+- 02-12
+platforms:
+- linux
+notes: Confirm dialog is 'Discard this hunk?'. Discarding single lines (Discard Lines) is shown in one sentence.
+youtube:
+  en: null
+  ar: null

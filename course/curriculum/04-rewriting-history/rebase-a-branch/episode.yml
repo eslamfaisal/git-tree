@@ -1,0 +1,24 @@
+id: 04-01
+series: 04-rewriting-history
+slug: rebase-a-branch
+status: planned
+title:
+  en: 'Git rebase explained: rebase a branch in GitTree'
+  ar: 'شرح git rebase: إعادة تأسيس فرع في GitTree'
+promise:
+  en: Rebase the current branch onto another and see the commits get new ids.
+concept: Rebase replays your commits on a new base, creating new commits.
+feature: rebase-onto
+commands:
+- git rebase <onto>
+checkpoint: rebase-ready
+journey: rebase-a-branch
+duration_min: 5
+requires:
+- 01-11
+platforms:
+- linux
+notes: The old tip is kept under refs/ogt/trash.
+youtube:
+  en: null
+  ar: null

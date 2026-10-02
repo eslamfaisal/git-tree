@@ -1,0 +1,23 @@
+id: 07-03
+series: 07-customise-and-troubleshoot
+slug: language-and-rtl
+status: planned
+title:
+  en: 'Change the GitTree language: English and Arabic (RTL)'
+  ar: 'تغيير لغة GitTree: العربية والإنجليزية (من اليمين لليسار)'
+promise:
+  en: Switch the app between English and Arabic and see the layout mirror.
+concept: Right-to-left layout mirrors the interface, not your repository.
+feature: ui-language
+commands: []
+checkpoint: clean
+journey: language-and-rtl
+duration_min: 3
+requires:
+- 07-01
+platforms:
+- linux
+notes: Record the Arabic app on the Arabic video and the English app on the English video.
+youtube:
+  en: null
+  ar: null

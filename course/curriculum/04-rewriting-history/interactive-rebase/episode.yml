@@ -1,0 +1,25 @@
+id: 04-02
+series: 04-rewriting-history
+slug: interactive-rebase
+status: planned
+title:
+  en: Git interactive rebase in GitTree (pick, squash, drop)
+  ar: الـ rebase التفاعلي في Git عبر GitTree (pick وsquash وdrop)
+promise:
+  en: Rearrange, combine and drop commits in the interactive rebase editor.
+concept: An interactive rebase is a todo list of actions applied to a range of commits.
+feature: rebase-interactive
+commands:
+- git rebase --interactive <base>
+checkpoint: messy-commits
+journey: interactive-rebase
+duration_min: 7
+requires:
+- 04-01
+platforms:
+- linux
+notes: 'Rebase progress panel and the commit-message prompt (rebase-progress) appear here. Keyboard: Alt+Up and Alt+Down move
+  a row; p, r, e, s, f, d set the action.'
+youtube:
+  en: null
+  ar: null

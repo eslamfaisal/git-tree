@@ -1,0 +1,24 @@
+id: 00-09
+series: 00-start-here
+slug: trust-prompt-on-open
+status: planned
+title:
+  en: Trust this repository? What GitTree checks before it opens
+  ar: هل تثق بهذا المستودع؟ ما يفحصه GitTree قبل فتحه
+promise:
+  en: Read the trust prompt and choose between Restricted Mode and Trust and Open.
+concept: A cloned repository's config and hooks can run programs on your machine.
+feature: trust-dialog
+commands:
+- git config --list --show-scope --show-origin
+checkpoint: cloned-with-hooks
+journey: trust-prompt-on-open
+duration_min: 4
+requires:
+- 00-08
+platforms:
+- linux
+notes: 'VERIFY V12: quote the dialog body from en.ts, the inventory text is cut off. Restricted Mode itself is 07-17.'
+youtube:
+  en: null
+  ar: null

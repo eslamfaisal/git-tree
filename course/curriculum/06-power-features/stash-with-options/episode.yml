@@ -1,0 +1,25 @@
+id: 06-13
+series: 06-power-features
+slug: stash-with-options
+status: planned
+title:
+  en: 'Git stash options: untracked files, staged only, message'
+  ar: 'خيارات git stash: ملفات غير متتبَّعة ومجهّزة فقط ورسالة'
+promise:
+  en: Stash with a message, include untracked files or stash only the staged changes.
+concept: git stash push can limit what it saves and what it leaves behind.
+feature: stash-options
+commands:
+- git stash push -m <msg>
+- git stash push --staged
+- git stash push -u
+checkpoint: two-files-modified
+journey: stash-with-options
+duration_min: 4
+requires:
+- 02-29
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

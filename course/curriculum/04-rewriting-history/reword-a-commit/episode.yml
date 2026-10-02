@@ -1,0 +1,23 @@
+id: 04-03
+series: 04-rewriting-history
+slug: reword-a-commit
+status: planned
+title:
+  en: Change a Git commit message after committing (reword)
+  ar: تغيير رسالة commit بعد حفظه في Git (reword)
+promise:
+  en: Reword an older commit message from the graph.
+concept: Changing any commit message gives that commit and every commit above it a new id.
+feature: rebase-reword
+commands:
+- git rebase -i (reword)
+checkpoint: messy-commits
+journey: reword-a-commit
+duration_min: 3
+requires:
+- 04-02
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

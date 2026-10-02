@@ -1,0 +1,23 @@
+id: 05-22
+series: 05-collaboration
+slug: pull-request-files
+status: planned
+title:
+  en: Review pull request files and diffs in GitTree
+  ar: مراجعة ملفات pull request وتغييراتها في GitTree
+promise:
+  en: Read the changed files of a pull request.
+concept: A pull request diff is the difference between the branch and its merge base.
+feature: pr-view
+commands: []
+checkpoint: pr-open
+journey: pull-request-files
+duration_min: 4
+requires:
+- 05-20
+platforms:
+- linux
+notes: Needs a real open pull request. Sidebar list of pull requests (pr-list) is shown in this video.
+youtube:
+  en: null
+  ar: null

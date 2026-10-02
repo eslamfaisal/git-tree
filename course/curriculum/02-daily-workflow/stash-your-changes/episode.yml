@@ -1,0 +1,25 @@
+id: 02-29
+series: 02-daily-workflow
+slug: stash-your-changes
+status: planned
+title:
+  en: 'Git stash in GitTree: save work in progress'
+  ar: 'git stash في GitTree: احفظ عملك غير المكتمل جانبًا'
+promise:
+  en: Stash all your changes to get a clean working folder.
+concept: A stash is a pair of commits on refs/stash that holds your uncommitted work.
+feature: stash-save
+commands:
+- git stash push
+checkpoint: two-files-modified
+journey: stash-your-changes
+duration_min: 3
+requires:
+- 01-05
+platforms:
+- linux
+notes: Stash tab in the composer (commit-stash-from-composer) and the stash pill on the graph (graph-stash-tips) are shown
+  in one sentence.
+youtube:
+  en: null
+  ar: null

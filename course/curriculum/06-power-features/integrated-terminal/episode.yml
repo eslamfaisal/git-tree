@@ -1,0 +1,24 @@
+id: 06-22
+series: 06-power-features
+slug: integrated-terminal
+status: planned
+title:
+  en: The integrated terminal in GitTree
+  ar: الطرفية المدمجة في GitTree
+promise:
+  en: Open a terminal in the repository folder, add more terminals and rename them.
+concept: The terminal is a real shell opened at the repository root.
+feature: terminal-toggle
+commands: []
+checkpoint: clean
+journey: integrated-terminal
+duration_min: 4
+requires:
+- 00-13
+platforms:
+- linux
+notes: Drawer toggle Alt+T. Terminal sessions, find and external terminal are mentioned in one sentence. Preferences page
+  'In-App Terminal' not shown (VERIFY V2).
+youtube:
+  en: null
+  ar: null

@@ -1,0 +1,25 @@
+id: 02-24
+series: 02-daily-workflow
+slug: git-blame
+status: planned
+title:
+  en: 'Git blame: who changed this line? (GitTree blame view)'
+  ar: 'git blame: من غيّر هذا السطر؟ (عرض blame في GitTree)'
+promise:
+  en: Open Blame on a file and see which commit last touched each line.
+concept: Blame attributes each line to the commit that last changed it.
+feature: blame-view
+commands:
+- git blame --incremental <path>
+checkpoint: clean
+journey: git-blame
+duration_min: 4
+requires:
+- 01-01
+platforms:
+- linux
+notes: 'VERIFY V9: the exact right-click placement of ''Blame File'' is inferred from menu code, confirm in the running app.
+  The Ignore whitespace and Follow moved lines toggles (blame-options) appear here in one sentence.'
+youtube:
+  en: null
+  ar: null

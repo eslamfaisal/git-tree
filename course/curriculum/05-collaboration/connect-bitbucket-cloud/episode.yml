@@ -1,0 +1,24 @@
+id: 05-15
+series: 05-collaboration
+slug: connect-bitbucket-cloud
+status: planned
+title:
+  en: Connect Bitbucket Cloud to GitTree
+  ar: ربط Bitbucket Cloud بـ GitTree
+promise:
+  en: Connect Bitbucket Cloud with browser sign-in, an API token or an access token.
+concept: Some hosts sign you in through an authorization code and an account service.
+feature: provider-bitbucket-cloud
+commands: []
+checkpoint: hosted-account
+journey: connect-bitbucket-cloud
+duration_min: 4
+requires:
+- 05-12
+platforms:
+- linux
+notes: 'VERIFY V11: Bitbucket consumer (P00-T31) is blocked in the ledger though the official build carries a client id; confirm
+  end to end. Bitbucket issues are off (Atlassian removed them on 2026-08-20), do not show an Issues section for it.'
+youtube:
+  en: null
+  ar: null

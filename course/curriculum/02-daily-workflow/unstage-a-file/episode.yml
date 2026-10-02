@@ -1,0 +1,25 @@
+id: 02-04
+series: 02-daily-workflow
+slug: unstage-a-file
+status: planned
+title:
+  en: Unstage a file in GitTree (undo git add)
+  ar: إلغاء تجهيز ملف في GitTree (التراجع عن git add)
+promise:
+  en: Move a staged file back to the unstaged list without losing any edit.
+concept: Unstaging resets the index entry and leaves the file on disk untouched.
+feature: staging-unstage-file
+commands:
+- git restore --staged -- <path>
+- git reset -q
+checkpoint: two-files-modified
+journey: unstage-a-file
+duration_min: 3
+requires:
+- 02-01
+platforms:
+- linux
+notes: Shortcut U works when the file list has focus.
+youtube:
+  en: null
+  ar: null

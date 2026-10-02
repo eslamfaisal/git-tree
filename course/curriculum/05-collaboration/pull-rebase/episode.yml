@@ -1,0 +1,25 @@
+id: 05-05
+series: 05-collaboration
+slug: pull-rebase
+status: planned
+title:
+  en: Git pull --rebase in GitTree
+  ar: git pull --rebase في GitTree
+promise:
+  en: Pull by replaying your local commits on top of the remote's.
+concept: Pull with rebase keeps a straight history by replaying local commits.
+feature: sync-pull-rebase
+commands:
+- git rebase --autostash <upstream>
+checkpoint: diverged-remote
+journey: pull-rebase
+duration_min: 4
+requires:
+- 05-03
+- 04-01
+platforms:
+- linux
+notes: The old tip is kept under refs/ogt/trash.
+youtube:
+  en: null
+  ar: null

@@ -1,0 +1,24 @@
+id: 07-17
+series: 07-customise-and-troubleshoot
+slug: restricted-mode
+status: planned
+title:
+  en: 'Restricted mode in GitTree: open untrusted repos safely'
+  ar: 'الوضع المقيَّد في GitTree: تصفّح مستودعًا غير موثوق بأمان'
+promise:
+  en: Work in Restricted Mode and review the trust decision later.
+concept: An untrusted repository's configuration and hooks must not run.
+feature: trust-restricted
+commands: []
+checkpoint: cloned-with-hooks
+journey: restricted-mode
+duration_min: 4
+requires:
+- 00-09
+platforms:
+- linux
+notes: 'Banner ''Restricted mode'': network operations are off. Review Trust… later. The ''Allow Git to open this folder?''
+  prompt (trust-safe-directory) is shown at the end in one sentence.'
+youtube:
+  en: null
+  ar: null

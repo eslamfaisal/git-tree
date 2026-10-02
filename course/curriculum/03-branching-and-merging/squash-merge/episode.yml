@@ -1,0 +1,24 @@
+id: 03-11
+series: 03-branching-and-merging
+slug: squash-merge
+status: planned
+title:
+  en: 'Git squash merge: combine a branch into one commit'
+  ar: 'الدمج بالضغط في Git (squash merge): فرع كامل في commit واحد'
+promise:
+  en: Squash a branch into the staged changes and commit it as one commit.
+concept: A squash merge copies a branch's changes without recording its history.
+feature: merge-run
+commands:
+- git merge --squash <branch>
+checkpoint: mergeable-branches
+journey: squash-merge
+duration_min: 4
+requires:
+- 03-10
+platforms:
+- linux
+notes: 'Option name in the dialog: ''Squash into staged changes (no commit)''. Not journaled (VERIFY V7).'
+youtube:
+  en: null
+  ar: null

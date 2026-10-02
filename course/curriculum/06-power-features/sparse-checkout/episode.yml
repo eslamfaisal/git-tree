@@ -1,0 +1,25 @@
+id: 06-11
+series: 06-power-features
+slug: sparse-checkout
+status: planned
+title:
+  en: 'Git sparse checkout in GitTree: only the folders you need'
+  ar: 'الـ sparse checkout في Git: اسحب المجلدات التي تحتاجها فقط'
+promise:
+  en: Check out only chosen folders of a large repository, and bring everything back later.
+concept: Cone-mode sparse checkout limits the working tree to selected directories.
+feature: sparse-edit
+commands:
+- git sparse-checkout set --cone --stdin
+- git sparse-checkout disable
+checkpoint: clean
+journey: sparse-checkout
+duration_min: 4
+requires:
+- 01-05
+platforms:
+- linux
+notes: Check Out All Files (sparse-disable) is shown at the end.
+youtube:
+  en: null
+  ar: null

@@ -1,0 +1,25 @@
+id: 07-14
+series: 07-customise-and-troubleshoot
+slug: check-for-updates
+status: planned
+title:
+  en: 'Update GitTree: check for updates, download and install'
+  ar: 'تحديث GitTree: التحقق من التحديثات وتنزيلها وتثبيتها'
+promise:
+  en: Check for an update, see the download get verified and restart to install it.
+concept: The app verifies a download by SHA-256 against the published release.
+feature: update-check
+commands: []
+checkpoint: no-repo
+journey: check-for-updates
+duration_min: 4
+requires:
+- 00-07
+platforms:
+- linux
+notes: 'VERIFY V6: do not claim or deny that Linux updates in-app until checked on a real Ubuntu install; record this video
+  on macOS or Windows or leave the Linux install step out. VERIFY V3: entry point of ''Check for Updates…'' per OS. The minisign
+  signature check is off (updater key blocked P00-T28). Covers update-download and update-install.'
+youtube:
+  en: null
+  ar: null

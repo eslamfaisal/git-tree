@@ -1,0 +1,25 @@
+id: 04-12
+series: 04-rewriting-history
+slug: reset-hard
+status: planned
+title:
+  en: 'Git reset --hard in GitTree: discard commits safely'
+  ar: 'git reset --hard في GitTree: تجاهل commits بأمان'
+promise:
+  en: Hard-reset a branch and recover the discarded work from the snapshot GitTree takes first.
+concept: A hard reset moves the branch, the index and the files, so it can lose work.
+feature: reset-hard
+commands:
+- git reset --hard <sha>
+checkpoint: two-files-modified
+journey: reset-hard
+duration_min: 4
+requires:
+- 04-11
+- 02-12
+platforms:
+- linux
+notes: 'Button text: ''Discard and reset {{branch}}''; dialog focus starts on Cancel.'
+youtube:
+  en: null
+  ar: null

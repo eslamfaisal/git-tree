@@ -1,0 +1,24 @@
+id: 06-26
+series: 06-power-features
+slug: pull-request-dashboard
+status: planned
+title:
+  en: See all your pull requests across a workspace
+  ar: اعرض كل طلبات الدمج الخاصة بك عبر مساحة العمل
+promise:
+  en: Use the Pull requests tab of the Workspaces page to see what needs your review.
+concept: A dashboard is a view over the host's API across many repositories.
+feature: pr-dashboard
+commands: []
+checkpoint: hosted-account
+journey: pull-request-dashboard
+duration_min: 4
+requires:
+- 06-17
+- 05-12
+platforms:
+- linux
+notes: Needs real pull requests on a connected host.
+youtube:
+  en: null
+  ar: null

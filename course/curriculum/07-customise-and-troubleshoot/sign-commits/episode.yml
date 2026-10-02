@@ -1,0 +1,25 @@
+id: 07-08
+series: 07-customise-and-troubleshoot
+slug: sign-commits
+status: planned
+title:
+  en: Sign Git commits in GitTree (OpenPGP, SSH, S/MIME)
+  ar: توقيع commits في Git عبر GitTree (OpenPGP وSSH وS/MIME)
+promise:
+  en: Choose a signing key and turn on signing for every commit.
+concept: A signed commit proves who created it.
+feature: signing-page
+commands:
+- git config gpg.format ssh
+- git config commit.gpgsign true
+checkpoint: clean
+journey: sign-commits
+duration_min: 5
+requires:
+- 07-05
+platforms:
+- linux
+notes: Includes the signature badge in the graph (graph-signature) and the commit-signing keys.
+youtube:
+  en: null
+  ar: null

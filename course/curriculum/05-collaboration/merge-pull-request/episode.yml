@@ -1,0 +1,22 @@
+id: 05-26
+series: 05-collaboration
+slug: merge-pull-request
+status: planned
+title:
+  en: 'Merge a pull request: merge, squash or rebase'
+  ar: 'دمج pull request: دمج عادي أو squash أو rebase'
+promise:
+  en: Merge a pull request on the host with the method you choose.
+concept: The host merges server-side, guarded by the expected head commit.
+feature: pr-merge
+commands: []
+checkpoint: pr-open
+journey: merge-pull-request
+duration_min: 4
+requires:
+- 05-25
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

@@ -1,0 +1,23 @@
+id: 06-21
+series: 06-power-features
+slug: fuzzy-file-finder
+status: planned
+title:
+  en: Find any file fast in GitTree (fuzzy file finder)
+  ar: اعثر على أي ملف بسرعة في GitTree (البحث الضبابي)
+promise:
+  en: 'Find a file with the : mode and open its history.'
+concept: git ls-files lists tracked and untracked-but-not-ignored paths.
+feature: search-files
+commands:
+- git ls-files -z --cached --others --exclude-standard
+checkpoint: clean
+journey: fuzzy-file-finder
+duration_min: 3
+requires:
+- 06-19
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

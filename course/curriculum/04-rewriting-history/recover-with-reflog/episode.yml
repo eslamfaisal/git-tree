@@ -1,0 +1,23 @@
+id: 04-16
+series: 04-rewriting-history
+slug: recover-with-reflog
+status: planned
+title:
+  en: Recover a lost Git commit with the reflog
+  ar: استرجاع commit ضائع في Git باستخدام reflog
+promise:
+  en: Create a branch from a reflog entry to get back a commit that no branch points to.
+concept: A commit with no ref is still in the database until garbage collection.
+feature: reflog-restore
+commands:
+- git branch <name> <sha>
+checkpoint: lost-commit
+journey: recover-with-reflog
+duration_min: 4
+requires:
+- 04-15
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

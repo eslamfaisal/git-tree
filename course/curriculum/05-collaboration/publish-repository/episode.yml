@@ -1,0 +1,25 @@
+id: 05-19
+series: 05-collaboration
+slug: publish-repository
+status: planned
+title:
+  en: Publish a local Git repository to a host from GitTree
+  ar: نشر مستودع Git محلي على منصة استضافة من GitTree
+promise:
+  en: Create the repository on your host, add it as origin and push, in one dialog.
+concept: 'Publishing is three steps in one: create the remote repository, add origin, push.'
+feature: sync-publish
+commands:
+- git remote add origin <url>
+- git push -u origin <branch>
+checkpoint: hosted-account
+journey: publish-repository
+duration_min: 4
+requires:
+- 05-12
+- 01-07
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

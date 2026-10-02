@@ -1,0 +1,24 @@
+id: 05-21
+series: 05-collaboration
+slug: check-out-pull-request
+status: planned
+title:
+  en: Check out a pull request branch locally in GitTree
+  ar: سحب فرع pull request محليًا في GitTree
+promise:
+  en: Fetch a pull request head and check out its branch.
+concept: A host publishes each pull request head as a ref you can fetch.
+feature: pr-checkout
+commands:
+- git fetch <remote> <pr-head>:refs/ogt/pull/<n>
+checkpoint: pr-open
+journey: check-out-pull-request
+duration_min: 4
+requires:
+- 05-20
+platforms:
+- linux
+notes: Needs a real open pull request on a connected host.
+youtube:
+  en: null
+  ar: null

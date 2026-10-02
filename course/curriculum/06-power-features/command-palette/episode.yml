@@ -1,0 +1,24 @@
+id: 06-19
+series: 06-power-features
+slug: command-palette
+status: planned
+title:
+  en: 'The GitTree command palette: run anything from the keyboard'
+  ar: 'لوحة الأوامر في GitTree: نفّذ أي أمر من لوحة المفاتيح'
+promise:
+  en: Open the palette and run commands, jump to refs and switch repositories with the prefixes.
+concept: One searchable list replaces menus for commands, refs and repositories.
+feature: palette-open
+commands: []
+checkpoint: clean
+journey: command-palette
+duration_min: 5
+requires:
+- 00-13
+platforms:
+- linux
+notes: 'Shortcut Mod+Shift+P. Prefixes: > commands, @ refs, # commits, : files, ''repo '' repositories. The # and : modes
+  get their own videos (06-20, 06-21).'
+youtube:
+  en: null
+  ar: null

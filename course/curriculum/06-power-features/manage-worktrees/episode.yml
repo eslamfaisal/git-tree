@@ -1,0 +1,26 @@
+id: 06-03
+series: 06-power-features
+slug: manage-worktrees
+status: planned
+title:
+  en: Move, lock and remove a Git worktree
+  ar: نقل وقفل وحذف worktree في Git
+promise:
+  en: Move, lock, remove and prune worktrees safely.
+concept: Git tracks worktrees in the main repository, so moving one by hand breaks the link.
+feature: worktree-manage
+commands:
+- git worktree move
+- git worktree lock
+- git worktree remove
+- git worktree prune
+checkpoint: clean
+journey: manage-worktrees
+duration_min: 5
+requires:
+- 06-02
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

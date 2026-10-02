@@ -1,0 +1,23 @@
+id: 02-18
+series: 02-daily-workflow
+slug: jump-between-changes
+status: planned
+title:
+  en: Jump between changes in a Git diff (F7 and Shift+F7)
+  ar: التنقل بين التغييرات في الـ diff بالمفتاحين F7 وShift+F7
+promise:
+  en: Move to the next and previous change with the keyboard and the change overview.
+concept: Reading a long diff is faster when you jump from change to change.
+feature: diff-nav
+commands:
+- git diff
+checkpoint: two-hunks
+journey: jump-between-changes
+duration_min: 3
+requires:
+- 02-17
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

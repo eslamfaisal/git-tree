@@ -1,0 +1,24 @@
+id: 00-06
+series: 00-start-here
+slug: git-version-required
+status: planned
+title:
+  en: Which Git version does GitTree need? (2.39 or newer)
+  ar: ما إصدار Git الذي يحتاجه GitTree؟ (2.39 أو أحدث)
+promise:
+  en: Check your Git version and read the two screens GitTree shows when Git is missing or too old.
+concept: 'GitTree never bundles Git: it runs the git command you already have.'
+feature: repos-git-setup
+commands:
+- git --version
+checkpoint: no-repo
+journey: git-version-required
+duration_min: 3
+requires:
+- 00-03
+platforms:
+- linux
+notes: Screens are 'GitTree needs Git' and 'This Git is too old'. Status done (P00-T11).
+youtube:
+  en: null
+  ar: null

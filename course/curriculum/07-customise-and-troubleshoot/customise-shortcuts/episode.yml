@@ -1,0 +1,23 @@
+id: 07-11
+series: 07-customise-and-troubleshoot
+slug: customise-shortcuts
+status: planned
+title:
+  en: Customise keyboard shortcuts in GitTree
+  ar: تخصيص اختصارات لوحة المفاتيح في GitTree
+promise:
+  en: Change, remove and reset a shortcut and see how conflicts are reported.
+concept: Two commands cannot share one chord in the same context.
+feature: keys-editor
+commands: []
+checkpoint: clean
+journey: customise-shortcuts
+duration_min: 4
+requires:
+- 07-10
+platforms:
+- linux
+notes: Stored in keybindings.json.
+youtube:
+  en: null
+  ar: null

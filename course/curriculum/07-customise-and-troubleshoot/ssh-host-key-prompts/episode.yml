@@ -1,0 +1,24 @@
+id: 07-07
+series: 07-customise-and-troubleshoot
+slug: ssh-host-key-prompts
+status: planned
+title:
+  en: SSH host key and username prompts in GitTree
+  ar: تنبيهات مفتاح المضيف واسم المستخدم لـ SSH في GitTree
+promise:
+  en: Answer the 'Connect to host?' prompt safely and choose how unknown host keys are treated.
+concept: The first SSH connection to a server asks you to trust its host key.
+feature: sync-ssh-prompts
+commands:
+- ssh -T git@<host>
+checkpoint: with-remote-branches
+journey: ssh-host-key-prompts
+duration_min: 4
+requires:
+- 07-06
+platforms:
+- linux
+notes: Prompts appear in GitTree's own secure dialog, not in the terminal.
+youtube:
+  en: null
+  ar: null

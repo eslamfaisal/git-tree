@@ -1,0 +1,28 @@
+id: 03-10
+series: 03-branching-and-merging
+slug: merge-a-branch
+status: planned
+title:
+  en: Merge a Git branch in GitTree (merge commit)
+  ar: دمج فرع في Git عبر GitTree (merge commit)
+promise:
+  en: Merge one branch into the current branch and choose how it is recorded.
+concept: A merge commit has two parents; a fast-forward has none to add.
+feature: merge-run
+commands:
+- git merge --no-edit <branch>
+- git merge --no-ff <branch>
+- git merge --ff-only <branch>
+checkpoint: mergeable-branches
+journey: merge-a-branch
+duration_min: 5
+requires:
+- 03-09
+- 01-10
+platforms:
+- linux
+notes: 'VERIFY V7: a plain Merge is not journaled, so Undo cannot undo it. Do not promise Undo here; show Reset (04-10..04-12)
+  or the reflog (04-15) instead.'
+youtube:
+  en: null
+  ar: null

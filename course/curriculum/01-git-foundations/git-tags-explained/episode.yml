@@ -1,0 +1,24 @@
+id: 01-08
+series: 01-git-foundations
+slug: git-tags-explained
+status: planned
+title:
+  en: 'Git tags explained: create a tag in GitTree'
+  ar: 'شرح الـ tags في Git: أنشئ tag في GitTree'
+promise:
+  en: Create a lightweight tag on a commit and see it as a pill in the graph.
+concept: A lightweight tag is a fixed name on a commit.
+feature: tag-create
+commands:
+- git tag <name> <sha>
+checkpoint: clean
+journey: git-tags-explained
+duration_min: 4
+requires:
+- 01-03
+platforms:
+- linux
+notes: Annotated tags are 03-07; deleting and pushing tags are 03-08 and 05-10.
+youtube:
+  en: null
+  ar: null

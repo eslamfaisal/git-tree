@@ -1,0 +1,24 @@
+id: 03-03
+series: 03-branching-and-merging
+slug: check-out-remote-branch
+status: planned
+title:
+  en: Check out a remote Git branch and track it
+  ar: سحب فرع بعيد في Git وتتبّعه محليًا
+promise:
+  en: Check out a remote branch so that a local branch tracks it.
+concept: A local branch can track a remote branch (its upstream).
+feature: branch-checkout
+commands:
+- git switch --track origin/<branch>
+checkpoint: with-remote-branches
+journey: check-out-remote-branch
+duration_min: 3
+requires:
+- 03-02
+- 01-06
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

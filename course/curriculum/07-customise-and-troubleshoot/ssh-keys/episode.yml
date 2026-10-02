@@ -1,0 +1,25 @@
+id: 07-06
+series: 07-customise-and-troubleshoot
+slug: ssh-keys
+status: planned
+title:
+  en: 'SSH keys in GitTree: generate, copy and test'
+  ar: 'مفاتيح SSH في GitTree: التوليد والنسخ والاختبار'
+promise:
+  en: Generate an Ed25519 key, copy its public half and test a connection.
+concept: An SSH key pair proves who you are without a password.
+feature: ssh-page
+commands:
+- ssh-keygen -t ed25519
+- ssh -T git@<host>
+checkpoint: clean
+journey: ssh-keys
+duration_min: 5
+requires:
+- 07-01
+platforms:
+- linux
+notes: Uploading the key to an account (provider-ssh-upload) is a button here; Azure DevOps does not support it.
+youtube:
+  en: null
+  ar: null

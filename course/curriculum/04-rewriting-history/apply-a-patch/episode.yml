@@ -1,0 +1,24 @@
+id: 04-19
+series: 04-rewriting-history
+slug: apply-a-patch
+status: planned
+title:
+  en: 'Apply a Git patch file: git apply vs git am'
+  ar: 'تطبيق ملف patch في Git: الفرق بين git apply وgit am'
+promise:
+  en: Apply a patch to the working tree, to the index, or as commits.
+concept: git apply changes files, while git am also creates the commits.
+feature: patch-apply
+commands:
+- git apply --index <patch>
+- git am <patch>
+checkpoint: patch-file
+journey: apply-a-patch
+duration_min: 4
+requires:
+- 04-18
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

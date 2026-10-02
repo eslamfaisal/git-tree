@@ -1,0 +1,24 @@
+id: 07-13
+series: 07-customise-and-troubleshoot
+slug: report-a-bug
+status: planned
+title:
+  en: Report a bug or a crash from GitTree
+  ar: الإبلاغ عن خطأ أو انهيار من داخل GitTree
+promise:
+  en: Open Crash Reports, copy the text and report it on GitHub.
+concept: A useful bug report names the version, the steps and the log, with no secrets.
+feature: crash-reports
+commands: []
+checkpoint: clean
+journey: report-a-bug
+duration_min: 3
+requires:
+- 07-12
+platforms:
+- linux
+notes: 'VERIFY V3: entry points for the Help commands (Report a Bug, Crash Reports) differ by OS; use the tab-bar Report a
+  Bug button and the palette. Reports go to GitHub.'
+youtube:
+  en: null
+  ar: null

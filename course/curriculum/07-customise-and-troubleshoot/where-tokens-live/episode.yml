@@ -1,0 +1,24 @@
+id: 07-18
+series: 07-customise-and-troubleshoot
+slug: where-tokens-live
+status: planned
+title:
+  en: Where GitTree stores your tokens (system keychain)
+  ar: أين يخزّن GitTree التوكنات الخاصة بك (مخزن مفاتيح النظام)
+promise:
+  en: See that tokens go to the system keychain and how to disconnect an account or forget all credentials.
+concept: Credentials belong in the operating system's secure store, never in a file or a URL.
+feature: provider-keychain
+commands:
+- git credential fill
+checkpoint: hosted-account
+journey: where-tokens-live
+duration_min: 4
+requires:
+- 05-12
+platforms:
+- linux
+notes: 'macOS: choose Always Allow at the keychain prompt; Windows: Credential Manager. Linux is 07-19.'
+youtube:
+  en: null
+  ar: null

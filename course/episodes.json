@@ -1,5 +1,640 @@
 [
  {
+  "id": "00-01",
+  "series": "00-start-here",
+  "slug": "install-gittree-on-macos",
+  "status": "planned",
+  "title": {
+   "en": "Install GitTree on macOS (Apple silicon and Intel)",
+   "ar": "تثبيت GitTree على macOS (آبل سيليكون وإنتل)"
+  },
+  "promise": {
+   "en": "Install the universal GitTree disk image on a Mac and get past the first-launch warning."
+  },
+  "feature": "install-macos",
+  "concept": "GitTree is a front end for the Git already on your computer, so Git must be installed first.",
+  "commands": [
+   "git --version",
+   "xcode-select --install"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/install-gittree-on-macos"
+ },
+ {
+  "id": "00-02",
+  "series": "00-start-here",
+  "slug": "install-gittree-on-windows",
+  "status": "planned",
+  "title": {
+   "en": "Install GitTree on Windows 10 and 11",
+   "ar": "تثبيت GitTree على ويندوز 10 و11"
+  },
+  "promise": {
+   "en": "Run the GitTree setup on Windows and get past the SmartScreen warning."
+  },
+  "feature": "install-windows",
+  "concept": "GitTree uses Git for Windows as its Git, and needs version 2.39 or newer.",
+  "commands": [
+   "git --version"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/install-gittree-on-windows"
+ },
+ {
+  "id": "00-03",
+  "series": "00-start-here",
+  "slug": "install-gittree-on-ubuntu-debian",
+  "status": "planned",
+  "title": {
+   "en": "Install GitTree on Ubuntu and Debian (.deb)",
+   "ar": "تثبيت GitTree على أوبونتو وديبيان (حزمة deb)"
+  },
+  "promise": {
+   "en": "Install the .deb package with apt and start GitTree from the menu."
+  },
+  "feature": "install-linux-deb",
+  "concept": "apt resolves dependencies for a local package, and GitTree needs Git 2.39 or newer.",
+  "commands": [
+   "sudo apt install ./Git-Tree-Linux.deb",
+   "git --version"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/install-gittree-on-ubuntu-debian"
+ },
+ {
+  "id": "00-04",
+  "series": "00-start-here",
+  "slug": "run-gittree-appimage",
+  "status": "planned",
+  "title": {
+   "en": "Run GitTree on Linux with the AppImage (no root)",
+   "ar": "تشغيل GitTree على لينكس بصيغة AppImage دون صلاحيات root"
+  },
+  "promise": {
+   "en": "Make the AppImage executable and run GitTree without installing anything."
+  },
+  "feature": "install-linux-appimage",
+  "concept": "A portable AppImage runs from any folder and does not register the opengittree:// link handler.",
+  "commands": [
+   "chmod +x Git-Tree-Linux.AppImage",
+   "./Git-Tree-Linux.AppImage"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/run-gittree-appimage"
+ },
+ {
+  "id": "00-05",
+  "series": "00-start-here",
+  "slug": "verify-linux-download",
+  "status": "planned",
+  "title": {
+   "en": "Verify a GitTree Linux download with SHA256SUMS",
+   "ar": "التحقق من ملف GitTree على لينكس باستخدام SHA256SUMS"
+  },
+  "promise": {
+   "en": "Check that a downloaded installer matches the checksum published with the release."
+  },
+  "feature": "install-linux-verify",
+  "concept": "A checksum catches a corrupt download but not a compromised release.",
+  "commands": [
+   "sha256sum -c SHA256SUMS.txt"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/verify-linux-download"
+ },
+ {
+  "id": "00-06",
+  "series": "00-start-here",
+  "slug": "git-version-required",
+  "status": "planned",
+  "title": {
+   "en": "Which Git version does GitTree need? (2.39 or newer)",
+   "ar": "ما إصدار Git الذي يحتاجه GitTree؟ (2.39 أو أحدث)"
+  },
+  "promise": {
+   "en": "Check your Git version and read the two screens GitTree shows when Git is missing or too old."
+  },
+  "feature": "repos-git-setup",
+  "concept": "GitTree never bundles Git: it runs the git command you already have.",
+  "commands": [
+   "git --version"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/git-version-required"
+ },
+ {
+  "id": "00-07",
+  "series": "00-start-here",
+  "slug": "sign-in-first-launch",
+  "status": "planned",
+  "title": {
+   "en": "Sign in to GitTree on first launch (website account)",
+   "ar": "تسجيل الدخول إلى GitTree عند أول تشغيل بحساب الموقع"
+  },
+  "promise": {
+   "en": "Sign in through the GitTree website from the app, including the manual code fallback."
+  },
+  "feature": "signin-dialog",
+  "concept": "Your GitTree account (website) is separate from your Git identity and your hosting accounts.",
+  "commands": [],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/sign-in-first-launch"
+ },
+ {
+  "id": "00-08",
+  "series": "00-start-here",
+  "slug": "open-a-repository",
+  "status": "planned",
+  "title": {
+   "en": "Open a Git repository in GitTree (folder or drag and drop)",
+   "ar": "فتح مستودع Git في GitTree (من مجلد أو بالسحب والإفلات)"
+  },
+  "promise": {
+   "en": "Open an existing repository from the New Tab page, the Open shortcut or a dropped folder."
+  },
+  "feature": "repos-open",
+  "concept": "A repository is a working folder plus a .git directory.",
+  "commands": [
+   "git rev-parse --git-dir --is-inside-work-tree"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/open-a-repository"
+ },
+ {
+  "id": "00-09",
+  "series": "00-start-here",
+  "slug": "trust-prompt-on-open",
+  "status": "planned",
+  "title": {
+   "en": "Trust this repository? What GitTree checks before it opens",
+   "ar": "هل تثق بهذا المستودع؟ ما يفحصه GitTree قبل فتحه"
+  },
+  "promise": {
+   "en": "Read the trust prompt and choose between Restricted Mode and Trust and Open."
+  },
+  "feature": "trust-dialog",
+  "concept": "A cloned repository's config and hooks can run programs on your machine.",
+  "commands": [
+   "git config --list --show-scope --show-origin"
+  ],
+  "checkpoint": "cloned-with-hooks",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/trust-prompt-on-open"
+ },
+ {
+  "id": "00-10",
+  "series": "00-start-here",
+  "slug": "clone-a-repository",
+  "status": "planned",
+  "title": {
+   "en": "Clone a Git repository by URL in GitTree",
+   "ar": "استنساخ مستودع Git من رابط في GitTree"
+  },
+  "promise": {
+   "en": "Clone a repository from a URL into a folder you choose and open it."
+  },
+  "feature": "repos-clone-url",
+  "concept": "A clone copies the full history and sets the remote named origin.",
+  "commands": [
+   "git clone <url> <dest>"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/clone-a-repository"
+ },
+ {
+  "id": "00-11",
+  "series": "00-start-here",
+  "slug": "init-a-repository",
+  "status": "planned",
+  "title": {
+   "en": "Create a new Git repository in GitTree (git init)",
+   "ar": "إنشاء مستودع Git جديد في GitTree (git init)"
+  },
+  "promise": {
+   "en": "Initialise a new repository with a first branch name and an optional .gitignore template and licence."
+  },
+  "feature": "repos-init",
+  "concept": "git init creates the object database and the first branch.",
+  "commands": [
+   "git init --initial-branch main"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/init-a-repository"
+ },
+ {
+  "id": "00-12",
+  "series": "00-start-here",
+  "slug": "recent-repositories",
+  "status": "planned",
+  "title": {
+   "en": "Recent repositories and the New Tab page in GitTree",
+   "ar": "المستودعات الأخيرة وصفحة التبويب الجديد في GitTree"
+  },
+  "promise": {
+   "en": "Reopen a repository from the Recent list and remove one from it without deleting files."
+  },
+  "feature": "repos-recents",
+  "concept": "The recent list is stored by the app, nothing in the repository changes.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/recent-repositories"
+ },
+ {
+  "id": "00-13",
+  "series": "00-start-here",
+  "slug": "tour-of-the-window",
+  "status": "planned",
+  "title": {
+   "en": "GitTree window tour: sidebar, graph, inspector, drawer",
+   "ar": "جولة في نافذة GitTree: الشريط الجانبي والرسم واللوحة السفلية"
+  },
+  "promise": {
+   "en": "Learn where the four areas of the window are and how to toggle each one."
+  },
+  "feature": "view-panels",
+  "concept": "The window is a view over one repository: refs on the left, history in the centre, details on the right.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/00-start-here/tour-of-the-window"
+ },
+ {
+  "id": "01-01",
+  "series": "01-git-foundations",
+  "slug": "what-is-a-commit",
+  "status": "planned",
+  "title": {
+   "en": "What is a Git commit? See one in GitTree",
+   "ar": "ما هو الـ commit في Git؟ شاهد واحدًا في GitTree"
+  },
+  "promise": {
+   "en": "See that a commit is a snapshot with a parent, a message and an author, using the Commit Details panel."
+  },
+  "feature": "graph-detail",
+  "concept": "A commit is a snapshot (tree) plus parents, message, author and committer.",
+  "commands": [
+   "git show --stat <sha>",
+   "git cat-file -p <sha>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/what-is-a-commit"
+ },
+ {
+  "id": "01-02",
+  "series": "01-git-foundations",
+  "slug": "commit-graph-dag",
+  "status": "planned",
+  "title": {
+   "en": "The Git commit graph explained: history is a DAG",
+   "ar": "شرح رسم الـ commits في Git: السجل شبكة موجَّهة"
+  },
+  "promise": {
+   "en": "Read the commit graph: parents, lanes and why history is a graph and not a line."
+  },
+  "feature": "graph-render",
+  "concept": "History is a directed acyclic graph in which lanes show parallel lines of work.",
+  "commands": [
+   "git log --graph --oneline --all"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/commit-graph-dag"
+ },
+ {
+  "id": "01-03",
+  "series": "01-git-foundations",
+  "slug": "branches-are-pointers",
+  "status": "planned",
+  "title": {
+   "en": "Git branches are just pointers (refs explained)",
+   "ar": "الفروع في Git مجرد مؤشّرات: شرح الـ refs"
+  },
+  "promise": {
+   "en": "See branch pills on the graph and learn that a ref is a movable name for a commit."
+  },
+  "feature": "graph-ref-pills",
+  "concept": "A ref (branch name) is a movable pointer to a commit.",
+  "commands": [
+   "git branch -v",
+   "git show-ref"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/branches-are-pointers"
+ },
+ {
+  "id": "01-04",
+  "series": "01-git-foundations",
+  "slug": "what-is-head",
+  "status": "planned",
+  "title": {
+   "en": "What is HEAD in Git? Find it in GitTree",
+   "ar": "ما هو HEAD في Git؟ اعثر عليه في GitTree"
+  },
+  "promise": {
+   "en": "Jump to HEAD and see what the checked-out branch and a detached HEAD look like."
+  },
+  "feature": "graph-jump-head",
+  "concept": "HEAD is the current commit, usually through the checked-out branch.",
+  "commands": [
+   "git rev-parse HEAD",
+   "git symbolic-ref HEAD"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/what-is-head"
+ },
+ {
+  "id": "01-05",
+  "series": "01-git-foundations",
+  "slug": "three-trees-and-the-index",
+  "status": "planned",
+  "title": {
+   "en": "Git working tree, index and HEAD: the three trees",
+   "ar": "شجرة العمل والـ index وHEAD في Git: الأشجار الثلاث"
+  },
+  "promise": {
+   "en": "Use the Working Changes panel to see the working folder, the index and HEAD as three different states."
+  },
+  "feature": "staging-panel",
+  "concept": "Git compares three trees: the working tree, the index (staging area) and HEAD.",
+  "commands": [
+   "git status",
+   "git diff",
+   "git diff --staged"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/three-trees-and-the-index"
+ },
+ {
+  "id": "01-06",
+  "series": "01-git-foundations",
+  "slug": "local-vs-remote-branches",
+  "status": "planned",
+  "title": {
+   "en": "Local vs remote branches in Git (origin/main explained)",
+   "ar": "الفروع المحلية والبعيدة في Git: شرح origin/main"
+  },
+  "promise": {
+   "en": "Read the left panel and the ahead and behind counts to tell local branches from remote-tracking ones."
+  },
+  "feature": "branch-panel",
+  "concept": "A remote-tracking branch is your local record of where the remote's branch was at the last fetch.",
+  "commands": [
+   "git branch -vv",
+   "git branch -r"
+  ],
+  "checkpoint": "ahead-of-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/local-vs-remote-branches"
+ },
+ {
+  "id": "01-07",
+  "series": "01-git-foundations",
+  "slug": "what-is-a-remote",
+  "status": "planned",
+  "title": {
+   "en": "What is a Git remote? Add, edit and remove one",
+   "ar": "ما هو الـ remote في Git؟ إضافة وتعديل وحذف"
+  },
+  "promise": {
+   "en": "Add, edit and remove a remote and see that it is only a name for a URL."
+  },
+  "feature": "remote-crud",
+  "concept": "A remote is a named URL (with an optional separate push URL).",
+  "commands": [
+   "git remote add origin <url>",
+   "git remote set-url origin <url>",
+   "git remote remove origin"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/what-is-a-remote"
+ },
+ {
+  "id": "01-08",
+  "series": "01-git-foundations",
+  "slug": "git-tags-explained",
+  "status": "planned",
+  "title": {
+   "en": "Git tags explained: create a tag in GitTree",
+   "ar": "شرح الـ tags في Git: أنشئ tag في GitTree"
+  },
+  "promise": {
+   "en": "Create a lightweight tag on a commit and see it as a pill in the graph."
+  },
+  "feature": "tag-create",
+  "concept": "A lightweight tag is a fixed name on a commit.",
+  "commands": [
+   "git tag <name> <sha>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/git-tags-explained"
+ },
+ {
+  "id": "01-09",
+  "series": "01-git-foundations",
+  "slug": "fetch-without-changing-files",
+  "status": "planned",
+  "title": {
+   "en": "Git fetch explained: download without changing your files",
+   "ar": "شرح git fetch: تنزيل التحديثات دون تغيير ملفاتك"
+  },
+  "promise": {
+   "en": "Run Fetch All and watch only the remote-tracking branches move while your files stay put."
+  },
+  "feature": "sync-fetch",
+  "concept": "Fetch updates remote-tracking refs and never touches your working files or your branches.",
+  "commands": [
+   "git fetch --all --prune",
+   "git fetch <remote>"
+  ],
+  "checkpoint": "behind-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/fetch-without-changing-files"
+ },
+ {
+  "id": "01-10",
+  "series": "01-git-foundations",
+  "slug": "what-is-a-fast-forward",
+  "status": "planned",
+  "title": {
+   "en": "What is a Git fast-forward? Move a branch pointer",
+   "ar": "ما هو الـ fast-forward في Git؟ تحريك مؤشر الفرع"
+  },
+  "promise": {
+   "en": "Fast-forward a branch to its upstream and see that only the pointer moves."
+  },
+  "feature": "branch-ff",
+  "concept": "A fast-forward moves a branch pointer along a straight line and creates no commit.",
+  "commands": [
+   "git merge-base --is-ancestor <a> <b>",
+   "git merge --ff-only <b>"
+  ],
+  "checkpoint": "behind-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/what-is-a-fast-forward"
+ },
+ {
+  "id": "01-11",
+  "series": "01-git-foundations",
+  "slug": "merge-vs-rebase",
+  "status": "planned",
+  "title": {
+   "en": "Git merge vs rebase: the difference on the graph",
+   "ar": "الفرق بين git merge وgit rebase على الرسم"
+  },
+  "promise": {
+   "en": "Drag one branch onto another and compare what Merge and Rebase do to the graph."
+  },
+  "feature": "graph-ref-drop",
+  "concept": "Merge joins two lines of history with a new commit; rebase replays commits with new ids.",
+  "commands": [
+   "git merge <branch>",
+   "git rebase <branch>"
+  ],
+  "checkpoint": "diverged-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/merge-vs-rebase"
+ },
+ {
+  "id": "01-12",
+  "series": "01-git-foundations",
+  "slug": "git-config-scopes",
+  "status": "planned",
+  "title": {
+   "en": "Git config scopes: system, global and local explained",
+   "ar": "نطاقات إعدادات Git: النظام والعام والمحلي"
+  },
+  "promise": {
+   "en": "Change a Git setting at the global and the local level from Preferences and see which one wins."
+  },
+  "feature": "settings-git-config",
+  "concept": "Git settings live in scopes (system, global, local) and the narrowest scope wins.",
+  "commands": [
+   "git config --list --show-scope",
+   "git config --global <key> <value>",
+   "git config --local <key> <value>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/01-git-foundations/git-config-scopes"
+ },
+ {
+  "id": "02-01",
+  "series": "02-daily-workflow",
+  "slug": "stage-a-file",
+  "status": "planned",
+  "title": {
+   "en": "Stage a file in GitTree (git add explained)",
+   "ar": "كيف تُجهِّز ملفًا في GitTree (شرح git add)"
+  },
+  "promise": {
+   "en": "Stage one changed file so that it goes into the next commit and the others do not."
+  },
+  "feature": "staging-file",
+  "concept": "Staging copies a file's changes into the index, which is the next commit.",
+  "commands": [
+   "git add -A -- <path>",
+   "git status"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/stage-a-file"
+ },
+ {
   "id": "02-02",
   "series": "02-daily-workflow",
   "slug": "stage-a-single-hunk",
@@ -24,5 +659,3420 @@
    "ar": null
   },
   "path": "curriculum/02-daily-workflow/stage-a-single-hunk"
+ },
+ {
+  "id": "02-03",
+  "series": "02-daily-workflow",
+  "slug": "stage-single-lines",
+  "status": "planned",
+  "title": {
+   "en": "Stage single lines in GitTree (partial commit)",
+   "ar": "جهِّز أسطرًا محددة في GitTree لحفظ جزء من التعديل"
+  },
+  "promise": {
+   "en": "Pick individual changed lines and stage only those."
+  },
+  "feature": "staging-lines",
+  "concept": "A patch can be narrowed to single lines before it enters the index.",
+  "commands": [
+   "git add -p (then e to edit the hunk)",
+   "git apply --cached"
+  ],
+  "checkpoint": "mixed-lines",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/stage-single-lines"
+ },
+ {
+  "id": "02-04",
+  "series": "02-daily-workflow",
+  "slug": "unstage-a-file",
+  "status": "planned",
+  "title": {
+   "en": "Unstage a file in GitTree (undo git add)",
+   "ar": "إلغاء تجهيز ملف في GitTree (التراجع عن git add)"
+  },
+  "promise": {
+   "en": "Move a staged file back to the unstaged list without losing any edit."
+  },
+  "feature": "staging-unstage-file",
+  "concept": "Unstaging resets the index entry and leaves the file on disk untouched.",
+  "commands": [
+   "git restore --staged -- <path>",
+   "git reset -q"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/unstage-a-file"
+ },
+ {
+  "id": "02-05",
+  "series": "02-daily-workflow",
+  "slug": "make-a-commit",
+  "status": "planned",
+  "title": {
+   "en": "Make a Git commit in GitTree step by step",
+   "ar": "كيف تُنشئ commit في GitTree خطوة بخطوة"
+  },
+  "promise": {
+   "en": "Write a summary and description and commit the staged changes."
+  },
+  "feature": "commit-create",
+  "concept": "A commit snapshots the index, not the working folder.",
+  "commands": [
+   "git commit --no-edit -F - --cleanup=strip"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/make-a-commit"
+ },
+ {
+  "id": "02-06",
+  "series": "02-daily-workflow",
+  "slug": "commit-message-hints",
+  "status": "planned",
+  "title": {
+   "en": "Write better Git commit messages with GitTree hints",
+   "ar": "اكتب رسائل commit أوضح مع تلميحات GitTree"
+  },
+  "promise": {
+   "en": "Use the summary counter and the message hints, including the Conventional Commits check."
+  },
+  "feature": "commit-message-assist",
+  "concept": "A commit message has a short summary, a blank line, then an optional body.",
+  "commands": [],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/commit-message-hints"
+ },
+ {
+  "id": "02-07",
+  "series": "02-daily-workflow",
+  "slug": "amend-last-commit",
+  "status": "planned",
+  "title": {
+   "en": "Amend the last Git commit in GitTree",
+   "ar": "تعديل آخر commit في GitTree (amend)"
+  },
+  "promise": {
+   "en": "Fix the message or add a forgotten file to the last commit."
+  },
+  "feature": "commit-amend",
+  "concept": "Amend replaces the tip commit with a new one that has a new id.",
+  "commands": [
+   "git commit --amend"
+  ],
+  "checkpoint": "typo-in-last-commit",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/amend-last-commit"
+ },
+ {
+  "id": "02-08",
+  "series": "02-daily-workflow",
+  "slug": "commit-options",
+  "status": "planned",
+  "title": {
+   "en": "Git commit options: sign-off, skip hooks, other author",
+   "ar": "خيارات commit في Git: التوقيع وتخطي الـ hooks ومؤلف آخر"
+  },
+  "promise": {
+   "en": "Open the Commit Options menu and use sign-off, a different author and recent messages."
+  },
+  "feature": "commit-options",
+  "concept": "A commit records an author and a committer separately, and can carry a sign-off trailer.",
+  "commands": [
+   "git commit --signoff",
+   "git commit --no-verify"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/commit-options"
+ },
+ {
+  "id": "02-09",
+  "series": "02-daily-workflow",
+  "slug": "add-co-authors",
+  "status": "planned",
+  "title": {
+   "en": "Add co-authors to a Git commit in GitTree",
+   "ar": "إضافة مشاركين في التأليف إلى commit في GitTree"
+  },
+  "promise": {
+   "en": "Credit a second person on a commit with a Co-authored-by trailer."
+  },
+  "feature": "commit-coauthors",
+  "concept": "A trailer is a key and value line at the end of a commit message.",
+  "commands": [
+   "git commit -m \"... Co-authored-by: Name <email>\""
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/add-co-authors"
+ },
+ {
+  "id": "02-10",
+  "series": "02-daily-workflow",
+  "slug": "commit-hook-output",
+  "status": "planned",
+  "title": {
+   "en": "Git commit hooks: read pre-commit output in GitTree",
+   "ar": "خطافات commit في Git: اقرأ مخرجات pre-commit في GitTree"
+  },
+  "promise": {
+   "en": "See what a failing pre-commit hook prints and why your message and staged changes are kept."
+  },
+  "feature": "commit-hooks",
+  "concept": "A hook is a script in .git/hooks that can stop a commit.",
+  "commands": [
+   "git commit"
+  ],
+  "checkpoint": "failing-pre-commit-hook",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/commit-hook-output"
+ },
+ {
+  "id": "02-11",
+  "series": "02-daily-workflow",
+  "slug": "draft-commit-message-with-ai-agent",
+  "status": "planned",
+  "title": {
+   "en": "Draft a Git commit message with your own AI agent CLI",
+   "ar": "اكتب رسالة commit بمساعدة وكيل ذكاء اصطناعي تثبّته أنت"
+  },
+  "promise": {
+   "en": "Generate a commit message from the staged diff using a coding-agent CLI you installed and signed in to."
+  },
+  "feature": "commit-ai-draft",
+  "concept": "The staged diff is the input to a message, and it is sent only when you click.",
+  "commands": [
+   "git diff --cached --stat --patch -M"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/draft-commit-message-with-ai-agent"
+ },
+ {
+  "id": "02-12",
+  "series": "02-daily-workflow",
+  "slug": "discard-file-changes",
+  "status": "planned",
+  "title": {
+   "en": "Discard changes to a file in GitTree (git restore)",
+   "ar": "تجاهل تغييرات ملف في GitTree (git restore)"
+  },
+  "promise": {
+   "en": "Throw away the changes in one file, knowing a recovery snapshot is saved first."
+  },
+  "feature": "staging-discard",
+  "concept": "Discarding is irreversible in plain Git, so GitTree snapshots to a private ref before acting.",
+  "commands": [
+   "git restore --worktree -- <path>"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/discard-file-changes"
+ },
+ {
+  "id": "02-13",
+  "series": "02-daily-workflow",
+  "slug": "discard-a-single-hunk",
+  "status": "planned",
+  "title": {
+   "en": "Discard a single hunk in GitTree (undo part of a file)",
+   "ar": "تجاهل Hunk واحد في GitTree (التراجع عن جزء من الملف)"
+  },
+  "promise": {
+   "en": "Throw away one hunk of a file and keep the other."
+  },
+  "feature": "staging-hunk",
+  "concept": "A hunk can be reverse-applied to the working tree on its own.",
+  "commands": [
+   "git apply -R"
+  ],
+  "checkpoint": "two-hunks",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/discard-a-single-hunk"
+ },
+ {
+  "id": "02-14",
+  "series": "02-daily-workflow",
+  "slug": "discard-all-changes",
+  "status": "planned",
+  "title": {
+   "en": "Discard all changes in a Git repository safely",
+   "ar": "تجاهل كل التغييرات في مستودع Git بأمان"
+  },
+  "promise": {
+   "en": "Reset the whole working folder to the last commit with one confirmed action."
+  },
+  "feature": "staging-discard-all",
+  "concept": "Resetting the tree to HEAD removes both staged and unstaged work.",
+  "commands": [
+   "git restore --staged --worktree --source=HEAD -- ."
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/discard-all-changes"
+ },
+ {
+  "id": "02-15",
+  "series": "02-daily-workflow",
+  "slug": "ignore-files-folders-extensions",
+  "status": "planned",
+  "title": {
+   "en": "Ignore a file, folder or extension in Git (.gitignore)",
+   "ar": "تجاهل ملف أو مجلد أو امتداد في Git (.gitignore)"
+  },
+  "promise": {
+   "en": "Add a path to .gitignore from the right-click menu."
+  },
+  "feature": "staging-ignore",
+  "concept": ".gitignore tells Git which untracked files to leave out.",
+  "commands": [
+   "git check-ignore -v <path>"
+  ],
+  "checkpoint": "untracked-build-files",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/ignore-files-folders-extensions"
+ },
+ {
+  "id": "02-16",
+  "series": "02-daily-workflow",
+  "slug": "edit-gitignore",
+  "status": "planned",
+  "title": {
+   "en": "Edit .gitignore and find out why a file is ignored",
+   "ar": "تعديل .gitignore ومعرفة سبب تجاهل ملف"
+  },
+  "promise": {
+   "en": "Edit .gitignore with a template and ask which rule ignores a given path."
+  },
+  "feature": "staging-gitignore-editor",
+  "concept": "git check-ignore -v names the exact rule and file that ignores a path.",
+  "commands": [
+   "git check-ignore -v <path>"
+  ],
+  "checkpoint": "untracked-build-files",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/edit-gitignore"
+ },
+ {
+  "id": "02-17",
+  "series": "02-daily-workflow",
+  "slug": "diff-view-modes",
+  "status": "planned",
+  "title": {
+   "en": "Git diff in GitTree: hunk, inline and side by side",
+   "ar": "عرض git diff في GitTree: Hunk وInline وSplit"
+  },
+  "promise": {
+   "en": "Switch the diff between Hunk, Inline and Split views."
+  },
+  "feature": "diff-view-modes",
+  "concept": "A diff is added and removed lines shown with their context.",
+  "commands": [
+   "git diff",
+   "git diff --cached -M"
+  ],
+  "checkpoint": "two-hunks",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/diff-view-modes"
+ },
+ {
+  "id": "02-18",
+  "series": "02-daily-workflow",
+  "slug": "jump-between-changes",
+  "status": "planned",
+  "title": {
+   "en": "Jump between changes in a Git diff (F7 and Shift+F7)",
+   "ar": "التنقل بين التغييرات في الـ diff بالمفتاحين F7 وShift+F7"
+  },
+  "promise": {
+   "en": "Move to the next and previous change with the keyboard and the change overview."
+  },
+  "feature": "diff-nav",
+  "concept": "Reading a long diff is faster when you jump from change to change.",
+  "commands": [
+   "git diff"
+  ],
+  "checkpoint": "two-hunks",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/jump-between-changes"
+ },
+ {
+  "id": "02-19",
+  "series": "02-daily-workflow",
+  "slug": "diff-display-options",
+  "status": "planned",
+  "title": {
+   "en": "Ignore whitespace in a Git diff and wrap long lines",
+   "ar": "تجاهل المسافات البيضاء في الـ diff ولفّ الأسطر الطويلة"
+  },
+  "promise": {
+   "en": "Turn on Ignore whitespace, Wrap lines and Highlight changed words."
+  },
+  "feature": "diff-options",
+  "concept": "Whitespace-only changes are noise that git diff -w removes.",
+  "commands": [
+   "git diff -w"
+  ],
+  "checkpoint": "whitespace-noise",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/diff-display-options"
+ },
+ {
+  "id": "02-20",
+  "series": "02-daily-workflow",
+  "slug": "compare-images",
+  "status": "planned",
+  "title": {
+   "en": "Compare images in Git: side by side, swipe, onion skin",
+   "ar": "مقارنة الصور في Git: جنبًا إلى جنب والسحب والتراكب"
+  },
+  "promise": {
+   "en": "Compare two versions of an image with the three image diff modes."
+  },
+  "feature": "diff-image",
+  "concept": "Git stores binary files as blobs, so GitTree reads both blobs and compares them visually.",
+  "commands": [
+   "git cat-file -p <blob>"
+  ],
+  "checkpoint": "image-changed",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/compare-images"
+ },
+ {
+  "id": "02-21",
+  "series": "02-daily-workflow",
+  "slug": "view-file-at-a-commit",
+  "status": "planned",
+  "title": {
+   "en": "View a file at any Git commit in GitTree",
+   "ar": "عرض ملف كما كان في أي commit في GitTree"
+  },
+  "promise": {
+   "en": "Open a file as it was at a chosen commit using File View."
+  },
+  "feature": "diff-file-view",
+  "concept": "Every commit holds a complete snapshot, so any file can be read at any revision.",
+  "commands": [
+   "git show <rev>:<path>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/view-file-at-a-commit"
+ },
+ {
+  "id": "02-22",
+  "series": "02-daily-workflow",
+  "slug": "compare-two-commits",
+  "status": "planned",
+  "title": {
+   "en": "Compare two Git commits in GitTree (git diff A B)",
+   "ar": "مقارنة commit مع آخر في GitTree (git diff A B)"
+  },
+  "promise": {
+   "en": "Select two commits and see the files that differ between them."
+  },
+  "feature": "diff-compare",
+  "concept": "A diff between two commits compares two snapshots, not two changes.",
+  "commands": [
+   "git diff <a> <b>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/compare-two-commits"
+ },
+ {
+  "id": "02-23",
+  "series": "02-daily-workflow",
+  "slug": "restore-file-from-commit",
+  "status": "planned",
+  "title": {
+   "en": "Restore a file from an old Git commit in GitTree",
+   "ar": "استرجاع ملف من commit قديم في GitTree"
+  },
+  "promise": {
+   "en": "Bring one file back to how it was in a chosen commit."
+  },
+  "feature": "diff-restore-file",
+  "concept": "Restoring overwrites your work, so GitTree saves it in a recovery ref first.",
+  "commands": [
+   "git restore --staged --worktree --source=<rev> -- <path>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/restore-file-from-commit"
+ },
+ {
+  "id": "02-24",
+  "series": "02-daily-workflow",
+  "slug": "git-blame",
+  "status": "planned",
+  "title": {
+   "en": "Git blame: who changed this line? (GitTree blame view)",
+   "ar": "git blame: من غيّر هذا السطر؟ (عرض blame في GitTree)"
+  },
+  "promise": {
+   "en": "Open Blame on a file and see which commit last touched each line."
+  },
+  "feature": "blame-view",
+  "concept": "Blame attributes each line to the commit that last changed it.",
+  "commands": [
+   "git blame --incremental <path>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/git-blame"
+ },
+ {
+  "id": "02-25",
+  "series": "02-daily-workflow",
+  "slug": "blame-before-this-commit",
+  "status": "planned",
+  "title": {
+   "en": "Git blame before this commit: walk a line's history",
+   "ar": "تتبّع تاريخ سطر بخطوات blame للخلف في GitTree"
+  },
+  "promise": {
+   "en": "Step back to the blame of the commit before the one that changed a line."
+  },
+  "feature": "blame-step-back",
+  "concept": "Blaming at a commit's parent reveals who changed the line before.",
+  "commands": [
+   "git blame <commit>^ -- <path>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/blame-before-this-commit"
+ },
+ {
+  "id": "02-26",
+  "series": "02-daily-workflow",
+  "slug": "file-history",
+  "status": "planned",
+  "title": {
+   "en": "Git file history with renames (git log --follow)",
+   "ar": "تاريخ ملف في Git مع إعادة التسمية (git log --follow)"
+  },
+  "promise": {
+   "en": "List every commit that changed one file, across renames."
+  },
+  "feature": "history-file",
+  "concept": "File history can follow a file through renames.",
+  "commands": [
+   "git log --follow -M -- <path>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/file-history"
+ },
+ {
+  "id": "02-27",
+  "series": "02-daily-workflow",
+  "slug": "the-wip-row",
+  "status": "planned",
+  "title": {
+   "en": "The WIP row in the Git graph: your uncommitted work",
+   "ar": "صف WIP في رسم Git: عملك الذي لم يُحفظ بعد"
+  },
+  "promise": {
+   "en": "Read the WIP row at the top of the graph and open the working changes from it."
+  },
+  "feature": "graph-wip-row",
+  "concept": "The working tree is the uncommitted tip of your history.",
+  "commands": [
+   "git status --porcelain=v2"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/the-wip-row"
+ },
+ {
+  "id": "02-28",
+  "series": "02-daily-workflow",
+  "slug": "search-the-graph",
+  "status": "planned",
+  "title": {
+   "en": "Search Git history in GitTree (Ctrl+F in the graph)",
+   "ar": "البحث في سجل Git داخل GitTree (Ctrl+F في الرسم)"
+  },
+  "promise": {
+   "en": "Search the loaded history by message, author, SHA, branch or tag and jump between matches."
+  },
+  "feature": "graph-search",
+  "concept": "Searching what is already loaded is instant, and it is limited to the loaded rows.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/search-the-graph"
+ },
+ {
+  "id": "02-29",
+  "series": "02-daily-workflow",
+  "slug": "stash-your-changes",
+  "status": "planned",
+  "title": {
+   "en": "Git stash in GitTree: save work in progress",
+   "ar": "git stash في GitTree: احفظ عملك غير المكتمل جانبًا"
+  },
+  "promise": {
+   "en": "Stash all your changes to get a clean working folder."
+  },
+  "feature": "stash-save",
+  "concept": "A stash is a pair of commits on refs/stash that holds your uncommitted work.",
+  "commands": [
+   "git stash push"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/stash-your-changes"
+ },
+ {
+  "id": "02-30",
+  "series": "02-daily-workflow",
+  "slug": "stash-pop",
+  "status": "planned",
+  "title": {
+   "en": "Git stash pop in GitTree: bring your changes back",
+   "ar": "git stash pop في GitTree: استرجع تغييراتك المخبّأة"
+  },
+  "promise": {
+   "en": "Pop the latest stash to restore it and remove it from the list."
+  },
+  "feature": "stash-pop",
+  "concept": "Pop applies a stash and drops it in one step.",
+  "commands": [
+   "git stash pop"
+  ],
+  "checkpoint": "stashed-work",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/02-daily-workflow/stash-pop"
+ },
+ {
+  "id": "03-01",
+  "series": "03-branching-and-merging",
+  "slug": "create-a-branch",
+  "status": "planned",
+  "title": {
+   "en": "Create a Git branch in GitTree",
+   "ar": "إنشاء فرع جديد في Git عبر GitTree"
+  },
+  "promise": {
+   "en": "Create a branch at the current commit and check it out."
+  },
+  "feature": "branch-create",
+  "concept": "Creating a branch writes a new pointer to a commit and nothing else.",
+  "commands": [
+   "git branch <name> <sha>",
+   "git switch <name>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/create-a-branch"
+ },
+ {
+  "id": "03-02",
+  "series": "03-branching-and-merging",
+  "slug": "switch-branches",
+  "status": "planned",
+  "title": {
+   "en": "Switch Git branches in GitTree (git switch)",
+   "ar": "التبديل بين فروع Git في GitTree (git switch)"
+  },
+  "promise": {
+   "en": "Check out another branch, including what GitTree offers when local changes are in the way."
+  },
+  "feature": "branch-checkout",
+  "concept": "Checkout moves HEAD, and local changes can block it.",
+  "commands": [
+   "git switch <branch>"
+  ],
+  "checkpoint": "dirty-switch",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/switch-branches"
+ },
+ {
+  "id": "03-03",
+  "series": "03-branching-and-merging",
+  "slug": "check-out-remote-branch",
+  "status": "planned",
+  "title": {
+   "en": "Check out a remote Git branch and track it",
+   "ar": "سحب فرع بعيد في Git وتتبّعه محليًا"
+  },
+  "promise": {
+   "en": "Check out a remote branch so that a local branch tracks it."
+  },
+  "feature": "branch-checkout",
+  "concept": "A local branch can track a remote branch (its upstream).",
+  "commands": [
+   "git switch --track origin/<branch>"
+  ],
+  "checkpoint": "with-remote-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/check-out-remote-branch"
+ },
+ {
+  "id": "03-04",
+  "series": "03-branching-and-merging",
+  "slug": "rename-a-branch",
+  "status": "planned",
+  "title": {
+   "en": "Rename a Git branch in GitTree",
+   "ar": "إعادة تسمية فرع في Git عبر GitTree"
+  },
+  "promise": {
+   "en": "Rename a local branch and see the pill change."
+  },
+  "feature": "branch-rename",
+  "concept": "Renaming moves a pointer's name, not its commits.",
+  "commands": [
+   "git branch -m <old> <new>"
+  ],
+  "checkpoint": "feature-branch",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/rename-a-branch"
+ },
+ {
+  "id": "03-05",
+  "series": "03-branching-and-merging",
+  "slug": "delete-a-branch",
+  "status": "planned",
+  "title": {
+   "en": "Delete a Git branch safely in GitTree",
+   "ar": "حذف فرع في Git بأمان عبر GitTree"
+  },
+  "promise": {
+   "en": "Delete a local branch and see that its last commit is kept in a recovery ref."
+  },
+  "feature": "branch-delete",
+  "concept": "Deleting a branch removes the pointer; the commits stay reachable until they are cleaned up.",
+  "commands": [
+   "git branch -D <name>"
+  ],
+  "checkpoint": "feature-branch",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/delete-a-branch"
+ },
+ {
+  "id": "03-06",
+  "series": "03-branching-and-merging",
+  "slug": "set-upstream",
+  "status": "planned",
+  "title": {
+   "en": "Set the upstream branch in Git (tracking explained)",
+   "ar": "تحديد الفرع المتتبَّع (upstream) في Git: الشرح"
+  },
+  "promise": {
+   "en": "Choose which remote branch a local branch tracks, or make it track nothing."
+  },
+  "feature": "branch-upstream",
+  "concept": "The upstream is the remote branch that pull, push and ahead and behind counts compare against.",
+  "commands": [
+   "git branch --set-upstream-to=origin/<branch>",
+   "git branch --unset-upstream"
+  ],
+  "checkpoint": "with-remote-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/set-upstream"
+ },
+ {
+  "id": "03-07",
+  "series": "03-branching-and-merging",
+  "slug": "annotated-tag",
+  "status": "planned",
+  "title": {
+   "en": "Create an annotated Git tag in GitTree",
+   "ar": "إنشاء tag موصوف (annotated) في Git عبر GitTree"
+  },
+  "promise": {
+   "en": "Create an annotated tag with a message for a release."
+  },
+  "feature": "tag-annotated",
+  "concept": "An annotated tag is its own object with a message, unlike a lightweight tag.",
+  "commands": [
+   "git tag --annotate -m <message> <name> <sha>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/annotated-tag"
+ },
+ {
+  "id": "03-08",
+  "series": "03-branching-and-merging",
+  "slug": "delete-a-tag",
+  "status": "planned",
+  "title": {
+   "en": "Delete a Git tag locally and on the remote",
+   "ar": "حذف tag في Git محليًا وعلى الخادم"
+  },
+  "promise": {
+   "en": "Delete a tag from your repository and, separately, from the remote."
+  },
+  "feature": "tag-delete",
+  "concept": "Deleting a remote tag affects everyone who fetches.",
+  "commands": [
+   "git tag --delete <name>",
+   "git push origin --delete refs/tags/<name>"
+  ],
+  "checkpoint": "tagged-release",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/delete-a-tag"
+ },
+ {
+  "id": "03-09",
+  "series": "03-branching-and-merging",
+  "slug": "preview-a-merge",
+  "status": "planned",
+  "title": {
+   "en": "Preview a Git merge for conflicts before you merge",
+   "ar": "معاينة الدمج في Git لمعرفة التعارضات قبل تنفيذه"
+  },
+  "promise": {
+   "en": "See whether a merge will conflict, and in which files, before anything changes."
+  },
+  "feature": "merge-preview",
+  "concept": "A merge can be predicted without touching your files.",
+  "commands": [
+   "git merge-tree --write-tree --name-only <a> <b>"
+  ],
+  "checkpoint": "conflicting-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/preview-a-merge"
+ },
+ {
+  "id": "03-10",
+  "series": "03-branching-and-merging",
+  "slug": "merge-a-branch",
+  "status": "planned",
+  "title": {
+   "en": "Merge a Git branch in GitTree (merge commit)",
+   "ar": "دمج فرع في Git عبر GitTree (merge commit)"
+  },
+  "promise": {
+   "en": "Merge one branch into the current branch and choose how it is recorded."
+  },
+  "feature": "merge-run",
+  "concept": "A merge commit has two parents; a fast-forward has none to add.",
+  "commands": [
+   "git merge --no-edit <branch>",
+   "git merge --no-ff <branch>",
+   "git merge --ff-only <branch>"
+  ],
+  "checkpoint": "mergeable-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/merge-a-branch"
+ },
+ {
+  "id": "03-11",
+  "series": "03-branching-and-merging",
+  "slug": "squash-merge",
+  "status": "planned",
+  "title": {
+   "en": "Git squash merge: combine a branch into one commit",
+   "ar": "الدمج بالضغط في Git (squash merge): فرع كامل في commit واحد"
+  },
+  "promise": {
+   "en": "Squash a branch into the staged changes and commit it as one commit."
+  },
+  "feature": "merge-run",
+  "concept": "A squash merge copies a branch's changes without recording its history.",
+  "commands": [
+   "git merge --squash <branch>"
+  ],
+  "checkpoint": "mergeable-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/squash-merge"
+ },
+ {
+  "id": "03-12",
+  "series": "03-branching-and-merging",
+  "slug": "merge-in-progress-banner",
+  "status": "planned",
+  "title": {
+   "en": "Git merge in progress: the operation banner in GitTree",
+   "ar": "دمج Git قيد التنفيذ: شريط العملية في GitTree"
+  },
+  "promise": {
+   "en": "Read the operation banner and know when to Resolve, Continue, Skip or Abort."
+  },
+  "feature": "merge-banner",
+  "concept": "An unfinished operation is recorded in state files inside .git.",
+  "commands": [
+   "git merge --continue",
+   "git rebase --skip"
+  ],
+  "checkpoint": "merge-in-progress",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/merge-in-progress-banner"
+ },
+ {
+  "id": "03-13",
+  "series": "03-branching-and-merging",
+  "slug": "abort-merge-or-rebase",
+  "status": "planned",
+  "title": {
+   "en": "Abort a Git merge or rebase and go back to before",
+   "ar": "إلغاء الدمج أو الـ rebase في Git والعودة لما قبله"
+  },
+  "promise": {
+   "en": "Abort an operation in one step and see that your work is kept under a recovery ref."
+  },
+  "feature": "merge-abort",
+  "concept": "An abort restores the state from before the operation started.",
+  "commands": [
+   "git merge --abort",
+   "git rebase --abort"
+  ],
+  "checkpoint": "merge-in-progress",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/abort-merge-or-rebase"
+ },
+ {
+  "id": "03-14",
+  "series": "03-branching-and-merging",
+  "slug": "list-conflicted-files",
+  "status": "planned",
+  "title": {
+   "en": "Merge conflicts in Git: find the conflicted files",
+   "ar": "تعارضات الدمج في Git: اعثر على الملفات المتعارضة"
+  },
+  "promise": {
+   "en": "Read the Conflicted Files and Resolved Files lists and mark files resolved."
+  },
+  "feature": "conflict-list",
+  "concept": "A conflicted file has three versions in the index: base, ours and theirs.",
+  "commands": [
+   "git status",
+   "git ls-files -u"
+  ],
+  "checkpoint": "merge-in-progress",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/list-conflicted-files"
+ },
+ {
+  "id": "03-15",
+  "series": "03-branching-and-merging",
+  "slug": "resolve-conflict-merge-view",
+  "status": "planned",
+  "title": {
+   "en": "Resolve a Git merge conflict in GitTree's merge view",
+   "ar": "حل تعارض الدمج في Git داخل عرض الدمج في GitTree"
+  },
+  "promise": {
+   "en": "Resolve one conflict line by line in the three-pane editor and save it as resolved."
+  },
+  "feature": "conflict-editor",
+  "concept": "Resolving a conflict means choosing the final content, then staging it.",
+  "commands": [
+   "git ls-files -u",
+   "git add <file>"
+  ],
+  "checkpoint": "merge-in-progress",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/resolve-conflict-merge-view"
+ },
+ {
+  "id": "03-16",
+  "series": "03-branching-and-merging",
+  "slug": "take-whole-side",
+  "status": "planned",
+  "title": {
+   "en": "Resolve a Git conflict by taking one whole side",
+   "ar": "حل التعارض في Git بأخذ أحد الطرفين بالكامل"
+  },
+  "promise": {
+   "en": "Resolve a file by keeping ours or theirs entirely, including delete versus modify."
+  },
+  "feature": "conflict-whole-file",
+  "concept": "--ours and --theirs pick a whole version of a conflicted file.",
+  "commands": [
+   "git checkout --ours -- <path>",
+   "git checkout --theirs -- <path>",
+   "git rm -- <path>"
+  ],
+  "checkpoint": "merge-in-progress",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/take-whole-side"
+ },
+ {
+  "id": "03-17",
+  "series": "03-branching-and-merging",
+  "slug": "external-merge-tool",
+  "status": "planned",
+  "title": {
+   "en": "Use an external merge tool for Git conflicts",
+   "ar": "استخدام أداة دمج خارجية لحل تعارضات Git"
+  },
+  "promise": {
+   "en": "Open a conflicted file in the merge tool you configured and return to GitTree."
+  },
+  "feature": "conflict-merge-tool",
+  "concept": "A merge tool is a program Git hands the base, local and remote versions to.",
+  "commands": [
+   "git mergetool"
+  ],
+  "checkpoint": "merge-in-progress",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/external-merge-tool"
+ },
+ {
+  "id": "03-18",
+  "series": "03-branching-and-merging",
+  "slug": "gitflow-initialise",
+  "status": "planned",
+  "title": {
+   "en": "Git flow in GitTree: initialise the branching model",
+   "ar": "Git flow في GitTree: تهيئة نموذج الفروع"
+  },
+  "promise": {
+   "en": "Initialise Gitflow with your production and development branches and prefixes."
+  },
+  "feature": "merge-gitflow",
+  "concept": "Gitflow is a naming and merging convention built on ordinary branches and merges.",
+  "commands": [
+   "git config gitflow.branch.develop develop"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/gitflow-initialise"
+ },
+ {
+  "id": "03-19",
+  "series": "03-branching-and-merging",
+  "slug": "gitflow-feature",
+  "status": "planned",
+  "title": {
+   "en": "Git flow: start and finish a feature branch",
+   "ar": "Git flow: بدء فرع ميزة وإنهاؤه"
+  },
+  "promise": {
+   "en": "Start a feature, commit on it, and finish it back into develop."
+  },
+  "feature": "merge-gitflow",
+  "concept": "Finishing a Gitflow feature is a no-fast-forward merge followed by deleting the branch.",
+  "commands": [
+   "git merge --no-ff feature/<name>",
+   "git branch -d feature/<name>"
+  ],
+  "checkpoint": "gitflow-ready",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/gitflow-feature"
+ },
+ {
+  "id": "03-20",
+  "series": "03-branching-and-merging",
+  "slug": "conflict-early-warning",
+  "status": "planned",
+  "title": {
+   "en": "Predict Git merge conflicts before they happen",
+   "ar": "توقّع تعارضات الدمج في Git قبل حدوثها"
+  },
+  "promise": {
+   "en": "Read the early conflict warning chip on a branch and the setting that controls it."
+  },
+  "feature": "graph-conflict-chip",
+  "concept": "Git can compute a merge result in memory without changing any file.",
+  "commands": [
+   "git merge-tree --write-tree --name-only --no-messages -z"
+  ],
+  "checkpoint": "conflicting-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/03-branching-and-merging/conflict-early-warning"
+ },
+ {
+  "id": "04-01",
+  "series": "04-rewriting-history",
+  "slug": "rebase-a-branch",
+  "status": "planned",
+  "title": {
+   "en": "Git rebase explained: rebase a branch in GitTree",
+   "ar": "شرح git rebase: إعادة تأسيس فرع في GitTree"
+  },
+  "promise": {
+   "en": "Rebase the current branch onto another and see the commits get new ids."
+  },
+  "feature": "rebase-onto",
+  "concept": "Rebase replays your commits on a new base, creating new commits.",
+  "commands": [
+   "git rebase <onto>"
+  ],
+  "checkpoint": "rebase-ready",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/rebase-a-branch"
+ },
+ {
+  "id": "04-02",
+  "series": "04-rewriting-history",
+  "slug": "interactive-rebase",
+  "status": "planned",
+  "title": {
+   "en": "Git interactive rebase in GitTree (pick, squash, drop)",
+   "ar": "الـ rebase التفاعلي في Git عبر GitTree (pick وsquash وdrop)"
+  },
+  "promise": {
+   "en": "Rearrange, combine and drop commits in the interactive rebase editor."
+  },
+  "feature": "rebase-interactive",
+  "concept": "An interactive rebase is a todo list of actions applied to a range of commits.",
+  "commands": [
+   "git rebase --interactive <base>"
+  ],
+  "checkpoint": "messy-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/interactive-rebase"
+ },
+ {
+  "id": "04-03",
+  "series": "04-rewriting-history",
+  "slug": "reword-a-commit",
+  "status": "planned",
+  "title": {
+   "en": "Change a Git commit message after committing (reword)",
+   "ar": "تغيير رسالة commit بعد حفظه في Git (reword)"
+  },
+  "promise": {
+   "en": "Reword an older commit message from the graph."
+  },
+  "feature": "rebase-reword",
+  "concept": "Changing any commit message gives that commit and every commit above it a new id.",
+  "commands": [
+   "git rebase -i (reword)"
+  ],
+  "checkpoint": "messy-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/reword-a-commit"
+ },
+ {
+  "id": "04-04",
+  "series": "04-rewriting-history",
+  "slug": "drop-a-commit",
+  "status": "planned",
+  "title": {
+   "en": "Remove a commit from Git history (drop a commit)",
+   "ar": "إزالة commit من سجل Git (drop)"
+  },
+  "promise": {
+   "en": "Drop a commit from the graph and see how Undo can bring it back."
+  },
+  "feature": "rebase-drop",
+  "concept": "Dropping a commit removes it from the branch but not from the object database.",
+  "commands": [
+   "git rebase -i (drop)"
+  ],
+  "checkpoint": "messy-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/drop-a-commit"
+ },
+ {
+  "id": "04-05",
+  "series": "04-rewriting-history",
+  "slug": "reorder-commits",
+  "status": "planned",
+  "title": {
+   "en": "Reorder Git commits: move a commit up or down",
+   "ar": "إعادة ترتيب الـ commits في Git: انقل commit لأعلى أو لأسفل"
+  },
+  "promise": {
+   "en": "Move a commit up or down in the history from the right-click menu."
+  },
+  "feature": "rebase-move",
+  "concept": "Reordering commits replays them in a new order, which can conflict.",
+  "commands": [
+   "git rebase -i (reorder)"
+  ],
+  "checkpoint": "messy-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/reorder-commits"
+ },
+ {
+  "id": "04-06",
+  "series": "04-rewriting-history",
+  "slug": "squash-commits",
+  "status": "planned",
+  "title": {
+   "en": "Squash Git commits into one in GitTree",
+   "ar": "دمج عدة commits في commit واحد في Git (squash)"
+  },
+  "promise": {
+   "en": "Select several commits and squash them into one."
+  },
+  "feature": "rebase-squash",
+  "concept": "Squashing folds the changes of several commits into one commit.",
+  "commands": [
+   "git rebase -i (squash)"
+  ],
+  "checkpoint": "messy-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/squash-commits"
+ },
+ {
+  "id": "04-07",
+  "series": "04-rewriting-history",
+  "slug": "rewriting-pushed-commits",
+  "status": "planned",
+  "title": {
+   "en": "Why rewriting pushed Git commits is risky",
+   "ar": "لماذا إعادة كتابة commits مدفوعة في Git أمر خطير"
+  },
+  "promise": {
+   "en": "See the warning GitTree shows when commits you are about to rewrite are already on a remote."
+  },
+  "feature": "rebase-published-guard",
+  "concept": "Rewriting shared history forces everyone else to reconcile it.",
+  "commands": [
+   "git rev-list <commits> --not --remotes"
+  ],
+  "checkpoint": "pushed-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/rewriting-pushed-commits"
+ },
+ {
+  "id": "04-08",
+  "series": "04-rewriting-history",
+  "slug": "cherry-pick",
+  "status": "planned",
+  "title": {
+   "en": "Git cherry-pick: copy a commit to another branch",
+   "ar": "git cherry-pick: انسخ commit إلى فرع آخر"
+  },
+  "promise": {
+   "en": "Copy one commit onto the current branch."
+  },
+  "feature": "pick-cherry",
+  "concept": "Cherry-pick re-applies a commit's change on top of HEAD as a new commit.",
+  "commands": [
+   "git cherry-pick <sha>"
+  ],
+  "checkpoint": "cherry-pick-source",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/cherry-pick"
+ },
+ {
+  "id": "04-09",
+  "series": "04-rewriting-history",
+  "slug": "revert-a-commit",
+  "status": "planned",
+  "title": {
+   "en": "Git revert: undo a commit without rewriting history",
+   "ar": "git revert: تراجع عن commit دون إعادة كتابة السجل"
+  },
+  "promise": {
+   "en": "Revert a commit by adding a new commit that undoes it."
+  },
+  "feature": "revert-commit",
+  "concept": "A revert is a new inverse commit, which is safe on shared history.",
+  "commands": [
+   "git revert --no-edit <sha>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/revert-a-commit"
+ },
+ {
+  "id": "04-10",
+  "series": "04-rewriting-history",
+  "slug": "reset-soft",
+  "status": "planned",
+  "title": {
+   "en": "Git reset --soft: undo a commit but keep it staged",
+   "ar": "git reset --soft: ألغِ commit مع إبقاء التغييرات مجهّزة"
+  },
+  "promise": {
+   "en": "Move the branch back one commit while the changes stay staged."
+  },
+  "feature": "reset-soft",
+  "concept": "A soft reset moves only the branch pointer.",
+  "commands": [
+   "git reset --soft <sha>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/reset-soft"
+ },
+ {
+  "id": "04-11",
+  "series": "04-rewriting-history",
+  "slug": "reset-mixed",
+  "status": "planned",
+  "title": {
+   "en": "Git reset --mixed: undo a commit, keep the changes",
+   "ar": "git reset --mixed: ألغِ commit مع إبقاء التغييرات في المجلد"
+  },
+  "promise": {
+   "en": "Move the branch back and the index with it, keeping your files."
+  },
+  "feature": "reset-mixed",
+  "concept": "A mixed reset moves the branch pointer and resets the index.",
+  "commands": [
+   "git reset --mixed <sha>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/reset-mixed"
+ },
+ {
+  "id": "04-12",
+  "series": "04-rewriting-history",
+  "slug": "reset-hard",
+  "status": "planned",
+  "title": {
+   "en": "Git reset --hard in GitTree: discard commits safely",
+   "ar": "git reset --hard في GitTree: تجاهل commits بأمان"
+  },
+  "promise": {
+   "en": "Hard-reset a branch and recover the discarded work from the snapshot GitTree takes first."
+  },
+  "feature": "reset-hard",
+  "concept": "A hard reset moves the branch, the index and the files, so it can lose work.",
+  "commands": [
+   "git reset --hard <sha>"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/reset-hard"
+ },
+ {
+  "id": "04-13",
+  "series": "04-rewriting-history",
+  "slug": "undo-and-redo",
+  "status": "planned",
+  "title": {
+   "en": "Undo and redo Git operations in GitTree",
+   "ar": "التراجع عن عمليات Git وإعادتها في GitTree (Undo وRedo)"
+  },
+  "promise": {
+   "en": "Undo a rebase and a branch delete from the toolbar and redo them."
+  },
+  "feature": "undo-redo",
+  "concept": "Undo restores a ref from a journal entry, only if the ref has not moved since.",
+  "commands": [
+   "git update-ref <ref> <old-sha> <expected-sha>"
+  ],
+  "checkpoint": "messy-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/undo-and-redo"
+ },
+ {
+  "id": "04-14",
+  "series": "04-rewriting-history",
+  "slug": "recovery-snapshots",
+  "status": "planned",
+  "title": {
+   "en": "Git recovery snapshots: GitTree's refs/ogt/trash",
+   "ar": "لقطات الاسترداد: refs/ogt/trash في GitTree"
+  },
+  "promise": {
+   "en": "Find the recovery snapshots GitTree keeps and delete the old ones."
+  },
+  "feature": "trash-refs",
+  "concept": "A snapshot is a commit kept alive under a private ref so nothing is lost.",
+  "commands": [
+   "git for-each-ref refs/ogt/trash",
+   "git update-ref -d <ref>"
+  ],
+  "checkpoint": "messy-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/recovery-snapshots"
+ },
+ {
+  "id": "04-15",
+  "series": "04-rewriting-history",
+  "slug": "reflog",
+  "status": "planned",
+  "title": {
+   "en": "Git reflog explained: see where HEAD has been",
+   "ar": "شرح git reflog: أين كان HEAD من قبل"
+  },
+  "promise": {
+   "en": "Open the reflog of a branch and read the list of places it pointed to."
+  },
+  "feature": "reflog-view",
+  "concept": "The reflog is the local record of where each ref used to point.",
+  "commands": [
+   "git reflog",
+   "git log --walk-reflogs"
+  ],
+  "checkpoint": "lost-commit",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/reflog"
+ },
+ {
+  "id": "04-16",
+  "series": "04-rewriting-history",
+  "slug": "recover-with-reflog",
+  "status": "planned",
+  "title": {
+   "en": "Recover a lost Git commit with the reflog",
+   "ar": "استرجاع commit ضائع في Git باستخدام reflog"
+  },
+  "promise": {
+   "en": "Create a branch from a reflog entry to get back a commit that no branch points to."
+  },
+  "feature": "reflog-restore",
+  "concept": "A commit with no ref is still in the database until garbage collection.",
+  "commands": [
+   "git branch <name> <sha>"
+  ],
+  "checkpoint": "lost-commit",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/recover-with-reflog"
+ },
+ {
+  "id": "04-17",
+  "series": "04-rewriting-history",
+  "slug": "bisect",
+  "status": "planned",
+  "title": {
+   "en": "Git bisect: find the commit that introduced a bug",
+   "ar": "git bisect: اعثر على الـ commit الذي أدخل الخطأ"
+  },
+  "promise": {
+   "en": "Mark commits good and bad until GitTree names the first bad commit."
+  },
+  "feature": "bisect",
+  "concept": "Bisect is a binary search through history.",
+  "commands": [
+   "git bisect start <bad> <good>",
+   "git bisect good",
+   "git bisect bad",
+   "git bisect reset"
+  ],
+  "checkpoint": "bug-introduced",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/bisect"
+ },
+ {
+  "id": "04-18",
+  "series": "04-rewriting-history",
+  "slug": "create-a-patch",
+  "status": "planned",
+  "title": {
+   "en": "Create a Git patch file from a commit (format-patch)",
+   "ar": "إنشاء ملف patch من commit في Git (format-patch)"
+  },
+  "promise": {
+   "en": "Save one or more commits as a patch file you can send."
+  },
+  "feature": "patch-create",
+  "concept": "A patch file is a portable description of a commit.",
+  "commands": [
+   "git format-patch -1 <sha>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/create-a-patch"
+ },
+ {
+  "id": "04-19",
+  "series": "04-rewriting-history",
+  "slug": "apply-a-patch",
+  "status": "planned",
+  "title": {
+   "en": "Apply a Git patch file: git apply vs git am",
+   "ar": "تطبيق ملف patch في Git: الفرق بين git apply وgit am"
+  },
+  "promise": {
+   "en": "Apply a patch to the working tree, to the index, or as commits."
+  },
+  "feature": "patch-apply",
+  "concept": "git apply changes files, while git am also creates the commits.",
+  "commands": [
+   "git apply --index <patch>",
+   "git am <patch>"
+  ],
+  "checkpoint": "patch-file",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/04-rewriting-history/apply-a-patch"
+ },
+ {
+  "id": "05-01",
+  "series": "05-collaboration",
+  "slug": "push",
+  "status": "planned",
+  "title": {
+   "en": "Git push in GitTree: send your commits to a remote",
+   "ar": "git push في GitTree: أرسل commits إلى المستودع البعيد"
+  },
+  "promise": {
+   "en": "Push a branch, including the first push that picks the remote branch."
+  },
+  "feature": "sync-push",
+  "concept": "A push sends commits and moves a ref on the remote.",
+  "commands": [
+   "git push -u origin <branch>"
+  ],
+  "checkpoint": "ahead-of-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/push"
+ },
+ {
+  "id": "05-02",
+  "series": "05-collaboration",
+  "slug": "push-destination-check",
+  "status": "planned",
+  "title": {
+   "en": "Check where a Git push will go before you push",
+   "ar": "تحقق من وجهة git push قبل الدفع"
+  },
+  "promise": {
+   "en": "Read the destination check and choose a different target if it is wrong."
+  },
+  "feature": "sync-destination",
+  "concept": "push.default and push remotes decide where a plain push lands.",
+  "commands": [
+   "git config --get-regexp push"
+  ],
+  "checkpoint": "ahead-of-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/push-destination-check"
+ },
+ {
+  "id": "05-03",
+  "series": "05-collaboration",
+  "slug": "pull-fast-forward-only",
+  "status": "planned",
+  "title": {
+   "en": "Git pull --ff-only in GitTree",
+   "ar": "git pull --ff-only في GitTree"
+  },
+  "promise": {
+   "en": "Pull with fast-forward only and see it refuse when histories have diverged."
+  },
+  "feature": "sync-pull-ff",
+  "concept": "Pull is a fetch followed by an integration; fast-forward only refuses when branches diverged.",
+  "commands": [
+   "git pull --ff-only --no-rebase"
+  ],
+  "checkpoint": "behind-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/pull-fast-forward-only"
+ },
+ {
+  "id": "05-04",
+  "series": "05-collaboration",
+  "slug": "pull-merge",
+  "status": "planned",
+  "title": {
+   "en": "Git pull: fast-forward if possible, else merge",
+   "ar": "git pull: تقدّم سريع إن أمكن وإلا دمج"
+  },
+  "promise": {
+   "en": "Pull when both sides have new commits and get a merge commit."
+  },
+  "feature": "sync-pull-merge",
+  "concept": "Pull in merge mode ties your commits and the remote's with a merge commit.",
+  "commands": [
+   "git pull --ff-only",
+   "git merge <upstream>"
+  ],
+  "checkpoint": "diverged-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/pull-merge"
+ },
+ {
+  "id": "05-05",
+  "series": "05-collaboration",
+  "slug": "pull-rebase",
+  "status": "planned",
+  "title": {
+   "en": "Git pull --rebase in GitTree",
+   "ar": "git pull --rebase في GitTree"
+  },
+  "promise": {
+   "en": "Pull by replaying your local commits on top of the remote's."
+  },
+  "feature": "sync-pull-rebase",
+  "concept": "Pull with rebase keeps a straight history by replaying local commits.",
+  "commands": [
+   "git rebase --autostash <upstream>"
+  ],
+  "checkpoint": "diverged-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/pull-rebase"
+ },
+ {
+  "id": "05-06",
+  "series": "05-collaboration",
+  "slug": "default-pull-mode",
+  "status": "planned",
+  "title": {
+   "en": "Choose your default Git pull mode in GitTree",
+   "ar": "اختر طريقة git pull الافتراضية في GitTree"
+  },
+  "promise": {
+   "en": "Set what the toolbar Pull button does: fast-forward only, merge or rebase."
+  },
+  "feature": "sync-pull-default",
+  "concept": "The pull mode is a policy: how your branch takes in the remote's new commits.",
+  "commands": [
+   "git config pull.ff only",
+   "git config pull.rebase true"
+  ],
+  "checkpoint": "behind-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/default-pull-mode"
+ },
+ {
+  "id": "05-07",
+  "series": "05-collaboration",
+  "slug": "push-rejected",
+  "status": "planned",
+  "title": {
+   "en": "Git push rejected (non-fast-forward): how to fix it",
+   "ar": "رفض git push (non-fast-forward): كيف تحل المشكلة"
+  },
+  "promise": {
+   "en": "Understand the refused-push dialog and choose Fetch, Merge and Push or Rebase and Push."
+  },
+  "feature": "sync-push-rejected",
+  "concept": "A push is refused when the remote has commits you do not have.",
+  "commands": [
+   "git fetch",
+   "git pull --rebase",
+   "git push"
+  ],
+  "checkpoint": "diverged-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/push-rejected"
+ },
+ {
+  "id": "05-08",
+  "series": "05-collaboration",
+  "slug": "force-push-with-lease",
+  "status": "planned",
+  "title": {
+   "en": "Git force push with lease: the safe way in GitTree",
+   "ar": "الدفع القسري الآمن في Git (force push with lease)"
+  },
+  "promise": {
+   "en": "Force-push a rewritten branch so that it refuses if the remote moved."
+  },
+  "feature": "sync-force-push",
+  "concept": "--force-with-lease overwrites the remote only if it still has the commit you last saw.",
+  "commands": [
+   "git push --force-with-lease=<ref>:<expected-sha>"
+  ],
+  "checkpoint": "pushed-commits",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/force-push-with-lease"
+ },
+ {
+  "id": "05-09",
+  "series": "05-collaboration",
+  "slug": "delete-remote-branch",
+  "status": "planned",
+  "title": {
+   "en": "Delete a remote Git branch from GitTree",
+   "ar": "حذف فرع بعيد في Git من GitTree"
+  },
+  "promise": {
+   "en": "Delete a branch on the remote without leaving GitTree."
+  },
+  "feature": "sync-delete-remote-branch",
+  "concept": "Deleting a remote branch pushes a deletion to the server.",
+  "commands": [
+   "git push origin --delete <branch>"
+  ],
+  "checkpoint": "with-remote-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/delete-remote-branch"
+ },
+ {
+  "id": "05-10",
+  "series": "05-collaboration",
+  "slug": "push-a-tag",
+  "status": "planned",
+  "title": {
+   "en": "Push a Git tag to the remote in GitTree",
+   "ar": "دفع tag إلى المستودع البعيد في Git عبر GitTree"
+  },
+  "promise": {
+   "en": "Push a single tag to the remote."
+  },
+  "feature": "tag-push",
+  "concept": "Tags are not pushed with a branch unless you ask for them.",
+  "commands": [
+   "git push origin refs/tags/<tag>"
+  ],
+  "checkpoint": "tagged-release",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/push-a-tag"
+ },
+ {
+  "id": "05-11",
+  "series": "05-collaboration",
+  "slug": "auto-fetch",
+  "status": "planned",
+  "title": {
+   "en": "Git auto-fetch: keep remote branches up to date",
+   "ar": "الجلب التلقائي في Git: ابقَ على اطلاع بالفروع البعيدة"
+  },
+  "promise": {
+   "en": "Turn on auto-fetch with an interval and see why it never asks for credentials."
+  },
+  "feature": "sync-autofetch",
+  "concept": "A background fetch updates remote-tracking refs and never changes your files.",
+  "commands": [
+   "git fetch --all"
+  ],
+  "checkpoint": "behind-remote",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/auto-fetch"
+ },
+ {
+  "id": "05-12",
+  "series": "05-collaboration",
+  "slug": "connect-github",
+  "status": "planned",
+  "title": {
+   "en": "Connect GitHub to GitTree (browser sign-in or token)",
+   "ar": "ربط GitHub بـ GitTree (تسجيل الدخول من المتصفح أو توكن)"
+  },
+  "promise": {
+   "en": "Connect a GitHub account with the browser device code or a personal access token."
+  },
+  "feature": "provider-connect-github",
+  "concept": "A hosting account lets the app talk to the host's API; the Git commands still use your credentials.",
+  "commands": [],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/connect-github"
+ },
+ {
+  "id": "05-13",
+  "series": "05-collaboration",
+  "slug": "connect-github-enterprise",
+  "status": "planned",
+  "title": {
+   "en": "Connect GitHub Enterprise Server to GitTree",
+   "ar": "ربط GitHub Enterprise Server بـ GitTree"
+  },
+  "promise": {
+   "en": "Name your Enterprise Server host and connect with a token or browser sign-in."
+  },
+  "feature": "provider-ghe",
+  "concept": "A self-hosted host needs its own address and its own application ID.",
+  "commands": [],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/connect-github-enterprise"
+ },
+ {
+  "id": "05-14",
+  "series": "05-collaboration",
+  "slug": "connect-gitlab",
+  "status": "planned",
+  "title": {
+   "en": "Connect GitLab to GitTree (token or application ID)",
+   "ar": "ربط GitLab بـ GitTree (توكن أو معرّف تطبيق)"
+  },
+  "promise": {
+   "en": "Connect gitlab.com or a self-managed GitLab with a token or a typed OAuth application ID."
+  },
+  "feature": "provider-gitlab",
+  "concept": "Not every host offers one-click browser sign-in, so a personal access token is the fallback.",
+  "commands": [],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/connect-gitlab"
+ },
+ {
+  "id": "05-15",
+  "series": "05-collaboration",
+  "slug": "connect-bitbucket-cloud",
+  "status": "planned",
+  "title": {
+   "en": "Connect Bitbucket Cloud to GitTree",
+   "ar": "ربط Bitbucket Cloud بـ GitTree"
+  },
+  "promise": {
+   "en": "Connect Bitbucket Cloud with browser sign-in, an API token or an access token."
+  },
+  "feature": "provider-bitbucket-cloud",
+  "concept": "Some hosts sign you in through an authorization code and an account service.",
+  "commands": [],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/connect-bitbucket-cloud"
+ },
+ {
+  "id": "05-16",
+  "series": "05-collaboration",
+  "slug": "connect-azure-devops",
+  "status": "planned",
+  "title": {
+   "en": "Connect Azure DevOps to GitTree (personal access token)",
+   "ar": "ربط Azure DevOps بـ GitTree (توكن وصول شخصي)"
+  },
+  "promise": {
+   "en": "Connect Azure DevOps with a personal access token."
+  },
+  "feature": "provider-azure",
+  "concept": "A personal access token is a password scoped to what you allow.",
+  "commands": [],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/connect-azure-devops"
+ },
+ {
+  "id": "05-17",
+  "series": "05-collaboration",
+  "slug": "connect-bitbucket-data-center",
+  "status": "planned",
+  "title": {
+   "en": "Connect Bitbucket Data Center to GitTree",
+   "ar": "ربط Bitbucket Data Center بـ GitTree"
+  },
+  "promise": {
+   "en": "Connect a Bitbucket Data Center host through your administrator's OAuth application link."
+  },
+  "feature": "provider-bitbucket-dc",
+  "concept": "A self-hosted server needs an administrator-created application link before browser sign-in works.",
+  "commands": [],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/connect-bitbucket-data-center"
+ },
+ {
+  "id": "05-18",
+  "series": "05-collaboration",
+  "slug": "clone-from-provider",
+  "status": "planned",
+  "title": {
+   "en": "Clone a repository from your hosting account in GitTree",
+   "ar": "استنساخ مستودع من حسابك على المنصة داخل GitTree"
+  },
+  "promise": {
+   "en": "Browse the repositories of a connected account and clone one."
+  },
+  "feature": "repos-clone-provider",
+  "concept": "The account only lists repositories; the clone itself is plain git over HTTPS.",
+  "commands": [
+   "git clone <https-url>"
+  ],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/clone-from-provider"
+ },
+ {
+  "id": "05-19",
+  "series": "05-collaboration",
+  "slug": "publish-repository",
+  "status": "planned",
+  "title": {
+   "en": "Publish a local Git repository to a host from GitTree",
+   "ar": "نشر مستودع Git محلي على منصة استضافة من GitTree"
+  },
+  "promise": {
+   "en": "Create the repository on your host, add it as origin and push, in one dialog."
+  },
+  "feature": "sync-publish",
+  "concept": "Publishing is three steps in one: create the remote repository, add origin, push.",
+  "commands": [
+   "git remote add origin <url>",
+   "git push -u origin <branch>"
+  ],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/publish-repository"
+ },
+ {
+  "id": "05-20",
+  "series": "05-collaboration",
+  "slug": "create-pull-request",
+  "status": "planned",
+  "title": {
+   "en": "Create a pull request from GitTree",
+   "ar": "إنشاء pull request من GitTree"
+  },
+  "promise": {
+   "en": "Push a branch and start a pull request with a title and description, as a draft if you like."
+  },
+  "feature": "pr-create",
+  "concept": "A pull request is a host feature that proposes merging one branch into another.",
+  "commands": [
+   "git push -u origin <branch>"
+  ],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/create-pull-request"
+ },
+ {
+  "id": "05-21",
+  "series": "05-collaboration",
+  "slug": "check-out-pull-request",
+  "status": "planned",
+  "title": {
+   "en": "Check out a pull request branch locally in GitTree",
+   "ar": "سحب فرع pull request محليًا في GitTree"
+  },
+  "promise": {
+   "en": "Fetch a pull request head and check out its branch."
+  },
+  "feature": "pr-checkout",
+  "concept": "A host publishes each pull request head as a ref you can fetch.",
+  "commands": [
+   "git fetch <remote> <pr-head>:refs/ogt/pull/<n>"
+  ],
+  "checkpoint": "pr-open",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/check-out-pull-request"
+ },
+ {
+  "id": "05-22",
+  "series": "05-collaboration",
+  "slug": "pull-request-files",
+  "status": "planned",
+  "title": {
+   "en": "Review pull request files and diffs in GitTree",
+   "ar": "مراجعة ملفات pull request وتغييراتها في GitTree"
+  },
+  "promise": {
+   "en": "Read the changed files of a pull request."
+  },
+  "feature": "pr-view",
+  "concept": "A pull request diff is the difference between the branch and its merge base.",
+  "commands": [],
+  "checkpoint": "pr-open",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/pull-request-files"
+ },
+ {
+  "id": "05-23",
+  "series": "05-collaboration",
+  "slug": "pull-request-conversation",
+  "status": "planned",
+  "title": {
+   "en": "Comment on and resolve pull request threads in GitTree",
+   "ar": "التعليق على نقاشات pull request وإغلاقها في GitTree"
+  },
+  "promise": {
+   "en": "Post a comment, reply to a thread and resolve it."
+  },
+  "feature": "pr-view",
+  "concept": "Review comments belong to lines and threads, and a thread can be resolved.",
+  "commands": [],
+  "checkpoint": "pr-open",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/pull-request-conversation"
+ },
+ {
+  "id": "05-24",
+  "series": "05-collaboration",
+  "slug": "pull-request-checks",
+  "status": "planned",
+  "title": {
+   "en": "See pull request checks and re-run them in GitTree",
+   "ar": "عرض فحوصات pull request وإعادة تشغيلها في GitTree"
+  },
+  "promise": {
+   "en": "Read the checks of a pull request and re-run a failed one."
+  },
+  "feature": "pr-view",
+  "concept": "Checks are automated results the host attaches to a commit.",
+  "commands": [],
+  "checkpoint": "pr-open",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/pull-request-checks"
+ },
+ {
+  "id": "05-25",
+  "series": "05-collaboration",
+  "slug": "review-pull-request",
+  "status": "planned",
+  "title": {
+   "en": "Review a pull request: approve or request changes",
+   "ar": "مراجعة pull request: الموافقة أو طلب تعديلات"
+  },
+  "promise": {
+   "en": "Submit a review on a pull request and edit its details."
+  },
+  "feature": "pr-review",
+  "concept": "A review is a verdict plus comments from a person other than the author.",
+  "commands": [],
+  "checkpoint": "pr-open",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/review-pull-request"
+ },
+ {
+  "id": "05-26",
+  "series": "05-collaboration",
+  "slug": "merge-pull-request",
+  "status": "planned",
+  "title": {
+   "en": "Merge a pull request: merge, squash or rebase",
+   "ar": "دمج pull request: دمج عادي أو squash أو rebase"
+  },
+  "promise": {
+   "en": "Merge a pull request on the host with the method you choose."
+  },
+  "feature": "pr-merge",
+  "concept": "The host merges server-side, guarded by the expected head commit.",
+  "commands": [],
+  "checkpoint": "pr-open",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/merge-pull-request"
+ },
+ {
+  "id": "05-27",
+  "series": "05-collaboration",
+  "slug": "issues-list-and-branch",
+  "status": "planned",
+  "title": {
+   "en": "See issues and start a branch from one in GitTree",
+   "ar": "عرض الـ issues وبدء فرع منها في GitTree"
+  },
+  "promise": {
+   "en": "Open an issue from the sidebar and create a branch for it."
+  },
+  "feature": "issue-list",
+  "concept": "An issue is a host record; the branch is plain Git.",
+  "commands": [
+   "git branch <name>",
+   "git switch <name>"
+  ],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/issues-list-and-branch"
+ },
+ {
+  "id": "05-28",
+  "series": "05-collaboration",
+  "slug": "create-an-issue",
+  "status": "planned",
+  "title": {
+   "en": "Create an issue from GitTree",
+   "ar": "إنشاء issue من GitTree"
+  },
+  "promise": {
+   "en": "Create a new issue with a title and a Markdown description."
+  },
+  "feature": "issue-create",
+  "concept": "Creating an issue is a call to the host's API, not a Git operation.",
+  "commands": [],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/create-an-issue"
+ },
+ {
+  "id": "05-29",
+  "series": "05-collaboration",
+  "slug": "fork-remote",
+  "status": "planned",
+  "title": {
+   "en": "Git fork workflow: add a remote from a fork in GitTree",
+   "ar": "العمل مع fork في Git: إضافة remote من fork في GitTree"
+  },
+  "promise": {
+   "en": "Add a remote that points to someone's fork over HTTPS or SSH."
+  },
+  "feature": "remote-fork",
+  "concept": "A fork workflow uses several remotes, typically origin and upstream.",
+  "commands": [
+   "git remote add <name> <url>"
+  ],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/05-collaboration/fork-remote"
+ },
+ {
+  "id": "06-01",
+  "series": "06-power-features",
+  "slug": "worktrees-list",
+  "status": "planned",
+  "title": {
+   "en": "Git worktrees explained: see them in GitTree",
+   "ar": "شرح git worktree: مجلدات عمل متعددة لمستودع واحد"
+  },
+  "promise": {
+   "en": "Find the Worktrees section and understand what several working folders share."
+  },
+  "feature": "worktree-list",
+  "concept": "A worktree is another working folder that shares the same object database.",
+  "commands": [
+   "git worktree list --porcelain"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/worktrees-list"
+ },
+ {
+  "id": "06-02",
+  "series": "06-power-features",
+  "slug": "create-a-worktree",
+  "status": "planned",
+  "title": {
+   "en": "Create a Git worktree in GitTree (git worktree add)",
+   "ar": "إنشاء worktree في Git عبر GitTree (git worktree add)"
+  },
+  "promise": {
+   "en": "Create a worktree for a branch or a new branch in a separate folder."
+  },
+  "feature": "worktree-add",
+  "concept": "A branch can be checked out in only one worktree at a time.",
+  "commands": [
+   "git worktree add [-b <new>] <path> <commit-ish>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/create-a-worktree"
+ },
+ {
+  "id": "06-03",
+  "series": "06-power-features",
+  "slug": "manage-worktrees",
+  "status": "planned",
+  "title": {
+   "en": "Move, lock and remove a Git worktree",
+   "ar": "نقل وقفل وحذف worktree في Git"
+  },
+  "promise": {
+   "en": "Move, lock, remove and prune worktrees safely."
+  },
+  "feature": "worktree-manage",
+  "concept": "Git tracks worktrees in the main repository, so moving one by hand breaks the link.",
+  "commands": [
+   "git worktree move",
+   "git worktree lock",
+   "git worktree remove",
+   "git worktree prune"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/manage-worktrees"
+ },
+ {
+  "id": "06-04",
+  "series": "06-power-features",
+  "slug": "submodules-list",
+  "status": "planned",
+  "title": {
+   "en": "Git submodules explained: see them in GitTree",
+   "ar": "شرح git submodule: عرضها في GitTree"
+  },
+  "promise": {
+   "en": "Read the Submodules section and its states."
+  },
+  "feature": "submodule-list",
+  "concept": "A submodule pins another repository at one exact commit.",
+  "commands": [
+   "git submodule status"
+  ],
+  "checkpoint": "submodule-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/submodules-list"
+ },
+ {
+  "id": "06-05",
+  "series": "06-power-features",
+  "slug": "add-a-submodule",
+  "status": "planned",
+  "title": {
+   "en": "Add a Git submodule in GitTree",
+   "ar": "إضافة submodule في Git عبر GitTree"
+  },
+  "promise": {
+   "en": "Add a submodule at a path, optionally following a branch."
+  },
+  "feature": "submodule-lifecycle",
+  "concept": "Adding a submodule records a .gitmodules entry and a pinned commit.",
+  "commands": [
+   "git submodule add <url> <path>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/add-a-submodule"
+ },
+ {
+  "id": "06-06",
+  "series": "06-power-features",
+  "slug": "update-and-remove-submodule",
+  "status": "planned",
+  "title": {
+   "en": "Update and remove a Git submodule in GitTree",
+   "ar": "تحديث وحذف submodule في Git عبر GitTree"
+  },
+  "promise": {
+   "en": "Initialise, update, sync and remove a submodule."
+  },
+  "feature": "submodule-lifecycle",
+  "concept": "Updating a submodule checks out the commit the parent repository records.",
+  "commands": [
+   "git submodule update --init",
+   "git submodule sync",
+   "git rm <path>"
+  ],
+  "checkpoint": "submodule-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/update-and-remove-submodule"
+ },
+ {
+  "id": "06-07",
+  "series": "06-power-features",
+  "slug": "lfs-set-up",
+  "status": "planned",
+  "title": {
+   "en": "Set up Git LFS for a repository in GitTree",
+   "ar": "إعداد Git LFS لمستودع في GitTree"
+  },
+  "promise": {
+   "en": "Check that Git LFS is installed and set it up for this repository."
+  },
+  "feature": "lfs-setup",
+  "concept": "Large files live outside the repository and pointer files live inside.",
+  "commands": [
+   "git lfs version",
+   "git lfs install --local"
+  ],
+  "checkpoint": "lfs-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/lfs-set-up"
+ },
+ {
+  "id": "06-08",
+  "series": "06-power-features",
+  "slug": "lfs-track",
+  "status": "planned",
+  "title": {
+   "en": "Track large files with Git LFS in GitTree",
+   "ar": "تتبّع الملفات الكبيرة باستخدام Git LFS في GitTree"
+  },
+  "promise": {
+   "en": "Track and untrack a file pattern with LFS."
+  },
+  "feature": "lfs-track",
+  "concept": "Tracking writes a pattern into .gitattributes.",
+  "commands": [
+   "git lfs track <pattern>",
+   "git lfs untrack <pattern>"
+  ],
+  "checkpoint": "lfs-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/lfs-track"
+ },
+ {
+  "id": "06-09",
+  "series": "06-power-features",
+  "slug": "lfs-content",
+  "status": "planned",
+  "title": {
+   "en": "Download and prune Git LFS content in GitTree",
+   "ar": "تنزيل محتوى Git LFS وتنظيفه في GitTree"
+  },
+  "promise": {
+   "en": "Download LFS file content and prune old content."
+  },
+  "feature": "lfs-content",
+  "concept": "An LFS pointer is replaced by the real file only when the content is downloaded.",
+  "commands": [
+   "git lfs pull",
+   "git lfs prune --dry-run --verbose"
+  ],
+  "checkpoint": "lfs-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/lfs-content"
+ },
+ {
+  "id": "06-10",
+  "series": "06-power-features",
+  "slug": "lfs-locks",
+  "status": "planned",
+  "title": {
+   "en": "Git LFS file locking in GitTree",
+   "ar": "قفل الملفات في Git LFS داخل GitTree"
+  },
+  "promise": {
+   "en": "Lock and unlock a lockable file and see who holds a lock."
+  },
+  "feature": "lfs-locks",
+  "concept": "A lock stops others editing a binary file that cannot be merged.",
+  "commands": [
+   "git lfs locks",
+   "git lfs lock <path>",
+   "git lfs unlock <path>"
+  ],
+  "checkpoint": "lfs-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/lfs-locks"
+ },
+ {
+  "id": "06-11",
+  "series": "06-power-features",
+  "slug": "sparse-checkout",
+  "status": "planned",
+  "title": {
+   "en": "Git sparse checkout in GitTree: only the folders you need",
+   "ar": "الـ sparse checkout في Git: اسحب المجلدات التي تحتاجها فقط"
+  },
+  "promise": {
+   "en": "Check out only chosen folders of a large repository, and bring everything back later."
+  },
+  "feature": "sparse-edit",
+  "concept": "Cone-mode sparse checkout limits the working tree to selected directories.",
+  "commands": [
+   "git sparse-checkout set --cone --stdin",
+   "git sparse-checkout disable"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/sparse-checkout"
+ },
+ {
+  "id": "06-12",
+  "series": "06-power-features",
+  "slug": "shallow-sparse-blobless-clone",
+  "status": "planned",
+  "title": {
+   "en": "Shallow, sparse and blobless Git clones in GitTree",
+   "ar": "الاستنساخ السطحي والجزئي وبلا blobs في Git عبر GitTree"
+  },
+  "promise": {
+   "en": "Clone a big repository faster with depth, sparse or blobless options, and fetch more history later."
+  },
+  "feature": "repos-clone-options",
+  "concept": "Shallow, partial and sparse clones trade completeness for speed.",
+  "commands": [
+   "git clone --depth N",
+   "git clone --filter=blob:none",
+   "git clone --sparse",
+   "git fetch --deepen N"
+  ],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/shallow-sparse-blobless-clone"
+ },
+ {
+  "id": "06-13",
+  "series": "06-power-features",
+  "slug": "stash-with-options",
+  "status": "planned",
+  "title": {
+   "en": "Git stash options: untracked files, staged only, message",
+   "ar": "خيارات git stash: ملفات غير متتبَّعة ومجهّزة فقط ورسالة"
+  },
+  "promise": {
+   "en": "Stash with a message, include untracked files or stash only the staged changes."
+  },
+  "feature": "stash-options",
+  "concept": "git stash push can limit what it saves and what it leaves behind.",
+  "commands": [
+   "git stash push -m <msg>",
+   "git stash push --staged",
+   "git stash push -u"
+  ],
+  "checkpoint": "two-files-modified",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/stash-with-options"
+ },
+ {
+  "id": "06-14",
+  "series": "06-power-features",
+  "slug": "branch-from-stash",
+  "status": "planned",
+  "title": {
+   "en": "Create a Git branch from a stash in GitTree",
+   "ar": "إنشاء فرع من stash في Git عبر GitTree"
+  },
+  "promise": {
+   "en": "Turn an old stash into a branch."
+  },
+  "feature": "stash-branch",
+  "concept": "A stash is a commit, so it can become a branch.",
+  "commands": [
+   "git stash branch <name> stash@{n}"
+  ],
+  "checkpoint": "stashed-work",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/branch-from-stash"
+ },
+ {
+  "id": "06-15",
+  "series": "06-power-features",
+  "slug": "delete-a-stash",
+  "status": "planned",
+  "title": {
+   "en": "Delete a Git stash and recover it from the snapshots",
+   "ar": "حذف stash في Git واسترجاعه من لقطات الاسترداد"
+  },
+  "promise": {
+   "en": "Delete a stash and see that it is kept in the recovery snapshots."
+  },
+  "feature": "stash-drop",
+  "concept": "Dropping a stash normally loses its commit, so GitTree keeps a recovery ref.",
+  "commands": [
+   "git stash drop stash@{n}"
+  ],
+  "checkpoint": "stashed-work",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/delete-a-stash"
+ },
+ {
+  "id": "06-16",
+  "series": "06-power-features",
+  "slug": "repository-maintenance",
+  "status": "planned",
+  "title": {
+   "en": "Git repository maintenance in GitTree (fsck, gc)",
+   "ar": "صيانة مستودع Git في GitTree (fsck وgc وcommit-graph)"
+  },
+  "promise": {
+   "en": "Check integrity, speed up history and clean up the object database."
+  },
+  "feature": "maintenance",
+  "concept": "Git needs occasional housekeeping of its object database.",
+  "commands": [
+   "git fsck",
+   "git commit-graph write",
+   "git gc",
+   "git count-objects"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/repository-maintenance"
+ },
+ {
+  "id": "06-17",
+  "series": "06-power-features",
+  "slug": "workspaces",
+  "status": "planned",
+  "title": {
+   "en": "Group repositories into workspaces in GitTree",
+   "ar": "تجميع المستودعات في مساحات عمل داخل GitTree"
+  },
+  "promise": {
+   "en": "Create a workspace, add repositories to it and open them all."
+  },
+  "feature": "repos-workspaces",
+  "concept": "A workspace is an app-level grouping; it is not a Git feature.",
+  "commands": [],
+  "checkpoint": "several-repos",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/workspaces"
+ },
+ {
+  "id": "06-18",
+  "series": "06-power-features",
+  "slug": "repo-tabs",
+  "status": "planned",
+  "title": {
+   "en": "Work in several repositories with tabs in GitTree",
+   "ar": "العمل على عدة مستودعات بالتبويبات في GitTree"
+  },
+  "promise": {
+   "en": "Open, switch, reorder and close repository tabs."
+  },
+  "feature": "repos-tabs",
+  "concept": "Each tab is an independent session of one repository.",
+  "commands": [],
+  "checkpoint": "several-repos",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/repo-tabs"
+ },
+ {
+  "id": "06-19",
+  "series": "06-power-features",
+  "slug": "command-palette",
+  "status": "planned",
+  "title": {
+   "en": "The GitTree command palette: run anything from the keyboard",
+   "ar": "لوحة الأوامر في GitTree: نفّذ أي أمر من لوحة المفاتيح"
+  },
+  "promise": {
+   "en": "Open the palette and run commands, jump to refs and switch repositories with the prefixes."
+  },
+  "feature": "palette-open",
+  "concept": "One searchable list replaces menus for commands, refs and repositories.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/command-palette"
+ },
+ {
+  "id": "06-20",
+  "series": "06-power-features",
+  "slug": "deep-commit-search",
+  "status": "planned",
+  "title": {
+   "en": "Search all Git history by message, author, file or change",
+   "ar": "ابحث في كل سجل Git بالرسالة أو المؤلف أو الملف أو التغيير"
+  },
+  "promise": {
+   "en": "Search every commit with the # mode and the author, file and change filters."
+  },
+  "feature": "search-commits-deep",
+  "concept": "git log can search all of history without loading it into the graph.",
+  "commands": [
+   "git log --all --grep <text>",
+   "git log -S <text>",
+   "git log -G <regex>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/deep-commit-search"
+ },
+ {
+  "id": "06-21",
+  "series": "06-power-features",
+  "slug": "fuzzy-file-finder",
+  "status": "planned",
+  "title": {
+   "en": "Find any file fast in GitTree (fuzzy file finder)",
+   "ar": "اعثر على أي ملف بسرعة في GitTree (البحث الضبابي)"
+  },
+  "promise": {
+   "en": "Find a file with the : mode and open its history."
+  },
+  "feature": "search-files",
+  "concept": "git ls-files lists tracked and untracked-but-not-ignored paths.",
+  "commands": [
+   "git ls-files -z --cached --others --exclude-standard"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/fuzzy-file-finder"
+ },
+ {
+  "id": "06-22",
+  "series": "06-power-features",
+  "slug": "integrated-terminal",
+  "status": "planned",
+  "title": {
+   "en": "The integrated terminal in GitTree",
+   "ar": "الطرفية المدمجة في GitTree"
+  },
+  "promise": {
+   "en": "Open a terminal in the repository folder, add more terminals and rename them."
+  },
+  "feature": "terminal-toggle",
+  "concept": "The terminal is a real shell opened at the repository root.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/integrated-terminal"
+ },
+ {
+  "id": "06-23",
+  "series": "06-power-features",
+  "slug": "custom-commands-define",
+  "status": "planned",
+  "title": {
+   "en": "Define custom commands in GitTree (programs with tokens)",
+   "ar": "تعريف أوامر مخصصة في GitTree (برامج مع متغيّرات)"
+  },
+  "promise": {
+   "en": "Add a custom command that runs a program with the repository, branch, SHA or file as arguments."
+  },
+  "feature": "custom-editor",
+  "concept": "A custom command is a program plus arguments, with no shell involved.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/custom-commands-define"
+ },
+ {
+  "id": "06-24",
+  "series": "06-power-features",
+  "slug": "custom-commands-run",
+  "status": "planned",
+  "title": {
+   "en": "Run a custom command from the GitTree toolbar",
+   "ar": "تشغيل أمر مخصص من شريط أدوات GitTree"
+  },
+  "promise": {
+   "en": "Run a saved custom command and read its confirmation and output."
+  },
+  "feature": "custom-run",
+  "concept": "Running arbitrary programs needs an explicit confirmation.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/custom-commands-run"
+ },
+ {
+  "id": "06-25",
+  "series": "06-power-features",
+  "slug": "filter-the-graph",
+  "status": "planned",
+  "title": {
+   "en": "Filter the Git graph by author, date, branch or path",
+   "ar": "تصفية رسم Git حسب المؤلف والتاريخ والفرع والمسار"
+  },
+  "promise": {
+   "en": "Show only the commits that match a filter and clear it again."
+  },
+  "feature": "graph-filter",
+  "concept": "git log can restrict history by author, dates and paths over chosen starting points.",
+  "commands": [
+   "git log --author <name> --since <date> -- <path>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/filter-the-graph"
+ },
+ {
+  "id": "06-26",
+  "series": "06-power-features",
+  "slug": "pull-request-dashboard",
+  "status": "planned",
+  "title": {
+   "en": "See all your pull requests across a workspace",
+   "ar": "اعرض كل طلبات الدمج الخاصة بك عبر مساحة العمل"
+  },
+  "promise": {
+   "en": "Use the Pull requests tab of the Workspaces page to see what needs your review."
+  },
+  "feature": "pr-dashboard",
+  "concept": "A dashboard is a view over the host's API across many repositories.",
+  "commands": [],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/06-power-features/pull-request-dashboard"
+ },
+ {
+  "id": "07-01",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "preferences-window",
+  "status": "planned",
+  "title": {
+   "en": "GitTree Preferences: search, scopes and reset",
+   "ar": "تفضيلات GitTree: البحث والنطاقات وإعادة الضبط"
+  },
+  "promise": {
+   "en": "Find a setting with search, see where it is saved, and reset it."
+  },
+  "feature": "settings-window",
+  "concept": "Every setting has an origin: built-in default, app, profile, repository or Git config.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/preferences-window"
+ },
+ {
+  "id": "07-02",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "themes",
+  "status": "planned",
+  "title": {
+   "en": "Change the GitTree theme: dark, light, high contrast",
+   "ar": "تغيير مظهر GitTree: داكن وفاتح وتباين عالٍ"
+  },
+  "promise": {
+   "en": "Choose a theme, or follow the system appearance."
+  },
+  "feature": "theme-select",
+  "concept": "Themes only change colours, never Git data.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/themes"
+ },
+ {
+  "id": "07-03",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "language-and-rtl",
+  "status": "planned",
+  "title": {
+   "en": "Change the GitTree language: English and Arabic (RTL)",
+   "ar": "تغيير لغة GitTree: العربية والإنجليزية (من اليمين لليسار)"
+  },
+  "promise": {
+   "en": "Switch the app between English and Arabic and see the layout mirror."
+  },
+  "feature": "ui-language",
+  "concept": "Right-to-left layout mirrors the interface, not your repository.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/language-and-rtl"
+ },
+ {
+  "id": "07-04",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "zoom-dates-motion",
+  "status": "planned",
+  "title": {
+   "en": "Zoom, date format and reduced motion in GitTree",
+   "ar": "التكبير وصيغة التاريخ وتقليل الحركة في GitTree"
+  },
+  "promise": {
+   "en": "Zoom the interface, choose a date format and show or hide sidebar sections."
+  },
+  "feature": "ui-misc",
+  "concept": "Display preferences change how the same history is shown.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/zoom-dates-motion"
+ },
+ {
+  "id": "07-05",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "git-profiles",
+  "status": "planned",
+  "title": {
+   "en": "Git profiles in GitTree: work and personal identities",
+   "ar": "ملفات التعريف في GitTree: هوية للعمل وأخرى شخصية"
+  },
+  "promise": {
+   "en": "Create two profiles with different names and emails and switch between them."
+  },
+  "feature": "profile-identity",
+  "concept": "user.name and user.email decide who a commit says it is from.",
+  "commands": [
+   "git config user.name",
+   "git config user.email"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/git-profiles"
+ },
+ {
+  "id": "07-06",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "ssh-keys",
+  "status": "planned",
+  "title": {
+   "en": "SSH keys in GitTree: generate, copy and test",
+   "ar": "مفاتيح SSH في GitTree: التوليد والنسخ والاختبار"
+  },
+  "promise": {
+   "en": "Generate an Ed25519 key, copy its public half and test a connection."
+  },
+  "feature": "ssh-page",
+  "concept": "An SSH key pair proves who you are without a password.",
+  "commands": [
+   "ssh-keygen -t ed25519",
+   "ssh -T git@<host>"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/ssh-keys"
+ },
+ {
+  "id": "07-07",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "ssh-host-key-prompts",
+  "status": "planned",
+  "title": {
+   "en": "SSH host key and username prompts in GitTree",
+   "ar": "تنبيهات مفتاح المضيف واسم المستخدم لـ SSH في GitTree"
+  },
+  "promise": {
+   "en": "Answer the 'Connect to host?' prompt safely and choose how unknown host keys are treated."
+  },
+  "feature": "sync-ssh-prompts",
+  "concept": "The first SSH connection to a server asks you to trust its host key.",
+  "commands": [
+   "ssh -T git@<host>"
+  ],
+  "checkpoint": "with-remote-branches",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/ssh-host-key-prompts"
+ },
+ {
+  "id": "07-08",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "sign-commits",
+  "status": "planned",
+  "title": {
+   "en": "Sign Git commits in GitTree (OpenPGP, SSH, S/MIME)",
+   "ar": "توقيع commits في Git عبر GitTree (OpenPGP وSSH وS/MIME)"
+  },
+  "promise": {
+   "en": "Choose a signing key and turn on signing for every commit."
+  },
+  "feature": "signing-page",
+  "concept": "A signed commit proves who created it.",
+  "commands": [
+   "git config gpg.format ssh",
+   "git config commit.gpgsign true"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/sign-commits"
+ },
+ {
+  "id": "07-09",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "external-tools",
+  "status": "planned",
+  "title": {
+   "en": "Set an external diff tool, merge tool and editor",
+   "ar": "ضبط أداة مقارنة وأداة دمج ومحرر خارجي في GitTree"
+  },
+  "promise": {
+   "en": "Pick the diff tool, merge tool and editor GitTree opens for you."
+  },
+  "feature": "tools-page",
+  "concept": "Diff and merge tools are programs Git hands file versions to.",
+  "commands": [
+   "git difftool",
+   "git mergetool"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/external-tools"
+ },
+ {
+  "id": "07-10",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "keyboard-shortcuts-cheat-sheet",
+  "status": "planned",
+  "title": {
+   "en": "GitTree keyboard shortcuts: the cheat sheet",
+   "ar": "اختصارات لوحة المفاتيح في GitTree: ورقة الاختصارات"
+  },
+  "promise": {
+   "en": "Open the Keyboard Shortcuts sheet and find the shortcut for any command."
+  },
+  "feature": "keys-cheatsheet",
+  "concept": "Shortcuts are bindings from key chords to command ids.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/keyboard-shortcuts-cheat-sheet"
+ },
+ {
+  "id": "07-11",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "customise-shortcuts",
+  "status": "planned",
+  "title": {
+   "en": "Customise keyboard shortcuts in GitTree",
+   "ar": "تخصيص اختصارات لوحة المفاتيح في GitTree"
+  },
+  "promise": {
+   "en": "Change, remove and reset a shortcut and see how conflicts are reported."
+  },
+  "feature": "keys-editor",
+  "concept": "Two commands cannot share one chord in the same context.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/customise-shortcuts"
+ },
+ {
+  "id": "07-12",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "activity-log",
+  "status": "planned",
+  "title": {
+   "en": "See the exact Git commands GitTree runs (Activity Log)",
+   "ar": "اعرف أوامر Git التي ينفّذها GitTree بالضبط (سجل النشاط)"
+  },
+  "promise": {
+   "en": "Open the Activity Log to read each git command, its output and its result."
+  },
+  "feature": "activity-log",
+  "concept": "Everything the app does is a plain git command you can read and repeat.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/activity-log"
+ },
+ {
+  "id": "07-13",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "report-a-bug",
+  "status": "planned",
+  "title": {
+   "en": "Report a bug or a crash from GitTree",
+   "ar": "الإبلاغ عن خطأ أو انهيار من داخل GitTree"
+  },
+  "promise": {
+   "en": "Open Crash Reports, copy the text and report it on GitHub."
+  },
+  "feature": "crash-reports",
+  "concept": "A useful bug report names the version, the steps and the log, with no secrets.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/report-a-bug"
+ },
+ {
+  "id": "07-14",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "check-for-updates",
+  "status": "planned",
+  "title": {
+   "en": "Update GitTree: check for updates, download and install",
+   "ar": "تحديث GitTree: التحقق من التحديثات وتنزيلها وتثبيتها"
+  },
+  "promise": {
+   "en": "Check for an update, see the download get verified and restart to install it."
+  },
+  "feature": "update-check",
+  "concept": "The app verifies a download by SHA-256 against the published release.",
+  "commands": [],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/check-for-updates"
+ },
+ {
+  "id": "07-15",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "startup-screens",
+  "status": "planned",
+  "title": {
+   "en": "GitTree startup screens: update, offline, maintenance",
+   "ar": "شاشات بدء GitTree: تحديث مطلوب وبلا اتصال وصيانة"
+  },
+  "promise": {
+   "en": "Understand each startup gate screen and what to do on each, including the 7-day offline grace."
+  },
+  "feature": "signin-gate",
+  "concept": "The official build checks a release gate at launch and works offline for a limited time.",
+  "commands": [],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/startup-screens"
+ },
+ {
+  "id": "07-16",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "sign-out",
+  "status": "planned",
+  "title": {
+   "en": "Sign out of GitTree everywhere",
+   "ar": "تسجيل الخروج من GitTree على كل الأجهزة"
+  },
+  "promise": {
+   "en": "Sign out of your GitTree account and see that connected hosting accounts stay connected."
+  },
+  "feature": "account-signout",
+  "concept": "Your GitTree account and your hosting accounts are separate.",
+  "commands": [],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/sign-out"
+ },
+ {
+  "id": "07-17",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "restricted-mode",
+  "status": "planned",
+  "title": {
+   "en": "Restricted mode in GitTree: open untrusted repos safely",
+   "ar": "الوضع المقيَّد في GitTree: تصفّح مستودعًا غير موثوق بأمان"
+  },
+  "promise": {
+   "en": "Work in Restricted Mode and review the trust decision later."
+  },
+  "feature": "trust-restricted",
+  "concept": "An untrusted repository's configuration and hooks must not run.",
+  "commands": [],
+  "checkpoint": "cloned-with-hooks",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/restricted-mode"
+ },
+ {
+  "id": "07-18",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "where-tokens-live",
+  "status": "planned",
+  "title": {
+   "en": "Where GitTree stores your tokens (system keychain)",
+   "ar": "أين يخزّن GitTree التوكنات الخاصة بك (مخزن مفاتيح النظام)"
+  },
+  "promise": {
+   "en": "See that tokens go to the system keychain and how to disconnect an account or forget all credentials."
+  },
+  "feature": "provider-keychain",
+  "concept": "Credentials belong in the operating system's secure store, never in a file or a URL.",
+  "commands": [
+   "git credential fill"
+  ],
+  "checkpoint": "hosted-account",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/where-tokens-live"
+ },
+ {
+  "id": "07-19",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "linux-secret-service",
+  "status": "planned",
+  "title": {
+   "en": "Linux keyring for GitTree: Secret Service setup",
+   "ar": "مخزن المفاتيح على لينكس لـ GitTree: إعداد Secret Service"
+  },
+  "promise": {
+   "en": "Make sure a Secret Service (GNOME Keyring or KeePassXC) is running so GitTree can save tokens."
+  },
+  "feature": "install-linux-keychain",
+  "concept": "On Linux the freedesktop Secret Service is the system keychain.",
+  "commands": [],
+  "checkpoint": "no-repo",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/linux-secret-service"
+ },
+ {
+  "id": "07-20",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "import-a-theme",
+  "status": "planned",
+  "title": {
+   "en": "Import a custom theme into GitTree",
+   "ar": "استيراد مظهر مخصص إلى GitTree"
+  },
+  "promise": {
+   "en": "Import a theme file and use it next to the built-in themes."
+  },
+  "feature": "theme-import",
+  "concept": "A theme is data that GitTree reads, not code it runs.",
+  "commands": [],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/import-a-theme"
+ },
+ {
+  "id": "07-21",
+  "series": "07-customise-and-troubleshoot",
+  "slug": "settings-backup",
+  "status": "planned",
+  "title": {
+   "en": "Export, import and reset GitTree settings",
+   "ar": "تصدير إعدادات GitTree واستيرادها وإعادة ضبطها"
+  },
+  "promise": {
+   "en": "Export your settings, import them on another computer and reset everything if needed."
+  },
+  "feature": "settings-backup",
+  "concept": "Settings are portable data; some Git settings write to your global config only after you confirm.",
+  "commands": [
+   "git config --global"
+  ],
+  "checkpoint": "clean",
+  "youtube": {
+   "en": null,
+   "ar": null
+  },
+  "path": "curriculum/07-customise-and-troubleshoot/settings-backup"
  }
 ]

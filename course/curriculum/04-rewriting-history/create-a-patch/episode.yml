@@ -1,0 +1,23 @@
+id: 04-18
+series: 04-rewriting-history
+slug: create-a-patch
+status: planned
+title:
+  en: Create a Git patch file from a commit (format-patch)
+  ar: إنشاء ملف patch من commit في Git (format-patch)
+promise:
+  en: Save one or more commits as a patch file you can send.
+concept: A patch file is a portable description of a commit.
+feature: patch-create
+commands:
+- git format-patch -1 <sha>
+checkpoint: clean
+journey: create-a-patch
+duration_min: 3
+requires:
+- 01-01
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

@@ -1,0 +1,24 @@
+id: 05-16
+series: 05-collaboration
+slug: connect-azure-devops
+status: planned
+title:
+  en: Connect Azure DevOps to GitTree (personal access token)
+  ar: ربط Azure DevOps بـ GitTree (توكن وصول شخصي)
+promise:
+  en: Connect Azure DevOps with a personal access token.
+concept: A personal access token is a password scoped to what you allow.
+feature: provider-azure
+commands: []
+checkpoint: hosted-account
+journey: connect-azure-devops
+duration_min: 4
+requires:
+- 05-12
+platforms:
+- linux
+notes: Official build has an empty OGT_AZURE_CLIENT_ID, so use the token path (P00-T30 blocked). No issues, no SSH-key upload
+  and no fork remote for Azure DevOps.
+youtube:
+  en: null
+  ar: null

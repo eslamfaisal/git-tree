@@ -1,0 +1,24 @@
+id: 00-13
+series: 00-start-here
+slug: tour-of-the-window
+status: planned
+title:
+  en: 'GitTree window tour: sidebar, graph, inspector, drawer'
+  ar: 'جولة في نافذة GitTree: الشريط الجانبي والرسم واللوحة السفلية'
+promise:
+  en: Learn where the four areas of the window are and how to toggle each one.
+concept: 'The window is a view over one repository: refs on the left, history in the centre, details on the right.'
+feature: view-panels
+commands: []
+checkpoint: clean
+journey: tour-of-the-window
+duration_min: 4
+requires:
+- 00-08
+platforms:
+- linux
+notes: 'Shortcuts Mod+J (sidebar), Mod+K (inspector), Alt+T (drawer), Escape (Back). No default chord exists for Push, Pull,
+  Fetch, Stash, Branch or Undo: use the toolbar.'
+youtube:
+  en: null
+  ar: null

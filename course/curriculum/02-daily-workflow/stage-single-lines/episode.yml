@@ -1,0 +1,26 @@
+id: 02-03
+series: 02-daily-workflow
+slug: stage-single-lines
+status: planned
+title:
+  en: Stage single lines in GitTree (partial commit)
+  ar: جهِّز أسطرًا محددة في GitTree لحفظ جزء من التعديل
+promise:
+  en: Pick individual changed lines and stage only those.
+concept: A patch can be narrowed to single lines before it enters the index.
+feature: staging-lines
+commands:
+- git add -p (then e to edit the hunk)
+- git apply --cached
+checkpoint: mixed-lines
+journey: stage-single-lines
+duration_min: 4
+requires:
+- 02-02
+platforms:
+- linux
+notes: Shift+click picks a range of lines. Binary files, renames, LFS pointers, mode changes and submodules are staged whole
+  (staging-whole-only), mention in one sentence.
+youtube:
+  en: null
+  ar: null

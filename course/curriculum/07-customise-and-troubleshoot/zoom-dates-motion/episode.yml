@@ -1,0 +1,23 @@
+id: 07-04
+series: 07-customise-and-troubleshoot
+slug: zoom-dates-motion
+status: planned
+title:
+  en: Zoom, date format and reduced motion in GitTree
+  ar: التكبير وصيغة التاريخ وتقليل الحركة في GitTree
+promise:
+  en: Zoom the interface, choose a date format and show or hide sidebar sections.
+concept: Display preferences change how the same history is shown.
+feature: ui-misc
+commands: []
+checkpoint: clean
+journey: zoom-dates-motion
+duration_min: 4
+requires:
+- 07-01
+platforms:
+- linux
+notes: Zoom in is Mod+= or Mod++, zoom out Mod+-, actual size Mod+0.
+youtube:
+  en: null
+  ar: null

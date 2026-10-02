@@ -1,0 +1,24 @@
+id: 01-10
+series: 01-git-foundations
+slug: what-is-a-fast-forward
+status: planned
+title:
+  en: What is a Git fast-forward? Move a branch pointer
+  ar: ما هو الـ fast-forward في Git؟ تحريك مؤشر الفرع
+promise:
+  en: Fast-forward a branch to its upstream and see that only the pointer moves.
+concept: A fast-forward moves a branch pointer along a straight line and creates no commit.
+feature: branch-ff
+commands:
+- git merge-base --is-ancestor <a> <b>
+- git merge --ff-only <b>
+checkpoint: behind-remote
+journey: what-is-a-fast-forward
+duration_min: 4
+requires:
+- 01-09
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

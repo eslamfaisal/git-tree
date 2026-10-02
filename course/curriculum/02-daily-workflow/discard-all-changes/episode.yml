@@ -1,0 +1,24 @@
+id: 02-14
+series: 02-daily-workflow
+slug: discard-all-changes
+status: planned
+title:
+  en: Discard all changes in a Git repository safely
+  ar: تجاهل كل التغييرات في مستودع Git بأمان
+promise:
+  en: Reset the whole working folder to the last commit with one confirmed action.
+concept: Resetting the tree to HEAD removes both staged and unstaged work.
+feature: staging-discard-all
+commands:
+- git restore --staged --worktree --source=HEAD -- .
+checkpoint: two-files-modified
+journey: discard-all-changes
+duration_min: 3
+requires:
+- 02-12
+platforms:
+- linux
+notes: Buttons are 'Reset All' and 'Cancel'; Cancel has initial focus.
+youtube:
+  en: null
+  ar: null

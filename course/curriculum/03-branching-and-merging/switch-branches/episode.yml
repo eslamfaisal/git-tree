@@ -1,0 +1,25 @@
+id: 03-02
+series: 03-branching-and-merging
+slug: switch-branches
+status: planned
+title:
+  en: Switch Git branches in GitTree (git switch)
+  ar: التبديل بين فروع Git في GitTree (git switch)
+promise:
+  en: Check out another branch, including what GitTree offers when local changes are in the way.
+concept: Checkout moves HEAD, and local changes can block it.
+feature: branch-checkout
+commands:
+- git switch <branch>
+checkpoint: dirty-switch
+journey: switch-branches
+duration_min: 5
+requires:
+- 03-01
+platforms:
+- linux
+notes: 'Dirty-tree dialog: Stash and Switch, Discard and Switch, Commit First. The branch dropdown (branch-switcher) is shown
+  in one sentence.'
+youtube:
+  en: null
+  ar: null

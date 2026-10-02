@@ -1,0 +1,25 @@
+id: 01-11
+series: 01-git-foundations
+slug: merge-vs-rebase
+status: planned
+title:
+  en: 'Git merge vs rebase: the difference on the graph'
+  ar: الفرق بين git merge وgit rebase على الرسم
+promise:
+  en: Drag one branch onto another and compare what Merge and Rebase do to the graph.
+concept: Merge joins two lines of history with a new commit; rebase replays commits with new ids.
+feature: graph-ref-drop
+commands:
+- git merge <branch>
+- git rebase <branch>
+checkpoint: diverged-branches
+journey: merge-vs-rebase
+duration_min: 6
+requires:
+- 01-10
+platforms:
+- linux
+notes: Concept video only; the full merge and rebase workflows are 03-10 and 04-01.
+youtube:
+  en: null
+  ar: null

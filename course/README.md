@@ -7,15 +7,24 @@ A free video course that teaches Git from first principles **and** shows how to 
 **One video, one lesson.** Every video teaches exactly one Git idea and the one GitTree feature that does it, in
 3 to 10 minutes. Each stands alone, so you can watch just the one you need. Playlists give the order.
 
-> Status: pilot. The first episode is being reviewed before the rest are produced. The table below is generated from
-> [`curriculum/`](curriculum/); the full plan is in [`ARCHITECTURE.md`](ARCHITECTURE.md).
+> Status: **170 videos planned, 1 in production** (the pilot, 02-02, is being reviewed before the rest are produced).
+> The plan is [`curriculum.yml`](curriculum.yml), the per-episode list is in [`curriculum/`](curriculum/README.md), the
+> structure is explained in [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
 ## Start here
 
 <!-- episodes:begin -->
-| Episode | Series | Status | English | العربية |
-|---|---|---|---|---|
-| [02-02 · Stage a single hunk in GitTree (commit part of a file)](curriculum/02-daily-workflow/stage-a-single-hunk/) | daily workflow | scripted | not yet published | not yet published |
+| Series | Episodes | Published |
+|---|---|---|
+| Start here: install, sign in, open a repository | 13 | 0 |
+| Git foundations: the ideas behind every click | 12 | 0 |
+| Daily workflow: stage, commit, review | 30 | 0 |
+| Branching and merging | 20 | 0 |
+| Rewriting history and getting out of trouble | 19 | 0 |
+| Collaboration: remotes, pull requests, providers | 29 | 0 |
+| Power features: worktrees, submodules, LFS, search | 26 | 0 |
+| Customise GitTree and fix problems | 21 | 0 |
+| **Total** | **170** | **0** |
 <!-- episodes:end -->
 
 ## What is in this folder

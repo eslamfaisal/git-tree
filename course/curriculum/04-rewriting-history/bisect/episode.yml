@@ -1,0 +1,26 @@
+id: 04-17
+series: 04-rewriting-history
+slug: bisect
+status: planned
+title:
+  en: 'Git bisect: find the commit that introduced a bug'
+  ar: 'git bisect: اعثر على الـ commit الذي أدخل الخطأ'
+promise:
+  en: Mark commits good and bad until GitTree names the first bad commit.
+concept: Bisect is a binary search through history.
+feature: bisect
+commands:
+- git bisect start <bad> <good>
+- git bisect good
+- git bisect bad
+- git bisect reset
+checkpoint: bug-introduced
+journey: bisect
+duration_min: 6
+requires:
+- 01-02
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

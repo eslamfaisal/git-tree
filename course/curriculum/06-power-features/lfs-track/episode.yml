@@ -1,0 +1,24 @@
+id: 06-08
+series: 06-power-features
+slug: lfs-track
+status: planned
+title:
+  en: Track large files with Git LFS in GitTree
+  ar: تتبّع الملفات الكبيرة باستخدام Git LFS في GitTree
+promise:
+  en: Track and untrack a file pattern with LFS.
+concept: Tracking writes a pattern into .gitattributes.
+feature: lfs-track
+commands:
+- git lfs track <pattern>
+- git lfs untrack <pattern>
+checkpoint: lfs-repo
+journey: lfs-track
+duration_min: 4
+requires:
+- 06-07
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

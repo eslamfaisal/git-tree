@@ -1,0 +1,24 @@
+id: 02-26
+series: 02-daily-workflow
+slug: file-history
+status: planned
+title:
+  en: Git file history with renames (git log --follow)
+  ar: تاريخ ملف في Git مع إعادة التسمية (git log --follow)
+promise:
+  en: List every commit that changed one file, across renames.
+concept: File history can follow a file through renames.
+feature: history-file
+commands:
+- git log --follow -M -- <path>
+checkpoint: clean
+journey: file-history
+duration_min: 3
+requires:
+- 01-02
+platforms:
+- linux
+notes: 'VERIFY V9: menu placement of ''Show File History'' is inferred from code.'
+youtube:
+  en: null
+  ar: null

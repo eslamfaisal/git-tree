@@ -1,0 +1,23 @@
+id: 06-05
+series: 06-power-features
+slug: add-a-submodule
+status: planned
+title:
+  en: Add a Git submodule in GitTree
+  ar: إضافة submodule في Git عبر GitTree
+promise:
+  en: Add a submodule at a path, optionally following a branch.
+concept: Adding a submodule records a .gitmodules entry and a pinned commit.
+feature: submodule-lifecycle
+commands:
+- git submodule add <url> <path>
+checkpoint: clean
+journey: add-a-submodule
+duration_min: 4
+requires:
+- 06-04
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

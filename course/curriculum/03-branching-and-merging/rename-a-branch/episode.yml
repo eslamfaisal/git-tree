@@ -1,0 +1,23 @@
+id: 03-04
+series: 03-branching-and-merging
+slug: rename-a-branch
+status: planned
+title:
+  en: Rename a Git branch in GitTree
+  ar: إعادة تسمية فرع في Git عبر GitTree
+promise:
+  en: Rename a local branch and see the pill change.
+concept: Renaming moves a pointer's name, not its commits.
+feature: branch-rename
+commands:
+- git branch -m <old> <new>
+checkpoint: feature-branch
+journey: rename-a-branch
+duration_min: 3
+requires:
+- 03-01
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

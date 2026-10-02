@@ -1,0 +1,25 @@
+id: 07-15
+series: 07-customise-and-troubleshoot
+slug: startup-screens
+status: planned
+title:
+  en: 'GitTree startup screens: update, offline, maintenance'
+  ar: 'شاشات بدء GitTree: تحديث مطلوب وبلا اتصال وصيانة'
+promise:
+  en: Understand each startup gate screen and what to do on each, including the 7-day offline grace.
+concept: The official build checks a release gate at launch and works offline for a limited time.
+feature: signin-gate
+commands: []
+checkpoint: no-repo
+journey: startup-screens
+duration_min: 5
+requires:
+- 00-07
+platforms:
+- linux
+notes: 'Screens: Update GitTree to continue, This version can''t be used, GitTree is under maintenance, GitTree can''t reach
+  its service. Offline grace (signin-offline-grace) is 7 days, covered here. Needs the backend or a stubbed gate; do not record
+  against production by forcing outages.'
+youtube:
+  en: null
+  ar: null

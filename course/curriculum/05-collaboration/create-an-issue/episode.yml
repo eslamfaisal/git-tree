@@ -1,0 +1,23 @@
+id: 05-28
+series: 05-collaboration
+slug: create-an-issue
+status: planned
+title:
+  en: Create an issue from GitTree
+  ar: إنشاء issue من GitTree
+promise:
+  en: Create a new issue with a title and a Markdown description.
+concept: Creating an issue is a call to the host's API, not a Git operation.
+feature: issue-create
+commands: []
+checkpoint: hosted-account
+journey: create-an-issue
+duration_min: 3
+requires:
+- 05-27
+platforms:
+- linux
+notes: GitHub and GitLab only.
+youtube:
+  en: null
+  ar: null

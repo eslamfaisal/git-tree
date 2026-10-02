@@ -1,0 +1,24 @@
+id: 05-11
+series: 05-collaboration
+slug: auto-fetch
+status: planned
+title:
+  en: 'Git auto-fetch: keep remote branches up to date'
+  ar: 'الجلب التلقائي في Git: ابقَ على اطلاع بالفروع البعيدة'
+promise:
+  en: Turn on auto-fetch with an interval and see why it never asks for credentials.
+concept: A background fetch updates remote-tracking refs and never changes your files.
+feature: sync-autofetch
+commands:
+- git fetch --all
+checkpoint: behind-remote
+journey: auto-fetch
+duration_min: 3
+requires:
+- 01-09
+platforms:
+- linux
+notes: Setting 'Auto-fetch interval' in minutes (0 = off) with a per-repository override.
+youtube:
+  en: null
+  ar: null

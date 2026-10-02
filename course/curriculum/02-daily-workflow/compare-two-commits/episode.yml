@@ -1,0 +1,24 @@
+id: 02-22
+series: 02-daily-workflow
+slug: compare-two-commits
+status: planned
+title:
+  en: Compare two Git commits in GitTree (git diff A B)
+  ar: مقارنة commit مع آخر في GitTree (git diff A B)
+promise:
+  en: Select two commits and see the files that differ between them.
+concept: A diff between two commits compares two snapshots, not two changes.
+feature: diff-compare
+commands:
+- git diff <a> <b>
+checkpoint: clean
+journey: compare-two-commits
+duration_min: 4
+requires:
+- 02-17
+platforms:
+- linux
+notes: Compare with Working Directory is shown in one sentence.
+youtube:
+  en: null
+  ar: null

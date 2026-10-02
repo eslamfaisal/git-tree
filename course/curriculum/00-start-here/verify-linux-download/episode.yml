@@ -1,0 +1,24 @@
+id: 00-05
+series: 00-start-here
+slug: verify-linux-download
+status: planned
+title:
+  en: Verify a GitTree Linux download with SHA256SUMS
+  ar: التحقق من ملف GitTree على لينكس باستخدام SHA256SUMS
+promise:
+  en: Check that a downloaded installer matches the checksum published with the release.
+concept: A checksum catches a corrupt download but not a compromised release.
+feature: install-linux-verify
+commands:
+- sha256sum -c SHA256SUMS.txt
+checkpoint: no-repo
+journey: verify-linux-download
+duration_min: 3
+requires:
+- 00-03
+platforms:
+- linux
+notes: Installers are unsigned; say plainly that SHA256SUMS.txt detects corruption, not tampering with the release itself.
+youtube:
+  en: null
+  ar: null

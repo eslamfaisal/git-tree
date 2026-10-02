@@ -1,0 +1,23 @@
+id: 07-01
+series: 07-customise-and-troubleshoot
+slug: preferences-window
+status: planned
+title:
+  en: 'GitTree Preferences: search, scopes and reset'
+  ar: 'تفضيلات GitTree: البحث والنطاقات وإعادة الضبط'
+promise:
+  en: Find a setting with search, see where it is saved, and reset it.
+concept: 'Every setting has an origin: built-in default, app, profile, repository or Git config.'
+feature: settings-window
+commands: []
+checkpoint: clean
+journey: preferences-window
+duration_min: 4
+requires:
+- 01-12
+platforms:
+- linux
+notes: Shortcut Mod+, (Cmd+, on macOS). Pages 'In-App Terminal' and 'Experimental' are not shown (VERIFY V2).
+youtube:
+  en: null
+  ar: null

@@ -1,0 +1,2564 @@
+# GitTree video course: curriculum (series and episodes).
+# One video = one feature (or one lesson). `feature` is a single inventory id; where a feature has sub-tasks the same id
+# appears in several episodes (staging-hunk, merge-run, merge-gitflow, pr-view, branch-checkout, submodule-lifecycle).
+# Source of truth for features: course/inventory.md (GitTree 1.2.1). Arabic titles are drafts for native review.
+
+series:
+  - id: "00-start-here"
+    title_en: "Start here: install, sign in, open a repository"
+    title_ar: "ابدأ من هنا: التثبيت وتسجيل الدخول وفتح مستودع"
+    summary_en: "Install GitTree on macOS, Windows or Linux, sign in with your website account, then open, clone or create your first repository."
+  - id: "01-git-foundations"
+    title_en: "Git foundations: the ideas behind every click"
+    title_ar: "أساسيات Git: الأفكار وراء كل نقرة"
+    summary_en: "The core Git concepts (commit, the graph, refs, HEAD, the three trees, remotes, tags, merge versus rebase), each shown with one GitTree feature."
+  - id: "02-daily-workflow"
+    title_en: "Daily workflow: stage, commit, review"
+    title_ar: "العمل اليومي: التجهيز والحفظ والمراجعة"
+    summary_en: "Stage files, hunks and lines, write and amend commits, read diffs, blame and file history, and stash work in progress."
+  - id: "03-branching-and-merging"
+    title_en: "Branching and merging"
+    title_ar: "الفروع والدمج"
+    summary_en: "Create, switch, rename and delete branches, tag releases, merge, squash, resolve conflicts and use Gitflow."
+  - id: "04-rewriting-history"
+    title_en: "Rewriting history and getting out of trouble"
+    title_ar: "إعادة كتابة السجل والتراجع عن الأخطاء"
+    summary_en: "Rebase, interactive rebase, cherry-pick, revert, reset, Undo, the reflog, bisect and patches, with GitTree's recovery snapshots as the safety net."
+  - id: "05-collaboration"
+    title_en: "Collaboration: remotes, pull requests, providers"
+    title_ar: "التعاون: المستودعات البعيدة وطلبات الدمج والمنصات"
+    summary_en: "Push, pull and force-push safely, connect GitHub, GitLab, Bitbucket and Azure DevOps, and work with pull requests and issues."
+  - id: "06-power-features"
+    title_en: "Power features: worktrees, submodules, LFS, search"
+    title_ar: "ميزات متقدمة: أشجار العمل والوحدات الفرعية وLFS والبحث"
+    summary_en: "Worktrees, submodules, Git LFS, sparse and shallow clones, stash options, maintenance, workspaces, the command palette, the terminal and custom commands."
+  - id: "07-customise-and-troubleshoot"
+    title_en: "Customise GitTree and fix problems"
+    title_ar: "خصّص GitTree وحلّ المشاكل"
+    summary_en: "Preferences, themes, language, profiles, SSH, signing, external tools, shortcuts, the activity log, updates, restricted mode and the startup screens."
+
+episodes:
+  # ---------------------------------------------------------------- 00-start-here
+  - id: "00-01"
+    series: "00-start-here"
+    slug: "install-gittree-on-macos"
+    title_en: "Install GitTree on macOS (Apple silicon and Intel)"
+    title_ar: "تثبيت GitTree على macOS (آبل سيليكون وإنتل)"
+    promise_en: "Install the universal GitTree disk image on a Mac and get past the first-launch warning."
+    concept: "GitTree is a front end for the Git already on your computer, so Git must be installed first."
+    feature: "install-macos"
+    commands: ["git --version", "xcode-select --install"]
+    checkpoint: "no-repo"
+    duration_min: 4
+    requires: []
+    platforms: ["macos"]
+    notes: "VERIFY V5: Gatekeeper wording is from ALPHA_NOTES (v0.1.0), no 1.2.1 first-launch run recorded. Installer not notarized (P12-T04 blocked), so show the context-menu open. macOS 13 or later. Ledger verified on Linux only: a macOS recording is a new observation."
+  - id: "00-02"
+    series: "00-start-here"
+    slug: "install-gittree-on-windows"
+    title_en: "Install GitTree on Windows 10 and 11"
+    title_ar: "تثبيت GitTree على ويندوز 10 و11"
+    promise_en: "Run the GitTree setup on Windows and get past the SmartScreen warning."
+    concept: "GitTree uses Git for Windows as its Git, and needs version 2.39 or newer."
+    feature: "install-windows"
+    commands: ["git --version"]
+    checkpoint: "no-repo"
+    duration_min: 4
+    requires: []
+    platforms: ["windows"]
+    notes: "VERIFY V5: SmartScreen wording from ALPHA_NOTES (More info, then Run anyway). Installer not signed (P12-T05 blocked). The installer installs for all users and asks for administrator permission. Windows 10 22H2 or 11, 64-bit. Ledger verified on Linux only."
+  - id: "00-03"
+    series: "00-start-here"
+    slug: "install-gittree-on-ubuntu-debian"
+    title_en: "Install GitTree on Ubuntu and Debian (.deb)"
+    title_ar: "تثبيت GitTree على أوبونتو وديبيان (حزمة deb)"
+    promise_en: "Install the .deb package with apt and start GitTree from the menu."
+    concept: "apt resolves dependencies for a local package, and GitTree needs Git 2.39 or newer."
+    feature: "install-linux-deb"
+    commands: ["sudo apt install ./Git-Tree-Linux.deb", "git --version"]
+    checkpoint: "no-repo"
+    duration_min: 4
+    requires: []
+    platforms: ["linux"]
+    notes: "Ubuntu 22.04 LTS or later, Debian 12 or later, x86_64 only. Ubuntu 22.04 and Mint 21 ship Git 2.34, so add ppa:git-core/ppa first. Verified on a 24.04 container only (not 22.04, not Wayland). Installer is unsigned. Say nothing about Flatpak, Snap, an apt repository or arm64."
+  - id: "00-04"
+    series: "00-start-here"
+    slug: "run-gittree-appimage"
+    title_en: "Run GitTree on Linux with the AppImage (no root)"
+    title_ar: "تشغيل GitTree على لينكس بصيغة AppImage دون صلاحيات root"
+    promise_en: "Make the AppImage executable and run GitTree without installing anything."
+    concept: "A portable AppImage runs from any folder and does not register the opengittree:// link handler."
+    feature: "install-linux-appimage"
+    commands: ["chmod +x Git-Tree-Linux.AppImage", "./Git-Tree-Linux.AppImage"]
+    checkpoint: "no-repo"
+    duration_min: 3
+    requires: ["00-03"]
+    platforms: ["linux"]
+    notes: "x86_64 only, unsigned. The AppImage registers no opengittree:// handler, so browser sign-in may need the manual code (see 00-07). Verified on a 24.04 container only. Do not discuss in-app updates on Linux (VERIFY V6)."
+  - id: "00-05"
+    series: "00-start-here"
+    slug: "verify-linux-download"
+    title_en: "Verify a GitTree Linux download with SHA256SUMS"
+    title_ar: "التحقق من ملف GitTree على لينكس باستخدام SHA256SUMS"
+    promise_en: "Check that a downloaded installer matches the checksum published with the release."
+    concept: "A checksum catches a corrupt download but not a compromised release."
+    feature: "install-linux-verify"
+    commands: ["sha256sum -c SHA256SUMS.txt"]
+    checkpoint: "no-repo"
+    duration_min: 3
+    requires: ["00-03"]
+    platforms: ["linux"]
+    notes: "Installers are unsigned; say plainly that SHA256SUMS.txt detects corruption, not tampering with the release itself."
+  - id: "00-06"
+    series: "00-start-here"
+    slug: "git-version-required"
+    title_en: "Which Git version does GitTree need? (2.39 or newer)"
+    title_ar: "ما إصدار Git الذي يحتاجه GitTree؟ (2.39 أو أحدث)"
+    promise_en: "Check your Git version and read the two screens GitTree shows when Git is missing or too old."
+    concept: "GitTree never bundles Git: it runs the git command you already have."
+    feature: "repos-git-setup"
+    commands: ["git --version"]
+    checkpoint: "no-repo"
+    duration_min: 3
+    requires: ["00-03"]
+    platforms: ["linux"]
+    notes: "Screens are 'GitTree needs Git' and 'This Git is too old'. Status done (P00-T11)."
+  - id: "00-07"
+    series: "00-start-here"
+    slug: "sign-in-first-launch"
+    title_en: "Sign in to GitTree on first launch (website account)"
+    title_ar: "تسجيل الدخول إلى GitTree عند أول تشغيل بحساب الموقع"
+    promise_en: "Sign in through the GitTree website from the app, including the manual code fallback."
+    concept: "Your GitTree account (website) is separate from your Git identity and your hosting accounts."
+    feature: "signin-dialog"
+    commands: []
+    checkpoint: "no-repo"
+    duration_min: 4
+    requires: ["00-03"]
+    platforms: ["linux"]
+    notes: "Official builds only. VERIFY V8: which providers the website offers is decided by the backend, confirm before naming them. The sign-in is PKCE through opengittree://auth/callback; the AppImage has no handler, so show 'Manually enter authentication code'. Never show a real code or token on screen."
+  - id: "00-08"
+    series: "00-start-here"
+    slug: "open-a-repository"
+    title_en: "Open a Git repository in GitTree (folder or drag and drop)"
+    title_ar: "فتح مستودع Git في GitTree (من مجلد أو بالسحب والإفلات)"
+    promise_en: "Open an existing repository from the New Tab page, the Open shortcut or a dropped folder."
+    concept: "A repository is a working folder plus a .git directory."
+    feature: "repos-open"
+    commands: ["git rev-parse --git-dir --is-inside-work-tree"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["00-07"]
+    platforms: ["linux"]
+    notes: "Shortcut Mod+O (Cmd on macOS, Ctrl on Windows and Linux)."
+  - id: "00-09"
+    series: "00-start-here"
+    slug: "trust-prompt-on-open"
+    title_en: "Trust this repository? What GitTree checks before it opens"
+    title_ar: "هل تثق بهذا المستودع؟ ما يفحصه GitTree قبل فتحه"
+    promise_en: "Read the trust prompt and choose between Restricted Mode and Trust and Open."
+    concept: "A cloned repository's config and hooks can run programs on your machine."
+    feature: "trust-dialog"
+    commands: ["git config --list --show-scope --show-origin"]
+    checkpoint: "cloned-with-hooks"
+    duration_min: 4
+    requires: ["00-08"]
+    platforms: ["linux"]
+    notes: "VERIFY V12: quote the dialog body from en.ts, the inventory text is cut off. Restricted Mode itself is 07-17."
+  - id: "00-10"
+    series: "00-start-here"
+    slug: "clone-a-repository"
+    title_en: "Clone a Git repository by URL in GitTree"
+    title_ar: "استنساخ مستودع Git من رابط في GitTree"
+    promise_en: "Clone a repository from a URL into a folder you choose and open it."
+    concept: "A clone copies the full history and sets the remote named origin."
+    feature: "repos-clone-url"
+    commands: ["git clone <url> <dest>"]
+    checkpoint: "no-repo"
+    duration_min: 4
+    requires: ["00-07"]
+    platforms: ["linux"]
+    notes: "Use a local demo remote, never a real URL with a token (a pasted token is stripped and never saved). Clone options are 06-12; cloning from a connected account is 05-18."
+  - id: "00-11"
+    series: "00-start-here"
+    slug: "init-a-repository"
+    title_en: "Create a new Git repository in GitTree (git init)"
+    title_ar: "إنشاء مستودع Git جديد في GitTree (git init)"
+    promise_en: "Initialise a new repository with a first branch name and an optional .gitignore template and licence."
+    concept: "git init creates the object database and the first branch."
+    feature: "repos-init"
+    commands: ["git init --initial-branch main"]
+    checkpoint: "no-repo"
+    duration_min: 4
+    requires: ["00-07"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "00-12"
+    series: "00-start-here"
+    slug: "recent-repositories"
+    title_en: "Recent repositories and the New Tab page in GitTree"
+    title_ar: "المستودعات الأخيرة وصفحة التبويب الجديد في GitTree"
+    promise_en: "Reopen a repository from the Recent list and remove one from it without deleting files."
+    concept: "The recent list is stored by the app, nothing in the repository changes."
+    feature: "repos-recents"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["00-08"]
+    platforms: ["linux"]
+    notes: "Favourites (repos-favourites) are mentioned in one sentence here, not a separate video."
+  - id: "00-13"
+    series: "00-start-here"
+    slug: "tour-of-the-window"
+    title_en: "GitTree window tour: sidebar, graph, inspector, drawer"
+    title_ar: "جولة في نافذة GitTree: الشريط الجانبي والرسم واللوحة السفلية"
+    promise_en: "Learn where the four areas of the window are and how to toggle each one."
+    concept: "The window is a view over one repository: refs on the left, history in the centre, details on the right."
+    feature: "view-panels"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["00-08"]
+    platforms: ["linux"]
+    notes: "Shortcuts Mod+J (sidebar), Mod+K (inspector), Alt+T (drawer), Escape (Back). No default chord exists for Push, Pull, Fetch, Stash, Branch or Undo: use the toolbar."
+
+  # ---------------------------------------------------------------- 01-git-foundations
+  - id: "01-01"
+    series: "01-git-foundations"
+    slug: "what-is-a-commit"
+    title_en: "What is a Git commit? See one in GitTree"
+    title_ar: "ما هو الـ commit في Git؟ شاهد واحدًا في GitTree"
+    promise_en: "See that a commit is a snapshot with a parent, a message and an author, using the Commit Details panel."
+    concept: "A commit is a snapshot (tree) plus parents, message, author and committer."
+    feature: "graph-detail"
+    commands: ["git show --stat <sha>", "git cat-file -p <sha>"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["00-08"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "01-02"
+    series: "01-git-foundations"
+    slug: "commit-graph-dag"
+    title_en: "The Git commit graph explained: history is a DAG"
+    title_ar: "شرح رسم الـ commits في Git: السجل شبكة موجَّهة"
+    promise_en: "Read the commit graph: parents, lanes and why history is a graph and not a line."
+    concept: "History is a directed acyclic graph in which lanes show parallel lines of work."
+    feature: "graph-render"
+    commands: ["git log --graph --oneline --all"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["01-01"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "01-03"
+    series: "01-git-foundations"
+    slug: "branches-are-pointers"
+    title_en: "Git branches are just pointers (refs explained)"
+    title_ar: "الفروع في Git مجرد مؤشّرات: شرح الـ refs"
+    promise_en: "See branch pills on the graph and learn that a ref is a movable name for a commit."
+    concept: "A ref (branch name) is a movable pointer to a commit."
+    feature: "graph-ref-pills"
+    commands: ["git branch -v", "git show-ref"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["01-02"]
+    platforms: ["linux"]
+    notes: "Tag pills are introduced here by sight only; tags have their own video (01-08)."
+  - id: "01-04"
+    series: "01-git-foundations"
+    slug: "what-is-head"
+    title_en: "What is HEAD in Git? Find it in GitTree"
+    title_ar: "ما هو HEAD في Git؟ اعثر عليه في GitTree"
+    promise_en: "Jump to HEAD and see what the checked-out branch and a detached HEAD look like."
+    concept: "HEAD is the current commit, usually through the checked-out branch."
+    feature: "graph-jump-head"
+    commands: ["git rev-parse HEAD", "git symbolic-ref HEAD"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["01-03"]
+    platforms: ["linux"]
+    notes: "Shortcut Mod+Shift+H."
+  - id: "01-05"
+    series: "01-git-foundations"
+    slug: "three-trees-and-the-index"
+    title_en: "Git working tree, index and HEAD: the three trees"
+    title_ar: "شجرة العمل والـ index وHEAD في Git: الأشجار الثلاث"
+    promise_en: "Use the Working Changes panel to see the working folder, the index and HEAD as three different states."
+    concept: "Git compares three trees: the working tree, the index (staging area) and HEAD."
+    feature: "staging-panel"
+    commands: ["git status", "git diff", "git diff --staged"]
+    checkpoint: "two-files-modified"
+    duration_min: 6
+    requires: ["01-04"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "01-06"
+    series: "01-git-foundations"
+    slug: "local-vs-remote-branches"
+    title_en: "Local vs remote branches in Git (origin/main explained)"
+    title_ar: "الفروع المحلية والبعيدة في Git: شرح origin/main"
+    promise_en: "Read the left panel and the ahead and behind counts to tell local branches from remote-tracking ones."
+    concept: "A remote-tracking branch is your local record of where the remote's branch was at the last fetch."
+    feature: "branch-panel"
+    commands: ["git branch -vv", "git branch -r"]
+    checkpoint: "ahead-of-remote"
+    duration_min: 5
+    requires: ["01-03"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "01-07"
+    series: "01-git-foundations"
+    slug: "what-is-a-remote"
+    title_en: "What is a Git remote? Add, edit and remove one"
+    title_ar: "ما هو الـ remote في Git؟ إضافة وتعديل وحذف"
+    promise_en: "Add, edit and remove a remote and see that it is only a name for a URL."
+    concept: "A remote is a named URL (with an optional separate push URL)."
+    feature: "remote-crud"
+    commands: ["git remote add origin <url>", "git remote set-url origin <url>", "git remote remove origin"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["01-06"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "01-08"
+    series: "01-git-foundations"
+    slug: "git-tags-explained"
+    title_en: "Git tags explained: create a tag in GitTree"
+    title_ar: "شرح الـ tags في Git: أنشئ tag في GitTree"
+    promise_en: "Create a lightweight tag on a commit and see it as a pill in the graph."
+    concept: "A lightweight tag is a fixed name on a commit."
+    feature: "tag-create"
+    commands: ["git tag <name> <sha>"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["01-03"]
+    platforms: ["linux"]
+    notes: "Annotated tags are 03-07; deleting and pushing tags are 03-08 and 05-10."
+  - id: "01-09"
+    series: "01-git-foundations"
+    slug: "fetch-without-changing-files"
+    title_en: "Git fetch explained: download without changing your files"
+    title_ar: "شرح git fetch: تنزيل التحديثات دون تغيير ملفاتك"
+    promise_en: "Run Fetch All and watch only the remote-tracking branches move while your files stay put."
+    concept: "Fetch updates remote-tracking refs and never touches your working files or your branches."
+    feature: "sync-fetch"
+    commands: ["git fetch --all --prune", "git fetch <remote>"]
+    checkpoint: "behind-remote"
+    duration_min: 4
+    requires: ["01-06"]
+    platforms: ["linux"]
+    notes: "Fetch is reached from the Pull caret ('Pull options'), no default chord."
+  - id: "01-10"
+    series: "01-git-foundations"
+    slug: "what-is-a-fast-forward"
+    title_en: "What is a Git fast-forward? Move a branch pointer"
+    title_ar: "ما هو الـ fast-forward في Git؟ تحريك مؤشر الفرع"
+    promise_en: "Fast-forward a branch to its upstream and see that only the pointer moves."
+    concept: "A fast-forward moves a branch pointer along a straight line and creates no commit."
+    feature: "branch-ff"
+    commands: ["git merge-base --is-ancestor <a> <b>", "git merge --ff-only <b>"]
+    checkpoint: "behind-remote"
+    duration_min: 4
+    requires: ["01-09"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "01-11"
+    series: "01-git-foundations"
+    slug: "merge-vs-rebase"
+    title_en: "Git merge vs rebase: the difference on the graph"
+    title_ar: "الفرق بين git merge وgit rebase على الرسم"
+    promise_en: "Drag one branch onto another and compare what Merge and Rebase do to the graph."
+    concept: "Merge joins two lines of history with a new commit; rebase replays commits with new ids."
+    feature: "graph-ref-drop"
+    commands: ["git merge <branch>", "git rebase <branch>"]
+    checkpoint: "diverged-branches"
+    duration_min: 6
+    requires: ["01-10"]
+    platforms: ["linux"]
+    notes: "Concept video only; the full merge and rebase workflows are 03-10 and 04-01."
+  - id: "01-12"
+    series: "01-git-foundations"
+    slug: "git-config-scopes"
+    title_en: "Git config scopes: system, global and local explained"
+    title_ar: "نطاقات إعدادات Git: النظام والعام والمحلي"
+    promise_en: "Change a Git setting at the global and the local level from Preferences and see which one wins."
+    concept: "Git settings live in scopes (system, global, local) and the narrowest scope wins."
+    feature: "settings-git-config"
+    commands: ["git config --list --show-scope", "git config --global <key> <value>", "git config --local <key> <value>"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["01-07"]
+    platforms: ["linux"]
+    notes: "The system level is read-only in the app. The Preferences window itself is 07-01."
+
+  # ---------------------------------------------------------------- 02-daily-workflow
+  - id: "02-01"
+    series: "02-daily-workflow"
+    slug: "stage-a-file"
+    title_en: "Stage a file in GitTree (git add explained)"
+    title_ar: "كيف تُجهِّز ملفًا في GitTree (شرح git add)"
+    promise_en: "Stage one changed file so that it goes into the next commit and the others do not."
+    concept: "Staging copies a file's changes into the index, which is the next commit."
+    feature: "staging-file"
+    commands: ["git add -A -- <path>", "git status"]
+    checkpoint: "two-files-modified"
+    duration_min: 3
+    requires: ["01-05"]
+    platforms: ["linux"]
+    notes: "Shortcut S works when the file list has focus. Path and Tree layout (staging-layout) is shown in passing."
+  - id: "02-02"
+    series: "02-daily-workflow"
+    slug: "stage-a-single-hunk"
+    title_en: "Stage a single hunk in GitTree (commit part of a file)"
+    title_ar: "كيف تُجهِّز Hunk واحدًا في GitTree وتحفظ جزءًا من الملف"
+    promise_en: "Commit only one of two changes in the same file, without touching the other."
+    concept: "The staging area (index) decides what a commit contains; a hunk is the unit of a change."
+    feature: "staging-hunk"
+    commands: ["git add -p", "git diff --staged"]
+    checkpoint: "two-hunks"
+    duration_min: 3.5
+    requires: []
+    platforms: ["linux"]
+    notes: "The pilot episode, kept exactly as in curriculum/02-daily-workflow/stage-a-single-hunk/episode.yml."
+  - id: "02-03"
+    series: "02-daily-workflow"
+    slug: "stage-single-lines"
+    title_en: "Stage single lines in GitTree (partial commit)"
+    title_ar: "جهِّز أسطرًا محددة في GitTree لحفظ جزء من التعديل"
+    promise_en: "Pick individual changed lines and stage only those."
+    concept: "A patch can be narrowed to single lines before it enters the index."
+    feature: "staging-lines"
+    commands: ["git add -p (then e to edit the hunk)", "git apply --cached"]
+    checkpoint: "mixed-lines"
+    duration_min: 4
+    requires: ["02-02"]
+    platforms: ["linux"]
+    notes: "Shift+click picks a range of lines. Binary files, renames, LFS pointers, mode changes and submodules are staged whole (staging-whole-only), mention in one sentence."
+  - id: "02-04"
+    series: "02-daily-workflow"
+    slug: "unstage-a-file"
+    title_en: "Unstage a file in GitTree (undo git add)"
+    title_ar: "إلغاء تجهيز ملف في GitTree (التراجع عن git add)"
+    promise_en: "Move a staged file back to the unstaged list without losing any edit."
+    concept: "Unstaging resets the index entry and leaves the file on disk untouched."
+    feature: "staging-unstage-file"
+    commands: ["git restore --staged -- <path>", "git reset -q"]
+    checkpoint: "two-files-modified"
+    duration_min: 3
+    requires: ["02-01"]
+    platforms: ["linux"]
+    notes: "Shortcut U works when the file list has focus."
+  - id: "02-05"
+    series: "02-daily-workflow"
+    slug: "make-a-commit"
+    title_en: "Make a Git commit in GitTree step by step"
+    title_ar: "كيف تُنشئ commit في GitTree خطوة بخطوة"
+    promise_en: "Write a summary and description and commit the staged changes."
+    concept: "A commit snapshots the index, not the working folder."
+    feature: "commit-create"
+    commands: ["git commit --no-edit -F - --cleanup=strip"]
+    checkpoint: "two-files-modified"
+    duration_min: 4
+    requires: ["02-01"]
+    platforms: ["linux"]
+    notes: "Shortcut Mod+Enter."
+  - id: "02-06"
+    series: "02-daily-workflow"
+    slug: "commit-message-hints"
+    title_en: "Write better Git commit messages with GitTree hints"
+    title_ar: "اكتب رسائل commit أوضح مع تلميحات GitTree"
+    promise_en: "Use the summary counter and the message hints, including the Conventional Commits check."
+    concept: "A commit message has a short summary, a blank line, then an optional body."
+    feature: "commit-message-assist"
+    commands: []
+    checkpoint: "two-files-modified"
+    duration_min: 4
+    requires: ["02-05"]
+    platforms: ["linux"]
+    notes: "The Conventional Commits check is a setting (Check Conventional Commits), off unless enabled."
+  - id: "02-07"
+    series: "02-daily-workflow"
+    slug: "amend-last-commit"
+    title_en: "Amend the last Git commit in GitTree"
+    title_ar: "تعديل آخر commit في GitTree (amend)"
+    promise_en: "Fix the message or add a forgotten file to the last commit."
+    concept: "Amend replaces the tip commit with a new one that has a new id."
+    feature: "commit-amend"
+    commands: ["git commit --amend"]
+    checkpoint: "typo-in-last-commit"
+    duration_min: 4
+    requires: ["02-05"]
+    platforms: ["linux"]
+    notes: "Show the 'Amend a commit that is already pushed?' warning as a short aside; the push consequences are 04-07."
+  - id: "02-08"
+    series: "02-daily-workflow"
+    slug: "commit-options"
+    title_en: "Git commit options: sign-off, skip hooks, other author"
+    title_ar: "خيارات commit في Git: التوقيع وتخطي الـ hooks ومؤلف آخر"
+    promise_en: "Open the Commit Options menu and use sign-off, a different author and recent messages."
+    concept: "A commit records an author and a committer separately, and can carry a sign-off trailer."
+    feature: "commit-options"
+    commands: ["git commit --signoff", "git commit --no-verify"]
+    checkpoint: "two-files-modified"
+    duration_min: 5
+    requires: ["02-05"]
+    platforms: ["linux"]
+    notes: "Co-authors have their own video (02-09). Signing commits is 07-08."
+  - id: "02-09"
+    series: "02-daily-workflow"
+    slug: "add-co-authors"
+    title_en: "Add co-authors to a Git commit in GitTree"
+    title_ar: "إضافة مشاركين في التأليف إلى commit في GitTree"
+    promise_en: "Credit a second person on a commit with a Co-authored-by trailer."
+    concept: "A trailer is a key and value line at the end of a commit message."
+    feature: "commit-coauthors"
+    commands: ["git commit -m \"... Co-authored-by: Name <email>\""]
+    checkpoint: "two-files-modified"
+    duration_min: 3
+    requires: ["02-05"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-10"
+    series: "02-daily-workflow"
+    slug: "commit-hook-output"
+    title_en: "Git commit hooks: read pre-commit output in GitTree"
+    title_ar: "خطافات commit في Git: اقرأ مخرجات pre-commit في GitTree"
+    promise_en: "See what a failing pre-commit hook prints and why your message and staged changes are kept."
+    concept: "A hook is a script in .git/hooks that can stop a commit."
+    feature: "commit-hooks"
+    commands: ["git commit"]
+    checkpoint: "failing-pre-commit-hook"
+    duration_min: 4
+    requires: ["02-05"]
+    platforms: ["linux"]
+    notes: "Turning hooks on and off per repository (commit-hooks-manage) is not a video of its own."
+  - id: "02-11"
+    series: "02-daily-workflow"
+    slug: "draft-commit-message-with-ai-agent"
+    title_en: "Draft a Git commit message with your own AI agent CLI"
+    title_ar: "اكتب رسالة commit بمساعدة وكيل ذكاء اصطناعي تثبّته أنت"
+    promise_en: "Generate a commit message from the staged diff using a coding-agent CLI you installed and signed in to."
+    concept: "The staged diff is the input to a message, and it is sent only when you click."
+    feature: "commit-ai-draft"
+    commands: ["git diff --cached --stat --patch -M"]
+    checkpoint: "two-files-modified"
+    duration_min: 4
+    requires: ["02-05"]
+    platforms: ["linux"]
+    notes: "ADR-0017 status is 'proposed' (owner has not accepted): confirm the feature ships in the release before recording. Needs an installed and signed-in agent CLI (Claude Code, Codex or Antigravity); GitTree holds no key. Never show real diffs or credentials."
+  - id: "02-12"
+    series: "02-daily-workflow"
+    slug: "discard-file-changes"
+    title_en: "Discard changes to a file in GitTree (git restore)"
+    title_ar: "تجاهل تغييرات ملف في GitTree (git restore)"
+    promise_en: "Throw away the changes in one file, knowing a recovery snapshot is saved first."
+    concept: "Discarding is irreversible in plain Git, so GitTree snapshots to a private ref before acting."
+    feature: "staging-discard"
+    commands: ["git restore --worktree -- <path>"]
+    checkpoint: "two-files-modified"
+    duration_min: 4
+    requires: ["02-01"]
+    platforms: ["linux"]
+    notes: "VERIFY V12: quote the recovery text (staging.discard.recovery) from en.ts. Recovery itself is 04-14."
+  - id: "02-13"
+    series: "02-daily-workflow"
+    slug: "discard-a-single-hunk"
+    title_en: "Discard a single hunk in GitTree (undo part of a file)"
+    title_ar: "تجاهل Hunk واحد في GitTree (التراجع عن جزء من الملف)"
+    promise_en: "Throw away one hunk of a file and keep the other."
+    concept: "A hunk can be reverse-applied to the working tree on its own."
+    feature: "staging-hunk"
+    commands: ["git apply -R"]
+    checkpoint: "two-hunks"
+    duration_min: 3
+    requires: ["02-02", "02-12"]
+    platforms: ["linux"]
+    notes: "Confirm dialog is 'Discard this hunk?'. Discarding single lines (Discard Lines) is shown in one sentence."
+  - id: "02-14"
+    series: "02-daily-workflow"
+    slug: "discard-all-changes"
+    title_en: "Discard all changes in a Git repository safely"
+    title_ar: "تجاهل كل التغييرات في مستودع Git بأمان"
+    promise_en: "Reset the whole working folder to the last commit with one confirmed action."
+    concept: "Resetting the tree to HEAD removes both staged and unstaged work."
+    feature: "staging-discard-all"
+    commands: ["git restore --staged --worktree --source=HEAD -- ."]
+    checkpoint: "two-files-modified"
+    duration_min: 3
+    requires: ["02-12"]
+    platforms: ["linux"]
+    notes: "Buttons are 'Reset All' and 'Cancel'; Cancel has initial focus."
+  - id: "02-15"
+    series: "02-daily-workflow"
+    slug: "ignore-files-folders-extensions"
+    title_en: "Ignore a file, folder or extension in Git (.gitignore)"
+    title_ar: "تجاهل ملف أو مجلد أو امتداد في Git (.gitignore)"
+    promise_en: "Add a path to .gitignore from the right-click menu."
+    concept: ".gitignore tells Git which untracked files to leave out."
+    feature: "staging-ignore"
+    commands: ["git check-ignore -v <path>"]
+    checkpoint: "untracked-build-files"
+    duration_min: 3
+    requires: ["02-01"]
+    platforms: ["linux"]
+    notes: "Assume Unchanged and Skip Worktree flags (staging-skip-flags) are not covered."
+  - id: "02-16"
+    series: "02-daily-workflow"
+    slug: "edit-gitignore"
+    title_en: "Edit .gitignore and find out why a file is ignored"
+    title_ar: "تعديل .gitignore ومعرفة سبب تجاهل ملف"
+    promise_en: "Edit .gitignore with a template and ask which rule ignores a given path."
+    concept: "git check-ignore -v names the exact rule and file that ignores a path."
+    feature: "staging-gitignore-editor"
+    commands: ["git check-ignore -v <path>"]
+    checkpoint: "untracked-build-files"
+    duration_min: 4
+    requires: ["02-15"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-17"
+    series: "02-daily-workflow"
+    slug: "diff-view-modes"
+    title_en: "Git diff in GitTree: hunk, inline and side by side"
+    title_ar: "عرض git diff في GitTree: Hunk وInline وSplit"
+    promise_en: "Switch the diff between Hunk, Inline and Split views."
+    concept: "A diff is added and removed lines shown with their context."
+    feature: "diff-view-modes"
+    commands: ["git diff", "git diff --cached -M"]
+    checkpoint: "two-hunks"
+    duration_min: 4
+    requires: ["01-05"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-18"
+    series: "02-daily-workflow"
+    slug: "jump-between-changes"
+    title_en: "Jump between changes in a Git diff (F7 and Shift+F7)"
+    title_ar: "التنقل بين التغييرات في الـ diff بالمفتاحين F7 وShift+F7"
+    promise_en: "Move to the next and previous change with the keyboard and the change overview."
+    concept: "Reading a long diff is faster when you jump from change to change."
+    feature: "diff-nav"
+    commands: ["git diff"]
+    checkpoint: "two-hunks"
+    duration_min: 3
+    requires: ["02-17"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-19"
+    series: "02-daily-workflow"
+    slug: "diff-display-options"
+    title_en: "Ignore whitespace in a Git diff and wrap long lines"
+    title_ar: "تجاهل المسافات البيضاء في الـ diff ولفّ الأسطر الطويلة"
+    promise_en: "Turn on Ignore whitespace, Wrap lines and Highlight changed words."
+    concept: "Whitespace-only changes are noise that git diff -w removes."
+    feature: "diff-options"
+    commands: ["git diff -w"]
+    checkpoint: "whitespace-noise"
+    duration_min: 3
+    requires: ["02-17"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-20"
+    series: "02-daily-workflow"
+    slug: "compare-images"
+    title_en: "Compare images in Git: side by side, swipe, onion skin"
+    title_ar: "مقارنة الصور في Git: جنبًا إلى جنب والسحب والتراكب"
+    promise_en: "Compare two versions of an image with the three image diff modes."
+    concept: "Git stores binary files as blobs, so GitTree reads both blobs and compares them visually."
+    feature: "diff-image"
+    commands: ["git cat-file -p <blob>"]
+    checkpoint: "image-changed"
+    duration_min: 3
+    requires: ["02-17"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-21"
+    series: "02-daily-workflow"
+    slug: "view-file-at-a-commit"
+    title_en: "View a file at any Git commit in GitTree"
+    title_ar: "عرض ملف كما كان في أي commit في GitTree"
+    promise_en: "Open a file as it was at a chosen commit using File View."
+    concept: "Every commit holds a complete snapshot, so any file can be read at any revision."
+    feature: "diff-file-view"
+    commands: ["git show <rev>:<path>"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["01-01"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-22"
+    series: "02-daily-workflow"
+    slug: "compare-two-commits"
+    title_en: "Compare two Git commits in GitTree (git diff A B)"
+    title_ar: "مقارنة commit مع آخر في GitTree (git diff A B)"
+    promise_en: "Select two commits and see the files that differ between them."
+    concept: "A diff between two commits compares two snapshots, not two changes."
+    feature: "diff-compare"
+    commands: ["git diff <a> <b>"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["02-17"]
+    platforms: ["linux"]
+    notes: "Compare with Working Directory is shown in one sentence."
+  - id: "02-23"
+    series: "02-daily-workflow"
+    slug: "restore-file-from-commit"
+    title_en: "Restore a file from an old Git commit in GitTree"
+    title_ar: "استرجاع ملف من commit قديم في GitTree"
+    promise_en: "Bring one file back to how it was in a chosen commit."
+    concept: "Restoring overwrites your work, so GitTree saves it in a recovery ref first."
+    feature: "diff-restore-file"
+    commands: ["git restore --staged --worktree --source=<rev> -- <path>"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["02-21", "02-12"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-24"
+    series: "02-daily-workflow"
+    slug: "git-blame"
+    title_en: "Git blame: who changed this line? (GitTree blame view)"
+    title_ar: "git blame: من غيّر هذا السطر؟ (عرض blame في GitTree)"
+    promise_en: "Open Blame on a file and see which commit last touched each line."
+    concept: "Blame attributes each line to the commit that last changed it."
+    feature: "blame-view"
+    commands: ["git blame --incremental <path>"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["01-01"]
+    platforms: ["linux"]
+    notes: "VERIFY V9: the exact right-click placement of 'Blame File' is inferred from menu code, confirm in the running app. The Ignore whitespace and Follow moved lines toggles (blame-options) appear here in one sentence."
+  - id: "02-25"
+    series: "02-daily-workflow"
+    slug: "blame-before-this-commit"
+    title_en: "Git blame before this commit: walk a line's history"
+    title_ar: "تتبّع تاريخ سطر بخطوات blame للخلف في GitTree"
+    promise_en: "Step back to the blame of the commit before the one that changed a line."
+    concept: "Blaming at a commit's parent reveals who changed the line before."
+    feature: "blame-step-back"
+    commands: ["git blame <commit>^ -- <path>"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["02-24"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-26"
+    series: "02-daily-workflow"
+    slug: "file-history"
+    title_en: "Git file history with renames (git log --follow)"
+    title_ar: "تاريخ ملف في Git مع إعادة التسمية (git log --follow)"
+    promise_en: "List every commit that changed one file, across renames."
+    concept: "File history can follow a file through renames."
+    feature: "history-file"
+    commands: ["git log --follow -M -- <path>"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["01-02"]
+    platforms: ["linux"]
+    notes: "VERIFY V9: menu placement of 'Show File History' is inferred from code."
+  - id: "02-27"
+    series: "02-daily-workflow"
+    slug: "the-wip-row"
+    title_en: "The WIP row in the Git graph: your uncommitted work"
+    title_ar: "صف WIP في رسم Git: عملك الذي لم يُحفظ بعد"
+    promise_en: "Read the WIP row at the top of the graph and open the working changes from it."
+    concept: "The working tree is the uncommitted tip of your history."
+    feature: "graph-wip-row"
+    commands: ["git status --porcelain=v2"]
+    checkpoint: "two-files-modified"
+    duration_min: 3
+    requires: ["01-05"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "02-28"
+    series: "02-daily-workflow"
+    slug: "search-the-graph"
+    title_en: "Search Git history in GitTree (Ctrl+F in the graph)"
+    title_ar: "البحث في سجل Git داخل GitTree (Ctrl+F في الرسم)"
+    promise_en: "Search the loaded history by message, author, SHA, branch or tag and jump between matches."
+    concept: "Searching what is already loaded is instant, and it is limited to the loaded rows."
+    feature: "graph-search"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["01-02"]
+    platforms: ["linux"]
+    notes: "Shortcut Mod+F. Searching all history is 06-21. The toolbar Search button is not shown (VERIFY V1)."
+  - id: "02-29"
+    series: "02-daily-workflow"
+    slug: "stash-your-changes"
+    title_en: "Git stash in GitTree: save work in progress"
+    title_ar: "git stash في GitTree: احفظ عملك غير المكتمل جانبًا"
+    promise_en: "Stash all your changes to get a clean working folder."
+    concept: "A stash is a pair of commits on refs/stash that holds your uncommitted work."
+    feature: "stash-save"
+    commands: ["git stash push"]
+    checkpoint: "two-files-modified"
+    duration_min: 3
+    requires: ["01-05"]
+    platforms: ["linux"]
+    notes: "Stash tab in the composer (commit-stash-from-composer) and the stash pill on the graph (graph-stash-tips) are shown in one sentence."
+  - id: "02-30"
+    series: "02-daily-workflow"
+    slug: "stash-pop"
+    title_en: "Git stash pop in GitTree: bring your changes back"
+    title_ar: "git stash pop في GitTree: استرجع تغييراتك المخبّأة"
+    promise_en: "Pop the latest stash to restore it and remove it from the list."
+    concept: "Pop applies a stash and drops it in one step."
+    feature: "stash-pop"
+    commands: ["git stash pop"]
+    checkpoint: "stashed-work"
+    duration_min: 3
+    requires: ["02-29"]
+    platforms: ["linux"]
+    notes: "Apply (keeps the stash) is shown in one sentence."
+
+  # ---------------------------------------------------------------- 03-branching-and-merging
+  - id: "03-01"
+    series: "03-branching-and-merging"
+    slug: "create-a-branch"
+    title_en: "Create a Git branch in GitTree"
+    title_ar: "إنشاء فرع جديد في Git عبر GitTree"
+    promise_en: "Create a branch at the current commit and check it out."
+    concept: "Creating a branch writes a new pointer to a commit and nothing else."
+    feature: "branch-create"
+    commands: ["git branch <name> <sha>", "git switch <name>"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["01-03"]
+    platforms: ["linux"]
+    notes: "Name validation (branch-validate) is shown with one bad name in this video."
+  - id: "03-02"
+    series: "03-branching-and-merging"
+    slug: "switch-branches"
+    title_en: "Switch Git branches in GitTree (git switch)"
+    title_ar: "التبديل بين فروع Git في GitTree (git switch)"
+    promise_en: "Check out another branch, including what GitTree offers when local changes are in the way."
+    concept: "Checkout moves HEAD, and local changes can block it."
+    feature: "branch-checkout"
+    commands: ["git switch <branch>"]
+    checkpoint: "dirty-switch"
+    duration_min: 5
+    requires: ["03-01"]
+    platforms: ["linux"]
+    notes: "Dirty-tree dialog: Stash and Switch, Discard and Switch, Commit First. The branch dropdown (branch-switcher) is shown in one sentence."
+  - id: "03-03"
+    series: "03-branching-and-merging"
+    slug: "check-out-remote-branch"
+    title_en: "Check out a remote Git branch and track it"
+    title_ar: "سحب فرع بعيد في Git وتتبّعه محليًا"
+    promise_en: "Check out a remote branch so that a local branch tracks it."
+    concept: "A local branch can track a remote branch (its upstream)."
+    feature: "branch-checkout"
+    commands: ["git switch --track origin/<branch>"]
+    checkpoint: "with-remote-branches"
+    duration_min: 3
+    requires: ["03-02", "01-06"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "03-04"
+    series: "03-branching-and-merging"
+    slug: "rename-a-branch"
+    title_en: "Rename a Git branch in GitTree"
+    title_ar: "إعادة تسمية فرع في Git عبر GitTree"
+    promise_en: "Rename a local branch and see the pill change."
+    concept: "Renaming moves a pointer's name, not its commits."
+    feature: "branch-rename"
+    commands: ["git branch -m <old> <new>"]
+    checkpoint: "feature-branch"
+    duration_min: 3
+    requires: ["03-01"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "03-05"
+    series: "03-branching-and-merging"
+    slug: "delete-a-branch"
+    title_en: "Delete a Git branch safely in GitTree"
+    title_ar: "حذف فرع في Git بأمان عبر GitTree"
+    promise_en: "Delete a local branch and see that its last commit is kept in a recovery ref."
+    concept: "Deleting a branch removes the pointer; the commits stay reachable until they are cleaned up."
+    feature: "branch-delete"
+    commands: ["git branch -D <name>"]
+    checkpoint: "feature-branch"
+    duration_min: 3
+    requires: ["03-01"]
+    platforms: ["linux"]
+    notes: "Delete Branch and Its Remote Branch is shown in one sentence; deleting a remote branch alone is 05-09."
+  - id: "03-06"
+    series: "03-branching-and-merging"
+    slug: "set-upstream"
+    title_en: "Set the upstream branch in Git (tracking explained)"
+    title_ar: "تحديد الفرع المتتبَّع (upstream) في Git: الشرح"
+    promise_en: "Choose which remote branch a local branch tracks, or make it track nothing."
+    concept: "The upstream is the remote branch that pull, push and ahead and behind counts compare against."
+    feature: "branch-upstream"
+    commands: ["git branch --set-upstream-to=origin/<branch>", "git branch --unset-upstream"]
+    checkpoint: "with-remote-branches"
+    duration_min: 3
+    requires: ["03-03"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "03-07"
+    series: "03-branching-and-merging"
+    slug: "annotated-tag"
+    title_en: "Create an annotated Git tag in GitTree"
+    title_ar: "إنشاء tag موصوف (annotated) في Git عبر GitTree"
+    promise_en: "Create an annotated tag with a message for a release."
+    concept: "An annotated tag is its own object with a message, unlike a lightweight tag."
+    feature: "tag-annotated"
+    commands: ["git tag --annotate -m <message> <name> <sha>"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["01-08"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "03-08"
+    series: "03-branching-and-merging"
+    slug: "delete-a-tag"
+    title_en: "Delete a Git tag locally and on the remote"
+    title_ar: "حذف tag في Git محليًا وعلى الخادم"
+    promise_en: "Delete a tag from your repository and, separately, from the remote."
+    concept: "Deleting a remote tag affects everyone who fetches."
+    feature: "tag-delete"
+    commands: ["git tag --delete <name>", "git push origin --delete refs/tags/<name>"]
+    checkpoint: "tagged-release"
+    duration_min: 3
+    requires: ["03-07"]
+    platforms: ["linux"]
+    notes: "The local delete is saved under refs/ogt/trash first."
+  - id: "03-09"
+    series: "03-branching-and-merging"
+    slug: "preview-a-merge"
+    title_en: "Preview a Git merge for conflicts before you merge"
+    title_ar: "معاينة الدمج في Git لمعرفة التعارضات قبل تنفيذه"
+    promise_en: "See whether a merge will conflict, and in which files, before anything changes."
+    concept: "A merge can be predicted without touching your files."
+    feature: "merge-preview"
+    commands: ["git merge-tree --write-tree --name-only <a> <b>"]
+    checkpoint: "conflicting-branches"
+    duration_min: 4
+    requires: ["01-11"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "03-10"
+    series: "03-branching-and-merging"
+    slug: "merge-a-branch"
+    title_en: "Merge a Git branch in GitTree (merge commit)"
+    title_ar: "دمج فرع في Git عبر GitTree (merge commit)"
+    promise_en: "Merge one branch into the current branch and choose how it is recorded."
+    concept: "A merge commit has two parents; a fast-forward has none to add."
+    feature: "merge-run"
+    commands: ["git merge --no-edit <branch>", "git merge --no-ff <branch>", "git merge --ff-only <branch>"]
+    checkpoint: "mergeable-branches"
+    duration_min: 5
+    requires: ["03-09", "01-10"]
+    platforms: ["linux"]
+    notes: "VERIFY V7: a plain Merge is not journaled, so Undo cannot undo it. Do not promise Undo here; show Reset (04-10..04-12) or the reflog (04-15) instead."
+  - id: "03-11"
+    series: "03-branching-and-merging"
+    slug: "squash-merge"
+    title_en: "Git squash merge: combine a branch into one commit"
+    title_ar: "الدمج بالضغط في Git (squash merge): فرع كامل في commit واحد"
+    promise_en: "Squash a branch into the staged changes and commit it as one commit."
+    concept: "A squash merge copies a branch's changes without recording its history."
+    feature: "merge-run"
+    commands: ["git merge --squash <branch>"]
+    checkpoint: "mergeable-branches"
+    duration_min: 4
+    requires: ["03-10"]
+    platforms: ["linux"]
+    notes: "Option name in the dialog: 'Squash into staged changes (no commit)'. Not journaled (VERIFY V7)."
+  - id: "03-12"
+    series: "03-branching-and-merging"
+    slug: "merge-in-progress-banner"
+    title_en: "Git merge in progress: the operation banner in GitTree"
+    title_ar: "دمج Git قيد التنفيذ: شريط العملية في GitTree"
+    promise_en: "Read the operation banner and know when to Resolve, Continue, Skip or Abort."
+    concept: "An unfinished operation is recorded in state files inside .git."
+    feature: "merge-banner"
+    commands: ["git merge --continue", "git rebase --skip"]
+    checkpoint: "merge-in-progress"
+    duration_min: 4
+    requires: ["03-10"]
+    platforms: ["linux"]
+    notes: "Tab markers for a running operation (repos-tab-state) appear here by sight."
+  - id: "03-13"
+    series: "03-branching-and-merging"
+    slug: "abort-merge-or-rebase"
+    title_en: "Abort a Git merge or rebase and go back to before"
+    title_ar: "إلغاء الدمج أو الـ rebase في Git والعودة لما قبله"
+    promise_en: "Abort an operation in one step and see that your work is kept under a recovery ref."
+    concept: "An abort restores the state from before the operation started."
+    feature: "merge-abort"
+    commands: ["git merge --abort", "git rebase --abort"]
+    checkpoint: "merge-in-progress"
+    duration_min: 3
+    requires: ["03-12"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "03-14"
+    series: "03-branching-and-merging"
+    slug: "list-conflicted-files"
+    title_en: "Merge conflicts in Git: find the conflicted files"
+    title_ar: "تعارضات الدمج في Git: اعثر على الملفات المتعارضة"
+    promise_en: "Read the Conflicted Files and Resolved Files lists and mark files resolved."
+    concept: "A conflicted file has three versions in the index: base, ours and theirs."
+    feature: "conflict-list"
+    commands: ["git status", "git ls-files -u"]
+    checkpoint: "merge-in-progress"
+    duration_min: 4
+    requires: ["03-12"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "03-15"
+    series: "03-branching-and-merging"
+    slug: "resolve-conflict-merge-view"
+    title_en: "Resolve a Git merge conflict in GitTree's merge view"
+    title_ar: "حل تعارض الدمج في Git داخل عرض الدمج في GitTree"
+    promise_en: "Resolve one conflict line by line in the three-pane editor and save it as resolved."
+    concept: "Resolving a conflict means choosing the final content, then staging it."
+    feature: "conflict-editor"
+    commands: ["git ls-files -u", "git add <file>"]
+    checkpoint: "merge-in-progress"
+    duration_min: 6
+    requires: ["03-14"]
+    platforms: ["linux"]
+    notes: "Ledger: P06-T14 (centre-view conflict slot and E2E journey) is in-progress. Confirm the journey works on the pinned release before recording."
+  - id: "03-16"
+    series: "03-branching-and-merging"
+    slug: "take-whole-side"
+    title_en: "Resolve a Git conflict by taking one whole side"
+    title_ar: "حل التعارض في Git بأخذ أحد الطرفين بالكامل"
+    promise_en: "Resolve a file by keeping ours or theirs entirely, including delete versus modify."
+    concept: "--ours and --theirs pick a whole version of a conflicted file."
+    feature: "conflict-whole-file"
+    commands: ["git checkout --ours -- <path>", "git checkout --theirs -- <path>", "git rm -- <path>"]
+    checkpoint: "merge-in-progress"
+    duration_min: 4
+    requires: ["03-14"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "03-17"
+    series: "03-branching-and-merging"
+    slug: "external-merge-tool"
+    title_en: "Use an external merge tool for Git conflicts"
+    title_ar: "استخدام أداة دمج خارجية لحل تعارضات Git"
+    promise_en: "Open a conflicted file in the merge tool you configured and return to GitTree."
+    concept: "A merge tool is a program Git hands the base, local and remote versions to."
+    feature: "conflict-merge-tool"
+    commands: ["git mergetool"]
+    checkpoint: "merge-in-progress"
+    duration_min: 4
+    requires: ["03-15"]
+    platforms: ["linux"]
+    notes: "Needs a merge tool installed (e.g. Meld on Linux); choosing the tool is 07-09."
+  - id: "03-18"
+    series: "03-branching-and-merging"
+    slug: "gitflow-initialise"
+    title_en: "Git flow in GitTree: initialise the branching model"
+    title_ar: "Git flow في GitTree: تهيئة نموذج الفروع"
+    promise_en: "Initialise Gitflow with your production and development branches and prefixes."
+    concept: "Gitflow is a naming and merging convention built on ordinary branches and merges."
+    feature: "merge-gitflow"
+    commands: ["git config gitflow.branch.develop develop"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["03-10"]
+    platforms: ["linux"]
+    notes: "No git-flow binary is used: GitTree runs plain merge, tag and branch commands."
+  - id: "03-19"
+    series: "03-branching-and-merging"
+    slug: "gitflow-feature"
+    title_en: "Git flow: start and finish a feature branch"
+    title_ar: "Git flow: بدء فرع ميزة وإنهاؤه"
+    promise_en: "Start a feature, commit on it, and finish it back into develop."
+    concept: "Finishing a Gitflow feature is a no-fast-forward merge followed by deleting the branch."
+    feature: "merge-gitflow"
+    commands: ["git merge --no-ff feature/<name>", "git branch -d feature/<name>"]
+    checkpoint: "gitflow-ready"
+    duration_min: 5
+    requires: ["03-18"]
+    platforms: ["linux"]
+    notes: "VERIFY V7: Gitflow Finish is the one merge that is journaled; check the Undo tooltip right after a finish before teaching Undo here."
+  - id: "03-20"
+    series: "03-branching-and-merging"
+    slug: "conflict-early-warning"
+    title_en: "Predict Git merge conflicts before they happen"
+    title_ar: "توقّع تعارضات الدمج في Git قبل حدوثها"
+    promise_en: "Read the early conflict warning chip on a branch and the setting that controls it."
+    concept: "Git can compute a merge result in memory without changing any file."
+    feature: "graph-conflict-chip"
+    commands: ["git merge-tree --write-tree --name-only --no-messages -z"]
+    checkpoint: "conflicting-branches"
+    duration_min: 3
+    requires: ["03-09"]
+    platforms: ["linux"]
+    notes: "Setting: 'Warn about conflicts before merging'. Overlapping-work hints (graph-overlap) are not a video."
+
+  # ---------------------------------------------------------------- 04-rewriting-history
+  - id: "04-01"
+    series: "04-rewriting-history"
+    slug: "rebase-a-branch"
+    title_en: "Git rebase explained: rebase a branch in GitTree"
+    title_ar: "شرح git rebase: إعادة تأسيس فرع في GitTree"
+    promise_en: "Rebase the current branch onto another and see the commits get new ids."
+    concept: "Rebase replays your commits on a new base, creating new commits."
+    feature: "rebase-onto"
+    commands: ["git rebase <onto>"]
+    checkpoint: "rebase-ready"
+    duration_min: 5
+    requires: ["01-11"]
+    platforms: ["linux"]
+    notes: "The old tip is kept under refs/ogt/trash."
+  - id: "04-02"
+    series: "04-rewriting-history"
+    slug: "interactive-rebase"
+    title_en: "Git interactive rebase in GitTree (pick, squash, drop)"
+    title_ar: "الـ rebase التفاعلي في Git عبر GitTree (pick وsquash وdrop)"
+    promise_en: "Rearrange, combine and drop commits in the interactive rebase editor."
+    concept: "An interactive rebase is a todo list of actions applied to a range of commits."
+    feature: "rebase-interactive"
+    commands: ["git rebase --interactive <base>"]
+    checkpoint: "messy-commits"
+    duration_min: 7
+    requires: ["04-01"]
+    platforms: ["linux"]
+    notes: "Rebase progress panel and the commit-message prompt (rebase-progress) appear here. Keyboard: Alt+Up and Alt+Down move a row; p, r, e, s, f, d set the action."
+  - id: "04-03"
+    series: "04-rewriting-history"
+    slug: "reword-a-commit"
+    title_en: "Change a Git commit message after committing (reword)"
+    title_ar: "تغيير رسالة commit بعد حفظه في Git (reword)"
+    promise_en: "Reword an older commit message from the graph."
+    concept: "Changing any commit message gives that commit and every commit above it a new id."
+    feature: "rebase-reword"
+    commands: ["git rebase -i (reword)"]
+    checkpoint: "messy-commits"
+    duration_min: 3
+    requires: ["04-02"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-04"
+    series: "04-rewriting-history"
+    slug: "drop-a-commit"
+    title_en: "Remove a commit from Git history (drop a commit)"
+    title_ar: "إزالة commit من سجل Git (drop)"
+    promise_en: "Drop a commit from the graph and see how Undo can bring it back."
+    concept: "Dropping a commit removes it from the branch but not from the object database."
+    feature: "rebase-drop"
+    commands: ["git rebase -i (drop)"]
+    checkpoint: "messy-commits"
+    duration_min: 3
+    requires: ["04-02"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-05"
+    series: "04-rewriting-history"
+    slug: "reorder-commits"
+    title_en: "Reorder Git commits: move a commit up or down"
+    title_ar: "إعادة ترتيب الـ commits في Git: انقل commit لأعلى أو لأسفل"
+    promise_en: "Move a commit up or down in the history from the right-click menu."
+    concept: "Reordering commits replays them in a new order, which can conflict."
+    feature: "rebase-move"
+    commands: ["git rebase -i (reorder)"]
+    checkpoint: "messy-commits"
+    duration_min: 3
+    requires: ["04-02"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-06"
+    series: "04-rewriting-history"
+    slug: "squash-commits"
+    title_en: "Squash Git commits into one in GitTree"
+    title_ar: "دمج عدة commits في commit واحد في Git (squash)"
+    promise_en: "Select several commits and squash them into one."
+    concept: "Squashing folds the changes of several commits into one commit."
+    feature: "rebase-squash"
+    commands: ["git rebase -i (squash)"]
+    checkpoint: "messy-commits"
+    duration_min: 3
+    requires: ["04-02"]
+    platforms: ["linux"]
+    notes: "Different from a squash merge (03-11): this one rewrites commits already on your branch."
+  - id: "04-07"
+    series: "04-rewriting-history"
+    slug: "rewriting-pushed-commits"
+    title_en: "Why rewriting pushed Git commits is risky"
+    title_ar: "لماذا إعادة كتابة commits مدفوعة في Git أمر خطير"
+    promise_en: "See the warning GitTree shows when commits you are about to rewrite are already on a remote."
+    concept: "Rewriting shared history forces everyone else to reconcile it."
+    feature: "rebase-published-guard"
+    commands: ["git rev-list <commits> --not --remotes"]
+    checkpoint: "pushed-commits"
+    duration_min: 4
+    requires: ["04-02"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-08"
+    series: "04-rewriting-history"
+    slug: "cherry-pick"
+    title_en: "Git cherry-pick: copy a commit to another branch"
+    title_ar: "git cherry-pick: انسخ commit إلى فرع آخر"
+    promise_en: "Copy one commit onto the current branch."
+    concept: "Cherry-pick re-applies a commit's change on top of HEAD as a new commit."
+    feature: "pick-cherry"
+    commands: ["git cherry-pick <sha>"]
+    checkpoint: "cherry-pick-source"
+    duration_min: 4
+    requires: ["03-01"]
+    platforms: ["linux"]
+    notes: "Cherry-picking a merge commit asks for the first or second parent (mention only). Not journaled by Undo (VERIFY V7)."
+  - id: "04-09"
+    series: "04-rewriting-history"
+    slug: "revert-a-commit"
+    title_en: "Git revert: undo a commit without rewriting history"
+    title_ar: "git revert: تراجع عن commit دون إعادة كتابة السجل"
+    promise_en: "Revert a commit by adding a new commit that undoes it."
+    concept: "A revert is a new inverse commit, which is safe on shared history."
+    feature: "revert-commit"
+    commands: ["git revert --no-edit <sha>"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["04-08"]
+    platforms: ["linux"]
+    notes: "Not journaled by Undo (VERIFY V7)."
+  - id: "04-10"
+    series: "04-rewriting-history"
+    slug: "reset-soft"
+    title_en: "Git reset --soft: undo a commit but keep it staged"
+    title_ar: "git reset --soft: ألغِ commit مع إبقاء التغييرات مجهّزة"
+    promise_en: "Move the branch back one commit while the changes stay staged."
+    concept: "A soft reset moves only the branch pointer."
+    feature: "reset-soft"
+    commands: ["git reset --soft <sha>"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["01-05"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-11"
+    series: "04-rewriting-history"
+    slug: "reset-mixed"
+    title_en: "Git reset --mixed: undo a commit, keep the changes"
+    title_ar: "git reset --mixed: ألغِ commit مع إبقاء التغييرات في المجلد"
+    promise_en: "Move the branch back and the index with it, keeping your files."
+    concept: "A mixed reset moves the branch pointer and resets the index."
+    feature: "reset-mixed"
+    commands: ["git reset --mixed <sha>"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["04-10"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-12"
+    series: "04-rewriting-history"
+    slug: "reset-hard"
+    title_en: "Git reset --hard in GitTree: discard commits safely"
+    title_ar: "git reset --hard في GitTree: تجاهل commits بأمان"
+    promise_en: "Hard-reset a branch and recover the discarded work from the snapshot GitTree takes first."
+    concept: "A hard reset moves the branch, the index and the files, so it can lose work."
+    feature: "reset-hard"
+    commands: ["git reset --hard <sha>"]
+    checkpoint: "two-files-modified"
+    duration_min: 4
+    requires: ["04-11", "02-12"]
+    platforms: ["linux"]
+    notes: "Button text: 'Discard and reset {{branch}}'; dialog focus starts on Cancel."
+  - id: "04-13"
+    series: "04-rewriting-history"
+    slug: "undo-and-redo"
+    title_en: "Undo and redo Git operations in GitTree"
+    title_ar: "التراجع عن عمليات Git وإعادتها في GitTree (Undo وRedo)"
+    promise_en: "Undo a rebase and a branch delete from the toolbar and redo them."
+    concept: "Undo restores a ref from a journal entry, only if the ref has not moved since."
+    feature: "undo-redo"
+    commands: ["git update-ref <ref> <old-sha> <expected-sha>"]
+    checkpoint: "messy-commits"
+    duration_min: 5
+    requires: ["04-02"]
+    platforms: ["linux"]
+    notes: "VERIFY V7: a plain Merge, cherry-pick, revert and pull-merge are NOT undoable; only the covered operations are (discard, restore file, delete branch/tag/stash, force push, rebase, reset, commit, checkout, create branch/tag). Covers undo-coverage in this one video. No default chord for Undo or Redo."
+  - id: "04-14"
+    series: "04-rewriting-history"
+    slug: "recovery-snapshots"
+    title_en: "Git recovery snapshots: GitTree's refs/ogt/trash"
+    title_ar: "لقطات الاسترداد: refs/ogt/trash في GitTree"
+    promise_en: "Find the recovery snapshots GitTree keeps and delete the old ones."
+    concept: "A snapshot is a commit kept alive under a private ref so nothing is lost."
+    feature: "trash-refs"
+    commands: ["git for-each-ref refs/ogt/trash", "git update-ref -d <ref>"]
+    checkpoint: "messy-commits"
+    duration_min: 4
+    requires: ["04-12"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-15"
+    series: "04-rewriting-history"
+    slug: "reflog"
+    title_en: "Git reflog explained: see where HEAD has been"
+    title_ar: "شرح git reflog: أين كان HEAD من قبل"
+    promise_en: "Open the reflog of a branch and read the list of places it pointed to."
+    concept: "The reflog is the local record of where each ref used to point."
+    feature: "reflog-view"
+    commands: ["git reflog", "git log --walk-reflogs"]
+    checkpoint: "lost-commit"
+    duration_min: 4
+    requires: ["04-12"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-16"
+    series: "04-rewriting-history"
+    slug: "recover-with-reflog"
+    title_en: "Recover a lost Git commit with the reflog"
+    title_ar: "استرجاع commit ضائع في Git باستخدام reflog"
+    promise_en: "Create a branch from a reflog entry to get back a commit that no branch points to."
+    concept: "A commit with no ref is still in the database until garbage collection."
+    feature: "reflog-restore"
+    commands: ["git branch <name> <sha>"]
+    checkpoint: "lost-commit"
+    duration_min: 4
+    requires: ["04-15"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-17"
+    series: "04-rewriting-history"
+    slug: "bisect"
+    title_en: "Git bisect: find the commit that introduced a bug"
+    title_ar: "git bisect: اعثر على الـ commit الذي أدخل الخطأ"
+    promise_en: "Mark commits good and bad until GitTree names the first bad commit."
+    concept: "Bisect is a binary search through history."
+    feature: "bisect"
+    commands: ["git bisect start <bad> <good>", "git bisect good", "git bisect bad", "git bisect reset"]
+    checkpoint: "bug-introduced"
+    duration_min: 6
+    requires: ["01-02"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-18"
+    series: "04-rewriting-history"
+    slug: "create-a-patch"
+    title_en: "Create a Git patch file from a commit (format-patch)"
+    title_ar: "إنشاء ملف patch من commit في Git (format-patch)"
+    promise_en: "Save one or more commits as a patch file you can send."
+    concept: "A patch file is a portable description of a commit."
+    feature: "patch-create"
+    commands: ["git format-patch -1 <sha>"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["01-01"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "04-19"
+    series: "04-rewriting-history"
+    slug: "apply-a-patch"
+    title_en: "Apply a Git patch file: git apply vs git am"
+    title_ar: "تطبيق ملف patch في Git: الفرق بين git apply وgit am"
+    promise_en: "Apply a patch to the working tree, to the index, or as commits."
+    concept: "git apply changes files, while git am also creates the commits."
+    feature: "patch-apply"
+    commands: ["git apply --index <patch>", "git am <patch>"]
+    checkpoint: "patch-file"
+    duration_min: 4
+    requires: ["04-18"]
+    platforms: ["linux"]
+    notes: ""
+
+  # ---------------------------------------------------------------- 05-collaboration
+  - id: "05-01"
+    series: "05-collaboration"
+    slug: "push"
+    title_en: "Git push in GitTree: send your commits to a remote"
+    title_ar: "git push في GitTree: أرسل commits إلى المستودع البعيد"
+    promise_en: "Push a branch, including the first push that picks the remote branch."
+    concept: "A push sends commits and moves a ref on the remote."
+    feature: "sync-push"
+    commands: ["git push -u origin <branch>"]
+    checkpoint: "ahead-of-remote"
+    duration_min: 5
+    requires: ["01-06", "02-05"]
+    platforms: ["linux"]
+    notes: "Use a local bare remote. No default chord for Push; use the toolbar."
+  - id: "05-02"
+    series: "05-collaboration"
+    slug: "push-destination-check"
+    title_en: "Check where a Git push will go before you push"
+    title_ar: "تحقق من وجهة git push قبل الدفع"
+    promise_en: "Read the destination check and choose a different target if it is wrong."
+    concept: "push.default and push remotes decide where a plain push lands."
+    feature: "sync-destination"
+    commands: ["git config --get-regexp push"]
+    checkpoint: "ahead-of-remote"
+    duration_min: 3
+    requires: ["05-01"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "05-03"
+    series: "05-collaboration"
+    slug: "pull-fast-forward-only"
+    title_en: "Git pull --ff-only in GitTree"
+    title_ar: "git pull --ff-only في GitTree"
+    promise_en: "Pull with fast-forward only and see it refuse when histories have diverged."
+    concept: "Pull is a fetch followed by an integration; fast-forward only refuses when branches diverged."
+    feature: "sync-pull-ff"
+    commands: ["git pull --ff-only --no-rebase"]
+    checkpoint: "behind-remote"
+    duration_min: 3
+    requires: ["01-09"]
+    platforms: ["linux"]
+    notes: "Reached from the Pull caret ('Pull options')."
+  - id: "05-04"
+    series: "05-collaboration"
+    slug: "pull-merge"
+    title_en: "Git pull: fast-forward if possible, else merge"
+    title_ar: "git pull: تقدّم سريع إن أمكن وإلا دمج"
+    promise_en: "Pull when both sides have new commits and get a merge commit."
+    concept: "Pull in merge mode ties your commits and the remote's with a merge commit."
+    feature: "sync-pull-merge"
+    commands: ["git pull --ff-only", "git merge <upstream>"]
+    checkpoint: "diverged-remote"
+    duration_min: 4
+    requires: ["05-03", "03-10"]
+    platforms: ["linux"]
+    notes: "Not journaled by Undo (VERIFY V7)."
+  - id: "05-05"
+    series: "05-collaboration"
+    slug: "pull-rebase"
+    title_en: "Git pull --rebase in GitTree"
+    title_ar: "git pull --rebase في GitTree"
+    promise_en: "Pull by replaying your local commits on top of the remote's."
+    concept: "Pull with rebase keeps a straight history by replaying local commits."
+    feature: "sync-pull-rebase"
+    commands: ["git rebase --autostash <upstream>"]
+    checkpoint: "diverged-remote"
+    duration_min: 4
+    requires: ["05-03", "04-01"]
+    platforms: ["linux"]
+    notes: "The old tip is kept under refs/ogt/trash."
+  - id: "05-06"
+    series: "05-collaboration"
+    slug: "default-pull-mode"
+    title_en: "Choose your default Git pull mode in GitTree"
+    title_ar: "اختر طريقة git pull الافتراضية في GitTree"
+    promise_en: "Set what the toolbar Pull button does: fast-forward only, merge or rebase."
+    concept: "The pull mode is a policy: how your branch takes in the remote's new commits."
+    feature: "sync-pull-default"
+    commands: ["git config pull.ff only", "git config pull.rebase true"]
+    checkpoint: "behind-remote"
+    duration_min: 3
+    requires: ["05-05"]
+    platforms: ["linux"]
+    notes: "Setting key general.pullMode on the General page."
+  - id: "05-07"
+    series: "05-collaboration"
+    slug: "push-rejected"
+    title_en: "Git push rejected (non-fast-forward): how to fix it"
+    title_ar: "رفض git push (non-fast-forward): كيف تحل المشكلة"
+    promise_en: "Understand the refused-push dialog and choose Fetch, Merge and Push or Rebase and Push."
+    concept: "A push is refused when the remote has commits you do not have."
+    feature: "sync-push-rejected"
+    commands: ["git fetch", "git pull --rebase", "git push"]
+    checkpoint: "diverged-remote"
+    duration_min: 5
+    requires: ["05-04", "05-05"]
+    platforms: ["linux"]
+    notes: "Server-declined push (hooks) shows 'Push to a New Branch…', mention only."
+  - id: "05-08"
+    series: "05-collaboration"
+    slug: "force-push-with-lease"
+    title_en: "Git force push with lease: the safe way in GitTree"
+    title_ar: "الدفع القسري الآمن في Git (force push with lease)"
+    promise_en: "Force-push a rewritten branch so that it refuses if the remote moved."
+    concept: "--force-with-lease overwrites the remote only if it still has the commit you last saw."
+    feature: "sync-force-push"
+    commands: ["git push --force-with-lease=<ref>:<expected-sha>"]
+    checkpoint: "pushed-commits"
+    duration_min: 5
+    requires: ["04-07", "05-01"]
+    platforms: ["linux"]
+    notes: "Palette command 'Force Push (With Lease)…'. The replaced remote tip is kept in a ref. Stale lease message: '{{upstream}} moved'."
+  - id: "05-09"
+    series: "05-collaboration"
+    slug: "delete-remote-branch"
+    title_en: "Delete a remote Git branch from GitTree"
+    title_ar: "حذف فرع بعيد في Git من GitTree"
+    promise_en: "Delete a branch on the remote without leaving GitTree."
+    concept: "Deleting a remote branch pushes a deletion to the server."
+    feature: "sync-delete-remote-branch"
+    commands: ["git push origin --delete <branch>"]
+    checkpoint: "with-remote-branches"
+    duration_min: 3
+    requires: ["03-05", "05-01"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "05-10"
+    series: "05-collaboration"
+    slug: "push-a-tag"
+    title_en: "Push a Git tag to the remote in GitTree"
+    title_ar: "دفع tag إلى المستودع البعيد في Git عبر GitTree"
+    promise_en: "Push a single tag to the remote."
+    concept: "Tags are not pushed with a branch unless you ask for them."
+    feature: "tag-push"
+    commands: ["git push origin refs/tags/<tag>"]
+    checkpoint: "tagged-release"
+    duration_min: 3
+    requires: ["03-07", "05-01"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "05-11"
+    series: "05-collaboration"
+    slug: "auto-fetch"
+    title_en: "Git auto-fetch: keep remote branches up to date"
+    title_ar: "الجلب التلقائي في Git: ابقَ على اطلاع بالفروع البعيدة"
+    promise_en: "Turn on auto-fetch with an interval and see why it never asks for credentials."
+    concept: "A background fetch updates remote-tracking refs and never changes your files."
+    feature: "sync-autofetch"
+    commands: ["git fetch --all"]
+    checkpoint: "behind-remote"
+    duration_min: 3
+    requires: ["01-09"]
+    platforms: ["linux"]
+    notes: "Setting 'Auto-fetch interval' in minutes (0 = off) with a per-repository override."
+  - id: "05-12"
+    series: "05-collaboration"
+    slug: "connect-github"
+    title_en: "Connect GitHub to GitTree (browser sign-in or token)"
+    title_ar: "ربط GitHub بـ GitTree (تسجيل الدخول من المتصفح أو توكن)"
+    promise_en: "Connect a GitHub account with the browser device code or a personal access token."
+    concept: "A hosting account lets the app talk to the host's API; the Git commands still use your credentials."
+    feature: "provider-connect-github"
+    commands: []
+    checkpoint: "hosted-account"
+    duration_min: 5
+    requires: ["00-07"]
+    platforms: ["linux"]
+    notes: "VERIFY V11: ledger shows the GitHub OAuth App as blocked (P00-T25) although the official build carries a client id; confirm the device flow end to end against the live backend. Use a throwaway account and never show a token. The first-run card 'Connect GitHub for repositories and pull requests' (account-integration-offer) is shown here as one entry point."
+  - id: "05-13"
+    series: "05-collaboration"
+    slug: "connect-github-enterprise"
+    title_en: "Connect GitHub Enterprise Server to GitTree"
+    title_ar: "ربط GitHub Enterprise Server بـ GitTree"
+    promise_en: "Name your Enterprise Server host and connect with a token or browser sign-in."
+    concept: "A self-hosted host needs its own address and its own application ID."
+    feature: "provider-ghe"
+    commands: []
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12"]
+    platforms: ["linux"]
+    notes: "Needs access to a GitHub Enterprise Server host; record only if one is available."
+  - id: "05-14"
+    series: "05-collaboration"
+    slug: "connect-gitlab"
+    title_en: "Connect GitLab to GitTree (token or application ID)"
+    title_ar: "ربط GitLab بـ GitTree (توكن أو معرّف تطبيق)"
+    promise_en: "Connect gitlab.com or a self-managed GitLab with a token or a typed OAuth application ID."
+    concept: "Not every host offers one-click browser sign-in, so a personal access token is the fallback."
+    feature: "provider-gitlab"
+    commands: []
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12"]
+    platforms: ["linux"]
+    notes: "The official build has an empty OGT_GITLAB_CLIENT_ID, so show the token path (P00-T29 blocked). Merge requests are shown as pull requests."
+  - id: "05-15"
+    series: "05-collaboration"
+    slug: "connect-bitbucket-cloud"
+    title_en: "Connect Bitbucket Cloud to GitTree"
+    title_ar: "ربط Bitbucket Cloud بـ GitTree"
+    promise_en: "Connect Bitbucket Cloud with browser sign-in, an API token or an access token."
+    concept: "Some hosts sign you in through an authorization code and an account service."
+    feature: "provider-bitbucket-cloud"
+    commands: []
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12"]
+    platforms: ["linux"]
+    notes: "VERIFY V11: Bitbucket consumer (P00-T31) is blocked in the ledger though the official build carries a client id; confirm end to end. Bitbucket issues are off (Atlassian removed them on 2026-08-20), do not show an Issues section for it."
+  - id: "05-16"
+    series: "05-collaboration"
+    slug: "connect-azure-devops"
+    title_en: "Connect Azure DevOps to GitTree (personal access token)"
+    title_ar: "ربط Azure DevOps بـ GitTree (توكن وصول شخصي)"
+    promise_en: "Connect Azure DevOps with a personal access token."
+    concept: "A personal access token is a password scoped to what you allow."
+    feature: "provider-azure"
+    commands: []
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12"]
+    platforms: ["linux"]
+    notes: "Official build has an empty OGT_AZURE_CLIENT_ID, so use the token path (P00-T30 blocked). No issues, no SSH-key upload and no fork remote for Azure DevOps."
+  - id: "05-17"
+    series: "05-collaboration"
+    slug: "connect-bitbucket-data-center"
+    title_en: "Connect Bitbucket Data Center to GitTree"
+    title_ar: "ربط Bitbucket Data Center بـ GitTree"
+    promise_en: "Connect a Bitbucket Data Center host through your administrator's OAuth application link."
+    concept: "A self-hosted server needs an administrator-created application link before browser sign-in works."
+    feature: "provider-bitbucket-dc"
+    commands: []
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12"]
+    platforms: ["linux"]
+    notes: "Needs access to a Bitbucket Data Center server. No draft pull requests and no issues for this provider."
+  - id: "05-18"
+    series: "05-collaboration"
+    slug: "clone-from-provider"
+    title_en: "Clone a repository from your hosting account in GitTree"
+    title_ar: "استنساخ مستودع من حسابك على المنصة داخل GitTree"
+    promise_en: "Browse the repositories of a connected account and clone one."
+    concept: "The account only lists repositories; the clone itself is plain git over HTTPS."
+    feature: "repos-clone-provider"
+    commands: ["git clone <https-url>"]
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12", "00-10"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "05-19"
+    series: "05-collaboration"
+    slug: "publish-repository"
+    title_en: "Publish a local Git repository to a host from GitTree"
+    title_ar: "نشر مستودع Git محلي على منصة استضافة من GitTree"
+    promise_en: "Create the repository on your host, add it as origin and push, in one dialog."
+    concept: "Publishing is three steps in one: create the remote repository, add origin, push."
+    feature: "sync-publish"
+    commands: ["git remote add origin <url>", "git push -u origin <branch>"]
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12", "01-07"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "05-20"
+    series: "05-collaboration"
+    slug: "create-pull-request"
+    title_en: "Create a pull request from GitTree"
+    title_ar: "إنشاء pull request من GitTree"
+    promise_en: "Push a branch and start a pull request with a title and description, as a draft if you like."
+    concept: "A pull request is a host feature that proposes merging one branch into another."
+    feature: "pr-create"
+    commands: ["git push -u origin <branch>"]
+    checkpoint: "hosted-account"
+    duration_min: 5
+    requires: ["05-12", "05-01"]
+    platforms: ["linux"]
+    notes: "Draft pull requests are not available on Bitbucket Data Center."
+  - id: "05-21"
+    series: "05-collaboration"
+    slug: "check-out-pull-request"
+    title_en: "Check out a pull request branch locally in GitTree"
+    title_ar: "سحب فرع pull request محليًا في GitTree"
+    promise_en: "Fetch a pull request head and check out its branch."
+    concept: "A host publishes each pull request head as a ref you can fetch."
+    feature: "pr-checkout"
+    commands: ["git fetch <remote> <pr-head>:refs/ogt/pull/<n>"]
+    checkpoint: "pr-open"
+    duration_min: 4
+    requires: ["05-20"]
+    platforms: ["linux"]
+    notes: "Needs a real open pull request on a connected host."
+  - id: "05-22"
+    series: "05-collaboration"
+    slug: "pull-request-files"
+    title_en: "Review pull request files and diffs in GitTree"
+    title_ar: "مراجعة ملفات pull request وتغييراتها في GitTree"
+    promise_en: "Read the changed files of a pull request."
+    concept: "A pull request diff is the difference between the branch and its merge base."
+    feature: "pr-view"
+    commands: []
+    checkpoint: "pr-open"
+    duration_min: 4
+    requires: ["05-20"]
+    platforms: ["linux"]
+    notes: "Needs a real open pull request. Sidebar list of pull requests (pr-list) is shown in this video."
+  - id: "05-23"
+    series: "05-collaboration"
+    slug: "pull-request-conversation"
+    title_en: "Comment on and resolve pull request threads in GitTree"
+    title_ar: "التعليق على نقاشات pull request وإغلاقها في GitTree"
+    promise_en: "Post a comment, reply to a thread and resolve it."
+    concept: "Review comments belong to lines and threads, and a thread can be resolved."
+    feature: "pr-view"
+    commands: []
+    checkpoint: "pr-open"
+    duration_min: 4
+    requires: ["05-22"]
+    platforms: ["linux"]
+    notes: "Resolve and unresolve threads are available on GitHub, GitLab and Azure DevOps, not on Bitbucket."
+  - id: "05-24"
+    series: "05-collaboration"
+    slug: "pull-request-checks"
+    title_en: "See pull request checks and re-run them in GitTree"
+    title_ar: "عرض فحوصات pull request وإعادة تشغيلها في GitTree"
+    promise_en: "Read the checks of a pull request and re-run a failed one."
+    concept: "Checks are automated results the host attaches to a commit."
+    feature: "pr-view"
+    commands: []
+    checkpoint: "pr-open"
+    duration_min: 3
+    requires: ["05-22"]
+    platforms: ["linux"]
+    notes: "Re-run is available on GitHub and GitLab only."
+  - id: "05-25"
+    series: "05-collaboration"
+    slug: "review-pull-request"
+    title_en: "Review a pull request: approve or request changes"
+    title_ar: "مراجعة pull request: الموافقة أو طلب تعديلات"
+    promise_en: "Submit a review on a pull request and edit its details."
+    concept: "A review is a verdict plus comments from a person other than the author."
+    feature: "pr-review"
+    commands: []
+    checkpoint: "pr-open"
+    duration_min: 4
+    requires: ["05-22"]
+    platforms: ["linux"]
+    notes: "Use a second account or a repository you own."
+  - id: "05-26"
+    series: "05-collaboration"
+    slug: "merge-pull-request"
+    title_en: "Merge a pull request: merge, squash or rebase"
+    title_ar: "دمج pull request: دمج عادي أو squash أو rebase"
+    promise_en: "Merge a pull request on the host with the method you choose."
+    concept: "The host merges server-side, guarded by the expected head commit."
+    feature: "pr-merge"
+    commands: []
+    checkpoint: "pr-open"
+    duration_min: 4
+    requires: ["05-25"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "05-27"
+    series: "05-collaboration"
+    slug: "issues-list-and-branch"
+    title_en: "See issues and start a branch from one in GitTree"
+    title_ar: "عرض الـ issues وبدء فرع منها في GitTree"
+    promise_en: "Open an issue from the sidebar and create a branch for it."
+    concept: "An issue is a host record; the branch is plain Git."
+    feature: "issue-list"
+    commands: ["git branch <name>", "git switch <name>"]
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12", "03-01"]
+    platforms: ["linux"]
+    notes: "Issues exist for GitHub and GitLab only (not Bitbucket Cloud, Data Center or Azure DevOps)."
+  - id: "05-28"
+    series: "05-collaboration"
+    slug: "create-an-issue"
+    title_en: "Create an issue from GitTree"
+    title_ar: "إنشاء issue من GitTree"
+    promise_en: "Create a new issue with a title and a Markdown description."
+    concept: "Creating an issue is a call to the host's API, not a Git operation."
+    feature: "issue-create"
+    commands: []
+    checkpoint: "hosted-account"
+    duration_min: 3
+    requires: ["05-27"]
+    platforms: ["linux"]
+    notes: "GitHub and GitLab only."
+  - id: "05-29"
+    series: "05-collaboration"
+    slug: "fork-remote"
+    title_en: "Git fork workflow: add a remote from a fork in GitTree"
+    title_ar: "العمل مع fork في Git: إضافة remote من fork في GitTree"
+    promise_en: "Add a remote that points to someone's fork over HTTPS or SSH."
+    concept: "A fork workflow uses several remotes, typically origin and upstream."
+    feature: "remote-fork"
+    commands: ["git remote add <name> <url>"]
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["01-07", "05-12"]
+    platforms: ["linux"]
+    notes: "Not available for Azure DevOps."
+
+  # ---------------------------------------------------------------- 06-power-features
+  - id: "06-01"
+    series: "06-power-features"
+    slug: "worktrees-list"
+    title_en: "Git worktrees explained: see them in GitTree"
+    title_ar: "شرح git worktree: مجلدات عمل متعددة لمستودع واحد"
+    promise_en: "Find the Worktrees section and understand what several working folders share."
+    concept: "A worktree is another working folder that shares the same object database."
+    feature: "worktree-list"
+    commands: ["git worktree list --porcelain"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["03-01"]
+    platforms: ["linux"]
+    notes: "Open as a tab and the graph badge for sibling worktrees are shown in passing."
+  - id: "06-02"
+    series: "06-power-features"
+    slug: "create-a-worktree"
+    title_en: "Create a Git worktree in GitTree (git worktree add)"
+    title_ar: "إنشاء worktree في Git عبر GitTree (git worktree add)"
+    promise_en: "Create a worktree for a branch or a new branch in a separate folder."
+    concept: "A branch can be checked out in only one worktree at a time."
+    feature: "worktree-add"
+    commands: ["git worktree add [-b <new>] <path> <commit-ish>"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["06-01"]
+    platforms: ["linux"]
+    notes: "VERIFY V9: right-click placement of 'Create Worktree…' is inferred from menu code."
+  - id: "06-03"
+    series: "06-power-features"
+    slug: "manage-worktrees"
+    title_en: "Move, lock and remove a Git worktree"
+    title_ar: "نقل وقفل وحذف worktree في Git"
+    promise_en: "Move, lock, remove and prune worktrees safely."
+    concept: "Git tracks worktrees in the main repository, so moving one by hand breaks the link."
+    feature: "worktree-manage"
+    commands: ["git worktree move", "git worktree lock", "git worktree remove", "git worktree prune"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["06-02"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-04"
+    series: "06-power-features"
+    slug: "submodules-list"
+    title_en: "Git submodules explained: see them in GitTree"
+    title_ar: "شرح git submodule: عرضها في GitTree"
+    promise_en: "Read the Submodules section and its states."
+    concept: "A submodule pins another repository at one exact commit."
+    feature: "submodule-list"
+    commands: ["git submodule status"]
+    checkpoint: "submodule-repo"
+    duration_min: 4
+    requires: ["01-01"]
+    platforms: ["linux"]
+    notes: "Open a submodule in a tab (submodule-open) is shown in one sentence."
+  - id: "06-05"
+    series: "06-power-features"
+    slug: "add-a-submodule"
+    title_en: "Add a Git submodule in GitTree"
+    title_ar: "إضافة submodule في Git عبر GitTree"
+    promise_en: "Add a submodule at a path, optionally following a branch."
+    concept: "Adding a submodule records a .gitmodules entry and a pinned commit."
+    feature: "submodule-lifecycle"
+    commands: ["git submodule add <url> <path>"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["06-04"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-06"
+    series: "06-power-features"
+    slug: "update-and-remove-submodule"
+    title_en: "Update and remove a Git submodule in GitTree"
+    title_ar: "تحديث وحذف submodule في Git عبر GitTree"
+    promise_en: "Initialise, update, sync and remove a submodule."
+    concept: "Updating a submodule checks out the commit the parent repository records."
+    feature: "submodule-lifecycle"
+    commands: ["git submodule update --init", "git submodule sync", "git rm <path>"]
+    checkpoint: "submodule-repo"
+    duration_min: 5
+    requires: ["06-05"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-07"
+    series: "06-power-features"
+    slug: "lfs-set-up"
+    title_en: "Set up Git LFS for a repository in GitTree"
+    title_ar: "إعداد Git LFS لمستودع في GitTree"
+    promise_en: "Check that Git LFS is installed and set it up for this repository."
+    concept: "Large files live outside the repository and pointer files live inside."
+    feature: "lfs-setup"
+    commands: ["git lfs version", "git lfs install --local"]
+    checkpoint: "lfs-repo"
+    duration_min: 4
+    requires: ["01-01"]
+    platforms: ["linux"]
+    notes: "Needs git-lfs installed on the machine."
+  - id: "06-08"
+    series: "06-power-features"
+    slug: "lfs-track"
+    title_en: "Track large files with Git LFS in GitTree"
+    title_ar: "تتبّع الملفات الكبيرة باستخدام Git LFS في GitTree"
+    promise_en: "Track and untrack a file pattern with LFS."
+    concept: "Tracking writes a pattern into .gitattributes."
+    feature: "lfs-track"
+    commands: ["git lfs track <pattern>", "git lfs untrack <pattern>"]
+    checkpoint: "lfs-repo"
+    duration_min: 4
+    requires: ["06-07"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-09"
+    series: "06-power-features"
+    slug: "lfs-content"
+    title_en: "Download and prune Git LFS content in GitTree"
+    title_ar: "تنزيل محتوى Git LFS وتنظيفه في GitTree"
+    promise_en: "Download LFS file content and prune old content."
+    concept: "An LFS pointer is replaced by the real file only when the content is downloaded."
+    feature: "lfs-content"
+    commands: ["git lfs pull", "git lfs prune --dry-run --verbose"]
+    checkpoint: "lfs-repo"
+    duration_min: 4
+    requires: ["06-07"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-10"
+    series: "06-power-features"
+    slug: "lfs-locks"
+    title_en: "Git LFS file locking in GitTree"
+    title_ar: "قفل الملفات في Git LFS داخل GitTree"
+    promise_en: "Lock and unlock a lockable file and see who holds a lock."
+    concept: "A lock stops others editing a binary file that cannot be merged."
+    feature: "lfs-locks"
+    commands: ["git lfs locks", "git lfs lock <path>", "git lfs unlock <path>"]
+    checkpoint: "lfs-repo"
+    duration_min: 3
+    requires: ["06-08"]
+    platforms: ["linux"]
+    notes: "Needs an LFS server that supports locking."
+  - id: "06-11"
+    series: "06-power-features"
+    slug: "sparse-checkout"
+    title_en: "Git sparse checkout in GitTree: only the folders you need"
+    title_ar: "الـ sparse checkout في Git: اسحب المجلدات التي تحتاجها فقط"
+    promise_en: "Check out only chosen folders of a large repository, and bring everything back later."
+    concept: "Cone-mode sparse checkout limits the working tree to selected directories."
+    feature: "sparse-edit"
+    commands: ["git sparse-checkout set --cone --stdin", "git sparse-checkout disable"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["01-05"]
+    platforms: ["linux"]
+    notes: "Check Out All Files (sparse-disable) is shown at the end."
+  - id: "06-12"
+    series: "06-power-features"
+    slug: "shallow-sparse-blobless-clone"
+    title_en: "Shallow, sparse and blobless Git clones in GitTree"
+    title_ar: "الاستنساخ السطحي والجزئي وبلا blobs في Git عبر GitTree"
+    promise_en: "Clone a big repository faster with depth, sparse or blobless options, and fetch more history later."
+    concept: "Shallow, partial and sparse clones trade completeness for speed."
+    feature: "repos-clone-options"
+    commands: ["git clone --depth N", "git clone --filter=blob:none", "git clone --sparse", "git fetch --deepen N"]
+    checkpoint: "no-repo"
+    duration_min: 6
+    requires: ["00-10"]
+    platforms: ["linux"]
+    notes: "Includes the shallow boundary chip and Fetch More History or Fetch Full History (shallow-history, graph-shallow) at the end."
+  - id: "06-13"
+    series: "06-power-features"
+    slug: "stash-with-options"
+    title_en: "Git stash options: untracked files, staged only, message"
+    title_ar: "خيارات git stash: ملفات غير متتبَّعة ومجهّزة فقط ورسالة"
+    promise_en: "Stash with a message, include untracked files or stash only the staged changes."
+    concept: "git stash push can limit what it saves and what it leaves behind."
+    feature: "stash-options"
+    commands: ["git stash push -m <msg>", "git stash push --staged", "git stash push -u"]
+    checkpoint: "two-files-modified"
+    duration_min: 4
+    requires: ["02-29"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-14"
+    series: "06-power-features"
+    slug: "branch-from-stash"
+    title_en: "Create a Git branch from a stash in GitTree"
+    title_ar: "إنشاء فرع من stash في Git عبر GitTree"
+    promise_en: "Turn an old stash into a branch."
+    concept: "A stash is a commit, so it can become a branch."
+    feature: "stash-branch"
+    commands: ["git stash branch <name> stash@{n}"]
+    checkpoint: "stashed-work"
+    duration_min: 3
+    requires: ["02-29"]
+    platforms: ["linux"]
+    notes: "Show Stash, Apply, Pop a chosen stash and Rename are mentioned in one sentence."
+  - id: "06-15"
+    series: "06-power-features"
+    slug: "delete-a-stash"
+    title_en: "Delete a Git stash and recover it from the snapshots"
+    title_ar: "حذف stash في Git واسترجاعه من لقطات الاسترداد"
+    promise_en: "Delete a stash and see that it is kept in the recovery snapshots."
+    concept: "Dropping a stash normally loses its commit, so GitTree keeps a recovery ref."
+    feature: "stash-drop"
+    commands: ["git stash drop stash@{n}"]
+    checkpoint: "stashed-work"
+    duration_min: 3
+    requires: ["04-14"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-16"
+    series: "06-power-features"
+    slug: "repository-maintenance"
+    title_en: "Git repository maintenance in GitTree (fsck, gc)"
+    title_ar: "صيانة مستودع Git في GitTree (fsck وgc وcommit-graph)"
+    promise_en: "Check integrity, speed up history and clean up the object database."
+    concept: "Git needs occasional housekeeping of its object database."
+    feature: "maintenance"
+    commands: ["git fsck", "git commit-graph write", "git gc", "git count-objects"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["01-01"]
+    platforms: ["linux"]
+    notes: "Prune unreachable objects deletes recovery snapshots' commits only if they are no longer referenced: say so plainly."
+  - id: "06-17"
+    series: "06-power-features"
+    slug: "workspaces"
+    title_en: "Group repositories into workspaces in GitTree"
+    title_ar: "تجميع المستودعات في مساحات عمل داخل GitTree"
+    promise_en: "Create a workspace, add repositories to it and open them all."
+    concept: "A workspace is an app-level grouping; it is not a Git feature."
+    feature: "repos-workspaces"
+    commands: []
+    checkpoint: "several-repos"
+    duration_min: 4
+    requires: ["00-08"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-18"
+    series: "06-power-features"
+    slug: "repo-tabs"
+    title_en: "Work in several repositories with tabs in GitTree"
+    title_ar: "العمل على عدة مستودعات بالتبويبات في GitTree"
+    promise_en: "Open, switch, reorder and close repository tabs."
+    concept: "Each tab is an independent session of one repository."
+    feature: "repos-tabs"
+    commands: []
+    checkpoint: "several-repos"
+    duration_min: 4
+    requires: ["00-08"]
+    platforms: ["linux"]
+    notes: "Next and previous tab are Ctrl+Tab and Ctrl+Shift+Tab (Mod+Tab pair is not delivered on macOS). Mod+T new tab, Mod+W close."
+  - id: "06-19"
+    series: "06-power-features"
+    slug: "command-palette"
+    title_en: "The GitTree command palette: run anything from the keyboard"
+    title_ar: "لوحة الأوامر في GitTree: نفّذ أي أمر من لوحة المفاتيح"
+    promise_en: "Open the palette and run commands, jump to refs and switch repositories with the prefixes."
+    concept: "One searchable list replaces menus for commands, refs and repositories."
+    feature: "palette-open"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["00-13"]
+    platforms: ["linux"]
+    notes: "Shortcut Mod+Shift+P. Prefixes: > commands, @ refs, # commits, : files, 'repo ' repositories. The # and : modes get their own videos (06-20, 06-21)."
+  - id: "06-20"
+    series: "06-power-features"
+    slug: "deep-commit-search"
+    title_en: "Search all Git history by message, author, file or change"
+    title_ar: "ابحث في كل سجل Git بالرسالة أو المؤلف أو الملف أو التغيير"
+    promise_en: "Search every commit with the # mode and the author, file and change filters."
+    concept: "git log can search all of history without loading it into the graph."
+    feature: "search-commits-deep"
+    commands: ["git log --all --grep <text>", "git log -S <text>", "git log -G <regex>"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["06-19"]
+    platforms: ["linux"]
+    notes: "Stops at 1000 hits. Matched characters are highlighted (search-highlight)."
+  - id: "06-21"
+    series: "06-power-features"
+    slug: "fuzzy-file-finder"
+    title_en: "Find any file fast in GitTree (fuzzy file finder)"
+    title_ar: "اعثر على أي ملف بسرعة في GitTree (البحث الضبابي)"
+    promise_en: "Find a file with the : mode and open its history."
+    concept: "git ls-files lists tracked and untracked-but-not-ignored paths."
+    feature: "search-files"
+    commands: ["git ls-files -z --cached --others --exclude-standard"]
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["06-19"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-22"
+    series: "06-power-features"
+    slug: "integrated-terminal"
+    title_en: "The integrated terminal in GitTree"
+    title_ar: "الطرفية المدمجة في GitTree"
+    promise_en: "Open a terminal in the repository folder, add more terminals and rename them."
+    concept: "The terminal is a real shell opened at the repository root."
+    feature: "terminal-toggle"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["00-13"]
+    platforms: ["linux"]
+    notes: "Drawer toggle Alt+T. Terminal sessions, find and external terminal are mentioned in one sentence. Preferences page 'In-App Terminal' not shown (VERIFY V2)."
+  - id: "06-23"
+    series: "06-power-features"
+    slug: "custom-commands-define"
+    title_en: "Define custom commands in GitTree (programs with tokens)"
+    title_ar: "تعريف أوامر مخصصة في GitTree (برامج مع متغيّرات)"
+    promise_en: "Add a custom command that runs a program with the repository, branch, SHA or file as arguments."
+    concept: "A custom command is a program plus arguments, with no shell involved."
+    feature: "custom-editor"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["00-13"]
+    platforms: ["linux"]
+    notes: "Preferences > External Tools > Custom Commands (see 07-01 for the Preferences window). Tokens {repo}, {branch}, {sha}, {file}. Each row is one argument: no shell expansion."
+  - id: "06-24"
+    series: "06-power-features"
+    slug: "custom-commands-run"
+    title_en: "Run a custom command from the GitTree toolbar"
+    title_ar: "تشغيل أمر مخصص من شريط أدوات GitTree"
+    promise_en: "Run a saved custom command and read its confirmation and output."
+    concept: "Running arbitrary programs needs an explicit confirmation."
+    feature: "custom-run"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["06-23"]
+    platforms: ["linux"]
+    notes: ""
+  - id: "06-25"
+    series: "06-power-features"
+    slug: "filter-the-graph"
+    title_en: "Filter the Git graph by author, date, branch or path"
+    title_ar: "تصفية رسم Git حسب المؤلف والتاريخ والفرع والمسار"
+    promise_en: "Show only the commits that match a filter and clear it again."
+    concept: "git log can restrict history by author, dates and paths over chosen starting points."
+    feature: "graph-filter"
+    commands: ["git log --author <name> --since <date> -- <path>"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["02-28"]
+    platforms: ["linux"]
+    notes: "Hide, Solo and Pin references (graph-ref-visibility) are not a video."
+  - id: "06-26"
+    series: "06-power-features"
+    slug: "pull-request-dashboard"
+    title_en: "See all your pull requests across a workspace"
+    title_ar: "اعرض كل طلبات الدمج الخاصة بك عبر مساحة العمل"
+    promise_en: "Use the Pull requests tab of the Workspaces page to see what needs your review."
+    concept: "A dashboard is a view over the host's API across many repositories."
+    feature: "pr-dashboard"
+    commands: []
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["06-17", "05-12"]
+    platforms: ["linux"]
+    notes: "Needs real pull requests on a connected host."
+
+  # ---------------------------------------------------------------- 07-customise-and-troubleshoot
+  - id: "07-01"
+    series: "07-customise-and-troubleshoot"
+    slug: "preferences-window"
+    title_en: "GitTree Preferences: search, scopes and reset"
+    title_ar: "تفضيلات GitTree: البحث والنطاقات وإعادة الضبط"
+    promise_en: "Find a setting with search, see where it is saved, and reset it."
+    concept: "Every setting has an origin: built-in default, app, profile, repository or Git config."
+    feature: "settings-window"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["01-12"]
+    platforms: ["linux"]
+    notes: "Shortcut Mod+, (Cmd+, on macOS). Pages 'In-App Terminal' and 'Experimental' are not shown (VERIFY V2)."
+  - id: "07-02"
+    series: "07-customise-and-troubleshoot"
+    slug: "themes"
+    title_en: "Change the GitTree theme: dark, light, high contrast"
+    title_ar: "تغيير مظهر GitTree: داكن وفاتح وتباين عالٍ"
+    promise_en: "Choose a theme, or follow the system appearance."
+    concept: "Themes only change colours, never Git data."
+    feature: "theme-select"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["07-01"]
+    platforms: ["linux"]
+    notes: "Importing a theme (theme-import) is shown at the end."
+  - id: "07-03"
+    series: "07-customise-and-troubleshoot"
+    slug: "language-and-rtl"
+    title_en: "Change the GitTree language: English and Arabic (RTL)"
+    title_ar: "تغيير لغة GitTree: العربية والإنجليزية (من اليمين لليسار)"
+    promise_en: "Switch the app between English and Arabic and see the layout mirror."
+    concept: "Right-to-left layout mirrors the interface, not your repository."
+    feature: "ui-language"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["07-01"]
+    platforms: ["linux"]
+    notes: "Record the Arabic app on the Arabic video and the English app on the English video."
+  - id: "07-04"
+    series: "07-customise-and-troubleshoot"
+    slug: "zoom-dates-motion"
+    title_en: "Zoom, date format and reduced motion in GitTree"
+    title_ar: "التكبير وصيغة التاريخ وتقليل الحركة في GitTree"
+    promise_en: "Zoom the interface, choose a date format and show or hide sidebar sections."
+    concept: "Display preferences change how the same history is shown."
+    feature: "ui-misc"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["07-01"]
+    platforms: ["linux"]
+    notes: "Zoom in is Mod+= or Mod++, zoom out Mod+-, actual size Mod+0."
+  - id: "07-05"
+    series: "07-customise-and-troubleshoot"
+    slug: "git-profiles"
+    title_en: "Git profiles in GitTree: work and personal identities"
+    title_ar: "ملفات التعريف في GitTree: هوية للعمل وأخرى شخصية"
+    promise_en: "Create two profiles with different names and emails and switch between them."
+    concept: "user.name and user.email decide who a commit says it is from."
+    feature: "profile-identity"
+    commands: ["git config user.name", "git config user.email"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["01-12"]
+    platforms: ["linux"]
+    notes: "Option 'Passed to each git command' versus 'Written to ~/.gitconfig'. The identity from the GitTree account (commit-identity, ADR-0020) is mentioned in one sentence."
+  - id: "07-06"
+    series: "07-customise-and-troubleshoot"
+    slug: "ssh-keys"
+    title_en: "SSH keys in GitTree: generate, copy and test"
+    title_ar: "مفاتيح SSH في GitTree: التوليد والنسخ والاختبار"
+    promise_en: "Generate an Ed25519 key, copy its public half and test a connection."
+    concept: "An SSH key pair proves who you are without a password."
+    feature: "ssh-page"
+    commands: ["ssh-keygen -t ed25519", "ssh -T git@<host>"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["07-01"]
+    platforms: ["linux"]
+    notes: "Uploading the key to an account (provider-ssh-upload) is a button here; Azure DevOps does not support it."
+  - id: "07-07"
+    series: "07-customise-and-troubleshoot"
+    slug: "ssh-host-key-prompts"
+    title_en: "SSH host key and username prompts in GitTree"
+    title_ar: "تنبيهات مفتاح المضيف واسم المستخدم لـ SSH في GitTree"
+    promise_en: "Answer the 'Connect to host?' prompt safely and choose how unknown host keys are treated."
+    concept: "The first SSH connection to a server asks you to trust its host key."
+    feature: "sync-ssh-prompts"
+    commands: ["ssh -T git@<host>"]
+    checkpoint: "with-remote-branches"
+    duration_min: 4
+    requires: ["07-06"]
+    platforms: ["linux"]
+    notes: "Prompts appear in GitTree's own secure dialog, not in the terminal."
+  - id: "07-08"
+    series: "07-customise-and-troubleshoot"
+    slug: "sign-commits"
+    title_en: "Sign Git commits in GitTree (OpenPGP, SSH, S/MIME)"
+    title_ar: "توقيع commits في Git عبر GitTree (OpenPGP وSSH وS/MIME)"
+    promise_en: "Choose a signing key and turn on signing for every commit."
+    concept: "A signed commit proves who created it."
+    feature: "signing-page"
+    commands: ["git config gpg.format ssh", "git config commit.gpgsign true"]
+    checkpoint: "clean"
+    duration_min: 5
+    requires: ["07-05"]
+    platforms: ["linux"]
+    notes: "Includes the signature badge in the graph (graph-signature) and the commit-signing keys."
+  - id: "07-09"
+    series: "07-customise-and-troubleshoot"
+    slug: "external-tools"
+    title_en: "Set an external diff tool, merge tool and editor"
+    title_ar: "ضبط أداة مقارنة وأداة دمج ومحرر خارجي في GitTree"
+    promise_en: "Pick the diff tool, merge tool and editor GitTree opens for you."
+    concept: "Diff and merge tools are programs Git hands file versions to."
+    feature: "tools-page"
+    commands: ["git difftool", "git mergetool"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["07-01"]
+    platforms: ["linux"]
+    notes: "Opening a file in the external diff tool or editor (diff-external) is shown here. Detected tools depend on the machine (Meld, KDiff3 and editors on Linux; Beyond Compare, P4Merge, WinMerge elsewhere)."
+  - id: "07-10"
+    series: "07-customise-and-troubleshoot"
+    slug: "keyboard-shortcuts-cheat-sheet"
+    title_en: "GitTree keyboard shortcuts: the cheat sheet"
+    title_ar: "اختصارات لوحة المفاتيح في GitTree: ورقة الاختصارات"
+    promise_en: "Open the Keyboard Shortcuts sheet and find the shortcut for any command."
+    concept: "Shortcuts are bindings from key chords to command ids."
+    feature: "keys-cheatsheet"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["00-13"]
+    platforms: ["linux"]
+    notes: "Mod+/ opens it. VERIFY V3: where the Help commands appear in the UI per OS is unconfirmed; use the palette or the chord. There are only 27 default chords; do not claim more."
+  - id: "07-11"
+    series: "07-customise-and-troubleshoot"
+    slug: "customise-shortcuts"
+    title_en: "Customise keyboard shortcuts in GitTree"
+    title_ar: "تخصيص اختصارات لوحة المفاتيح في GitTree"
+    promise_en: "Change, remove and reset a shortcut and see how conflicts are reported."
+    concept: "Two commands cannot share one chord in the same context."
+    feature: "keys-editor"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["07-10"]
+    platforms: ["linux"]
+    notes: "Stored in keybindings.json."
+  - id: "07-12"
+    series: "07-customise-and-troubleshoot"
+    slug: "activity-log"
+    title_en: "See the exact Git commands GitTree runs (Activity Log)"
+    title_ar: "اعرف أوامر Git التي ينفّذها GitTree بالضبط (سجل النشاط)"
+    promise_en: "Open the Activity Log to read each git command, its output and its result."
+    concept: "Everything the app does is a plain git command you can read and repeat."
+    feature: "activity-log"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["00-13"]
+    platforms: ["linux"]
+    notes: "Drawer toggle Alt+T. Tokens and passwords are removed from the log. Notification centre (notif-centre) is mentioned in one sentence."
+  - id: "07-13"
+    series: "07-customise-and-troubleshoot"
+    slug: "report-a-bug"
+    title_en: "Report a bug or a crash from GitTree"
+    title_ar: "الإبلاغ عن خطأ أو انهيار من داخل GitTree"
+    promise_en: "Open Crash Reports, copy the text and report it on GitHub."
+    concept: "A useful bug report names the version, the steps and the log, with no secrets."
+    feature: "crash-reports"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["07-12"]
+    platforms: ["linux"]
+    notes: "VERIFY V3: entry points for the Help commands (Report a Bug, Crash Reports) differ by OS; use the tab-bar Report a Bug button and the palette. Reports go to GitHub."
+  - id: "07-14"
+    series: "07-customise-and-troubleshoot"
+    slug: "check-for-updates"
+    title_en: "Update GitTree: check for updates, download and install"
+    title_ar: "تحديث GitTree: التحقق من التحديثات وتنزيلها وتثبيتها"
+    promise_en: "Check for an update, see the download get verified and restart to install it."
+    concept: "The app verifies a download by SHA-256 against the published release."
+    feature: "update-check"
+    commands: []
+    checkpoint: "no-repo"
+    duration_min: 4
+    requires: ["00-07"]
+    platforms: ["linux"]
+    notes: "VERIFY V6: do not claim or deny that Linux updates in-app until checked on a real Ubuntu install; record this video on macOS or Windows or leave the Linux install step out. VERIFY V3: entry point of 'Check for Updates…' per OS. The minisign signature check is off (updater key blocked P00-T28). Covers update-download and update-install."
+  - id: "07-15"
+    series: "07-customise-and-troubleshoot"
+    slug: "startup-screens"
+    title_en: "GitTree startup screens: update, offline, maintenance"
+    title_ar: "شاشات بدء GitTree: تحديث مطلوب وبلا اتصال وصيانة"
+    promise_en: "Understand each startup gate screen and what to do on each, including the 7-day offline grace."
+    concept: "The official build checks a release gate at launch and works offline for a limited time."
+    feature: "signin-gate"
+    commands: []
+    checkpoint: "no-repo"
+    duration_min: 5
+    requires: ["00-07"]
+    platforms: ["linux"]
+    notes: "Screens: Update GitTree to continue, This version can't be used, GitTree is under maintenance, GitTree can't reach its service. Offline grace (signin-offline-grace) is 7 days, covered here. Needs the backend or a stubbed gate; do not record against production by forcing outages."
+  - id: "07-16"
+    series: "07-customise-and-troubleshoot"
+    slug: "sign-out"
+    title_en: "Sign out of GitTree everywhere"
+    title_ar: "تسجيل الخروج من GitTree على كل الأجهزة"
+    promise_en: "Sign out of your GitTree account and see that connected hosting accounts stay connected."
+    concept: "Your GitTree account and your hosting accounts are separate."
+    feature: "account-signout"
+    commands: []
+    checkpoint: "no-repo"
+    duration_min: 3
+    requires: ["00-07"]
+    platforms: ["linux"]
+    notes: "Account profile, organisations and deletion are on the website, not in the app. The account menu and read-only Account page are shown here in one sentence."
+  - id: "07-17"
+    series: "07-customise-and-troubleshoot"
+    slug: "restricted-mode"
+    title_en: "Restricted mode in GitTree: open untrusted repos safely"
+    title_ar: "الوضع المقيَّد في GitTree: تصفّح مستودعًا غير موثوق بأمان"
+    promise_en: "Work in Restricted Mode and review the trust decision later."
+    concept: "An untrusted repository's configuration and hooks must not run."
+    feature: "trust-restricted"
+    commands: []
+    checkpoint: "cloned-with-hooks"
+    duration_min: 4
+    requires: ["00-09"]
+    platforms: ["linux"]
+    notes: "Banner 'Restricted mode': network operations are off. Review Trust… later. The 'Allow Git to open this folder?' prompt (trust-safe-directory) is shown at the end in one sentence."
+  - id: "07-18"
+    series: "07-customise-and-troubleshoot"
+    slug: "where-tokens-live"
+    title_en: "Where GitTree stores your tokens (system keychain)"
+    title_ar: "أين يخزّن GitTree التوكنات الخاصة بك (مخزن مفاتيح النظام)"
+    promise_en: "See that tokens go to the system keychain and how to disconnect an account or forget all credentials."
+    concept: "Credentials belong in the operating system's secure store, never in a file or a URL."
+    feature: "provider-keychain"
+    commands: ["git credential fill"]
+    checkpoint: "hosted-account"
+    duration_min: 4
+    requires: ["05-12"]
+    platforms: ["linux"]
+    notes: "macOS: choose Always Allow at the keychain prompt; Windows: Credential Manager. Linux is 07-19."
+  - id: "07-19"
+    series: "07-customise-and-troubleshoot"
+    slug: "linux-secret-service"
+    title_en: "Linux keyring for GitTree: Secret Service setup"
+    title_ar: "مخزن المفاتيح على لينكس لـ GitTree: إعداد Secret Service"
+    promise_en: "Make sure a Secret Service (GNOME Keyring or KeePassXC) is running so GitTree can save tokens."
+    concept: "On Linux the freedesktop Secret Service is the system keychain."
+    feature: "install-linux-keychain"
+    commands: []
+    checkpoint: "no-repo"
+    duration_min: 4
+    requires: ["07-18"]
+    platforms: ["linux"]
+    notes: "Verified on a 24.04 container only; a real desktop with GNOME Keyring or KeePassXC is a new observation."
+  - id: "07-20"
+    series: "07-customise-and-troubleshoot"
+    slug: "import-a-theme"
+    title_en: "Import a custom theme into GitTree"
+    title_ar: "استيراد مظهر مخصص إلى GitTree"
+    promise_en: "Import a theme file and use it next to the built-in themes."
+    concept: "A theme is data that GitTree reads, not code it runs."
+    feature: "theme-import"
+    commands: []
+    checkpoint: "clean"
+    duration_min: 3
+    requires: ["07-02"]
+    platforms: ["linux"]
+    notes: "Prepare a sample theme file for the demo."
+  - id: "07-21"
+    series: "07-customise-and-troubleshoot"
+    slug: "settings-backup"
+    title_en: "Export, import and reset GitTree settings"
+    title_ar: "تصدير إعدادات GitTree واستيرادها وإعادة ضبطها"
+    promise_en: "Export your settings, import them on another computer and reset everything if needed."
+    concept: "Settings are portable data; some Git settings write to your global config only after you confirm."
+    feature: "settings-backup"
+    commands: ["git config --global"]
+    checkpoint: "clean"
+    duration_min: 4
+    requires: ["07-01"]
+    platforms: ["linux"]
+    notes: "Option 'Include file paths (they may not exist on another computer)'."
+
+# split-check
+# Each series with the inventory feature ids its episodes cover (a feature used by several episodes is a split into sub-tasks).
+# 00-start-here (13 episodes, 13 features): install-macos, install-windows, install-linux-deb, install-linux-appimage,
+#   install-linux-verify, repos-git-setup, signin-dialog, repos-open, trust-dialog, repos-clone-url, repos-init,
+#   repos-recents, view-panels
+# 01-git-foundations (12 episodes, 12 features): graph-detail, graph-render, graph-ref-pills, graph-jump-head,
+#   staging-panel, branch-panel, remote-crud, tag-create, sync-fetch, branch-ff, graph-ref-drop, settings-git-config
+# 02-daily-workflow (30 episodes, 29 features): staging-file, staging-hunk, staging-lines, staging-unstage-file,
+#   commit-create, commit-message-assist, commit-amend, commit-options, commit-coauthors, commit-hooks, commit-ai-
+#   draft, staging-discard, staging-discard-all, staging-ignore, staging-gitignore-editor, diff-view-modes, diff-nav,
+#   diff-options, diff-image, diff-file-view, diff-compare, diff-restore-file, blame-view, blame-step-back, history-
+#   file, graph-wip-row, graph-search, stash-save, stash-pop
+# 03-branching-and-merging (20 episodes, 17 features): branch-create, branch-checkout, branch-rename, branch-delete,
+#   branch-upstream, tag-annotated, tag-delete, merge-preview, merge-run, merge-banner, merge-abort, conflict-list,
+#   conflict-editor, conflict-whole-file, conflict-merge-tool, merge-gitflow, graph-conflict-chip
+# 04-rewriting-history (19 episodes, 19 features): rebase-onto, rebase-interactive, rebase-reword, rebase-drop,
+#   rebase-move, rebase-squash, rebase-published-guard, pick-cherry, revert-commit, reset-soft, reset-mixed, reset-
+#   hard, undo-redo, trash-refs, reflog-view, reflog-restore, bisect, patch-create, patch-apply
+# 05-collaboration (29 episodes, 27 features): sync-push, sync-destination, sync-pull-ff, sync-pull-merge, sync-pull-
+#   rebase, sync-pull-default, sync-push-rejected, sync-force-push, sync-delete-remote-branch, tag-push, sync-
+#   autofetch, provider-connect-github, provider-ghe, provider-gitlab, provider-bitbucket-cloud, provider-azure,
+#   provider-bitbucket-dc, repos-clone-provider, sync-publish, pr-create, pr-checkout, pr-view, pr-review, pr-merge,
+#   issue-list, issue-create, remote-fork
+# 06-power-features (26 episodes, 25 features): worktree-list, worktree-add, worktree-manage, submodule-list,
+#   submodule-lifecycle, lfs-setup, lfs-track, lfs-content, lfs-locks, sparse-edit, repos-clone-options, stash-
+#   options, stash-branch, stash-drop, maintenance, repos-workspaces, repos-tabs, palette-open, search-commits-deep,
+#   search-files, terminal-toggle, custom-editor, custom-run, graph-filter, pr-dashboard
+# 07-customise-and-troubleshoot (21 episodes, 21 features): settings-window, theme-select, ui-language, ui-misc,
+#   profile-identity, ssh-page, sync-ssh-prompts, signing-page, tools-page, keys-cheatsheet, keys-editor, activity-
+#   log, crash-reports, update-check, signin-gate, account-signout, trust-restricted, provider-keychain, install-
+#   linux-keychain, theme-import, settings-backup
+#
+# Inventory rows: 253 (the file's own total says 251). Features with a video of their own: 163. No video of their own: 90.
+# Folded into another episode as a mention (49):
+#   repos-favourites: folded into 00-12
+#   repos-tab-state: folded into 03-12
+#   trust-safe-directory: folded into 07-17
+#   graph-stash-tips: folded into 02-29
+#   graph-signature: folded into 07-08
+#   graph-worktree-badge: folded into 06-01
+#   graph-shallow: folded into 06-12
+#   staging-layout: folded into 02-01
+#   staging-whole-only: folded into 02-03
+#   commit-signing: folded into 07-08
+#   commit-identity: folded into 07-05
+#   commit-stash-from-composer: folded into 02-29
+#   diff-external: folded into 07-09
+#   blame-options: folded into 02-24
+#   branch-validate: folded into 03-01
+#   branch-switcher: folded into 03-02
+#   rebase-progress: folded into 04-02
+#   undo-coverage: folded into 04-13
+#   stash-apply: folded into 02-30
+#   stash-pop-one: folded into 06-14
+#   stash-show: folded into 06-14
+#   stash-rename: folded into 06-14
+#   worktree-open: folded into 06-01
+#   submodule-open: folded into 06-04
+#   sparse-disable: folded into 06-11
+#   shallow-history: folded into 06-12
+#   search-loaded: folded into 02-28
+#   search-highlight: folded into 06-20
+#   palette-commands: folded into 06-19
+#   palette-refs: folded into 06-19
+#   palette-commits: folded into 06-20
+#   palette-files: folded into 06-21
+#   palette-repos: folded into 06-19
+#   terminal-sessions: folded into 06-22
+#   terminal-find: folded into 06-22
+#   terminal-external: folded into 06-22
+#   provider-capabilities: folded into the per-provider notes of 05-12..05-17 (reference matrix, not a lesson)
+#   pr-list: folded into 05-22
+#   provider-ssh-upload: folded into 07-06
+#   keys-defaults: folded into 07-10
+#   notif-centre: folded into 07-12
+#   update-download: folded into 07-14
+#   update-install: folded into 07-14
+#   signin-callback: folded into 00-07
+#   signin-offline-grace: folded into 07-15
+#   account-menu: folded into 07-16
+#   account-summary: folded into 07-16
+#   account-integration-offer: folded into 05-12
+#   install-keychain-others: folded into 07-18
+# Intentionally left out (41):
+#   repos-scan: left out: later wave
+#   repos-dropdown: left out: duplicate of the tab bar for switching (06-18)
+#   repos-reveal: left out: menu entry, nothing to teach
+#   repos-watch: left out: passive notice shown only when watching is degraded
+#   repos-bare: left out: concept slot dropped to stay within 170; candidate for series 01
+#   repos-restore: left out: passive notice
+#   repos-deeplink: left out: later wave
+#   graph-columns: left out: later wave
+#   graph-avatars: left out: automatic display
+#   graph-select: left out: later wave
+#   graph-jump-ref: left out: covered by the @ mode of the palette (06-19)
+#   graph-ref-visibility: left out: later wave
+#   graph-pr-badge: left out: passive chip, later wave
+#   graph-overlap: left out: hint chip, only the setting is mentioned in 03-20
+#   graph-perf: EXCLUDED: development HUD and benches still in-progress (P02-T16)
+#   graph-detail-files: left out: later wave (could join 01-01)
+#   graph-open-remote: left out: later wave
+#   staging-skip-flags: left out: advanced index flags, later wave
+#   commit-hooks-manage: left out: Repo-Specific hooks list; 02-10 only points to it
+#   diff-syntax: left out: automatic, nothing to operate
+#   diff-text-facts: left out: small chips, later wave
+#   diff-large-binary: left out: label of the size setting unknown (VERIFY V4)
+#   diff-edit-working: left out: later wave
+#   diff-markdown: left out: later wave
+#   diff-open-file: left out: a menu shortcut to an existing diff, nothing new to teach
+#   sync-prune: left out: later wave
+#   sync-pull-from: left out: later wave
+#   sync-progress: left out: progress chip, seen in 05-01
+#   sync-open-host: left out: menu entry, later wave
+#   conflict-stale: left out: edge-case safety banner, shown only if it happens while recording 03-15
+#   search-toolbar-button: SKIPPED: VERIFY V1 (slot id not a registered command, button may not render)
+#   provider-avatars: left out: settings only
+#   settings-general: left out: its keys are taught one by one (05-06, 05-11, 07-04, 01-12)
+#   settings-repo: left out: repo-level name/email/template covered conceptually in 01-12 and 07-05
+#   notifications-settings: left out: small settings group, later wave
+#   settings-editor: left out: setting label unknown (VERIFY V4)
+#   settings-terminal-experimental: SKIPPED: VERIFY V2 (pages with no labels found)
+#   authors-mailmap: left out: niche; candidate for a later wave
+#   help-about: left out: small dialog; entry point unconfirmed (VERIFY V3)
+#   update-gate-banner: left out: small banner, later wave
+#   update-key: EXCLUDED: not shipped (updater key blocked, P00-T28)
+#
+# VERIFY: inventory lists 12 (V1..V12). Carried in episode notes: V1, V2, V3, V5, V6, V7, V8, V9, V11, V12; episodes with a VERIFY note: 24.
+# V1 and V2 are skipped features (no episode); V4 keeps diff-large-binary and settings-editor out; V10 (Gitea) has no episode (not supported, not shipped).

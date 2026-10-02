@@ -1,0 +1,23 @@
+id: 05-24
+series: 05-collaboration
+slug: pull-request-checks
+status: planned
+title:
+  en: See pull request checks and re-run them in GitTree
+  ar: عرض فحوصات pull request وإعادة تشغيلها في GitTree
+promise:
+  en: Read the checks of a pull request and re-run a failed one.
+concept: Checks are automated results the host attaches to a commit.
+feature: pr-view
+commands: []
+checkpoint: pr-open
+journey: pull-request-checks
+duration_min: 3
+requires:
+- 05-22
+platforms:
+- linux
+notes: Re-run is available on GitHub and GitLab only.
+youtube:
+  en: null
+  ar: null

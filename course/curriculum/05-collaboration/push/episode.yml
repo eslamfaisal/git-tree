@@ -1,0 +1,25 @@
+id: 05-01
+series: 05-collaboration
+slug: push
+status: planned
+title:
+  en: 'Git push in GitTree: send your commits to a remote'
+  ar: 'git push في GitTree: أرسل commits إلى المستودع البعيد'
+promise:
+  en: Push a branch, including the first push that picks the remote branch.
+concept: A push sends commits and moves a ref on the remote.
+feature: sync-push
+commands:
+- git push -u origin <branch>
+checkpoint: ahead-of-remote
+journey: push
+duration_min: 5
+requires:
+- 01-06
+- 02-05
+platforms:
+- linux
+notes: Use a local bare remote. No default chord for Push; use the toolbar.
+youtube:
+  en: null
+  ar: null

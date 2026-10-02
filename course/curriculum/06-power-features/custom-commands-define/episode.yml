@@ -1,0 +1,24 @@
+id: 06-23
+series: 06-power-features
+slug: custom-commands-define
+status: planned
+title:
+  en: Define custom commands in GitTree (programs with tokens)
+  ar: تعريف أوامر مخصصة في GitTree (برامج مع متغيّرات)
+promise:
+  en: Add a custom command that runs a program with the repository, branch, SHA or file as arguments.
+concept: A custom command is a program plus arguments, with no shell involved.
+feature: custom-editor
+commands: []
+checkpoint: clean
+journey: custom-commands-define
+duration_min: 5
+requires:
+- 00-13
+platforms:
+- linux
+notes: 'Preferences > External Tools > Custom Commands (see 07-01 for the Preferences window). Tokens {repo}, {branch}, {sha},
+  {file}. Each row is one argument: no shell expansion.'
+youtube:
+  en: null
+  ar: null

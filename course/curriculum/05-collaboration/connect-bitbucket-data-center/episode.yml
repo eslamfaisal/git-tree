@@ -1,0 +1,23 @@
+id: 05-17
+series: 05-collaboration
+slug: connect-bitbucket-data-center
+status: planned
+title:
+  en: Connect Bitbucket Data Center to GitTree
+  ar: ربط Bitbucket Data Center بـ GitTree
+promise:
+  en: Connect a Bitbucket Data Center host through your administrator's OAuth application link.
+concept: A self-hosted server needs an administrator-created application link before browser sign-in works.
+feature: provider-bitbucket-dc
+commands: []
+checkpoint: hosted-account
+journey: connect-bitbucket-data-center
+duration_min: 4
+requires:
+- 05-12
+platforms:
+- linux
+notes: Needs access to a Bitbucket Data Center server. No draft pull requests and no issues for this provider.
+youtube:
+  en: null
+  ar: null

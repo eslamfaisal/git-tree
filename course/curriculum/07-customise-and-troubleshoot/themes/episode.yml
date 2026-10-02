@@ -1,0 +1,23 @@
+id: 07-02
+series: 07-customise-and-troubleshoot
+slug: themes
+status: planned
+title:
+  en: 'Change the GitTree theme: dark, light, high contrast'
+  ar: 'تغيير مظهر GitTree: داكن وفاتح وتباين عالٍ'
+promise:
+  en: Choose a theme, or follow the system appearance.
+concept: Themes only change colours, never Git data.
+feature: theme-select
+commands: []
+checkpoint: clean
+journey: themes
+duration_min: 3
+requires:
+- 07-01
+platforms:
+- linux
+notes: Importing a theme (theme-import) is shown at the end.
+youtube:
+  en: null
+  ar: null

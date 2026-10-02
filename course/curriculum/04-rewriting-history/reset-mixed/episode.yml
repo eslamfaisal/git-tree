@@ -1,0 +1,23 @@
+id: 04-11
+series: 04-rewriting-history
+slug: reset-mixed
+status: planned
+title:
+  en: 'Git reset --mixed: undo a commit, keep the changes'
+  ar: 'git reset --mixed: ألغِ commit مع إبقاء التغييرات في المجلد'
+promise:
+  en: Move the branch back and the index with it, keeping your files.
+concept: A mixed reset moves the branch pointer and resets the index.
+feature: reset-mixed
+commands:
+- git reset --mixed <sha>
+checkpoint: clean
+journey: reset-mixed
+duration_min: 3
+requires:
+- 04-10
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

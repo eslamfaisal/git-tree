@@ -1,0 +1,25 @@
+id: 05-29
+series: 05-collaboration
+slug: fork-remote
+status: planned
+title:
+  en: 'Git fork workflow: add a remote from a fork in GitTree'
+  ar: 'العمل مع fork في Git: إضافة remote من fork في GitTree'
+promise:
+  en: Add a remote that points to someone's fork over HTTPS or SSH.
+concept: A fork workflow uses several remotes, typically origin and upstream.
+feature: remote-fork
+commands:
+- git remote add <name> <url>
+checkpoint: hosted-account
+journey: fork-remote
+duration_min: 4
+requires:
+- 01-07
+- 05-12
+platforms:
+- linux
+notes: Not available for Azure DevOps.
+youtube:
+  en: null
+  ar: null

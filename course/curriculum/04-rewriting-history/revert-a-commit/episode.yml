@@ -1,0 +1,24 @@
+id: 04-09
+series: 04-rewriting-history
+slug: revert-a-commit
+status: planned
+title:
+  en: 'Git revert: undo a commit without rewriting history'
+  ar: 'git revert: تراجع عن commit دون إعادة كتابة السجل'
+promise:
+  en: Revert a commit by adding a new commit that undoes it.
+concept: A revert is a new inverse commit, which is safe on shared history.
+feature: revert-commit
+commands:
+- git revert --no-edit <sha>
+checkpoint: clean
+journey: revert-a-commit
+duration_min: 4
+requires:
+- 04-08
+platforms:
+- linux
+notes: Not journaled by Undo (VERIFY V7).
+youtube:
+  en: null
+  ar: null

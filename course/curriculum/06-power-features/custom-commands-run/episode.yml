@@ -1,0 +1,22 @@
+id: 06-24
+series: 06-power-features
+slug: custom-commands-run
+status: planned
+title:
+  en: Run a custom command from the GitTree toolbar
+  ar: تشغيل أمر مخصص من شريط أدوات GitTree
+promise:
+  en: Run a saved custom command and read its confirmation and output.
+concept: Running arbitrary programs needs an explicit confirmation.
+feature: custom-run
+commands: []
+checkpoint: clean
+journey: custom-commands-run
+duration_min: 3
+requires:
+- 06-23
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

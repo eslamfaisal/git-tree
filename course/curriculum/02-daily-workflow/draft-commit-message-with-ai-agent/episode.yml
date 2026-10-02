@@ -1,0 +1,26 @@
+id: 02-11
+series: 02-daily-workflow
+slug: draft-commit-message-with-ai-agent
+status: planned
+title:
+  en: Draft a Git commit message with your own AI agent CLI
+  ar: اكتب رسالة commit بمساعدة وكيل ذكاء اصطناعي تثبّته أنت
+promise:
+  en: Generate a commit message from the staged diff using a coding-agent CLI you installed and signed in to.
+concept: The staged diff is the input to a message, and it is sent only when you click.
+feature: commit-ai-draft
+commands:
+- git diff --cached --stat --patch -M
+checkpoint: two-files-modified
+journey: draft-commit-message-with-ai-agent
+duration_min: 4
+requires:
+- 02-05
+platforms:
+- linux
+notes: 'ADR-0017 status is ''proposed'' (owner has not accepted): confirm the feature ships in the release before recording.
+  Needs an installed and signed-in agent CLI (Claude Code, Codex or Antigravity); GitTree holds no key. Never show real diffs
+  or credentials.'
+youtube:
+  en: null
+  ar: null

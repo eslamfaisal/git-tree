@@ -1,0 +1,24 @@
+id: 07-10
+series: 07-customise-and-troubleshoot
+slug: keyboard-shortcuts-cheat-sheet
+status: planned
+title:
+  en: 'GitTree keyboard shortcuts: the cheat sheet'
+  ar: 'اختصارات لوحة المفاتيح في GitTree: ورقة الاختصارات'
+promise:
+  en: Open the Keyboard Shortcuts sheet and find the shortcut for any command.
+concept: Shortcuts are bindings from key chords to command ids.
+feature: keys-cheatsheet
+commands: []
+checkpoint: clean
+journey: keyboard-shortcuts-cheat-sheet
+duration_min: 3
+requires:
+- 00-13
+platforms:
+- linux
+notes: 'Mod+/ opens it. VERIFY V3: where the Help commands appear in the UI per OS is unconfirmed; use the palette or the
+  chord. There are only 27 default chords; do not claim more.'
+youtube:
+  en: null
+  ar: null

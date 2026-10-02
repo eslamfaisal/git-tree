@@ -1,0 +1,24 @@
+id: 06-02
+series: 06-power-features
+slug: create-a-worktree
+status: planned
+title:
+  en: Create a Git worktree in GitTree (git worktree add)
+  ar: إنشاء worktree في Git عبر GitTree (git worktree add)
+promise:
+  en: Create a worktree for a branch or a new branch in a separate folder.
+concept: A branch can be checked out in only one worktree at a time.
+feature: worktree-add
+commands:
+- git worktree add [-b <new>] <path> <commit-ish>
+checkpoint: clean
+journey: create-a-worktree
+duration_min: 4
+requires:
+- 06-01
+platforms:
+- linux
+notes: 'VERIFY V9: right-click placement of ''Create Worktree…'' is inferred from menu code.'
+youtube:
+  en: null
+  ar: null

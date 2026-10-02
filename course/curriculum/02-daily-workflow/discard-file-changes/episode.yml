@@ -1,0 +1,24 @@
+id: 02-12
+series: 02-daily-workflow
+slug: discard-file-changes
+status: planned
+title:
+  en: Discard changes to a file in GitTree (git restore)
+  ar: تجاهل تغييرات ملف في GitTree (git restore)
+promise:
+  en: Throw away the changes in one file, knowing a recovery snapshot is saved first.
+concept: Discarding is irreversible in plain Git, so GitTree snapshots to a private ref before acting.
+feature: staging-discard
+commands:
+- git restore --worktree -- <path>
+checkpoint: two-files-modified
+journey: discard-file-changes
+duration_min: 4
+requires:
+- 02-01
+platforms:
+- linux
+notes: 'VERIFY V12: quote the recovery text (staging.discard.recovery) from en.ts. Recovery itself is 04-14.'
+youtube:
+  en: null
+  ar: null

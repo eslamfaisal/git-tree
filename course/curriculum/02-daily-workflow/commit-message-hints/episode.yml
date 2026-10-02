@@ -1,0 +1,23 @@
+id: 02-06
+series: 02-daily-workflow
+slug: commit-message-hints
+status: planned
+title:
+  en: Write better Git commit messages with GitTree hints
+  ar: اكتب رسائل commit أوضح مع تلميحات GitTree
+promise:
+  en: Use the summary counter and the message hints, including the Conventional Commits check.
+concept: A commit message has a short summary, a blank line, then an optional body.
+feature: commit-message-assist
+commands: []
+checkpoint: two-files-modified
+journey: commit-message-hints
+duration_min: 4
+requires:
+- 02-05
+platforms:
+- linux
+notes: The Conventional Commits check is a setting (Check Conventional Commits), off unless enabled.
+youtube:
+  en: null
+  ar: null

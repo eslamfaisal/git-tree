@@ -1,0 +1,26 @@
+id: 05-04
+series: 05-collaboration
+slug: pull-merge
+status: planned
+title:
+  en: 'Git pull: fast-forward if possible, else merge'
+  ar: 'git pull: تقدّم سريع إن أمكن وإلا دمج'
+promise:
+  en: Pull when both sides have new commits and get a merge commit.
+concept: Pull in merge mode ties your commits and the remote's with a merge commit.
+feature: sync-pull-merge
+commands:
+- git pull --ff-only
+- git merge <upstream>
+checkpoint: diverged-remote
+journey: pull-merge
+duration_min: 4
+requires:
+- 05-03
+- 03-10
+platforms:
+- linux
+notes: Not journaled by Undo (VERIFY V7).
+youtube:
+  en: null
+  ar: null

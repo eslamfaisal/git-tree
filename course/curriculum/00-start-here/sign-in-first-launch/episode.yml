@@ -1,0 +1,25 @@
+id: 00-07
+series: 00-start-here
+slug: sign-in-first-launch
+status: planned
+title:
+  en: Sign in to GitTree on first launch (website account)
+  ar: تسجيل الدخول إلى GitTree عند أول تشغيل بحساب الموقع
+promise:
+  en: Sign in through the GitTree website from the app, including the manual code fallback.
+concept: Your GitTree account (website) is separate from your Git identity and your hosting accounts.
+feature: signin-dialog
+commands: []
+checkpoint: no-repo
+journey: sign-in-first-launch
+duration_min: 4
+requires:
+- 00-03
+platforms:
+- linux
+notes: 'Official builds only. VERIFY V8: which providers the website offers is decided by the backend, confirm before naming
+  them. The sign-in is PKCE through opengittree://auth/callback; the AppImage has no handler, so show ''Manually enter authentication
+  code''. Never show a real code or token on screen.'
+youtube:
+  en: null
+  ar: null

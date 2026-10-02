@@ -1,0 +1,23 @@
+id: 07-19
+series: 07-customise-and-troubleshoot
+slug: linux-secret-service
+status: planned
+title:
+  en: 'Linux keyring for GitTree: Secret Service setup'
+  ar: 'مخزن المفاتيح على لينكس لـ GitTree: إعداد Secret Service'
+promise:
+  en: Make sure a Secret Service (GNOME Keyring or KeePassXC) is running so GitTree can save tokens.
+concept: On Linux the freedesktop Secret Service is the system keychain.
+feature: install-linux-keychain
+commands: []
+checkpoint: no-repo
+journey: linux-secret-service
+duration_min: 4
+requires:
+- 07-18
+platforms:
+- linux
+notes: Verified on a 24.04 container only; a real desktop with GNOME Keyring or KeePassXC is a new observation.
+youtube:
+  en: null
+  ar: null

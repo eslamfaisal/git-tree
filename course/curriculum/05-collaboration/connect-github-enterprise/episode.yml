@@ -1,0 +1,23 @@
+id: 05-13
+series: 05-collaboration
+slug: connect-github-enterprise
+status: planned
+title:
+  en: Connect GitHub Enterprise Server to GitTree
+  ar: ربط GitHub Enterprise Server بـ GitTree
+promise:
+  en: Name your Enterprise Server host and connect with a token or browser sign-in.
+concept: A self-hosted host needs its own address and its own application ID.
+feature: provider-ghe
+commands: []
+checkpoint: hosted-account
+journey: connect-github-enterprise
+duration_min: 4
+requires:
+- 05-12
+platforms:
+- linux
+notes: Needs access to a GitHub Enterprise Server host; record only if one is available.
+youtube:
+  en: null
+  ar: null

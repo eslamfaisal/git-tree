@@ -1,0 +1,24 @@
+id: 03-05
+series: 03-branching-and-merging
+slug: delete-a-branch
+status: planned
+title:
+  en: Delete a Git branch safely in GitTree
+  ar: حذف فرع في Git بأمان عبر GitTree
+promise:
+  en: Delete a local branch and see that its last commit is kept in a recovery ref.
+concept: Deleting a branch removes the pointer; the commits stay reachable until they are cleaned up.
+feature: branch-delete
+commands:
+- git branch -D <name>
+checkpoint: feature-branch
+journey: delete-a-branch
+duration_min: 3
+requires:
+- 03-01
+platforms:
+- linux
+notes: Delete Branch and Its Remote Branch is shown in one sentence; deleting a remote branch alone is 05-09.
+youtube:
+  en: null
+  ar: null

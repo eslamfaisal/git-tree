@@ -1,0 +1,24 @@
+id: 02-23
+series: 02-daily-workflow
+slug: restore-file-from-commit
+status: planned
+title:
+  en: Restore a file from an old Git commit in GitTree
+  ar: استرجاع ملف من commit قديم في GitTree
+promise:
+  en: Bring one file back to how it was in a chosen commit.
+concept: Restoring overwrites your work, so GitTree saves it in a recovery ref first.
+feature: diff-restore-file
+commands:
+- git restore --staged --worktree --source=<rev> -- <path>
+checkpoint: clean
+journey: restore-file-from-commit
+duration_min: 3
+requires:
+- 02-21
+- 02-12
+platforms:
+- linux
+youtube:
+  en: null
+  ar: null

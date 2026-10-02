@@ -1,0 +1,24 @@
+id: 06-04
+series: 06-power-features
+slug: submodules-list
+status: planned
+title:
+  en: 'Git submodules explained: see them in GitTree'
+  ar: 'شرح git submodule: عرضها في GitTree'
+promise:
+  en: Read the Submodules section and its states.
+concept: A submodule pins another repository at one exact commit.
+feature: submodule-list
+commands:
+- git submodule status
+checkpoint: submodule-repo
+journey: submodules-list
+duration_min: 4
+requires:
+- 01-01
+platforms:
+- linux
+notes: Open a submodule in a tab (submodule-open) is shown in one sentence.
+youtube:
+  en: null
+  ar: null

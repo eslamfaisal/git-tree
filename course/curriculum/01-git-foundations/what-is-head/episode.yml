@@ -1,0 +1,25 @@
+id: 01-04
+series: 01-git-foundations
+slug: what-is-head
+status: planned
+title:
+  en: What is HEAD in Git? Find it in GitTree
+  ar: ما هو HEAD في Git؟ اعثر عليه في GitTree
+promise:
+  en: Jump to HEAD and see what the checked-out branch and a detached HEAD look like.
+concept: HEAD is the current commit, usually through the checked-out branch.
+feature: graph-jump-head
+commands:
+- git rev-parse HEAD
+- git symbolic-ref HEAD
+checkpoint: clean
+journey: what-is-head
+duration_min: 4
+requires:
+- 01-03
+platforms:
+- linux
+notes: Shortcut Mod+Shift+H.
+youtube:
+  en: null
+  ar: null
