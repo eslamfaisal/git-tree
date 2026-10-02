@@ -2,11 +2,8 @@ id: 07-08
 series: 07-customise-and-troubleshoot
 slug: sign-commits
 status: planned
-title:
-  en: Sign Git commits in GitTree (OpenPGP, SSH, S/MIME)
-  ar: توقيع commits في Git عبر GitTree (OpenPGP وSSH وS/MIME)
-promise:
-  en: Choose a signing key and turn on signing for every commit.
+title: Sign Git commits in GitTree (OpenPGP, SSH, S/MIME)
+promise: Choose a signing key and turn on signing for every commit.
 concept: A signed commit proves who created it.
 feature: signing-page
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Includes the signature badge in the graph (graph-signature) and the commit-signing keys.
-youtube:
-  en: null
-  ar: null
+youtube: null

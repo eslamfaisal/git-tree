@@ -2,11 +2,8 @@ id: 06-06
 series: 06-power-features
 slug: update-and-remove-submodule
 status: planned
-title:
-  en: Update and remove a Git submodule in GitTree
-  ar: تحديث وحذف submodule في Git عبر GitTree
-promise:
-  en: Initialise, update, sync and remove a submodule.
+title: Update and remove a Git submodule in GitTree
+promise: Initialise, update, sync and remove a submodule.
 concept: Updating a submodule checks out the commit the parent repository records.
 feature: submodule-lifecycle
 commands:
@@ -20,6 +17,4 @@ requires:
 - 06-05
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

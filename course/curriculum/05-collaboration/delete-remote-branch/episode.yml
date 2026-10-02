@@ -2,11 +2,8 @@ id: 05-09
 series: 05-collaboration
 slug: delete-remote-branch
 status: planned
-title:
-  en: Delete a remote Git branch from GitTree
-  ar: حذف فرع بعيد في Git من GitTree
-promise:
-  en: Delete a branch on the remote without leaving GitTree.
+title: Delete a remote Git branch from GitTree
+promise: Delete a branch on the remote without leaving GitTree.
 concept: Deleting a remote branch pushes a deletion to the server.
 feature: sync-delete-remote-branch
 commands:
@@ -19,6 +16,4 @@ requires:
 - 05-01
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

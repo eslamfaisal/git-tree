@@ -2,11 +2,8 @@ id: 03-14
 series: 03-branching-and-merging
 slug: list-conflicted-files
 status: planned
-title:
-  en: 'Merge conflicts in Git: find the conflicted files'
-  ar: 'تعارضات الدمج في Git: اعثر على الملفات المتعارضة'
-promise:
-  en: Read the Conflicted Files and Resolved Files lists and mark files resolved.
+title: 'Merge conflicts in Git: find the conflicted files'
+promise: Read the Conflicted Files and Resolved Files lists and mark files resolved.
 concept: 'A conflicted file has three versions in the index: base, ours and theirs.'
 feature: conflict-list
 commands:
@@ -19,6 +16,4 @@ requires:
 - 03-12
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

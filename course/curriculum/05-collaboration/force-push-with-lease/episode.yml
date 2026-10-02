@@ -2,11 +2,8 @@ id: 05-08
 series: 05-collaboration
 slug: force-push-with-lease
 status: planned
-title:
-  en: 'Git force push with lease: the safe way in GitTree'
-  ar: الدفع القسري الآمن في Git (force push with lease)
-promise:
-  en: Force-push a rewritten branch so that it refuses if the remote moved.
+title: 'Git force push with lease: the safe way in GitTree'
+promise: Force-push a rewritten branch so that it refuses if the remote moved.
 concept: --force-with-lease overwrites the remote only if it still has the commit you last saw.
 feature: sync-force-push
 commands:
@@ -21,6 +18,4 @@ platforms:
 - linux
 notes: 'Palette command ''Force Push (With Lease)…''. The replaced remote tip is kept in a ref. Stale lease message: ''{{upstream}}
   moved''.'
-youtube:
-  en: null
-  ar: null
+youtube: null

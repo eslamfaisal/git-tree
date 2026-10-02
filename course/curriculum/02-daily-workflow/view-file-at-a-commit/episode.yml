@@ -2,11 +2,8 @@ id: 02-21
 series: 02-daily-workflow
 slug: view-file-at-a-commit
 status: planned
-title:
-  en: View a file at any Git commit in GitTree
-  ar: عرض ملف كما كان في أي commit في GitTree
-promise:
-  en: Open a file as it was at a chosen commit using File View.
+title: View a file at any Git commit in GitTree
+promise: Open a file as it was at a chosen commit using File View.
 concept: Every commit holds a complete snapshot, so any file can be read at any revision.
 feature: diff-file-view
 commands:
@@ -18,6 +15,4 @@ requires:
 - 01-01
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

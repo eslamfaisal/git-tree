@@ -2,11 +2,8 @@ id: 01-02
 series: 01-git-foundations
 slug: commit-graph-dag
 status: planned
-title:
-  en: 'The Git commit graph explained: history is a DAG'
-  ar: 'شرح رسم الـ commits في Git: السجل شبكة موجَّهة'
-promise:
-  en: 'Read the commit graph: parents, lanes and why history is a graph and not a line.'
+title: 'The Git commit graph explained: history is a DAG'
+promise: 'Read the commit graph: parents, lanes and why history is a graph and not a line.'
 concept: History is a directed acyclic graph in which lanes show parallel lines of work.
 feature: graph-render
 commands:
@@ -18,6 +15,4 @@ requires:
 - 01-01
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

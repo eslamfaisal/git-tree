@@ -13,8 +13,8 @@ voice-over and the published videos. YouTube is where people watch; this reposit
    `open-git-tree/scripts/demo`; there are no mock-ups. Every git command shown was run in the demo repository.
 3. **Accuracy first.** `inventory.md` lists each feature with its source in the app and its status. Anything not shipped
    is excluded; anything unconfirmed is on `verify-list.md`.
-4. **Two languages, one recording.** The screen recording is shared; the script, voice, on-screen text and captions exist
-   per language. Arabic is written for the ear, not translated word for word.
+4. **English only.** One script, one voice, one set of captions per episode. The narrator is the author's own voice,
+   cloned from a recording sample (`tooling/voice_clone.py`); a real recording of any beat replaces it.
 5. **Quality floor: Full HD.** Videos are delivered at 1080p or better (recordings are captured at 2160p), BT.709, 30 fps,
    -14 LUFS. `tooling/quality.py` checks every delivered file.
 6. **Nothing only on a laptop.** Every asset lives in this repository (`assets/`), in the storage tier its size needs.
@@ -25,12 +25,12 @@ voice-over and the published videos. YouTube is where people watch; this reposit
 course/
   README.md  ARCHITECTURE.md  CONTRIBUTING.md  inventory.md  glossary.md  verify-list.md  roadmap.md  CHANGELOG.md
   curriculum/<NN>-<series>/<slug>/       one folder per episode (episode id = <series number>-<order>)
-    episode.yml                          id, status, titles, concept, feature, commands, checkpoint, journey, YouTube ids
-    beats.yml                            the script: per beat the words (en, ar) and the picture (scene or app span)
+    episode.yml                          id, status, title, concept, feature, commands, checkpoint, journey, YouTube ids
+    beats.yml                            the script: per beat the words and the picture (scene or app span)
     journey.mjs                          the recorded real-app journey (markers the beats refer to)
     scenes/*.html                        diagram scenes for this episode
-    metadata.en.md  metadata.ar.md       title, description, chapters, tags, pinned comment, thumbnail brief
-  assets/<series>/<id>-<slug>/           video/<lang>/, audio/<lang>/, thumbnails/<lang>/, projects/, manifest.json
+    metadata.md                          title, description, chapters, tags, pinned comment, thumbnail brief
+  assets/<series>/<id>-<slug>/           video/, audio/, thumbnails/, projects/, manifest.json
   assets/shared/  assets/downloads/      intro/outro, music (with licences), fonts · demo-repo bundle, cheat sheets
   demo-repo/                             build.sh, lumen-history.sh, checkpoints/<name>.sh
   visuals/kit/                           scene.css, kit.js, brand assets (the scene runtime)
@@ -40,7 +40,7 @@ course/
 ## An episode's life
 
 `planned` → `scripted` (beats.yml reviewed) → `recorded` (journey recorded against a pinned GitTree release) →
-`reviewed` (QA checklist signed, Arabic read by a native speaker) → `published` (YouTube ids written back).
+`reviewed` (QA checklist signed) → `published` (YouTube ids written back).
 
 ## How a video is built
 
@@ -53,7 +53,7 @@ scenes/*.html ─► deterministic frame-by-frame render (1080p+)
 
 ```bash
 python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --record       # once per release
-python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --lang en       # or ar
+python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk 
 ```
 
 The recorder and montage engine live in `open-git-tree/scripts/demo` (set `OGT_REPO` to its checkout). See

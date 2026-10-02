@@ -2,11 +2,8 @@ id: 06-12
 series: 06-power-features
 slug: shallow-sparse-blobless-clone
 status: planned
-title:
-  en: Shallow, sparse and blobless Git clones in GitTree
-  ar: الاستنساخ السطحي والجزئي وبلا blobs في Git عبر GitTree
-promise:
-  en: Clone a big repository faster with depth, sparse or blobless options, and fetch more history later.
+title: Shallow, sparse and blobless Git clones in GitTree
+promise: Clone a big repository faster with depth, sparse or blobless options, and fetch more history later.
 concept: Shallow, partial and sparse clones trade completeness for speed.
 feature: repos-clone-options
 commands:
@@ -23,6 +20,4 @@ platforms:
 - linux
 notes: Includes the shallow boundary chip and Fetch More History or Fetch Full History (shallow-history, graph-shallow) at
   the end.
-youtube:
-  en: null
-  ar: null
+youtube: null

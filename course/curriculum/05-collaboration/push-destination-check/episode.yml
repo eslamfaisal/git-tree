@@ -2,11 +2,8 @@ id: 05-02
 series: 05-collaboration
 slug: push-destination-check
 status: planned
-title:
-  en: Check where a Git push will go before you push
-  ar: تحقق من وجهة git push قبل الدفع
-promise:
-  en: Read the destination check and choose a different target if it is wrong.
+title: Check where a Git push will go before you push
+promise: Read the destination check and choose a different target if it is wrong.
 concept: push.default and push remotes decide where a plain push lands.
 feature: sync-destination
 commands:
@@ -18,6 +15,4 @@ requires:
 - 05-01
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

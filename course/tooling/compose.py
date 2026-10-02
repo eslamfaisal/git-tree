@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Builds one episode, in one language, from its beats.yml: voice-over, diagram scenes, app footage, captions.
+"""Builds one episode from its beats.yml: voice-over, diagram scenes, app footage, captions, chapters.
 
-    compose.py <episode-dir> --lang en|ar [--height 1080] [--take <dir>] [--out <dir>] [--burn]
+    compose.py <episode-dir> [--height 1080] [--take <dir>] [--out <dir>] [--burn]
     compose.py <episode-dir> --record          # records the app journey (needs the open-git-tree checkout)
 
 A beat is one spoken passage over one picture. The picture is either an HTML scene (visuals/kit) or a span of
-the recorded real-app take, whose speed is chosen so the footage lasts exactly as long as the voice. The same
-take serves every language; only the voice, the on-screen text and the timing differ.
+the recorded real-app take, whose speed is chosen so the footage lasts exactly as long as the voice.
 
 Environment: OGT_REPO = path of the open-git-tree checkout (default ../open-git-tree next to this repo).
 """
@@ -43,23 +42,18 @@ def frames_of(seconds: float) -> int:
     return max(1, math.ceil(seconds * FPS - 1e-6))
 
 
-def pick(spec, lang: str):
-    """A value that may be given per language ({en:, ar:}) or once."""
-    return spec[lang] if isinstance(spec, dict) and lang in spec else spec
-
-
 def run(cmd: list[str], **kw) -> None:
     subprocess.run([str(c) for c in cmd], check=True, **kw)
 
 
 # ───────────────────────────── plan ────────────────────────────────────────
 class Beat:
-    def __init__(self, raw: dict, lang: str, cache: Path, audio_dir: Path | None = None):
+    def __init__(self, raw: dict, cache: Path, audio_dir: Path | None = None):
         self.raw, self.id = raw, raw["id"]
         self.kind = "scene" if "scene" in raw else "app"
-        text = pick(raw["vo"], lang)
-        recorded = audio_dir / lang / f"{self.id}.wav" if audio_dir else None
-        if recorded and recorded.exists():  # a native speaker's take replaces the scratch voice for this beat
+        text = raw["vo"]
+        recorded = audio_dir / f"{self.id}.wav" if audio_dir else None
+        if recorded and recorded.exists():  # a real recording replaces the generated voice for this beat
             import soundfile as sf
 
             info = sf.info(str(recorded))
@@ -70,7 +64,7 @@ class Beat:
             self.recorded = recorded
         else:
             self.recorded = None
-            self.clips = [voice.synth(cache, lang, s, rate=float(raw.get("rate", voice.RATE[lang]))) for s in voice.sentences(text)]
+            self.clips = [voice.synth(cache, s, rate=float(raw.get("rate", 1.0))) for s in voice.sentences(text)]
         speech = sum(c.seconds for c in self.clips) + GAP * (len(self.clips) - 1)
         self.seconds = max(LEAD + speech + TAIL, float(raw.get("min_sec", 0)))
         self.frames = frames_of(self.seconds)
@@ -127,11 +121,11 @@ def mix_voice(beats: list[Beat], total: float, out: Path) -> list[float]:
 
 
 # ───────────────────────────── scenes ──────────────────────────────────────
-def render_scene(ep: Path, beat: Beat, lang: str, height: int, work: Path, presenter: dict, speak: list[float]) -> Path:
+def render_scene(ep: Path, beat: Beat, height: int, work: Path, presenter: dict, speak: list[float]) -> Path:
     html = ep / "scenes" / f"{beat.raw['scene']}.html"
     out = work / f"scene-{beat.id}.mkv"
     key = hashlib.sha256(
-        json.dumps([html.read_text(), lang, beat.frames, height, presenter, [round(x, 2) for x in speak]], sort_keys=True).encode()
+        json.dumps([html.read_text(), (HERE.parent / "visuals" / "kit" / "scene.css").read_text(), beat.frames, height, presenter, [round(x, 2) for x in speak]], sort_keys=True).encode()
     ).hexdigest()[:16]
     stamp = out.with_suffix(".key")
     if out.exists() and stamp.exists() and stamp.read_text() == key:
@@ -140,7 +134,7 @@ def render_scene(ep: Path, beat: Beat, lang: str, height: int, work: Path, prese
     speak_file.write_text(json.dumps(speak))
     pres_file = work / "presenter.json"
     pres_file.write_text(json.dumps(presenter))
-    run([sys.executable, HERE / "scenes.py", "--html", html, "--lang", lang, "--seconds", f"{beat.frames / FPS:.4f}",
+    run([sys.executable, HERE / "scenes.py", "--html", html, "--seconds", f"{beat.frames / FPS:.4f}",
          "--out", out, "--height", height, "--presenter", pres_file, "--speak", speak_file])
     stamp.write_text(key)
     return out
@@ -165,7 +159,7 @@ def marker_time(markers: dict[str, float], ref: str) -> float:
     raise SystemExit(f"unknown marker {ref!r}; have {sorted(markers)}")
 
 
-def storyboard(ep_beats: list[Beat], take: Path, lang: str, presenter: dict, speak: Path, height: int = 1080) -> dict:
+def storyboard(ep_beats: list[Beat], take: Path, presenter: dict, speak: Path, height: int = 1080) -> dict:
     markers = markers_of(take)
     segments, camera, overlays = [], [], []
     warnings = []
@@ -190,7 +184,7 @@ def storyboard(ep_beats: list[Beat], take: Path, lang: str, presenter: dict, spe
             view = dict(view)
         camera.append({"at": a, "view": view, "dur": float(app.get("camera_dur", 0.9))})
         for ov in b.raw.get("overlays", []):
-            spec = {k: pick(v, lang) if k in ("text", "label") else v for k, v in ov.items()}
+            spec = dict(ov)
             spec.setdefault("from", a)
             spec.setdefault("to", z)
             overlays.append(spec)
@@ -202,15 +196,22 @@ def storyboard(ep_beats: list[Beat], take: Path, lang: str, presenter: dict, spe
                      "initials": presenter["initials"], "photo": str(photo) if photo and photo.exists() else None, "speak": str(speak)})
     k = height / 1080  # the frame is laid out for 1920x1080 and scales with the output
     frame = {"x": round(208 * k), "y": round(24 * k), "w": round(1504 * k), "h": round(846 * k), "radius": round(18 * k)}
-    return {"lang": lang, "loopDissolve": 0, "cursor": True, "frame": frame, "segments": segments, "camera": camera, "overlays": overlays}
+    return {"loopDissolve": 0, "cursor": True, "frame": frame, "segments": segments, "camera": camera, "overlays": overlays}
 
 
 def render_app(board: dict, take: Path, height: int, out: Path) -> None:
     w, h = SIZES[height]
     board_file = out.with_suffix(".json")
-    board_file.write_text(json.dumps(board, indent=1, ensure_ascii=False))
+    board_text = json.dumps(board, indent=1)
+    stamp = out.with_suffix(".key")
+    key = hashlib.sha256((board_text + str(OGT / "scripts/demo/montage/render.py") + (OGT / "scripts/demo/montage/render.py").read_text() + str((take / "raw.mkv").stat().st_size)
+                          + (take / "timeline.json").read_text() + str(height)).encode()).hexdigest()[:16]
+    if out.exists() and stamp.exists() and stamp.read_text() == key:
+        return
+    board_file.write_text(board_text)
     run([sys.executable, OGT / "scripts/demo/montage/render.py", "--take", take, "--storyboard", board_file, "--variant", "web",
          "--size", f"{w}x{h}", "--fps", FPS, "--out", out])
+    stamp.write_text(key)
 
 
 # ───────────────────────────── captions ────────────────────────────────────
@@ -234,11 +235,21 @@ def write_captions(beats: list[Beat], stem: Path) -> list[tuple[float, float, st
     return cues
 
 
+def write_chapters(beats: list[Beat], stem: Path) -> None:
+    """YouTube chapters from the beats that carry a `chapter:` title (the first is forced to 0:00)."""
+    rows = [(b.start, b.raw["chapter"]) for b in beats if b.raw.get("chapter")]
+    if not rows:
+        return
+    rows[0] = (0.0, rows[0][1])
+    fmt = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"  # noqa: E731
+    stem.with_name(stem.name + ".chapters.txt").write_text("".join(f"{fmt(t)} {title}\n" for t, title in rows))
+
+
 # ───────────────────────────── main ────────────────────────────────────────
-def load_presenter(lang: str) -> dict:
+def load_presenter() -> dict:
     p = yaml.safe_load((COURSE / "presenter" / "presenter.yml").read_text())
     photo = COURSE / "presenter" / p.get("photo", "")
-    return {"name": pick(p["name"], lang), "title": pick(p["title"], lang), "initials": p["initials"], "photo_file": p.get("photo"),
+    return {"name": p["name"], "title": p["title"], "initials": p["initials"], "photo_file": p.get("photo"),
             "photo": photo.as_uri() if photo.exists() and p.get("photo") else None}
 
 
@@ -261,7 +272,6 @@ def record(ep: Path, take: Path) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("episode", type=Path)
-    ap.add_argument("--lang", choices=["en", "ar"])
     ap.add_argument("--height", type=int, default=1080, choices=sorted(SIZES))
     ap.add_argument("--take", type=Path)
     ap.add_argument("--out", type=Path)
@@ -276,28 +286,25 @@ def main() -> None:
     if ns.record:
         record(ep, take)
         return
-    if not ns.lang:
-        raise SystemExit("--lang is required")
-    lang = ns.lang
-    work = work_root / lang / str(ns.height)
+    work = work_root / str(ns.height)
     work.mkdir(parents=True, exist_ok=True)
     cache = COURSE / ".work" / "cache"
     plan = yaml.safe_load((ep / "beats.yml").read_text())
     audio_dir = COURSE / "assets" / meta["series"] / f"{meta['id']}-{meta['slug']}" / "audio"
-    beats = [Beat(r, lang, cache, audio_dir) for r in plan["beats"]]
+    beats = [Beat(r, cache, audio_dir) for r in plan["beats"]]
     total = build_timeline(beats)
-    print(f"{meta['id']} [{lang}] {len(beats)} beats, {total:.1f} s")
+    print(f"{meta['id']} [{voice.backend()} voice] {len(beats)} beats, {total:.1f} s")
 
     import scene_lint
 
     scene_files = sorted({ep / "scenes" / f"{b.raw['scene']}.html" for b in beats if b.kind == "scene"})
-    problems = [p for f in scene_files for p in scene_lint.lint(f, lang, 20.0, {"name": "x", "title": "y", "initials": "EF", "photo": None})]
+    problems = [p for f in scene_files for p in scene_lint.lint(f, 20.0, {"name": "x", "title": "y", "initials": "EF", "photo": None})]
     if problems:
         raise SystemExit("scene layout problems (fix before rendering):\n  " + "\n  ".join(problems))
 
     wav = work / "voice.wav"
     speak = mix_voice(beats, total, wav)
-    presenter = load_presenter(lang)
+    presenter = load_presenter()
 
     # contiguous runs of the same kind of beat become one clip
     runs: list[list[Beat]] = []
@@ -315,14 +322,14 @@ def main() -> None:
     for r in runs:
         first = r[0]
         if first.kind == "scene":
-            jobs.append((r, lambda b=first: render_scene(ep, b, lang, ns.height, work, presenter, level(b, b.frames))))
+            jobs.append((r, lambda b=first: render_scene(ep, b, ns.height, work, presenter, level(b, b.frames))))
         else:
             def app_job(r=r):
                 n = sum(b.frames for b in r)
                 sp = work / f"speak-{r[0].id}.json"
                 sp.write_text(json.dumps(level(r[0], n)))
                 out = work / f"app-{r[0].id}.mkv"
-                render_app(storyboard(r, take, lang, presenter, sp, ns.height), take, ns.height, out)
+                render_app(storyboard(r, take, presenter, sp, ns.height), take, ns.height, out)
                 return out
             jobs.append((r, app_job))
     # scenes render in parallel (each is its own browser); the single app render streams the 4K capture
@@ -333,9 +340,10 @@ def main() -> None:
     concat.write_text("".join(f"file '{c}'\n" for c in clips))
     out_dir = (ns.out or work_root / "out").resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
-    base = out_dir / f"{meta['id']}-{meta['slug']}.{lang}"  # captions and voice do not depend on the resolution
-    stem = out_dir / f"{meta['id']}-{meta['slug']}.{lang}.{ns.height}p"
-    cues = write_captions(beats, base)
+    base = out_dir / f"{meta['id']}-{meta['slug']}"  # captions, chapters and voice do not depend on the resolution
+    stem = out_dir / f"{meta['id']}-{meta['slug']}.{ns.height}p"
+    write_captions(beats, base)
+    write_chapters(beats, base)
 
     aac = work / "voice.m4a"
     voice.mux_audio(wav, aac)
@@ -348,8 +356,7 @@ def main() -> None:
     mp4 = stem.with_name(stem.name + ".mp4")
     run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", concat, "-i", aac, "-vf", vf, *enc, mp4])
     if ns.burn:
-        font = "Noto Sans Arabic" if lang == "ar" else "Inter"
-        style = f"FontName={font},FontSize={int(h * 0.036)},PrimaryColour=&HFFFFFF&,OutlineColour=&H101010&,BorderStyle=3,Outline=1,Shadow=0,MarginV={int(h * 0.075)}"
+        style = f"FontName=Inter,FontSize={int(h * 0.036)},PrimaryColour=&HFFFFFF&,OutlineColour=&H101010&,BorderStyle=3,Outline=1,Shadow=0,MarginV={int(h * 0.075)}"
         burned = stem.with_name(stem.name + ".captioned.mp4")
         run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", concat, "-i", aac,
              "-vf", f"{vf},subtitles={base.with_name(base.name + '.srt')}:force_style='{style}'", *enc, burned])
@@ -358,7 +365,7 @@ def main() -> None:
     flac = base.with_name(base.name + ".voice.flac")
     sf.write(str(flac), data, rate, format="FLAC", subtype="PCM_24")
     result = quality.check(mp4, 1080, FPS)
-    stem.with_name(stem.name + ".quality.json").write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    stem.with_name(stem.name + ".quality.json").write_text(json.dumps(result, indent=2))
     print(json.dumps({k: result[k] for k in ("width", "height", "duration_s", "size_mb", "lufs", "true_peak_db", "pass")}))
     for name, ok in result["checks"].items():
         print(("  ok   " if ok else "  FAIL ") + name)

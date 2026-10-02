@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Validates the course tree. Exit code 1 on any problem; CI runs it on every pull request.
 
-Checks: episode.yml schema (exactly one `feature`, both languages, ids match folders, status in the lifecycle),
-beats.yml (both languages present, scenes and markers exist), banned trademark terms, file-size / storage-tier rules,
-manifest checksums, Arabic text present where required.
+Checks: episode.yml schema (exactly one `feature`, ids match folders, status in the lifecycle), beats.yml (voice-over
+and a scene or app span per beat), English only (no Arabic script anywhere), banned trademark terms, file-size and
+storage-tier rules, manifest checksums.
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ import yaml
 
 COURSE = Path(__file__).resolve().parent.parent
 STATUSES = ["planned", "scripted", "recorded", "reviewed", "published"]
-LANGS = ["en", "ar"]
+ARABIC = re.compile("[\u0600-\u06ff\u0750-\u077f\u08a0-\u08ff\ufb50-\ufdff\ufe70-\ufeff]")
 # Other products' names must not appear in course files (titles, tags, thumbnails, scripts). Built from parts so this
 # file does not contain them itself. ('fork' is a Git term and is not on the list.)
 BANNED = [re.compile(p, re.I) for p in ("git" + "kraken", "source" + "tree", "git" + "hub desktop", "tower\\b", "smart" + "git")]
@@ -46,12 +46,10 @@ def check_episode(ep: Path) -> None:
     if meta.get("status") not in STATUSES:
         bad(f"{rel}: status {meta.get('status')!r} not in {STATUSES}")
     for key in ("title", "promise"):
-        for lang in LANGS:
-            # a planned episode may still lack its Arabic promise; everything is complete once scripted
-            if not (meta.get(key) or {}).get(lang) and not (meta.get("status") == "planned" and (key, lang) == ("promise", "ar")):
-                bad(f"{rel}: {key}.{lang} missing")
-    if len(meta.get("title", {}).get("en", "")) > 60 and len(meta.get("title", {}).get("en", "")) > 70:
-        bad(f"{rel}: English title is too long for search results")
+        if not isinstance(meta.get(key), str) or not meta.get(key):
+            bad(f"{rel}: {key} must be a non-empty string")
+    if isinstance(meta.get("title"), str) and len(meta["title"]) > 70:
+        bad(f"{rel}: title is too long for search results ({len(meta['title'])} characters)")
     if ep.name != meta.get("slug") or not ep.parent.name.startswith(str(meta.get("id", "x")).split("-")[0]):
         bad(f"{rel}: folder does not match slug/series of episode.yml")
     if meta.get("status") != "planned" and not (COURSE / "demo-repo" / "checkpoints" / f"{meta.get('checkpoint')}.sh").exists():
@@ -62,22 +60,20 @@ def check_episode(ep: Path) -> None:
             bad(f"{rel}: beats.yml missing")
             return
         for beat in yaml.safe_load(beats_file.read_text())["beats"]:
-            for lang in LANGS:
-                if not (isinstance(beat["vo"], dict) and beat["vo"].get(lang)):
-                    bad(f"{rel}: beat {beat['id']} has no '{lang}' voice-over")
+            if not isinstance(beat.get("vo"), str) or not beat["vo"].strip():
+                bad(f"{rel}: beat {beat['id']} needs a voice-over string")
             if "scene" in beat and not (ep / "scenes" / f"{beat['scene']}.html").exists():
                 bad(f"{rel}: beat {beat['id']} scene '{beat['scene']}' not found")
             if "scene" not in beat and "app" not in beat:
                 bad(f"{rel}: beat {beat['id']} has neither scene nor app")
-            for lang in ("ar",):
-                if beat["vo"].get(lang) and not re.search("[؀-ۿ]", beat["vo"][lang]):
-                    bad(f"{rel}: beat {beat['id']} Arabic voice-over contains no Arabic")
 
 
 def check_text_files() -> None:
     for path in COURSE.rglob("*"):
         if path.is_file() and path.suffix in {".md", ".yml", ".yaml", ".html", ".mjs", ".json", ".css", ".js"} and ".work" not in path.parts and path.name != "validate_course.py":
             text = path.read_text(errors="ignore")
+            if ARABIC.search(text):
+                bad(f"{path.relative_to(COURSE)}: Arabic script found; the course is English only")
             for pat in BANNED:
                 m = pat.search(text)
                 if m:

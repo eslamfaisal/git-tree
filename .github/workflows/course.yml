@@ -1,6 +1,6 @@
 name: course
 
-# The course folder stays consistent: one feature per episode, both languages, no other product's name, media in LFS
+# The course folder stays consistent: one feature per episode, English only, no other product's name, media in LFS
 # or under the size limit, and the README table matches the episode files.
 on:
   push:

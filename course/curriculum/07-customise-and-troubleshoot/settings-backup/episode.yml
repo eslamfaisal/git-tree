@@ -2,11 +2,8 @@ id: 07-21
 series: 07-customise-and-troubleshoot
 slug: settings-backup
 status: planned
-title:
-  en: Export, import and reset GitTree settings
-  ar: تصدير إعدادات GitTree واستيرادها وإعادة ضبطها
-promise:
-  en: Export your settings, import them on another computer and reset everything if needed.
+title: Export, import and reset GitTree settings
+promise: Export your settings, import them on another computer and reset everything if needed.
 concept: Settings are portable data; some Git settings write to your global config only after you confirm.
 feature: settings-backup
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Option 'Include file paths (they may not exist on another computer)'.
-youtube:
-  en: null
-  ar: null
+youtube: null

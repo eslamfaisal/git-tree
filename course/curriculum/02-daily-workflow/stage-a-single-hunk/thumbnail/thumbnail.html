@@ -9,16 +9,14 @@ body::before { display: none; }
 .badge { display: inline-flex; align-items: center; gap: 12px; font-size: 30px; font-weight: 650; color: #cfe1ff; padding: 8px 22px; border-radius: 999px; background: rgba(76,154,255,.18); border: 2px solid #4c9aff; }
 .badge img { width: 34px; height: 34px; }
 h1 { font-size: 150px; line-height: 1.02; margin-top: 30px; font-weight: 800; letter-spacing: -.03em; }
-html[lang='ar'] h1 { font-size: 132px; line-height: 1.25; letter-spacing: 0; margin-top: 22px; }
 h1 .a { color: #b07cf0; } h1 .b { color: #4cc38a; }
 .mini { position: absolute; left: 64px; bottom: 64px; width: 860px; font-family: var(--mono); direction: ltr; font-size: 36px; line-height: 1.5; border-radius: 18px; overflow: hidden; border: 2px solid #3e4657; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
 .mini div { padding: 4px 26px; white-space: pre; background: #232730; color: #a9b1c1; }
 .mini .h1 { background: #3a2a52; color: #e8dcfb; border-inline-start: 8px solid #b07cf0; } .mini .h2 { background: #4a3322; color: #fbe3d0; border-inline-start: 8px solid #f08a4a; }
 .mini .btn { position: absolute; top: 4px; inset-inline-end: 12px; font: 700 27px var(--font); padding: 8px 20px; border-radius: 10px; background: #2f6fed; color: #fff; }
-html[dir='rtl'] .mini { left: auto; right: 64px; }
 </style></head><body data-no-presenter>
 <div class="glow g1"></div><div class="glow g2"></div>
 <div class="copy"><span class="badge"><img src="{{KIT}}/brand/mark.svg" alt="">GitTree</span><h1 data-i="title"></h1></div>
 <div class="mini"><div class="h1">+ /** Inverted index … */</div><div> export class SearchIndex {</div><div class="h2">- query(text: string)</div><div class="h2">+ query(text, limit = 20)</div><span class="btn">Stage Hunk</span></div>
 </body></html>
-<script>window.TEXT = { en: { title: '<span class="a">ONE</span> <span class="b">HUNK</span>' }, ar: { title: '<span class="a">Hunk</span> <span class="b">واحد</span>' } };</script>
+<script>window.TEXT = { title: '<span class="a">ONE</span> <span class="b">HUNK</span>' };</script>

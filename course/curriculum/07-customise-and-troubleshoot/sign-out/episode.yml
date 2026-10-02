@@ -2,11 +2,8 @@ id: 07-16
 series: 07-customise-and-troubleshoot
 slug: sign-out
 status: planned
-title:
-  en: Sign out of GitTree everywhere
-  ar: تسجيل الخروج من GitTree على كل الأجهزة
-promise:
-  en: Sign out of your GitTree account and see that connected hosting accounts stay connected.
+title: Sign out of GitTree everywhere
+promise: Sign out of your GitTree account and see that connected hosting accounts stay connected.
 concept: Your GitTree account and your hosting accounts are separate.
 feature: account-signout
 commands: []
@@ -19,6 +16,4 @@ platforms:
 - linux
 notes: Account profile, organisations and deletion are on the website, not in the app. The account menu and read-only Account
   page are shown here in one sentence.
-youtube:
-  en: null
-  ar: null
+youtube: null

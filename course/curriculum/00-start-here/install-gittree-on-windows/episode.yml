@@ -2,11 +2,8 @@ id: 00-02
 series: 00-start-here
 slug: install-gittree-on-windows
 status: planned
-title:
-  en: Install GitTree on Windows 10 and 11
-  ar: تثبيت GitTree على ويندوز 10 و11
-promise:
-  en: Run the GitTree setup on Windows and get past the SmartScreen warning.
+title: Install GitTree on Windows 10 and 11
+promise: Run the GitTree setup on Windows and get past the SmartScreen warning.
 concept: GitTree uses Git for Windows as its Git, and needs version 2.39 or newer.
 feature: install-windows
 commands:
@@ -20,6 +17,4 @@ platforms:
 notes: 'VERIFY V5: SmartScreen wording from ALPHA_NOTES (More info, then Run anyway). Installer not signed (P12-T05 blocked).
   The installer installs for all users and asks for administrator permission. Windows 10 22H2 or 11, 64-bit. Ledger verified
   on Linux only.'
-youtube:
-  en: null
-  ar: null
+youtube: null

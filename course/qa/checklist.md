@@ -1,4 +1,4 @@
-# QA checklist (every episode, both languages)
+# QA checklist (every episode)
 
 **Accuracy**
 - [ ] Every statement about GitTree matches the app: label, button, shortcut (verified in the app or `inventory.md`).
@@ -13,12 +13,11 @@
 - [ ] Readable at 1080p on a laptop screen; no flashing.
 
 **Sound**
-- [ ] Voice-over is a native speaker's take (not the scratch TTS); loudness -14 LUFS, true peak under -1 dBTP.
+- [ ] Voice-over: loudness -14 LUFS, true peak under -1 dBTP; technical terms are pronounced as `glossary.md` says; no clipped or garbled sentence.
 - [ ] Terms are pronounced as `glossary.md` says.
 
 **Language**
-- [ ] The Arabic script was read by a native speaker; captions are right-to-left and match the voice.
-- [ ] The English and Arabic versions teach the same steps in the same order.
+- [ ] Captions match the voice word for word; the steps are in the order the screen shows them.
 
 **Delivery**
 - [ ] `quality.py` passes (1080p or higher, 30 fps constant, H.264 High, BT.709, AAC 48 kHz).

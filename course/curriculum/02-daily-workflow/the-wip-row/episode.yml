@@ -2,11 +2,8 @@ id: 02-27
 series: 02-daily-workflow
 slug: the-wip-row
 status: planned
-title:
-  en: 'The WIP row in the Git graph: your uncommitted work'
-  ar: 'صف WIP في رسم Git: عملك الذي لم يُحفظ بعد'
-promise:
-  en: Read the WIP row at the top of the graph and open the working changes from it.
+title: 'The WIP row in the Git graph: your uncommitted work'
+promise: Read the WIP row at the top of the graph and open the working changes from it.
 concept: The working tree is the uncommitted tip of your history.
 feature: graph-wip-row
 commands:
@@ -18,6 +15,4 @@ requires:
 - 01-05
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

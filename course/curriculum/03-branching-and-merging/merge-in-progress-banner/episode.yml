@@ -2,11 +2,8 @@ id: 03-12
 series: 03-branching-and-merging
 slug: merge-in-progress-banner
 status: planned
-title:
-  en: 'Git merge in progress: the operation banner in GitTree'
-  ar: 'دمج Git قيد التنفيذ: شريط العملية في GitTree'
-promise:
-  en: Read the operation banner and know when to Resolve, Continue, Skip or Abort.
+title: 'Git merge in progress: the operation banner in GitTree'
+promise: Read the operation banner and know when to Resolve, Continue, Skip or Abort.
 concept: An unfinished operation is recorded in state files inside .git.
 feature: merge-banner
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Tab markers for a running operation (repos-tab-state) appear here by sight.
-youtube:
-  en: null
-  ar: null
+youtube: null

@@ -1,111 +1,83 @@
-# One entry per beat: the words (per language), and the picture they play over.
+# One entry per beat: the words, and the picture they play over.
 #   scene: <file in scenes/>        an HTML diagram scene, as long as the words need
 #   app:   {from, to, camera}       a span of the recorded real-app take (markers from journey.mjs); its speed is
 #                                   chosen so it lasts as long as the words. camera: full | {center:[x,y], zoom} (window px)
-# {Shown|spoken} puts `Shown` in the captions and speaks `spoken` (the voice reads Arabic only, so terms get a phonetic spelling).
+# {Shown|spoken} puts `Shown` in the captions and speaks `spoken` (the voice says `spoken`, so terms such as commands get a respelling).
 beats:
   - id: hook
     scene: hook
-    vo:
-      en: "You fixed one thing. And while you were in the same file, you changed something else. Now Git sees one big edit. If you commit it all together, your history gets muddy. Which change was this commit about? In this video, you will learn how to stage just one hunk in GitTree, and commit only that part."
-      ar: "أصلحتَ شيئًا واحدًا، وبينما كنتَ في الملف نفسه عدّلتَ شيئًا آخر. الآن يرى {Git|جِت} تعديلًا واحدًا كبيرًا. وإذا حفظتَ كل شيء في {commit|كوميت} واحد، يصبح تاريخ المشروع مشوّشًا. عن أيِّ تعديلٍ يتحدّث هذا الـ{commit|كوميت}؟ في هذا الفيديو ستتعلّم كيف تُجهِّز {hunk|هَنك} واحدًا فقط في {GitTree|جِت تري}، وتُنشئ {commit|كوميت} لهذا الجزء وحده."
+    vo: "You fixed one thing. And while you were in the same file, you changed something else. Now Git sees one big edit. If you commit it all together, your history gets muddy. Which change was this commit about? In this video, you will learn how to stage just one hunk in GitTree, and commit only that part."
 
   - id: hunk-what
     scene: hunk-what
-    vo:
-      en: "First, what is a hunk? When Git compares two versions of a file, it groups the changed lines into blocks. Each block, together with a few unchanged lines around it, is a hunk. In our file there are two. The first is a new comment above the class. The second adds a limit to the query function."
-      ar: "أولًا، ما هو الـ{hunk|هَنك}؟ عندما يقارن {Git|جِت} بين نسختين من ملف، فإنه يجمع الأسطر المعدَّلة في كتل. وكلُّ كتلة، مع بضعة أسطر لم تتغيّر حولها، تُسمّى {hunk|هَنك}. في ملفّنا هناك اثنان. الأول تعليقٌ جديد فوق الصنف. والثاني يضيف حدًّا لعدد النتائج في دالة البحث."
+    vo: "First, what is a hunk? When Git compares two versions of a file, it groups the changed lines into blocks. Each block, together with a few unchanged lines around it, is a hunk. In our file there are two. The first is a new comment above the class. The second adds a limit to the query function."
 
   - id: three-areas
     scene: three-areas
-    vo:
-      en: "Git keeps your work in three places. The working tree holds the files you edit. The staging area holds what the next commit will contain. And the repository holds your commits. A commit takes only what is in the staging area. So to commit one hunk, move just that hunk into the staging area, then commit. The other hunk stays in your working tree."
-      ar: "يحفظ {Git|جِت} عملك في ثلاثة أماكن. {working tree|شجرة العمل} فيها الملفات التي تعدّلها. و{staging area|منطقة التجهيز} فيها ما سيدخل في الـ{commit|كوميت} القادم. أمّا المستودع فيحفظ الـ{commits|كوميتات}. والـ{commit|كوميت} لا يأخذ إلا ما في منطقة التجهيز. لذلك، لكي تحفظ {hunk|هَنك} واحدًا، انقله وحده إلى منطقة التجهيز، ثم أنشئ الـ{commit|كوميت}. ويبقى الـ{hunk|هَنك} الآخر في شجرة العمل."
+    vo: "Git keeps your work in three places. The working tree holds the files you edit. The staging area holds what the next commit will contain. And the repository holds your commits. A commit takes only what is in the staging area. So to commit one hunk, move just that hunk into the staging area, then commit. The other hunk stays in your working tree."
 
   - id: open-changes
     app: {from: start, to: wip-after, camera: full}
     overlays:
-      - {type: step, n: 1, text: {en: "Open the working changes", ar: "افتح التعديلات الحالية"}}
-    vo:
-      en: "Here is GitTree, with a small demo project open. At the top of the graph, the working changes row tells us that files have changed. Click it."
-      ar: "هذا هو {GitTree|جِت تري}، وفيه مشروع تجريبي صغير مفتوح. في أعلى الرسم البياني، يخبرنا صفّ التعديلات الحالية بأن ملفاتٍ قد تغيّرت. اضغط عليه."
+      - {type: step, n: 1, text: "Open the working changes"}
+    vo: "Here is GitTree, with a small demo project open. At the top of the graph, the working changes row tells us that files have changed. Click it."
 
   - id: pick-file
     app: {from: wip-after, to: stage-before, camera: {center: [776, 330], zoom: 1.27}}
     overlays:
-      - {type: step, n: 2, text: {en: "Select the file", ar: "اختر الملف"}}
+      - {type: step, n: 2, text: "Select the file"}
       - {type: box, rect: hunk1, from: hunks-shown, to: stage-before, pad: 4, color: [176, 124, 240]}
       - {type: box, rect: hunk2, from: hunks-shown, to: stage-before, pad: 4, color: [240, 138, 74]}
-    vo:
-      en: "Select the file. GitTree shows its diff, already split into hunks. Hunk one is the comment. Hunk two is the query change."
-      ar: "اختر الملف. يعرض {GitTree|جِت تري} الفروقات وقد قُسِّمت إلى {hunks|هَنكس}. الـ{hunk|هَنك} الأول هو التعليق. والثاني هو تعديل دالة البحث."
+    vo: "Select the file. GitTree shows its diff, already split into hunks. Hunk one is the comment. Hunk two is the query change."
 
   - id: stage
     app: {from: stage-before, to: stage-after, camera: {center: [776, 300], zoom: 1.27}}
     overlays:
-      - {type: step, n: 3, text: {en: "Click Stage Hunk on the first hunk", ar: "اضغط Stage Hunk على الـ Hunk الأول"}}
+      - {type: step, n: 3, text: "Click Stage Hunk on the first hunk"}
       - {type: box, rect: stage-button, from: stage-before, to: stage-after, pad: 5, color: [176, 124, 240]}
-    vo:
-      en: "Every hunk has its own Stage Hunk button. Click it on the first hunk, and that hunk moves to the staging area."
-      ar: "لكل {hunk|هَنك} زرُّ {Stage Hunk|ستيج هَنك} الخاص به. اضغطه على الـ{hunk|هَنك} الأول، فينتقل إلى منطقة التجهيز."
+    vo: "Every hunk has its own Stage Hunk button. Click it on the first hunk, and that hunk moves to the staging area."
 
   - id: lists
     app: {from: lists-begin, to: lists-end, camera: {center: [776, 330], zoom: 1.27}}
     overlays:
-      - {type: step, n: 4, text: {en: "One file, now in two lists", ar: "ملف واحد، في قائمتين"}}
+      - {type: step, n: 4, text: "One file, now in two lists"}
       - {type: box, rect: unstaged-row, from: lists-begin, to: lists-mid, pad: 4, color: [240, 138, 74]}
       - {type: box, rect: staged-row, from: lists-mid, to: lists-end, pad: 4, color: [176, 124, 240]}
-    vo:
-      en: "Now look at the file lists. The same file appears twice. Under Unstaged Files, it still holds the hunk we left behind. Under Staged Files, it holds the hunk we picked."
-      ar: "الآن انظر إلى قائمتَي الملفات. الملف نفسه يظهر مرتين. تحت {Unstaged Files|الملفات غير المجهَّزة} ما زال يحمل الـ{hunk|هَنك} الذي تركناه. وتحت {Staged Files|الملفات المجهَّزة} يحمل الـ{hunk|هَنك} الذي اخترناه."
+    vo: "Now look at the file lists. The same file appears twice. Under Unstaged Files, it still holds the hunk we left behind. Under Staged Files, it holds the hunk we picked."
 
   - id: staged-view
     app: {from: staged-view-before, to: staged-view-end, camera: {center: [776, 330], zoom: 1.27}}
     overlays:
-      - {type: step, n: 5, text: {en: "Review what is staged", ar: "راجع ما تم تجهيزه"}}
+      - {type: step, n: 5, text: "Review what is staged"}
       - {type: box, rect: staged-view, from: staged-view, to: staged-view-end, pad: 4, color: [176, 124, 240]}
-    vo:
-      en: "Click the staged copy to see exactly what will be committed. Only the comment is there."
-      ar: "اضغط على النسخة المجهَّزة لترى بالضبط ما سيدخل في الـ{commit|كوميت}. لا يوجد فيها إلا التعليق."
+    vo: "Click the staged copy to see exactly what will be committed. Only the comment is there."
 
   - id: commit
     app: {from: msg-before, to: commit-after, camera: {center: [776, 420], zoom: 1.27}}
     overlays:
-      - {type: step, n: 6, text: {en: "Write the message and commit", ar: "اكتب الرسالة وأنشئ الـ Commit"}}
-    vo:
-      en: "Write a commit message, and commit. This commit contains only the comment change."
-      ar: "اكتب رسالة الـ{commit|كوميت}، ثم أنشئه. هذا الـ{commit|كوميت} يحتوي على تعديل التعليق فقط."
+      - {type: step, n: 6, text: "Write the message and commit"}
+    vo: "Write a commit message, and commit. This commit contains only the comment change."
 
   - id: rest
     app: {from: commit-after, to: rest-end, camera: {center: [776, 330], zoom: 1.27}}
     overlays:
-      - {type: step, n: 7, text: {en: "The other hunk is still waiting", ar: "الـ Hunk الآخر ما زال ينتظر"}}
-    vo:
-      en: "The other hunk is still in your working changes, ready for its own commit."
-      ar: "أمّا الـ{hunk|هَنك} الآخر فما زال في تعديلاتك الحالية، جاهزًا لـ{commit|كوميت} خاصٍّ به."
+      - {type: step, n: 7, text: "The other hunk is still waiting"}
+    vo: "The other hunk is still in your working changes, ready for its own commit."
 
   - id: verify
     app: {from: close-before, to: end, camera: full}
     overlays:
-      - {type: step, n: 8, text: {en: "Check the new commit", ar: "راجع الـ Commit الجديد"}}
-    vo:
-      en: "Close the diff, and select the new commit in the graph. It changed one file, with a single added line. That is how you keep every commit about one thing."
-      ar: "أغلق عرض الفروقات، ثم اختر الـ{commit|كوميت} الجديد في الرسم البياني. لقد غيّر ملفًّا واحدًا، بسطرٍ واحد مضاف. هكذا يبقى كل {commit|كوميت} متعلّقًا بشيءٍ واحد."
+      - {type: step, n: 8, text: "Check the new commit"}
+    vo: "Close the diff, and select the new commit in the graph. It changed one file, with a single added line. That is how you keep every commit about one thing."
 
   - id: git-command
     scene: git-command
-    vo:
-      en: "In plain Git, the same job is done with {git add -p|git add dash p}. Git shows you each hunk, and asks what to do. Press y to stage it, n to skip it, and s to split it into smaller hunks. Here we staged the first and skipped the second. Then {git diff --staged|git diff dash dash staged} shows what the commit will contain. GitTree does the same, with one click per hunk."
-      ar: "في {Git|جِت} وحده، يُنجَز الأمر نفسه بالأمر {git add -p|جِت أَد دَاش بي}. يعرض لك {Git|جِت} كل {hunk|هَنك} ويسألك ماذا تريد. اضغط {y|واي} لتجهيزه، و{n|إن} لتخطّيه، و{s|إس} لتقسيمه إلى أجزاء أصغر. هنا جهّزنا الأول وتخطّينا الثاني. ثم يعرض الأمر {git diff --staged|جِت ديف داش داش ستيجد} ما سيحتويه الـ{commit|كوميت}. ويفعل {GitTree|جِت تري} الشيء نفسه، بنقرة واحدة لكل {hunk|هَنك}."
+    vo: "In plain Git, the same job is done with {git add -p|git add dash p}. Git shows you each hunk, and asks what to do. Press y to stage it, n to skip it, and s to split it into smaller hunks. Here we staged the first and skipped the second. Then {git diff --staged|git diff dash dash staged} shows what the commit will contain. GitTree does the same, with one click per hunk."
 
   - id: tips
     scene: tips
-    vo:
-      en: "Two tips. First, if you change your mind, the same button reads Unstage Hunk on the staged side. Second, if one hunk mixes two ideas, pick individual lines instead of the whole hunk. That is the next video."
-      ar: "نصيحتان. الأولى: إذا غيّرتَ رأيك، فالزر نفسه يحمل اسم {Unstage Hunk|أَنستيج هَنك} في الجانب المجهَّز. والثانية: إذا كان الـ{hunk|هَنك} يجمع فكرتين، فاختر أسطرًا محددة بدل الـ{hunk|هَنك} كاملًا. وهذا موضوع الفيديو القادم."
+    vo: "Two tips. First, if you change your mind, the same button reads Unstage Hunk on the staged side. Second, if one hunk mixes two ideas, pick individual lines instead of the whole hunk. That is the next video."
 
   - id: recap
     scene: recap
-    vo:
-      en: "To recap. A hunk is a block of changed lines. Stage Hunk moves it to the staging area. And a commit takes only what is staged. Download GitTree for free at {gittree.app|gittree dot app}, and see you in the next video."
-      ar: "لنلخّص. الـ{hunk|هَنك} كتلة من الأسطر المعدَّلة. و{Stage Hunk|ستيج هَنك} ينقله إلى منطقة التجهيز. والـ{commit|كوميت} لا يأخذ إلا المجهَّز. حمّل {GitTree|جِت تري} مجانًا من {gittree.app|جِت تري دوت آب}، وإلى اللقاء في الفيديو القادم."
+    vo: "To recap. A hunk is a block of changed lines. Stage Hunk moves it to the staging area. And a commit takes only what is staged. Download GitTree for free at {gittree.app|gittree dot app}, and see you in the next video."

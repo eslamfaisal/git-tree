@@ -2,11 +2,8 @@ id: 02-16
 series: 02-daily-workflow
 slug: edit-gitignore
 status: planned
-title:
-  en: Edit .gitignore and find out why a file is ignored
-  ar: تعديل .gitignore ومعرفة سبب تجاهل ملف
-promise:
-  en: Edit .gitignore with a template and ask which rule ignores a given path.
+title: Edit .gitignore and find out why a file is ignored
+promise: Edit .gitignore with a template and ask which rule ignores a given path.
 concept: git check-ignore -v names the exact rule and file that ignores a path.
 feature: staging-gitignore-editor
 commands:
@@ -18,6 +15,4 @@ requires:
 - 02-15
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

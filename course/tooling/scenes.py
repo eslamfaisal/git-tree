@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Renders one HTML scene (visuals/kit) to a lossless clip, frame by frame, deterministically.
 
-    scenes.py --html scene.html --lang ar --seconds 14.2 --out scene.mkv [--fps 30] [--height 1080]
+    scenes.py --html scene.html --seconds 14.2 --out scene.mkv [--fps 30] [--height 1080]
               [--presenter presenter.json] [--speak speak.json]
 
 Every frame is a screenshot after seeking all CSS animations to that frame's time, so the result does not
@@ -19,14 +19,14 @@ KIT = Path(__file__).resolve().parent.parent / "visuals" / "kit"
 CHROME = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
 
 
-def render(html: Path, lang: str, seconds: float, out: Path, fps: int = 30, height: int = 1080, presenter: dict | None = None, speak: list[float] | None = None) -> int:
+def render(html: Path, seconds: float, out: Path, fps: int = 30, height: int = 1080, presenter: dict | None = None, speak: list[float] | None = None) -> int:
     from playwright.sync_api import sync_playwright
 
     frames = max(1, round(seconds * fps))
     scale = height / 1080
     page_src = html.read_text()
     tmp = out.with_suffix(".html")
-    config = {"lang": lang, "d": round(frames / fps, 4), "presenter": presenter}
+    config = {"d": round(frames / fps, 4), "presenter": presenter}
     inject = (
         f'<link rel="stylesheet" href="{(KIT / "scene.css").as_uri()}">'
         f"<script>window.__SCENE__={json.dumps(config)};</script>"
@@ -57,7 +57,6 @@ def render(html: Path, lang: str, seconds: float, out: Path, fps: int = 30, heig
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--html", required=True, type=Path)
-    ap.add_argument("--lang", required=True, choices=["en", "ar"])
     ap.add_argument("--seconds", required=True, type=float)
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--fps", type=int, default=30)
@@ -67,7 +66,7 @@ def main() -> None:
     ns = ap.parse_args()
     presenter = json.loads(ns.presenter.read_text()) if ns.presenter else None
     speak = json.loads(ns.speak.read_text()) if ns.speak else None
-    n = render(ns.html, ns.lang, ns.seconds, ns.out, ns.fps, ns.height, presenter, speak)
+    n = render(ns.html, ns.seconds, ns.out, ns.fps, ns.height, presenter, speak)
     print(f"{ns.out.name}: {n} frames")
 
 

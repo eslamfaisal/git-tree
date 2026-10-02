@@ -2,11 +2,8 @@ id: 04-14
 series: 04-rewriting-history
 slug: recovery-snapshots
 status: planned
-title:
-  en: 'Git recovery snapshots: GitTree''s refs/ogt/trash'
-  ar: 'لقطات الاسترداد: refs/ogt/trash في GitTree'
-promise:
-  en: Find the recovery snapshots GitTree keeps and delete the old ones.
+title: 'Git recovery snapshots: GitTree''s refs/ogt/trash'
+promise: Find the recovery snapshots GitTree keeps and delete the old ones.
 concept: A snapshot is a commit kept alive under a private ref so nothing is lost.
 feature: trash-refs
 commands:
@@ -19,6 +16,4 @@ requires:
 - 04-12
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

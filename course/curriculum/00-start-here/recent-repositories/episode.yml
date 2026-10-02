@@ -2,11 +2,8 @@ id: 00-12
 series: 00-start-here
 slug: recent-repositories
 status: planned
-title:
-  en: Recent repositories and the New Tab page in GitTree
-  ar: المستودعات الأخيرة وصفحة التبويب الجديد في GitTree
-promise:
-  en: Reopen a repository from the Recent list and remove one from it without deleting files.
+title: Recent repositories and the New Tab page in GitTree
+promise: Reopen a repository from the Recent list and remove one from it without deleting files.
 concept: The recent list is stored by the app, nothing in the repository changes.
 feature: repos-recents
 commands: []
@@ -18,6 +15,4 @@ requires:
 platforms:
 - linux
 notes: Favourites (repos-favourites) are mentioned in one sentence here, not a separate video.
-youtube:
-  en: null
-  ar: null
+youtube: null

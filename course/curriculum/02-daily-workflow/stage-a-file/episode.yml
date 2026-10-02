@@ -2,11 +2,8 @@ id: 02-01
 series: 02-daily-workflow
 slug: stage-a-file
 status: planned
-title:
-  en: Stage a file in GitTree (git add explained)
-  ar: كيف تُجهِّز ملفًا في GitTree (شرح git add)
-promise:
-  en: Stage one changed file so that it goes into the next commit and the others do not.
+title: Stage a file in GitTree (git add explained)
+promise: Stage one changed file so that it goes into the next commit and the others do not.
 concept: Staging copies a file's changes into the index, which is the next commit.
 feature: staging-file
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Shortcut S works when the file list has focus. Path and Tree layout (staging-layout) is shown in passing.
-youtube:
-  en: null
-  ar: null
+youtube: null

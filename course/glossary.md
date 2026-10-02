@@ -1,19 +1,21 @@
-# Glossary (English and Arabic)
+# Pronunciation list
 
-Terms stay in English on screen. The Arabic voice-over says them the way Arabic-speaking developers do; the spoken form
-is what `beats.yml` writes inside `{Shown|spoken}` for the scratch voice, and what the speaker is asked to say.
+Terms are shown as written in the captions. The voice-over speaks the respelling in the script's `{Shown|spoken}`
+markup, so a command or a name is read the way a person would say it.
 
-| English (on screen) | Arabic explanation used in the scripts | Spoken as (Arabic) |
-|---|---|---|
-| Git | جيت | جِت |
-| GitTree | جِت تري | جِت تري |
-| commit | الإيداع (the saved snapshot) | كوميت |
-| hunk | كتلة من الأسطر المعدَّلة | هَنك |
-| staging area / index | منطقة التجهيز | ستيجينغ إيريا |
-| working tree | شجرة العمل | وورکينغ تري |
-| repository | المستودع | ريبوزيتوري |
-| branch | الفرع | برانتش |
-| diff | الفروقات | ديف |
-| stage / unstage | تجهيز / إلغاء التجهيز | ستيج / أنستيج |
+| Shown | Spoken as |
+|---|---|
+| GitTree | git tree |
+| git add -p | git add dash p |
+| git diff --staged | git diff dash dash staged |
+| git commit -a | git commit dash a |
+| HEAD | head |
+| origin/main | origin slash main |
+| .gitignore | dot git ignore |
+| gittree.app | gittree dot app |
+| --force-with-lease | dash dash force with lease |
+| SHA | sha |
+| LFS | L F S |
+| PR | pull request |
 
-*Draft for native-speaker review: confirm each Arabic term and its spoken form before the first recording.*
+Add a row whenever a script contains a term the voice mispronounces.

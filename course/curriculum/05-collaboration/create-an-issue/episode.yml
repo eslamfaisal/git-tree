@@ -2,11 +2,8 @@ id: 05-28
 series: 05-collaboration
 slug: create-an-issue
 status: planned
-title:
-  en: Create an issue from GitTree
-  ar: إنشاء issue من GitTree
-promise:
-  en: Create a new issue with a title and a Markdown description.
+title: Create an issue from GitTree
+promise: Create a new issue with a title and a Markdown description.
 concept: Creating an issue is a call to the host's API, not a Git operation.
 feature: issue-create
 commands: []
@@ -18,6 +15,4 @@ requires:
 platforms:
 - linux
 notes: GitHub and GitLab only.
-youtube:
-  en: null
-  ar: null
+youtube: null

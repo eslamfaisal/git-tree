@@ -1,13 +1,14 @@
-"""Scratch voice-over for the course: Piper neural voices, sentence by sentence.
+"""Voice-over for the course (English).
 
-A scratch track exists to fix the timing of every beat and to review the script by ear. It is NOT the
-published voice: a native speaker records that (see ../audio/README.md) and drops the takes in over it.
+Backends:
+  clone  the author's own voice, cloned from a sample with ZipVoice (voice_clone.py). Default when
+         presenter/voice/prompt.wav exists.
+  piper  a neural scratch voice (Piper en_US-ryan), the fallback when no sample is present.
 
-Voices (open licences, fetched once from the sherpa-onnx release mirror of Piper):
-  en  en_US-ryan-high       ar  ar_JO-kareem-medium
+A narrator's real recording of a beat always wins: see compose.py ("audio/<beat-id>.wav").
 
-Script markup: {Display|spoken} shows `Display` in captions and speaks `spoken`, so Arabic scripts can
-keep Latin terms on screen ({commit|كوميت}) while the voice gets a phonetic spelling it can read.
+Script markup: {Display|spoken} shows `Display` in captions and speaks `spoken`, so technical terms can be respelled
+for the voice ({git add -p|git add dash p}) while the captions keep the real text.
 """
 from __future__ import annotations
 
@@ -20,16 +21,15 @@ import wave
 from dataclasses import dataclass
 from pathlib import Path
 
-RELEASE = "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models"
-VOICES = {
-    "en": ("vits-piper-en_US-ryan-high", "en_US-ryan-high.onnx"),
-    "ar": ("vits-piper-ar_JO-kareem-medium", "ar_JO-kareem-medium.onnx"),
-}
-# Speaking rate of the scratch voices. The Arabic Piper voice reads slowly (about 1.5 words/s against 3.6 for English),
-# so it is sped up to a natural lecture pace; a recorded voice-over replaces both (see compose.py).
-RATE = {"en": 1.0, "ar": 1.55}
-SENTENCE_END = re.compile(r"(?<=[.!?؟…])\s+")
+import numpy as np
+import soundfile as sf
+
+COURSE = Path(__file__).resolve().parent.parent
+PIPER_RELEASE = "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models"
+PIPER_VOICE = ("vits-piper-en_US-ryan-high", "en_US-ryan-high.onnx")
+SENTENCE_END = re.compile(r"(?<=[.!?…])\s+")
 MARKUP = re.compile(r"\{([^{}|]*)\|([^{}]*)\}")
+TARGET_RMS_DB = -20.0  # every sentence is levelled to this RMS before mixing, so the delivery is even
 
 
 def display_text(text: str) -> str:
@@ -41,35 +41,21 @@ def spoken_text(text: str) -> str:
 
 
 def sentences(text: str) -> list[str]:
-    """The beat's sentences, in the display form (captions) – one TTS call and one caption each."""
+    """The beat's sentences, in the display form (captions): one synthesis call and one caption each."""
     parts = [p.strip() for p in SENTENCE_END.split(" ".join(text.split()))]
     return [p for p in parts if p]
 
 
-def voice_dir(cache: Path, lang: str) -> Path:
-    folder, _ = VOICES[lang]
-    target = cache / "voices" / folder
-    if not target.exists():
-        target.parent.mkdir(parents=True, exist_ok=True)
-        archive = target.parent / f"{folder}.tar.bz2"
-        print(f"fetching voice {folder} ...")
-        urllib.request.urlretrieve(f"{RELEASE}/{folder}.tar.bz2", archive)
-        with tarfile.open(archive) as tar:
-            tar.extractall(target.parent)
-        archive.unlink()
-    return target
+def backend() -> str:
+    return "clone" if (COURSE / "presenter" / "voice" / "prompt.wav").exists() else "piper"
 
 
-_loaded: dict[str, object] = {}
-
-
-def _voice(cache: Path, lang: str):
-    if lang not in _loaded:
-        from piper import PiperVoice
-
-        _, model = VOICES[lang]
-        _loaded[lang] = PiperVoice.load(str(voice_dir(cache, lang) / model))
-    return _loaded[lang]
+def _prompt_fingerprint() -> str:
+    folder = COURSE / "presenter" / "voice"
+    h = hashlib.sha256()
+    for name in ("prompt.wav", "prompt.yml"):
+        h.update((folder / name).read_bytes())
+    return h.hexdigest()[:10]
 
 
 @dataclass
@@ -79,35 +65,76 @@ class Clip:
     text: str  # display form
 
 
-def synth(cache: Path, lang: str, text: str, rate: float = 1.0) -> Clip:
-    """One sentence -> a 22.05 kHz mono WAV in the cache (keyed by voice, rate and text)."""
-    spoken = spoken_text(text)
-    key = hashlib.sha256(f"{VOICES[lang][1]}|{rate}|{spoken}".encode()).hexdigest()[:20]
-    path = cache / "vo" / f"{lang}-{key}.wav"
-    if not path.exists():
-        from piper import SynthesisConfig
+def _level(samples: np.ndarray, sr: int) -> np.ndarray:
+    """Trim leading and trailing silence, level to TARGET_RMS_DB (RMS of the active parts), keep peaks under -1 dBFS."""
+    if len(samples) == 0:
+        return samples
+    frame = max(1, sr // 100)
+    n = len(samples) // frame
+    rms = np.sqrt(np.mean(samples[: n * frame].reshape(n, frame) ** 2, axis=1))
+    active = np.where(rms > max(rms.max() * 0.04, 1e-4))[0]
+    if len(active):
+        a, b = max(0, active[0] - 3) * frame, min(n, active[-1] + 6) * frame
+        samples = samples[a:b]
+        rms = rms[active]
+    gain = (10 ** (TARGET_RMS_DB / 20)) / max(float(np.sqrt(np.mean(rms ** 2))), 1e-6)
+    out = samples * gain
+    peak = float(np.max(np.abs(out)))
+    return out * (0.89 / peak) if peak > 0.89 else out
 
+
+def _piper(text: str, out: Path, rate: float) -> None:
+    folder, model = PIPER_VOICE
+    target = COURSE / ".work" / "voices" / folder
+    if not target.exists():
+        target.parent.mkdir(parents=True, exist_ok=True)
+        archive = target.parent / f"{folder}.tar.bz2"
+        urllib.request.urlretrieve(f"{PIPER_RELEASE}/{folder}.tar.bz2", archive)
+        with tarfile.open(archive) as tar:
+            tar.extractall(target.parent)
+        archive.unlink()
+    from piper import PiperVoice, SynthesisConfig
+
+    voice = PiperVoice.load(str(target / model))
+    with wave.open(str(out), "wb") as wav:
+        voice.synthesize_wav(text, wav, syn_config=SynthesisConfig(length_scale=1.0 / rate))
+
+
+def synth(cache: Path, text: str, rate: float = 1.0) -> Clip:
+    """One sentence -> a mono WAV in the cache, keyed by backend, voice, speed and the spoken words."""
+    spoken = spoken_text(text)
+    which = backend()
+    key = hashlib.sha256(f"{which}|{_prompt_fingerprint() if which == 'clone' else PIPER_VOICE[1]}|{rate}|{spoken}".encode()).hexdigest()[:20]
+    path = cache / "vo" / f"{which}-{key}.wav"
+    if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
-        voice = _voice(cache, lang)
-        with wave.open(str(path), "wb") as wav:
-            voice.synthesize_wav(spoken, wav, syn_config=SynthesisConfig(length_scale=1.0 / rate))
-    with wave.open(str(path), "rb") as wav:
-        seconds = wav.getnframes() / wav.getframerate()
-    return Clip(path, seconds, display_text(text))
+        raw = path.with_suffix(".raw.wav")
+        if which == "clone":
+            import voice_clone
+
+            voice_clone.say(spoken, raw, speed=rate)
+        else:
+            _piper(spoken, raw, rate)
+        x, sr = sf.read(str(raw), dtype="float32")
+        if x.ndim > 1:
+            x = x.mean(axis=1)
+        sf.write(str(path), _level(x, sr), sr)
+        raw.unlink()
+    info = sf.info(str(path))
+    return Clip(path, info.frames / info.samplerate, display_text(text))
 
 
 def loudness_gain_db(samples, rate: int, target: float = -14.0) -> float:
     import pyloudnorm as pyln
 
-    meter = pyln.Meter(rate)
-    return target - meter.integrated_loudness(samples)
+    return target - pyln.Meter(rate).integrated_loudness(samples)
 
 
 def mux_audio(wav_in: Path, out: Path, target: float = -14.0, ceiling_db: float = -1.5) -> float:
     """Float WAV -> AAC 256 kbps at `target` LUFS integrated, true peak held under -1 dBTP.
 
-    A gain and a limiter, calibrated against a measurement of the encoded file itself (two passes), because the
-    limiter and the AAC encoder both move the level a little. Returns the measured loudness.
+    A gain and a limiter, calibrated against a measurement of the encoded file itself, because the limiter and the AAC
+    encoder both move the level a little. Returns the measured loudness.
     """
     import quality
 

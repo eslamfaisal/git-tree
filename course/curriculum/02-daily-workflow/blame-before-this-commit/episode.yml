@@ -2,11 +2,8 @@ id: 02-25
 series: 02-daily-workflow
 slug: blame-before-this-commit
 status: planned
-title:
-  en: 'Git blame before this commit: walk a line''s history'
-  ar: تتبّع تاريخ سطر بخطوات blame للخلف في GitTree
-promise:
-  en: Step back to the blame of the commit before the one that changed a line.
+title: 'Git blame before this commit: walk a line''s history'
+promise: Step back to the blame of the commit before the one that changed a line.
 concept: Blaming at a commit's parent reveals who changed the line before.
 feature: blame-step-back
 commands:
@@ -18,6 +15,4 @@ requires:
 - 02-24
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

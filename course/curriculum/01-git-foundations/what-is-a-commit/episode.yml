@@ -2,11 +2,8 @@ id: 01-01
 series: 01-git-foundations
 slug: what-is-a-commit
 status: planned
-title:
-  en: What is a Git commit? See one in GitTree
-  ar: ما هو الـ commit في Git؟ شاهد واحدًا في GitTree
-promise:
-  en: See that a commit is a snapshot with a parent, a message and an author, using the Commit Details panel.
+title: What is a Git commit? See one in GitTree
+promise: See that a commit is a snapshot with a parent, a message and an author, using the Commit Details panel.
 concept: A commit is a snapshot (tree) plus parents, message, author and committer.
 feature: graph-detail
 commands:
@@ -19,6 +16,4 @@ requires:
 - 00-08
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

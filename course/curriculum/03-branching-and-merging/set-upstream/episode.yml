@@ -2,11 +2,8 @@ id: 03-06
 series: 03-branching-and-merging
 slug: set-upstream
 status: planned
-title:
-  en: Set the upstream branch in Git (tracking explained)
-  ar: 'تحديد الفرع المتتبَّع (upstream) في Git: الشرح'
-promise:
-  en: Choose which remote branch a local branch tracks, or make it track nothing.
+title: Set the upstream branch in Git (tracking explained)
+promise: Choose which remote branch a local branch tracks, or make it track nothing.
 concept: The upstream is the remote branch that pull, push and ahead and behind counts compare against.
 feature: branch-upstream
 commands:
@@ -19,6 +16,4 @@ requires:
 - 03-03
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

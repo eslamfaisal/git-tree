@@ -2,11 +2,8 @@ id: 00-04
 series: 00-start-here
 slug: run-gittree-appimage
 status: planned
-title:
-  en: Run GitTree on Linux with the AppImage (no root)
-  ar: تشغيل GitTree على لينكس بصيغة AppImage دون صلاحيات root
-promise:
-  en: Make the AppImage executable and run GitTree without installing anything.
+title: Run GitTree on Linux with the AppImage (no root)
+promise: Make the AppImage executable and run GitTree without installing anything.
 concept: A portable AppImage runs from any folder and does not register the opengittree:// link handler.
 feature: install-linux-appimage
 commands:
@@ -21,6 +18,4 @@ platforms:
 - linux
 notes: x86_64 only, unsigned. The AppImage registers no opengittree:// handler, so browser sign-in may need the manual code
   (see 00-07). Verified on a 24.04 container only. Do not discuss in-app updates on Linux (VERIFY V6).
-youtube:
-  en: null
-  ar: null
+youtube: null

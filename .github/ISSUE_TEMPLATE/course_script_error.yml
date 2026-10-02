@@ -10,13 +10,6 @@ body:
       description: The id and title, for example "02-02 Stage a single hunk".
     validations:
       required: true
-  - type: dropdown
-    id: language
-    attributes:
-      label: Language
-      options: [English, Arabic, Both]
-    validations:
-      required: true
   - type: textarea
     id: what
     attributes:

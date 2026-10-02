@@ -2,11 +2,8 @@ id: 05-14
 series: 05-collaboration
 slug: connect-gitlab
 status: planned
-title:
-  en: Connect GitLab to GitTree (token or application ID)
-  ar: ربط GitLab بـ GitTree (توكن أو معرّف تطبيق)
-promise:
-  en: Connect gitlab.com or a self-managed GitLab with a token or a typed OAuth application ID.
+title: Connect GitLab to GitTree (token or application ID)
+promise: Connect gitlab.com or a self-managed GitLab with a token or a typed OAuth application ID.
 concept: Not every host offers one-click browser sign-in, so a personal access token is the fallback.
 feature: provider-gitlab
 commands: []
@@ -19,6 +16,4 @@ platforms:
 - linux
 notes: The official build has an empty OGT_GITLAB_CLIENT_ID, so show the token path (P00-T29 blocked). Merge requests are
   shown as pull requests.
-youtube:
-  en: null
-  ar: null
+youtube: null

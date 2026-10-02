@@ -2,11 +2,8 @@ id: 06-07
 series: 06-power-features
 slug: lfs-set-up
 status: planned
-title:
-  en: Set up Git LFS for a repository in GitTree
-  ar: إعداد Git LFS لمستودع في GitTree
-promise:
-  en: Check that Git LFS is installed and set it up for this repository.
+title: Set up Git LFS for a repository in GitTree
+promise: Check that Git LFS is installed and set it up for this repository.
 concept: Large files live outside the repository and pointer files live inside.
 feature: lfs-setup
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Needs git-lfs installed on the machine.
-youtube:
-  en: null
-  ar: null
+youtube: null

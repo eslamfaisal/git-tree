@@ -2,11 +2,8 @@ id: 06-25
 series: 06-power-features
 slug: filter-the-graph
 status: planned
-title:
-  en: Filter the Git graph by author, date, branch or path
-  ar: تصفية رسم Git حسب المؤلف والتاريخ والفرع والمسار
-promise:
-  en: Show only the commits that match a filter and clear it again.
+title: Filter the Git graph by author, date, branch or path
+promise: Show only the commits that match a filter and clear it again.
 concept: git log can restrict history by author, dates and paths over chosen starting points.
 feature: graph-filter
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Hide, Solo and Pin references (graph-ref-visibility) are not a video.
-youtube:
-  en: null
-  ar: null
+youtube: null

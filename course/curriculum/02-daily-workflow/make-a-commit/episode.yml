@@ -2,11 +2,8 @@ id: 02-05
 series: 02-daily-workflow
 slug: make-a-commit
 status: planned
-title:
-  en: Make a Git commit in GitTree step by step
-  ar: كيف تُنشئ commit في GitTree خطوة بخطوة
-promise:
-  en: Write a summary and description and commit the staged changes.
+title: Make a Git commit in GitTree step by step
+promise: Write a summary and description and commit the staged changes.
 concept: A commit snapshots the index, not the working folder.
 feature: commit-create
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Shortcut Mod+Enter.
-youtube:
-  en: null
-  ar: null
+youtube: null

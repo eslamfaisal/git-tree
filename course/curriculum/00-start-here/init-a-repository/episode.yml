@@ -2,11 +2,8 @@ id: 00-11
 series: 00-start-here
 slug: init-a-repository
 status: planned
-title:
-  en: Create a new Git repository in GitTree (git init)
-  ar: إنشاء مستودع Git جديد في GitTree (git init)
-promise:
-  en: Initialise a new repository with a first branch name and an optional .gitignore template and licence.
+title: Create a new Git repository in GitTree (git init)
+promise: Initialise a new repository with a first branch name and an optional .gitignore template and licence.
 concept: git init creates the object database and the first branch.
 feature: repos-init
 commands:
@@ -18,6 +15,4 @@ requires:
 - 00-07
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

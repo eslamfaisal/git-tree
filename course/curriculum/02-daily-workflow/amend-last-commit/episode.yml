@@ -2,11 +2,8 @@ id: 02-07
 series: 02-daily-workflow
 slug: amend-last-commit
 status: planned
-title:
-  en: Amend the last Git commit in GitTree
-  ar: تعديل آخر commit في GitTree (amend)
-promise:
-  en: Fix the message or add a forgotten file to the last commit.
+title: Amend the last Git commit in GitTree
+promise: Fix the message or add a forgotten file to the last commit.
 concept: Amend replaces the tip commit with a new one that has a new id.
 feature: commit-amend
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Show the 'Amend a commit that is already pushed?' warning as a short aside; the push consequences are 04-07.
-youtube:
-  en: null
-  ar: null
+youtube: null

@@ -2,11 +2,8 @@ id: 02-20
 series: 02-daily-workflow
 slug: compare-images
 status: planned
-title:
-  en: 'Compare images in Git: side by side, swipe, onion skin'
-  ar: 'مقارنة الصور في Git: جنبًا إلى جنب والسحب والتراكب'
-promise:
-  en: Compare two versions of an image with the three image diff modes.
+title: 'Compare images in Git: side by side, swipe, onion skin'
+promise: Compare two versions of an image with the three image diff modes.
 concept: Git stores binary files as blobs, so GitTree reads both blobs and compares them visually.
 feature: diff-image
 commands:
@@ -18,6 +15,4 @@ requires:
 - 02-17
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

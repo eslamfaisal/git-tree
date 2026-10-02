@@ -2,11 +2,8 @@ id: 06-01
 series: 06-power-features
 slug: worktrees-list
 status: planned
-title:
-  en: 'Git worktrees explained: see them in GitTree'
-  ar: 'شرح git worktree: مجلدات عمل متعددة لمستودع واحد'
-promise:
-  en: Find the Worktrees section and understand what several working folders share.
+title: 'Git worktrees explained: see them in GitTree'
+promise: Find the Worktrees section and understand what several working folders share.
 concept: A worktree is another working folder that shares the same object database.
 feature: worktree-list
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Open as a tab and the graph badge for sibling worktrees are shown in passing.
-youtube:
-  en: null
-  ar: null
+youtube: null

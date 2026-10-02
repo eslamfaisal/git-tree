@@ -2,11 +2,8 @@ id: 05-18
 series: 05-collaboration
 slug: clone-from-provider
 status: planned
-title:
-  en: Clone a repository from your hosting account in GitTree
-  ar: استنساخ مستودع من حسابك على المنصة داخل GitTree
-promise:
-  en: Browse the repositories of a connected account and clone one.
+title: Clone a repository from your hosting account in GitTree
+promise: Browse the repositories of a connected account and clone one.
 concept: The account only lists repositories; the clone itself is plain git over HTTPS.
 feature: repos-clone-provider
 commands:
@@ -19,6 +16,4 @@ requires:
 - 00-10
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

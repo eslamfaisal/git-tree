@@ -2,11 +2,8 @@ id: 03-13
 series: 03-branching-and-merging
 slug: abort-merge-or-rebase
 status: planned
-title:
-  en: Abort a Git merge or rebase and go back to before
-  ar: إلغاء الدمج أو الـ rebase في Git والعودة لما قبله
-promise:
-  en: Abort an operation in one step and see that your work is kept under a recovery ref.
+title: Abort a Git merge or rebase and go back to before
+promise: Abort an operation in one step and see that your work is kept under a recovery ref.
 concept: An abort restores the state from before the operation started.
 feature: merge-abort
 commands:
@@ -19,6 +16,4 @@ requires:
 - 03-12
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

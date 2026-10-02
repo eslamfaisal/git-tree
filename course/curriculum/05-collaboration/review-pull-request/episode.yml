@@ -2,11 +2,8 @@ id: 05-25
 series: 05-collaboration
 slug: review-pull-request
 status: planned
-title:
-  en: 'Review a pull request: approve or request changes'
-  ar: 'مراجعة pull request: الموافقة أو طلب تعديلات'
-promise:
-  en: Submit a review on a pull request and edit its details.
+title: 'Review a pull request: approve or request changes'
+promise: Submit a review on a pull request and edit its details.
 concept: A review is a verdict plus comments from a person other than the author.
 feature: pr-review
 commands: []
@@ -18,6 +15,4 @@ requires:
 platforms:
 - linux
 notes: Use a second account or a repository you own.
-youtube:
-  en: null
-  ar: null
+youtube: null

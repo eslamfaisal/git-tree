@@ -2,11 +2,8 @@ id: 04-05
 series: 04-rewriting-history
 slug: reorder-commits
 status: planned
-title:
-  en: 'Reorder Git commits: move a commit up or down'
-  ar: 'إعادة ترتيب الـ commits في Git: انقل commit لأعلى أو لأسفل'
-promise:
-  en: Move a commit up or down in the history from the right-click menu.
+title: 'Reorder Git commits: move a commit up or down'
+promise: Move a commit up or down in the history from the right-click menu.
 concept: Reordering commits replays them in a new order, which can conflict.
 feature: rebase-move
 commands:
@@ -18,6 +15,4 @@ requires:
 - 04-02
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

@@ -2,11 +2,8 @@ id: 00-10
 series: 00-start-here
 slug: clone-a-repository
 status: planned
-title:
-  en: Clone a Git repository by URL in GitTree
-  ar: استنساخ مستودع Git من رابط في GitTree
-promise:
-  en: Clone a repository from a URL into a folder you choose and open it.
+title: Clone a Git repository by URL in GitTree
+promise: Clone a repository from a URL into a folder you choose and open it.
 concept: A clone copies the full history and sets the remote named origin.
 feature: repos-clone-url
 commands:
@@ -20,6 +17,4 @@ platforms:
 - linux
 notes: Use a local demo remote, never a real URL with a token (a pasted token is stripped and never saved). Clone options
   are 06-12; cloning from a connected account is 05-18.
-youtube:
-  en: null
-  ar: null
+youtube: null

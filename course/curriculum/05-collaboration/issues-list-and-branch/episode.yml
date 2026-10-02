@@ -2,11 +2,8 @@ id: 05-27
 series: 05-collaboration
 slug: issues-list-and-branch
 status: planned
-title:
-  en: See issues and start a branch from one in GitTree
-  ar: عرض الـ issues وبدء فرع منها في GitTree
-promise:
-  en: Open an issue from the sidebar and create a branch for it.
+title: See issues and start a branch from one in GitTree
+promise: Open an issue from the sidebar and create a branch for it.
 concept: An issue is a host record; the branch is plain Git.
 feature: issue-list
 commands:
@@ -21,6 +18,4 @@ requires:
 platforms:
 - linux
 notes: Issues exist for GitHub and GitLab only (not Bitbucket Cloud, Data Center or Azure DevOps).
-youtube:
-  en: null
-  ar: null
+youtube: null

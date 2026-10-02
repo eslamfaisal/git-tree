@@ -2,11 +2,8 @@ id: 05-12
 series: 05-collaboration
 slug: connect-github
 status: planned
-title:
-  en: Connect GitHub to GitTree (browser sign-in or token)
-  ar: ربط GitHub بـ GitTree (تسجيل الدخول من المتصفح أو توكن)
-promise:
-  en: Connect a GitHub account with the browser device code or a personal access token.
+title: Connect GitHub to GitTree (browser sign-in or token)
+promise: Connect a GitHub account with the browser device code or a personal access token.
 concept: A hosting account lets the app talk to the host's API; the Git commands still use your credentials.
 feature: provider-connect-github
 commands: []
@@ -20,6 +17,4 @@ platforms:
 notes: 'VERIFY V11: ledger shows the GitHub OAuth App as blocked (P00-T25) although the official build carries a client id;
   confirm the device flow end to end against the live backend. Use a throwaway account and never show a token. The first-run
   card ''Connect GitHub for repositories and pull requests'' (account-integration-offer) is shown here as one entry point.'
-youtube:
-  en: null
-  ar: null
+youtube: null

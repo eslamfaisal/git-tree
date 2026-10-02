@@ -2,11 +2,8 @@ id: 05-23
 series: 05-collaboration
 slug: pull-request-conversation
 status: planned
-title:
-  en: Comment on and resolve pull request threads in GitTree
-  ar: التعليق على نقاشات pull request وإغلاقها في GitTree
-promise:
-  en: Post a comment, reply to a thread and resolve it.
+title: Comment on and resolve pull request threads in GitTree
+promise: Post a comment, reply to a thread and resolve it.
 concept: Review comments belong to lines and threads, and a thread can be resolved.
 feature: pr-view
 commands: []
@@ -18,6 +15,4 @@ requires:
 platforms:
 - linux
 notes: Resolve and unresolve threads are available on GitHub, GitLab and Azure DevOps, not on Bitbucket.
-youtube:
-  en: null
-  ar: null
+youtube: null

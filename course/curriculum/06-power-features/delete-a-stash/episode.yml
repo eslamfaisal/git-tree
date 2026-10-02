@@ -2,11 +2,8 @@ id: 06-15
 series: 06-power-features
 slug: delete-a-stash
 status: planned
-title:
-  en: Delete a Git stash and recover it from the snapshots
-  ar: حذف stash في Git واسترجاعه من لقطات الاسترداد
-promise:
-  en: Delete a stash and see that it is kept in the recovery snapshots.
+title: Delete a Git stash and recover it from the snapshots
+promise: Delete a stash and see that it is kept in the recovery snapshots.
 concept: Dropping a stash normally loses its commit, so GitTree keeps a recovery ref.
 feature: stash-drop
 commands:
@@ -18,6 +15,4 @@ requires:
 - 04-14
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

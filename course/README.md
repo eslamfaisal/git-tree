@@ -1,8 +1,7 @@
 # Learn GitTree: the video course
 
 A free video course that teaches Git from first principles **and** shows how to do every task in
-[GitTree](https://gittree.app), the visual Git client for macOS, Windows and Linux. It is published in
-**English and Arabic**, with a native-speaker voice-over for each.
+[GitTree](https://gittree.app), the visual Git client for macOS, Windows and Linux. It is in **English**.
 
 **One video, one lesson.** Every video teaches exactly one Git idea and the one GitTree feature that does it, in
 3 to 10 minutes. Each stands alone, so you can watch just the one you need. Playlists give the order.
@@ -23,15 +22,15 @@ A free video course that teaches Git from first principles **and** shows how to 
 | Rewriting history and getting out of trouble | 19 | 0 |
 | Collaboration: remotes, pull requests, providers | 29 | 0 |
 | Power features: worktrees, submodules, LFS, search | 26 | 0 |
-| Customise GitTree and fix problems | 21 | 0 |
-| **Total** | **170** | **0** |
+| Customise GitTree and fix problems | 20 | 0 |
+| **Total** | **169** | **0** |
 <!-- episodes:end -->
 
 ## What is in this folder
 
 | Path | What |
 |---|---|
-| [`curriculum/`](curriculum/) | One folder per episode: script, shot list, visuals, commands, metadata, in both languages |
+| [`curriculum/`](curriculum/) | One folder per episode: script, shot list, visuals, commands, metadata |
 | [`demo-repo/`](demo-repo/) | The teaching repository every episode starts from, one named checkpoint each |
 | [`assets/`](assets/) | Videos, voice-over, thumbnails, project files, downloads (Git LFS) |
 | [`visuals/`](visuals/) | The scene kit: diagrams and motion graphics as HTML and CSS |
@@ -40,7 +39,7 @@ A free video course that teaches Git from first principles **and** shows how to 
 | [`qa/`](qa/) | The review checklist and the review log |
 | [`tooling/`](tooling/) | Build, lint and quality scripts |
 | [`inventory.md`](inventory.md) | Every GitTree feature, checked against the app |
-| [`glossary.md`](glossary.md) | English and Arabic terms used in the scripts |
+| [`glossary.md`](glossary.md) | Pronunciation list for the technical terms in the scripts |
 
 ## Follow along
 

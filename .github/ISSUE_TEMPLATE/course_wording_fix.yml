@@ -1,5 +1,5 @@
-name: Course - translation or wording fix
-description: A better Arabic or English phrase for a course script, caption or title.
+name: Course - wording or pronunciation fix
+description: A better phrase for a course script, caption or title, or a technical term the voice mispronounces.
 title: "[Course]: "
 labels: [bug]
 body:

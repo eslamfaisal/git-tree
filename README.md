@@ -136,7 +136,7 @@ Honest, neutral and short: only rows where each answer is known. GitTree's colum
 
 ## Learn GitTree
 
-A free video course in **English and Arabic**: one short lesson per Git idea, each showing the same task in the real
+A free video course in **English**: one short lesson per Git idea, each showing the same task in the real
 app and with the plain `git` command. Follow along with the same demo repository. See [`course/`](course/).
 
 ## Features

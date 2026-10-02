@@ -1,16 +1,12 @@
-// Scene runtime. The renderer sets window.__SCENE__ = {lang, d, presenter, speak} before this runs and
-// calls window.__seek(seconds, speak) once per frame; nothing here uses real time.
+// Scene runtime. The renderer sets window.__SCENE__ = {d, presenter} before this runs and calls
+// window.__seek(seconds, speak) once per frame; nothing here uses real time.
 (() => {
-  const cfg = window.__SCENE__ || { lang: 'en', d: 10 };
-  const rtl = cfg.lang === 'ar';
-  const root = document.documentElement;
-  root.lang = cfg.lang;
-  root.dir = rtl ? 'rtl' : 'ltr';
-  root.style.setProperty('--d', String(cfg.d));
-  root.style.setProperty('--sx', rtl ? '-1' : '1');
+  const cfg = window.__SCENE__ || { d: 10 };
+  document.documentElement.lang = 'en';
+  document.documentElement.style.setProperty('--d', String(cfg.d));
 
   const apply = () => {
-    const text = (window.TEXT || {})[cfg.lang] || {};
+    const text = window.TEXT || {};
     document.querySelectorAll('[data-i]').forEach((el) => {
       const v = text[el.dataset.i];
       if (v !== undefined) el.innerHTML = v;

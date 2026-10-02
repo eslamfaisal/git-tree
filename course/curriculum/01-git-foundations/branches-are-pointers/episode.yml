@@ -2,11 +2,8 @@ id: 01-03
 series: 01-git-foundations
 slug: branches-are-pointers
 status: planned
-title:
-  en: Git branches are just pointers (refs explained)
-  ar: 'الفروع في Git مجرد مؤشّرات: شرح الـ refs'
-promise:
-  en: See branch pills on the graph and learn that a ref is a movable name for a commit.
+title: Git branches are just pointers (refs explained)
+promise: See branch pills on the graph and learn that a ref is a movable name for a commit.
 concept: A ref (branch name) is a movable pointer to a commit.
 feature: graph-ref-pills
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Tag pills are introduced here by sight only; tags have their own video (01-08).
-youtube:
-  en: null
-  ar: null
+youtube: null

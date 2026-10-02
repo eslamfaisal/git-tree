@@ -2,11 +2,8 @@ id: 07-09
 series: 07-customise-and-troubleshoot
 slug: external-tools
 status: planned
-title:
-  en: Set an external diff tool, merge tool and editor
-  ar: ضبط أداة مقارنة وأداة دمج ومحرر خارجي في GitTree
-promise:
-  en: Pick the diff tool, merge tool and editor GitTree opens for you.
+title: Set an external diff tool, merge tool and editor
+promise: Pick the diff tool, merge tool and editor GitTree opens for you.
 concept: Diff and merge tools are programs Git hands file versions to.
 feature: tools-page
 commands:
@@ -21,6 +18,4 @@ platforms:
 - linux
 notes: Opening a file in the external diff tool or editor (diff-external) is shown here. Detected tools depend on the machine
   (Meld, KDiff3 and editors on Linux; Beyond Compare, P4Merge, WinMerge elsewhere).
-youtube:
-  en: null
-  ar: null
+youtube: null

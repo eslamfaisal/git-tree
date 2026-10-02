@@ -2,11 +2,8 @@ id: 01-05
 series: 01-git-foundations
 slug: three-trees-and-the-index
 status: planned
-title:
-  en: 'Git working tree, index and HEAD: the three trees'
-  ar: 'شجرة العمل والـ index وHEAD في Git: الأشجار الثلاث'
-promise:
-  en: Use the Working Changes panel to see the working folder, the index and HEAD as three different states.
+title: 'Git working tree, index and HEAD: the three trees'
+promise: Use the Working Changes panel to see the working folder, the index and HEAD as three different states.
 concept: 'Git compares three trees: the working tree, the index (staging area) and HEAD.'
 feature: staging-panel
 commands:
@@ -20,6 +17,4 @@ requires:
 - 01-04
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

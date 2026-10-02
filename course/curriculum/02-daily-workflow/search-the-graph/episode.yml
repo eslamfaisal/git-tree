@@ -2,11 +2,8 @@ id: 02-28
 series: 02-daily-workflow
 slug: search-the-graph
 status: planned
-title:
-  en: Search Git history in GitTree (Ctrl+F in the graph)
-  ar: البحث في سجل Git داخل GitTree (Ctrl+F في الرسم)
-promise:
-  en: Search the loaded history by message, author, SHA, branch or tag and jump between matches.
+title: Search Git history in GitTree (Ctrl+F in the graph)
+promise: Search the loaded history by message, author, SHA, branch or tag and jump between matches.
 concept: Searching what is already loaded is instant, and it is limited to the loaded rows.
 feature: graph-search
 commands: []
@@ -18,6 +15,4 @@ requires:
 platforms:
 - linux
 notes: Shortcut Mod+F. Searching all history is 06-21. The toolbar Search button is not shown (VERIFY V1).
-youtube:
-  en: null
-  ar: null
+youtube: null

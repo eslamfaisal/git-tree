@@ -2,11 +2,8 @@ id: 03-08
 series: 03-branching-and-merging
 slug: delete-a-tag
 status: planned
-title:
-  en: Delete a Git tag locally and on the remote
-  ar: حذف tag في Git محليًا وعلى الخادم
-promise:
-  en: Delete a tag from your repository and, separately, from the remote.
+title: Delete a Git tag locally and on the remote
+promise: Delete a tag from your repository and, separately, from the remote.
 concept: Deleting a remote tag affects everyone who fetches.
 feature: tag-delete
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: The local delete is saved under refs/ogt/trash first.
-youtube:
-  en: null
-  ar: null
+youtube: null

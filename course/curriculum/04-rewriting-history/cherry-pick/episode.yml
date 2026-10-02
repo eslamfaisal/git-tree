@@ -2,11 +2,8 @@ id: 04-08
 series: 04-rewriting-history
 slug: cherry-pick
 status: planned
-title:
-  en: 'Git cherry-pick: copy a commit to another branch'
-  ar: 'git cherry-pick: انسخ commit إلى فرع آخر'
-promise:
-  en: Copy one commit onto the current branch.
+title: 'Git cherry-pick: copy a commit to another branch'
+promise: Copy one commit onto the current branch.
 concept: Cherry-pick re-applies a commit's change on top of HEAD as a new commit.
 feature: pick-cherry
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Cherry-picking a merge commit asks for the first or second parent (mention only). Not journaled by Undo (VERIFY V7).
-youtube:
-  en: null
-  ar: null
+youtube: null

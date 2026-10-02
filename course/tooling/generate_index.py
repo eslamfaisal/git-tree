@@ -37,11 +37,11 @@ def series_summary(eps: list[dict]) -> str:
 
 
 def table(eps: list[dict]) -> str:
-    rows = ["| Episode | Series | Status | English | العربية |", "|---|---|---|---|---|"]
+    rows = ["| Episode | Series | Status | Watch |", "|---|---|---|---|"]
     for m in eps:
-        yt = m.get("youtube") or {}
-        link = lambda v: f"[watch](https://youtu.be/{v})" if v else "not yet published"  # noqa: E731
-        rows.append(f"| [{m['id']} · {m['title']['en']}]({m['path']}/) | {m['series'].split('-', 1)[1].replace('-', ' ')} | {m['status']} | {link(yt.get('en'))} | {link(yt.get('ar'))} |")
+        yt = m.get("youtube")
+        watch = f"[watch](https://youtu.be/{yt})" if yt else "not yet published"
+        rows.append(f"| [{m['id']} · {m['title']}]({m['path']}/) | {m['series'].split('-', 1)[1].replace('-', ' ')} | {m['status']} | {watch} |")
     return "\n".join(rows)
 
 

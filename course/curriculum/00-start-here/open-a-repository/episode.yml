@@ -2,11 +2,8 @@ id: 00-08
 series: 00-start-here
 slug: open-a-repository
 status: planned
-title:
-  en: Open a Git repository in GitTree (folder or drag and drop)
-  ar: فتح مستودع Git في GitTree (من مجلد أو بالسحب والإفلات)
-promise:
-  en: Open an existing repository from the New Tab page, the Open shortcut or a dropped folder.
+title: Open a Git repository in GitTree (folder or drag and drop)
+promise: Open an existing repository from the New Tab page, the Open shortcut or a dropped folder.
 concept: A repository is a working folder plus a .git directory.
 feature: repos-open
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Shortcut Mod+O (Cmd on macOS, Ctrl on Windows and Linux).
-youtube:
-  en: null
-  ar: null
+youtube: null

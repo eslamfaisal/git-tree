@@ -2,11 +2,8 @@ id: 04-15
 series: 04-rewriting-history
 slug: reflog
 status: planned
-title:
-  en: 'Git reflog explained: see where HEAD has been'
-  ar: 'شرح git reflog: أين كان HEAD من قبل'
-promise:
-  en: Open the reflog of a branch and read the list of places it pointed to.
+title: 'Git reflog explained: see where HEAD has been'
+promise: Open the reflog of a branch and read the list of places it pointed to.
 concept: The reflog is the local record of where each ref used to point.
 feature: reflog-view
 commands:
@@ -19,6 +16,4 @@ requires:
 - 04-12
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

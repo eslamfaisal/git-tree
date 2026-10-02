@@ -2,11 +2,8 @@ id: 03-15
 series: 03-branching-and-merging
 slug: resolve-conflict-merge-view
 status: planned
-title:
-  en: Resolve a Git merge conflict in GitTree's merge view
-  ar: حل تعارض الدمج في Git داخل عرض الدمج في GitTree
-promise:
-  en: Resolve one conflict line by line in the three-pane editor and save it as resolved.
+title: Resolve a Git merge conflict in GitTree's merge view
+promise: Resolve one conflict line by line in the three-pane editor and save it as resolved.
 concept: Resolving a conflict means choosing the final content, then staging it.
 feature: conflict-editor
 commands:
@@ -21,6 +18,4 @@ platforms:
 - linux
 notes: 'Ledger: P06-T14 (centre-view conflict slot and E2E journey) is in-progress. Confirm the journey works on the pinned
   release before recording.'
-youtube:
-  en: null
-  ar: null
+youtube: null

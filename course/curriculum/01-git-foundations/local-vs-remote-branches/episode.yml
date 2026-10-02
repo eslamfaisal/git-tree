@@ -2,11 +2,8 @@ id: 01-06
 series: 01-git-foundations
 slug: local-vs-remote-branches
 status: planned
-title:
-  en: Local vs remote branches in Git (origin/main explained)
-  ar: 'الفروع المحلية والبعيدة في Git: شرح origin/main'
-promise:
-  en: Read the left panel and the ahead and behind counts to tell local branches from remote-tracking ones.
+title: Local vs remote branches in Git (origin/main explained)
+promise: Read the left panel and the ahead and behind counts to tell local branches from remote-tracking ones.
 concept: A remote-tracking branch is your local record of where the remote's branch was at the last fetch.
 feature: branch-panel
 commands:
@@ -19,6 +16,4 @@ requires:
 - 01-03
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

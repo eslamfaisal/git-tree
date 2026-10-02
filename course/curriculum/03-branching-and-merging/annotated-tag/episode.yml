@@ -2,11 +2,8 @@ id: 03-07
 series: 03-branching-and-merging
 slug: annotated-tag
 status: planned
-title:
-  en: Create an annotated Git tag in GitTree
-  ar: إنشاء tag موصوف (annotated) في Git عبر GitTree
-promise:
-  en: Create an annotated tag with a message for a release.
+title: Create an annotated Git tag in GitTree
+promise: Create an annotated tag with a message for a release.
 concept: An annotated tag is its own object with a message, unlike a lightweight tag.
 feature: tag-annotated
 commands:
@@ -18,6 +15,4 @@ requires:
 - 01-08
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

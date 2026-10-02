@@ -35,15 +35,15 @@ def main() -> None:
         folder.mkdir(parents=True, exist_ok=True)
         meta = {
             "id": e["id"], "series": e["series"], "slug": e["slug"], "status": "planned",
-            "title": {"en": e["title_en"], "ar": e["title_ar"]},
-            "promise": {"en": e["promise_en"]},
+            "title": e["title_en"],
+            "promise": e["promise_en"],
             "concept": e["concept"], "feature": e["feature"], "commands": e["commands"],
             "checkpoint": e["checkpoint"], "journey": e["slug"], "duration_min": e["duration_min"],
             "requires": e["requires"], "platforms": e["platforms"],
         }
         if e.get("notes"):
             meta["notes"] = e["notes"]
-        meta["youtube"] = {"en": None, "ar": None}
+        meta["youtube"] = None
         (folder / "episode.yml").write_text(yaml.safe_dump(meta, sort_keys=False, allow_unicode=True, width=120))
     lines = ["# Planned checkpoints", "", "Checkpoints that planned episodes name but `checkpoints/` does not yet contain. Each becomes",
              "`checkpoints/<name>.sh` when the first episode that needs it is scripted.", "",

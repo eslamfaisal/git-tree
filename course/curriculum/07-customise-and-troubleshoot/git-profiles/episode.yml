@@ -2,11 +2,8 @@ id: 07-05
 series: 07-customise-and-troubleshoot
 slug: git-profiles
 status: planned
-title:
-  en: 'Git profiles in GitTree: work and personal identities'
-  ar: 'ملفات التعريف في GitTree: هوية للعمل وأخرى شخصية'
-promise:
-  en: Create two profiles with different names and emails and switch between them.
+title: 'Git profiles in GitTree: work and personal identities'
+promise: Create two profiles with different names and emails and switch between them.
 concept: user.name and user.email decide who a commit says it is from.
 feature: profile-identity
 commands:
@@ -21,6 +18,4 @@ platforms:
 - linux
 notes: Option 'Passed to each git command' versus 'Written to ~/.gitconfig'. The identity from the GitTree account (commit-identity,
   ADR-0020) is mentioned in one sentence.
-youtube:
-  en: null
-  ar: null
+youtube: null

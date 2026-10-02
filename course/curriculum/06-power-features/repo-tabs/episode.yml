@@ -2,11 +2,8 @@ id: 06-18
 series: 06-power-features
 slug: repo-tabs
 status: planned
-title:
-  en: Work in several repositories with tabs in GitTree
-  ar: العمل على عدة مستودعات بالتبويبات في GitTree
-promise:
-  en: Open, switch, reorder and close repository tabs.
+title: Work in several repositories with tabs in GitTree
+promise: Open, switch, reorder and close repository tabs.
 concept: Each tab is an independent session of one repository.
 feature: repos-tabs
 commands: []
@@ -19,6 +16,4 @@ platforms:
 - linux
 notes: Next and previous tab are Ctrl+Tab and Ctrl+Shift+Tab (Mod+Tab pair is not delivered on macOS). Mod+T new tab, Mod+W
   close.
-youtube:
-  en: null
-  ar: null
+youtube: null

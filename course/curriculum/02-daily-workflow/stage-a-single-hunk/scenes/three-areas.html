@@ -8,12 +8,12 @@
 .chip.h1 { background: #3a2a52; border-color: #b07cf0; } .chip.h2 { background: #4a3322; border-color: #f08a4a; }
 .chip { position: absolute; font-size: 34px; padding: 14px 30px; }
 .c1 { top: 660px; inset-inline-start: 160px; } .c2 { top: 750px; inset-inline-start: 160px; }
-@keyframes h1move { 0%, 8% { transform: translateX(0); } 38%, 56% { transform: translateX(calc(var(--sx) * 600px)); } 92%, 100% { transform: translateX(calc(var(--sx) * 1200px)); } }
+@keyframes h1move { 0%, 8% { transform: translateX(0); } 38%, 56% { transform: translateX(600px); } 92%, 100% { transform: translateX(1200px); } }
 .mv { animation: fx-pop calc(var(--d) * .05s) both, h1move calc(var(--d) * .52s) ease-in-out both, chipout calc(var(--d) * .03s) both; animation-delay: calc(var(--d) * .20s), calc(var(--d) * .34s), calc(var(--d) * .84s); }
 @keyframes chipout { to { opacity: 0; } }
 .cm { position: absolute; top: 665px; inset-inline-start: 1320px; width: 360px; display: flex; align-items: center; gap: 18px; font: 600 27px var(--mono); direction: ltr; }
 .cm .dot { flex: none; width: 36px; height: 36px; border-radius: 50%; border: 6px solid var(--success); background: #b07cf0; }
-.lab { position: absolute; top: 520px; translate: calc(var(--sx) * -50%) 0; z-index: 5; white-space: nowrap; padding: 8px 22px; border-radius: 999px; font-size: 30px; font-weight: 650; background: var(--accent-solid); }
+.lab { position: absolute; top: 520px; translate: -50% 0; z-index: 5; white-space: nowrap; padding: 8px 22px; border-radius: 999px; font-size: 30px; font-weight: 650; background: var(--accent-solid); }
 .l1 { inset-inline-start: 660px; } .l2 { inset-inline-start: 1260px; background: var(--success); color: #07140e; }
 .garrow { position: absolute; top: 690px; width: 120px; } .g1 { inset-inline-start: 600px; } .g2 { inset-inline-start: 1200px; }
 .still { position: absolute; top: 915px; inset-inline-start: 120px; font-size: 36px; color: #f5a577; font-weight: 600; }
@@ -28,13 +28,11 @@
 </div>
 <div class="chip h1 c1 mv">Hunk 1</div>
 <div class="chip h2 c2 pop" style="--at:.22">Hunk 2</div>
-<svg class="garrow g1 flip fade" style="--at:.34" width="120" height="60" viewBox="0 0 120 60"><path d="M6 30 H100 M80 10 L104 30 L80 50" stroke="#79839a" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-<svg class="garrow g2 flip fade" style="--at:.62" width="120" height="60" viewBox="0 0 120 60"><path d="M6 30 H100 M80 10 L104 30 L80 50" stroke="#79839a" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg class="garrow g1 fade" style="--at:.34" width="120" height="60" viewBox="0 0 120 60"><path d="M6 30 H100 M80 10 L104 30 L80 50" stroke="#79839a" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg class="garrow g2 fade" style="--at:.62" width="120" height="60" viewBox="0 0 120 60"><path d="M6 30 H100 M80 10 L104 30 L80 50" stroke="#79839a" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
 <div class="lab l1 pop" style="--at:.34" data-i="stage"></div>
 <div class="lab l2 pop" style="--at:.62" data-i="commit"></div>
 <div class="cm pop" style="--at:.86"><span class="dot"></span><span>docs(search): describe the index</span></div>
 <div class="still in" style="--at:.80" data-i="still"></div>
 </body></html>
-<script>window.TEXT = {
- en: { tag: 'Staging · Hunks', a1: 'Working tree', a1d: 'The files you edit.', a2: 'Staging area', a2d: 'What the next commit will contain.', a3: 'Repository', a3d: 'Commits, your saved history.', stage: 'Stage Hunk', commit: 'Commit', still: 'Hunk 2 stays in the working tree.' },
- ar: { tag: 'المرحلة · المقاطع', a1: 'Working tree', a1d: 'الملفات التي تعدّلها.', a2: 'Staging area', a2d: 'ما سيدخل في الـ Commit القادم.', a3: 'Repository', a3d: 'الـ Commits، أي تاريخ عملك المحفوظ.', stage: 'Stage Hunk', commit: 'Commit', still: 'يبقى Hunk 2 في الـ working tree.' } };</script>
+<script>window.TEXT = { tag: 'Staging · Hunks', a1: 'Working tree', a1d: 'The files you edit.', a2: 'Staging area', a2d: 'What the next commit will contain.', a3: 'Repository', a3d: 'Commits, your saved history.', stage: 'Stage Hunk', commit: 'Commit', still: 'Hunk 2 stays in the working tree.' };</script>

@@ -2,11 +2,8 @@ id: 07-12
 series: 07-customise-and-troubleshoot
 slug: activity-log
 status: planned
-title:
-  en: See the exact Git commands GitTree runs (Activity Log)
-  ar: اعرف أوامر Git التي ينفّذها GitTree بالضبط (سجل النشاط)
-promise:
-  en: Open the Activity Log to read each git command, its output and its result.
+title: See the exact Git commands GitTree runs (Activity Log)
+promise: Open the Activity Log to read each git command, its output and its result.
 concept: Everything the app does is a plain git command you can read and repeat.
 feature: activity-log
 commands: []
@@ -19,6 +16,4 @@ platforms:
 - linux
 notes: Drawer toggle Alt+T. Tokens and passwords are removed from the log. Notification centre (notif-centre) is mentioned
   in one sentence.
-youtube:
-  en: null
-  ar: null
+youtube: null

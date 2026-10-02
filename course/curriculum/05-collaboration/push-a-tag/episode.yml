@@ -2,11 +2,8 @@ id: 05-10
 series: 05-collaboration
 slug: push-a-tag
 status: planned
-title:
-  en: Push a Git tag to the remote in GitTree
-  ar: دفع tag إلى المستودع البعيد في Git عبر GitTree
-promise:
-  en: Push a single tag to the remote.
+title: Push a Git tag to the remote in GitTree
+promise: Push a single tag to the remote.
 concept: Tags are not pushed with a branch unless you ask for them.
 feature: tag-push
 commands:
@@ -19,6 +16,4 @@ requires:
 - 05-01
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

@@ -2,11 +2,8 @@ id: 02-17
 series: 02-daily-workflow
 slug: diff-view-modes
 status: planned
-title:
-  en: 'Git diff in GitTree: hunk, inline and side by side'
-  ar: 'عرض git diff في GitTree: Hunk وInline وSplit'
-promise:
-  en: Switch the diff between Hunk, Inline and Split views.
+title: 'Git diff in GitTree: hunk, inline and side by side'
+promise: Switch the diff between Hunk, Inline and Split views.
 concept: A diff is added and removed lines shown with their context.
 feature: diff-view-modes
 commands:
@@ -19,6 +16,4 @@ requires:
 - 01-05
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

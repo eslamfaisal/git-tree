@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Layout lint for scenes: text must never overlap other text, sit under a label or button, run out of its box
-or leave the safe area. Checked in both languages at several moments of every scene, because things move.
+or leave the safe area. Checked at several moments of every scene, because things move.
 
-    scene_lint.py scenes/*.html [--lang en --lang ar] [--seconds 20]
+    scene_lint.py scenes/*.html [--seconds 20]
 
 Exit code 1 when anything is found. compose.py runs it before rendering, so a broken layout cannot reach a video.
 """
@@ -32,7 +32,7 @@ COLLECT = """
     const r = document.createRange(); r.selectNodeContents(n);
     const rects = [...r.getClientRects()].filter((q) => q.width > 1 && q.height > 1);
     if (!rects.length) continue;
-    // Range rects are the font's content area (tall for Arabic faces); the glyphs fill the middle of it.
+    // Range rects are the font's content area (taller than the glyphs); the glyphs fill the middle of it.
     const lines = rects.map((q) => ({ l: q.left, t: q.top + q.height * 0.16, r: q.right, b: q.bottom - q.height * 0.16 }));
     const box = { l: Math.min(...rects.map((q) => q.left)), t: Math.min(...rects.map((q) => q.top)), r: Math.max(...rects.map((q) => q.right)), b: Math.max(...rects.map((q) => q.bottom)) };
     // clipped by an overflow:hidden ancestor
@@ -63,12 +63,12 @@ def area(a: dict) -> float:
     return (a["r"] - a["l"]) * (a["b"] - a["t"])
 
 
-def lint(html: Path, lang: str, seconds: float, presenter: dict | None) -> list[str]:
+def lint(html: Path, seconds: float, presenter: dict | None) -> list[str]:
     from playwright.sync_api import sync_playwright
 
     problems: list[str] = []
-    cfg = {"lang": lang, "d": seconds, "presenter": presenter}
-    tmp = Path("/tmp") / f"lint-{html.stem}-{lang}.html"
+    cfg = {"d": seconds, "presenter": presenter}
+    tmp = Path("/tmp") / f"lint-{html.stem}.html"
     inject = (
         f'<link rel="stylesheet" href="{(scenes.KIT / "scene.css").as_uri()}">'
         f"<script>window.__SCENE__={json.dumps(cfg)};</script>"
@@ -85,7 +85,7 @@ def lint(html: Path, lang: str, seconds: float, presenter: dict | None) -> list[
             page.evaluate("([t, v]) => window.__seek(t, v)", [m * seconds, 0.0])
             data = page.evaluate(COLLECT)
             texts, pills = data["texts"], data["pills"]
-            tag = f"{html.name} [{lang}] t={m * seconds:.1f}s"
+            tag = f"{html.name} t={m * seconds:.1f}s"
 
             def report(msg: str) -> None:
                 if msg not in seen:
@@ -122,17 +122,12 @@ def lint(html: Path, lang: str, seconds: float, presenter: dict | None) -> list[
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("scenes", nargs="+", type=Path)
-    ap.add_argument("--lang", action="append", choices=["en", "ar"])
     ap.add_argument("--seconds", type=float, default=20.0)
     ns = ap.parse_args()
     presenter = {"name": "Eslam Faisal", "title": "Software Engineer & Instructor", "initials": "EF", "photo": None}
     bad: list[str] = []
     for html in ns.scenes:
-        for lang in ns.lang or ["en", "ar"]:
-            pres = dict(presenter)
-            if lang == "ar":
-                pres.update(name="إسلام فيصل", title="مهندس برمجيات ومحاضر")
-            bad += lint(html, lang, ns.seconds, pres)
+        bad += lint(html, ns.seconds, presenter)
     for line in bad:
         print("LAYOUT", line)
     print(f"scene lint: {len(bad)} problem(s) in {len(ns.scenes)} scene(s)")

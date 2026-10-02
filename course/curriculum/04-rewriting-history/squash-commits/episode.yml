@@ -2,11 +2,8 @@ id: 04-06
 series: 04-rewriting-history
 slug: squash-commits
 status: planned
-title:
-  en: Squash Git commits into one in GitTree
-  ar: دمج عدة commits في commit واحد في Git (squash)
-promise:
-  en: Select several commits and squash them into one.
+title: Squash Git commits into one in GitTree
+promise: Select several commits and squash them into one.
 concept: Squashing folds the changes of several commits into one commit.
 feature: rebase-squash
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: 'Different from a squash merge (03-11): this one rewrites commits already on your branch.'
-youtube:
-  en: null
-  ar: null
+youtube: null

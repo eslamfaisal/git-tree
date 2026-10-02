@@ -29,9 +29,9 @@ git add course/assets && git commit -m "feat(course): add 02-02 videos" && git p
 
 ```
 assets/<series>/<id>-<slug>/
-  video/en|ar/        <id>-<slug>.<lang>.1080p.mp4 (+ .captioned.mp4, .srt, .vtt)
-  audio/en|ar/        <beat-id>.wav   the native speaker's takes, one per beat (replace the scratch voice)
-  thumbnails/en|ar/   final PNG and its source
+  video/             <id>-<slug>.1080p.mp4 (+ .captioned.mp4, .srt, .vtt, .chapters.txt)
+  audio/             <beat-id>.wav   real recordings, one per beat (they replace the generated voice)
+  thumbnails/       final JPEG and its source
   projects/           editor and motion-graphic project files
   manifest.json       every file: size, sha256, tier, how it is regenerated, quality-gate result
 assets/shared/        intro and outro, music (with its licence file), fonts
@@ -43,10 +43,10 @@ scratch voice for that beat.
 
 ## Size budget
 
-| Episode | 1080p EN | 1080p AR | Voice | Total (LFS) |
+| Episode | 1080p video | Voice | Total (LFS) |
 |---|---|---|---|---|
 | 02-02 stage a single hunk | ~20 MB | ~25 MB | ~15 MB | ~60 MB |
 
-Rule of thumb: about 60 MB per episode at 1080p in two languages with voice, so the free 1 GB covers roughly 15
+Rule of thumb: about 35 MB per episode at 1080p with voice, so the free 1 GB covers roughly 15
 episodes. 2160p masters (about 4 times larger) go to Releases, not LFS. **The owner is told before the repository
 would exceed the free quota**, to decide on a data pack.

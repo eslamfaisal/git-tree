@@ -2,11 +2,8 @@ id: 01-07
 series: 01-git-foundations
 slug: what-is-a-remote
 status: planned
-title:
-  en: What is a Git remote? Add, edit and remove one
-  ar: ما هو الـ remote في Git؟ إضافة وتعديل وحذف
-promise:
-  en: Add, edit and remove a remote and see that it is only a name for a URL.
+title: What is a Git remote? Add, edit and remove one
+promise: Add, edit and remove a remote and see that it is only a name for a URL.
 concept: A remote is a named URL (with an optional separate push URL).
 feature: remote-crud
 commands:
@@ -20,6 +17,4 @@ requires:
 - 01-06
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

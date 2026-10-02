@@ -2,11 +2,8 @@ id: 01-12
 series: 01-git-foundations
 slug: git-config-scopes
 status: planned
-title:
-  en: 'Git config scopes: system, global and local explained'
-  ar: 'نطاقات إعدادات Git: النظام والعام والمحلي'
-promise:
-  en: Change a Git setting at the global and the local level from Preferences and see which one wins.
+title: 'Git config scopes: system, global and local explained'
+promise: Change a Git setting at the global and the local level from Preferences and see which one wins.
 concept: Git settings live in scopes (system, global, local) and the narrowest scope wins.
 feature: settings-git-config
 commands:
@@ -21,6 +18,4 @@ requires:
 platforms:
 - linux
 notes: The system level is read-only in the app. The Preferences window itself is 07-01.
-youtube:
-  en: null
-  ar: null
+youtube: null

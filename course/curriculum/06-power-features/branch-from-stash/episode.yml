@@ -2,11 +2,8 @@ id: 06-14
 series: 06-power-features
 slug: branch-from-stash
 status: planned
-title:
-  en: Create a Git branch from a stash in GitTree
-  ar: إنشاء فرع من stash في Git عبر GitTree
-promise:
-  en: Turn an old stash into a branch.
+title: Create a Git branch from a stash in GitTree
+promise: Turn an old stash into a branch.
 concept: A stash is a commit, so it can become a branch.
 feature: stash-branch
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Show Stash, Apply, Pop a chosen stash and Rename are mentioned in one sentence.
-youtube:
-  en: null
-  ar: null
+youtube: null

@@ -2,11 +2,8 @@ id: 03-20
 series: 03-branching-and-merging
 slug: conflict-early-warning
 status: planned
-title:
-  en: Predict Git merge conflicts before they happen
-  ar: توقّع تعارضات الدمج في Git قبل حدوثها
-promise:
-  en: Read the early conflict warning chip on a branch and the setting that controls it.
+title: Predict Git merge conflicts before they happen
+promise: Read the early conflict warning chip on a branch and the setting that controls it.
 concept: Git can compute a merge result in memory without changing any file.
 feature: graph-conflict-chip
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: 'Setting: ''Warn about conflicts before merging''. Overlapping-work hints (graph-overlap) are not a video.'
-youtube:
-  en: null
-  ar: null
+youtube: null

@@ -2,11 +2,8 @@ id: 02-09
 series: 02-daily-workflow
 slug: add-co-authors
 status: planned
-title:
-  en: Add co-authors to a Git commit in GitTree
-  ar: إضافة مشاركين في التأليف إلى commit في GitTree
-promise:
-  en: Credit a second person on a commit with a Co-authored-by trailer.
+title: Add co-authors to a Git commit in GitTree
+promise: Credit a second person on a commit with a Co-authored-by trailer.
 concept: A trailer is a key and value line at the end of a commit message.
 feature: commit-coauthors
 commands:
@@ -18,6 +15,4 @@ requires:
 - 02-05
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

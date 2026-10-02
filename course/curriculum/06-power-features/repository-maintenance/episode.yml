@@ -2,11 +2,8 @@ id: 06-16
 series: 06-power-features
 slug: repository-maintenance
 status: planned
-title:
-  en: Git repository maintenance in GitTree (fsck, gc)
-  ar: صيانة مستودع Git في GitTree (fsck وgc وcommit-graph)
-promise:
-  en: Check integrity, speed up history and clean up the object database.
+title: Git repository maintenance in GitTree (fsck, gc)
+promise: Check integrity, speed up history and clean up the object database.
 concept: Git needs occasional housekeeping of its object database.
 feature: maintenance
 commands:
@@ -22,6 +19,4 @@ requires:
 platforms:
 - linux
 notes: 'Prune unreachable objects deletes recovery snapshots'' commits only if they are no longer referenced: say so plainly.'
-youtube:
-  en: null
-  ar: null
+youtube: null

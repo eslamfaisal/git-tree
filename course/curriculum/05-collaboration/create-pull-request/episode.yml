@@ -2,11 +2,8 @@ id: 05-20
 series: 05-collaboration
 slug: create-pull-request
 status: planned
-title:
-  en: Create a pull request from GitTree
-  ar: إنشاء pull request من GitTree
-promise:
-  en: Push a branch and start a pull request with a title and description, as a draft if you like.
+title: Create a pull request from GitTree
+promise: Push a branch and start a pull request with a title and description, as a draft if you like.
 concept: A pull request is a host feature that proposes merging one branch into another.
 feature: pr-create
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Draft pull requests are not available on Bitbucket Data Center.
-youtube:
-  en: null
-  ar: null
+youtube: null

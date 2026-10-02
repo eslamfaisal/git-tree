@@ -2,11 +2,8 @@ id: 01-09
 series: 01-git-foundations
 slug: fetch-without-changing-files
 status: planned
-title:
-  en: 'Git fetch explained: download without changing your files'
-  ar: 'شرح git fetch: تنزيل التحديثات دون تغيير ملفاتك'
-promise:
-  en: Run Fetch All and watch only the remote-tracking branches move while your files stay put.
+title: 'Git fetch explained: download without changing your files'
+promise: Run Fetch All and watch only the remote-tracking branches move while your files stay put.
 concept: Fetch updates remote-tracking refs and never touches your working files or your branches.
 feature: sync-fetch
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Fetch is reached from the Pull caret ('Pull options'), no default chord.
-youtube:
-  en: null
-  ar: null
+youtube: null

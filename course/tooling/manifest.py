@@ -35,29 +35,26 @@ def main() -> None:
     out = COURSE / ".work" / meta["id"] / "out"
     dest = COURSE / "assets" / meta["series"] / name
     files = []
-    for lang in ("en", "ar"):
-        for suffix, kind in ((f".{lang}.srt", "captions"), (f".{lang}.vtt", "captions")):
-            src = out / f"{name}{suffix}"
-            if src.exists():
-                (dest / "video" / lang).mkdir(parents=True, exist_ok=True)
-                target = dest / "video" / lang / src.name
-                shutil.copy2(src, target)
-                files.append({"path": str(target.relative_to(dest)), "kind": kind, "tier": "git", "size": target.stat().st_size, "sha256": sha(target)})
-        thumb = ep / "thumbnail" / f"thumbnail.{lang}.jpg"
-        if thumb.exists():
-            (dest / "thumbnails" / lang).mkdir(parents=True, exist_ok=True)
-            target = dest / "thumbnails" / lang / thumb.name
-            shutil.copy2(thumb, target)
-            files.append({"path": str(target.relative_to(dest)), "kind": "thumbnail", "tier": "git", "size": target.stat().st_size, "sha256": sha(target)})
-        for src in sorted(out.glob(f"{name}.{lang}.*")):
-            if src.suffix in (".mp4", ".flac"):
-                q = out / (src.stem + ".quality.json")
-                entry = {"path": f"{'video' if src.suffix == '.mp4' else 'audio'}/{lang}/{src.name}", "kind": "video" if src.suffix == ".mp4" else "voice-over (scratch)",
-                         "tier": "lfs (pending upload)", "size": src.stat().st_size, "sha256": sha(src),
-                         "regenerate": f"python3 course/tooling/compose.py {ep.relative_to(COURSE.parent)} --lang {lang} --height 1080"}
-                if q.exists():
-                    entry["quality"] = {k: v for k, v in json.loads(q.read_text()).items() if k in ("width", "height", "fps", "codec", "duration_s", "lufs", "true_peak_db", "pass")}
-                files.append(entry)
+    for src in sorted(out.glob(f"{name}.*")):
+        if src.suffix in (".srt", ".vtt") or src.name.endswith(".chapters.txt"):
+            (dest / "video").mkdir(parents=True, exist_ok=True)
+            target = dest / "video" / src.name
+            shutil.copy2(src, target)
+            files.append({"path": str(target.relative_to(dest)), "kind": "captions" if src.suffix in (".srt", ".vtt") else "chapters", "tier": "git", "size": target.stat().st_size, "sha256": sha(target)})
+        elif src.suffix in (".mp4", ".flac"):
+            q = out / (src.stem + ".quality.json")
+            entry = {"path": f"{'video' if src.suffix == '.mp4' else 'audio'}/{src.name}", "kind": "video" if src.suffix == ".mp4" else "voice-over",
+                     "tier": "lfs (pending upload)", "size": src.stat().st_size, "sha256": sha(src),
+                     "regenerate": f"python3 course/tooling/compose.py {ep.relative_to(COURSE.parent)} --height 1080"}
+            if q.exists():
+                entry["quality"] = {k: v for k, v in json.loads(q.read_text()).items() if k in ("width", "height", "fps", "codec", "duration_s", "lufs", "true_peak_db", "pass")}
+            files.append(entry)
+    thumb = ep / "thumbnail" / "thumbnail.jpg"
+    if thumb.exists():
+        (dest / "thumbnails").mkdir(parents=True, exist_ok=True)
+        target = dest / "thumbnails" / thumb.name
+        shutil.copy2(thumb, target)
+        files.append({"path": str(target.relative_to(dest)), "kind": "thumbnail", "tier": "git", "size": target.stat().st_size, "sha256": sha(target)})
     dest.mkdir(parents=True, exist_ok=True)
     (dest / "manifest.json").write_text(json.dumps({"episode": name, "recorded_against": meta.get("recorded_against"), "files": files}, indent=2, ensure_ascii=False) + "\n")
     print(f"{dest.relative_to(COURSE)}/manifest.json: {len(files)} files")

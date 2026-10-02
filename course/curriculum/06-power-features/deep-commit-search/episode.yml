@@ -2,11 +2,8 @@ id: 06-20
 series: 06-power-features
 slug: deep-commit-search
 status: planned
-title:
-  en: Search all Git history by message, author, file or change
-  ar: ابحث في كل سجل Git بالرسالة أو المؤلف أو الملف أو التغيير
-promise:
-  en: 'Search every commit with the # mode and the author, file and change filters.'
+title: Search all Git history by message, author, file or change
+promise: 'Search every commit with the # mode and the author, file and change filters.'
 concept: git log can search all of history without loading it into the graph.
 feature: search-commits-deep
 commands:
@@ -21,6 +18,4 @@ requires:
 platforms:
 - linux
 notes: Stops at 1000 hits. Matched characters are highlighted (search-highlight).
-youtube:
-  en: null
-  ar: null
+youtube: null

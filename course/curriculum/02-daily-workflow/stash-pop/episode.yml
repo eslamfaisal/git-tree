@@ -2,11 +2,8 @@ id: 02-30
 series: 02-daily-workflow
 slug: stash-pop
 status: planned
-title:
-  en: 'Git stash pop in GitTree: bring your changes back'
-  ar: 'git stash pop في GitTree: استرجع تغييراتك المخبّأة'
-promise:
-  en: Pop the latest stash to restore it and remove it from the list.
+title: 'Git stash pop in GitTree: bring your changes back'
+promise: Pop the latest stash to restore it and remove it from the list.
 concept: Pop applies a stash and drops it in one step.
 feature: stash-pop
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Apply (keeps the stash) is shown in one sentence.
-youtube:
-  en: null
-  ar: null
+youtube: null

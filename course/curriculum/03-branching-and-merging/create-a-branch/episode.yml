@@ -2,11 +2,8 @@ id: 03-01
 series: 03-branching-and-merging
 slug: create-a-branch
 status: planned
-title:
-  en: Create a Git branch in GitTree
-  ar: إنشاء فرع جديد في Git عبر GitTree
-promise:
-  en: Create a branch at the current commit and check it out.
+title: Create a Git branch in GitTree
+promise: Create a branch at the current commit and check it out.
 concept: Creating a branch writes a new pointer to a commit and nothing else.
 feature: branch-create
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Name validation (branch-validate) is shown with one bad name in this video.
-youtube:
-  en: null
-  ar: null
+youtube: null

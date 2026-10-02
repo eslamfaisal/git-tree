@@ -2,11 +2,8 @@ id: 02-10
 series: 02-daily-workflow
 slug: commit-hook-output
 status: planned
-title:
-  en: 'Git commit hooks: read pre-commit output in GitTree'
-  ar: 'خطافات commit في Git: اقرأ مخرجات pre-commit في GitTree'
-promise:
-  en: See what a failing pre-commit hook prints and why your message and staged changes are kept.
+title: 'Git commit hooks: read pre-commit output in GitTree'
+promise: See what a failing pre-commit hook prints and why your message and staged changes are kept.
 concept: A hook is a script in .git/hooks that can stop a commit.
 feature: commit-hooks
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Turning hooks on and off per repository (commit-hooks-manage) is not a video of its own.
-youtube:
-  en: null
-  ar: null
+youtube: null

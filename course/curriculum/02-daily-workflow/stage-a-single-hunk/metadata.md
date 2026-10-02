@@ -1,4 +1,4 @@
-# 02-02 · English metadata
+# 02-02 · YouTube metadata
 
 **Title** (55 chars): `Stage a single hunk in GitTree (commit part of a file)`
 
@@ -30,6 +30,7 @@ git add -p src/search/index.ts
 git diff --staged
 
 Next lesson: stage individual lines.
+The narrator's voice is a synthetic voice made from the author's own voice.
 GitTree is not affiliated with any other Git client.
 ```
 

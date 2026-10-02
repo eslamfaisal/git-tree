@@ -2,11 +2,8 @@ id: 00-03
 series: 00-start-here
 slug: install-gittree-on-ubuntu-debian
 status: planned
-title:
-  en: Install GitTree on Ubuntu and Debian (.deb)
-  ar: تثبيت GitTree على أوبونتو وديبيان (حزمة deb)
-promise:
-  en: Install the .deb package with apt and start GitTree from the menu.
+title: Install GitTree on Ubuntu and Debian (.deb)
+promise: Install the .deb package with apt and start GitTree from the menu.
 concept: apt resolves dependencies for a local package, and GitTree needs Git 2.39 or newer.
 feature: install-linux-deb
 commands:
@@ -21,6 +18,4 @@ platforms:
 notes: Ubuntu 22.04 LTS or later, Debian 12 or later, x86_64 only. Ubuntu 22.04 and Mint 21 ship Git 2.34, so add ppa:git-core/ppa
   first. Verified on a 24.04 container only (not 22.04, not Wayland). Installer is unsigned. Say nothing about Flatpak, Snap,
   an apt repository or arm64.
-youtube:
-  en: null
-  ar: null
+youtube: null

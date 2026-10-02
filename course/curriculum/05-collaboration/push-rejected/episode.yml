@@ -2,11 +2,8 @@ id: 05-07
 series: 05-collaboration
 slug: push-rejected
 status: planned
-title:
-  en: 'Git push rejected (non-fast-forward): how to fix it'
-  ar: 'رفض git push (non-fast-forward): كيف تحل المشكلة'
-promise:
-  en: Understand the refused-push dialog and choose Fetch, Merge and Push or Rebase and Push.
+title: 'Git push rejected (non-fast-forward): how to fix it'
+promise: Understand the refused-push dialog and choose Fetch, Merge and Push or Rebase and Push.
 concept: A push is refused when the remote has commits you do not have.
 feature: sync-push-rejected
 commands:
@@ -22,6 +19,4 @@ requires:
 platforms:
 - linux
 notes: Server-declined push (hooks) shows 'Push to a New Branch…', mention only.
-youtube:
-  en: null
-  ar: null
+youtube: null

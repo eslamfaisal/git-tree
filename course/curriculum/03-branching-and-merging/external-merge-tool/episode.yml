@@ -2,11 +2,8 @@ id: 03-17
 series: 03-branching-and-merging
 slug: external-merge-tool
 status: planned
-title:
-  en: Use an external merge tool for Git conflicts
-  ar: استخدام أداة دمج خارجية لحل تعارضات Git
-promise:
-  en: Open a conflicted file in the merge tool you configured and return to GitTree.
+title: Use an external merge tool for Git conflicts
+promise: Open a conflicted file in the merge tool you configured and return to GitTree.
 concept: A merge tool is a program Git hands the base, local and remote versions to.
 feature: conflict-merge-tool
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Needs a merge tool installed (e.g. Meld on Linux); choosing the tool is 07-09.
-youtube:
-  en: null
-  ar: null
+youtube: null

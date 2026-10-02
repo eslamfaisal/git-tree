@@ -2,11 +2,8 @@ id: 06-10
 series: 06-power-features
 slug: lfs-locks
 status: planned
-title:
-  en: Git LFS file locking in GitTree
-  ar: قفل الملفات في Git LFS داخل GitTree
-promise:
-  en: Lock and unlock a lockable file and see who holds a lock.
+title: Git LFS file locking in GitTree
+promise: Lock and unlock a lockable file and see who holds a lock.
 concept: A lock stops others editing a binary file that cannot be merged.
 feature: lfs-locks
 commands:
@@ -21,6 +18,4 @@ requires:
 platforms:
 - linux
 notes: Needs an LFS server that supports locking.
-youtube:
-  en: null
-  ar: null
+youtube: null

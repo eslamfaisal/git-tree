@@ -2,11 +2,8 @@ id: 03-18
 series: 03-branching-and-merging
 slug: gitflow-initialise
 status: planned
-title:
-  en: 'Git flow in GitTree: initialise the branching model'
-  ar: 'Git flow في GitTree: تهيئة نموذج الفروع'
-promise:
-  en: Initialise Gitflow with your production and development branches and prefixes.
+title: 'Git flow in GitTree: initialise the branching model'
+promise: Initialise Gitflow with your production and development branches and prefixes.
 concept: Gitflow is a naming and merging convention built on ordinary branches and merges.
 feature: merge-gitflow
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: 'No git-flow binary is used: GitTree runs plain merge, tag and branch commands.'
-youtube:
-  en: null
-  ar: null
+youtube: null

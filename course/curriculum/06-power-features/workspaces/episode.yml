@@ -2,11 +2,8 @@ id: 06-17
 series: 06-power-features
 slug: workspaces
 status: planned
-title:
-  en: Group repositories into workspaces in GitTree
-  ar: تجميع المستودعات في مساحات عمل داخل GitTree
-promise:
-  en: Create a workspace, add repositories to it and open them all.
+title: Group repositories into workspaces in GitTree
+promise: Create a workspace, add repositories to it and open them all.
 concept: A workspace is an app-level grouping; it is not a Git feature.
 feature: repos-workspaces
 commands: []
@@ -17,6 +14,4 @@ requires:
 - 00-08
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

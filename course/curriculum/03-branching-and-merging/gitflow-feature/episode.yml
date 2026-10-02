@@ -2,11 +2,8 @@ id: 03-19
 series: 03-branching-and-merging
 slug: gitflow-feature
 status: planned
-title:
-  en: 'Git flow: start and finish a feature branch'
-  ar: 'Git flow: بدء فرع ميزة وإنهاؤه'
-promise:
-  en: Start a feature, commit on it, and finish it back into develop.
+title: 'Git flow: start and finish a feature branch'
+promise: Start a feature, commit on it, and finish it back into develop.
 concept: Finishing a Gitflow feature is a no-fast-forward merge followed by deleting the branch.
 feature: merge-gitflow
 commands:
@@ -21,6 +18,4 @@ platforms:
 - linux
 notes: 'VERIFY V7: Gitflow Finish is the one merge that is journaled; check the Undo tooltip right after a finish before teaching
   Undo here.'
-youtube:
-  en: null
-  ar: null
+youtube: null

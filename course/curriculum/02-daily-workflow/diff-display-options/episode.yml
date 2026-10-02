@@ -2,11 +2,8 @@ id: 02-19
 series: 02-daily-workflow
 slug: diff-display-options
 status: planned
-title:
-  en: Ignore whitespace in a Git diff and wrap long lines
-  ar: تجاهل المسافات البيضاء في الـ diff ولفّ الأسطر الطويلة
-promise:
-  en: Turn on Ignore whitespace, Wrap lines and Highlight changed words.
+title: Ignore whitespace in a Git diff and wrap long lines
+promise: Turn on Ignore whitespace, Wrap lines and Highlight changed words.
 concept: Whitespace-only changes are noise that git diff -w removes.
 feature: diff-options
 commands:
@@ -18,6 +15,4 @@ requires:
 - 02-17
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

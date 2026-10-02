@@ -2,11 +2,8 @@ id: 04-13
 series: 04-rewriting-history
 slug: undo-and-redo
 status: planned
-title:
-  en: Undo and redo Git operations in GitTree
-  ar: التراجع عن عمليات Git وإعادتها في GitTree (Undo وRedo)
-promise:
-  en: Undo a rebase and a branch delete from the toolbar and redo them.
+title: Undo and redo Git operations in GitTree
+promise: Undo a rebase and a branch delete from the toolbar and redo them.
 concept: Undo restores a ref from a journal entry, only if the ref has not moved since.
 feature: undo-redo
 commands:
@@ -21,6 +18,4 @@ platforms:
 notes: 'VERIFY V7: a plain Merge, cherry-pick, revert and pull-merge are NOT undoable; only the covered operations are (discard,
   restore file, delete branch/tag/stash, force push, rebase, reset, commit, checkout, create branch/tag). Covers undo-coverage
   in this one video. No default chord for Undo or Redo.'
-youtube:
-  en: null
-  ar: null
+youtube: null

@@ -2,11 +2,8 @@ id: 04-04
 series: 04-rewriting-history
 slug: drop-a-commit
 status: planned
-title:
-  en: Remove a commit from Git history (drop a commit)
-  ar: إزالة commit من سجل Git (drop)
-promise:
-  en: Drop a commit from the graph and see how Undo can bring it back.
+title: Remove a commit from Git history (drop a commit)
+promise: Drop a commit from the graph and see how Undo can bring it back.
 concept: Dropping a commit removes it from the branch but not from the object database.
 feature: rebase-drop
 commands:
@@ -18,6 +15,4 @@ requires:
 - 04-02
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

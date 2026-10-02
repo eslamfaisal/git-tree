@@ -2,11 +2,8 @@ id: 05-06
 series: 05-collaboration
 slug: default-pull-mode
 status: planned
-title:
-  en: Choose your default Git pull mode in GitTree
-  ar: اختر طريقة git pull الافتراضية في GitTree
-promise:
-  en: 'Set what the toolbar Pull button does: fast-forward only, merge or rebase.'
+title: Choose your default Git pull mode in GitTree
+promise: 'Set what the toolbar Pull button does: fast-forward only, merge or rebase.'
 concept: 'The pull mode is a policy: how your branch takes in the remote''s new commits.'
 feature: sync-pull-default
 commands:
@@ -20,6 +17,4 @@ requires:
 platforms:
 - linux
 notes: Setting key general.pullMode on the General page.
-youtube:
-  en: null
-  ar: null
+youtube: null

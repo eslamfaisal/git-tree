@@ -2,11 +2,8 @@ id: 04-10
 series: 04-rewriting-history
 slug: reset-soft
 status: planned
-title:
-  en: 'Git reset --soft: undo a commit but keep it staged'
-  ar: 'git reset --soft: ألغِ commit مع إبقاء التغييرات مجهّزة'
-promise:
-  en: Move the branch back one commit while the changes stay staged.
+title: 'Git reset --soft: undo a commit but keep it staged'
+promise: Move the branch back one commit while the changes stay staged.
 concept: A soft reset moves only the branch pointer.
 feature: reset-soft
 commands:
@@ -18,6 +15,4 @@ requires:
 - 01-05
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null

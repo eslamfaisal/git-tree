@@ -2,11 +2,8 @@ id: 02-15
 series: 02-daily-workflow
 slug: ignore-files-folders-extensions
 status: planned
-title:
-  en: Ignore a file, folder or extension in Git (.gitignore)
-  ar: تجاهل ملف أو مجلد أو امتداد في Git (.gitignore)
-promise:
-  en: Add a path to .gitignore from the right-click menu.
+title: Ignore a file, folder or extension in Git (.gitignore)
+promise: Add a path to .gitignore from the right-click menu.
 concept: .gitignore tells Git which untracked files to leave out.
 feature: staging-ignore
 commands:
@@ -19,6 +16,4 @@ requires:
 platforms:
 - linux
 notes: Assume Unchanged and Skip Worktree flags (staging-skip-flags) are not covered.
-youtube:
-  en: null
-  ar: null
+youtube: null

@@ -2,11 +2,8 @@ id: 03-09
 series: 03-branching-and-merging
 slug: preview-a-merge
 status: planned
-title:
-  en: Preview a Git merge for conflicts before you merge
-  ar: معاينة الدمج في Git لمعرفة التعارضات قبل تنفيذه
-promise:
-  en: See whether a merge will conflict, and in which files, before anything changes.
+title: Preview a Git merge for conflicts before you merge
+promise: See whether a merge will conflict, and in which files, before anything changes.
 concept: A merge can be predicted without touching your files.
 feature: merge-preview
 commands:
@@ -18,6 +15,4 @@ requires:
 - 01-11
 platforms:
 - linux
-youtube:
-  en: null
-  ar: null
+youtube: null
