@@ -260,6 +260,41 @@ def write_chapters(beats: list[Beat], stem: Path) -> None:
     stem.with_name(stem.name + ".chapters.txt").write_text("".join(f"{fmt(t)} {title}\n" for t, title in rows))
 
 
+def verification(beats: list[Beat], mp4: Path, stem: Path, meta: dict) -> None:
+    """A chapter contact sheet and a checklist, so every section of the finished video can be checked at a glance."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    chapters = [b for b in beats if b.raw.get("chapter")]
+    if not chapters:
+        return
+    tiles = []
+    font = ImageFont.truetype(next(p for p in ("/usr/share/fonts/opentype/inter/Inter-SemiBold.otf", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf") if Path(p).exists()), 26)
+    for b in chapters:
+        t = min(b.start + 1.5, b.start + b.seconds - 0.2)
+        png = stem.with_name(stem.name + ".tmp.png")
+        run(["ffmpeg", "-v", "error", "-y", "-ss", f"{t:.2f}", "-i", mp4, "-frames:v", "1", "-vf", "scale=640:360", png])
+        im = Image.open(png).convert("RGB")
+        ImageDraw.Draw(im).rectangle([0, 0, 640, 40], fill=(8, 10, 16))
+        ImageDraw.Draw(im).text((10, 6), f"{int(b.start // 60)}:{int(b.start % 60):02d}  {b.raw['chapter']}", font=font, fill=(240, 244, 252))
+        tiles.append(im)
+        png.unlink()
+    cols = 3
+    rows = (len(tiles) + cols - 1) // cols
+    sheet = Image.new("RGB", (cols * 640, rows * 360), (0, 0, 0))
+    for i, im in enumerate(tiles):
+        sheet.paste(im, ((i % cols) * 640, (i // cols) * 360))
+    sheet.save(stem.with_name(stem.name + ".chapters.jpg"), quality=82, optimize=True)
+    lines = [f"# Section check: {meta['id']} {meta['title']}", "", "Tick each section after watching it in the finished video. The contact sheet (`.chapters.jpg`) shows the first frame of every chapter.", "",
+             "| Done | Time | Chapter | What the screen shows | The voice says |", "|---|---|---|---|---|"]
+    for b in chapters:
+        scene = b.raw.get("scene")
+        shows = (f"scene `{scene if isinstance(scene, str) else scene['template']}`" if scene else f"GitTree, {b.raw['app']['from']} → {b.raw['app']['to']}")
+        steps = "; ".join(o["text"] for o in b.raw.get("overlays", []) if o.get("type") == "step")
+        say = voice.sentences(b.raw["vo"])[0]
+        lines.append(f"| [ ] | {int(b.start // 60)}:{int(b.start % 60):02d} | {b.raw['chapter']} | {shows}{(' · step: ' + steps) if steps else ''} | {voice.display_text(say)} |")
+    stem.with_name(stem.name + ".verification.md").write_text("\n".join(lines) + "\n")
+
+
 # ───────────────────────────── main ────────────────────────────────────────
 def load_presenter() -> dict:
     p = yaml.safe_load((COURSE / "presenter" / "presenter.yml").read_text())
@@ -380,6 +415,7 @@ def main() -> None:
     data, rate = sf.read(str(wav), dtype="float32")
     flac = base.with_name(base.name + ".voice.flac")
     sf.write(str(flac), data, rate, format="FLAC", subtype="PCM_24")
+    verification(beats, mp4, base, meta)
     result = quality.check(mp4, 1080, FPS)
     stem.with_name(stem.name + ".quality.json").write_text(json.dumps(result, indent=2))
     print(json.dumps({k: result[k] for k in ("width", "height", "duration_s", "size_mb", "lufs", "true_peak_db", "pass")}))

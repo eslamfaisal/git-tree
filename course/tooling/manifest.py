@@ -36,11 +36,11 @@ def main() -> None:
     dest = COURSE / "assets" / meta["series"] / name
     files = []
     for src in sorted(out.glob(f"{name}.*")):
-        if src.suffix in (".srt", ".vtt") or src.name.endswith(".chapters.txt"):
+        if src.suffix in (".srt", ".vtt", ".jpg") or src.name.endswith((".chapters.txt", ".verification.md")):
             (dest / "video").mkdir(parents=True, exist_ok=True)
             target = dest / "video" / src.name
             shutil.copy2(src, target)
-            files.append({"path": str(target.relative_to(dest)), "kind": "captions" if src.suffix in (".srt", ".vtt") else "chapters", "tier": "git", "size": target.stat().st_size, "sha256": sha(target)})
+            files.append({"path": str(target.relative_to(dest)), "kind": "captions" if src.suffix in (".srt", ".vtt") else "chapters / verification", "tier": "git", "size": target.stat().st_size, "sha256": sha(target)})
         elif src.suffix in (".mp4", ".flac"):
             q = out / (src.stem + ".quality.json")
             entry = {"path": f"{'video' if src.suffix == '.mp4' else 'audio'}/{src.name}", "kind": "video" if src.suffix == ".mp4" else "voice-over",
