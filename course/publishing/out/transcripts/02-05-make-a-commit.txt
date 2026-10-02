@@ -1,0 +1,32 @@
+Make a Git commit in GitTree step by step
+
+
+[Why make a commit]
+You changed two files, but only one of them is ready. If you save everything at once, your history gets muddy. In this video you will make a commit in GitTree: stage the readme, write a message, and save a snapshot of just that file.
+
+[A commit is a snapshot of the staging area]
+A commit is a snapshot of the staging area, not of your working folder. Whatever is staged goes in. Whatever is not staged stays out, and keeps its changes for the next commit.
+
+[Stage what belongs in the commit]
+Start by staging the readme. You already know how to take a file out of this list, and now we put one in. Hover its row, and click Stage File. The tags helper stays unstaged, so it will not be in this commit.
+
+[Write the summary]
+Click the Summary box and write the first line of the message. Say what this commit does, in a few words. The counter beside it shows how long the line is.
+
+[Add a description]
+The Description below it is optional. Use it for the reason behind the change, for anyone who reads the history later.
+
+[Commit with Ctrl+Enter]
+The button reads Commit Changes to 1 File. Click it, or press Control and Enter, which works even while you are typing the message. On a Mac, the shortcut is Command and Enter.
+
+[The other file is still waiting]
+GitTree confirms with the short id of the new commit. The readme has left the list, but the tags helper is still under Unstaged Files, with its edit intact, ready for its own commit.
+
+[Check the new commit]
+The new commit sits at the top of the graph. Select it, and you see your summary, your description, and the one file it changed.
+
+[The same in plain Git]
+In plain Git, you stage with git add, then run git commit with dash m. Use dash m once for the summary, and again for the description. Git answers with the short id and a count of the changes. Then git log --oneline shows your new commit on top.
+
+[Recap]
+To recap: a commit saves what is staged. Write a summary, add a description if it helps, and click Commit, or press Control and Enter. Download GitTree free at gittree.app. In the next video, you will write better commit messages.

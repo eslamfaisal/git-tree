@@ -13,12 +13,12 @@ Install GitTree on macOS, Windows or Linux, sign in with your website account, t
 5. Verify a GitTree Linux download with SHA256SUMS (00-05, planned)
 6. Which Git version does GitTree need? (2.39 or newer) (00-06, planned)
 7. Sign in to GitTree on first launch (website account) (00-07, planned)
-8. Open a Git repository in GitTree (folder or drag and drop) (00-08, planned)
+8. Open a Git repository in GitTree (folder or drag and drop) (00-08, scripted)
 9. Trust this repository? What GitTree checks before it opens (00-09, planned)
 10. Clone a Git repository by URL in GitTree (00-10, planned)
-11. Create a new Git repository in GitTree (git init) (00-11, planned)
+11. Create a new Git repository in GitTree (git init) (00-11, scripted)
 12. Recent repositories and the New Tab page in GitTree (00-12, planned)
-13. GitTree window tour: sidebar, graph, inspector, drawer (00-13, planned)
+13. GitTree window tour: sidebar, graph, inspector, drawer (00-13, scripted)
 
 ## Git foundations: the ideas behind every click
 
@@ -41,11 +41,11 @@ The core Git concepts (commit, the graph, refs, HEAD, the three trees, remotes, 
 
 Stage files, hunks and lines, write and amend commits, read diffs, blame and file history, and stash work in progress.
 
-1. Stage a file in GitTree (git add explained) (02-01, planned)
+1. Stage a file in GitTree (git add explained) (02-01, scripted)
 2. Stage a single hunk in GitTree (commit part of a file) (02-02, scripted)
-3. Stage single lines in GitTree (partial commit) (02-03, planned)
-4. Unstage a file in GitTree (undo git add) (02-04, planned)
-5. Make a Git commit in GitTree step by step (02-05, planned)
+3. Stage single lines in GitTree (partial commit) (02-03, scripted)
+4. Unstage a file in GitTree (undo git add) (02-04, scripted)
+5. Make a Git commit in GitTree step by step (02-05, scripted)
 6. Write better Git commit messages with GitTree hints (02-06, planned)
 7. Amend the last Git commit in GitTree (02-07, planned)
 8. Git commit options: sign-off, skip hooks, other author (02-08, planned)

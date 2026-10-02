@@ -12,12 +12,12 @@ One folder per episode, grouped by series (see `../ARCHITECTURE.md` for the form
 | [00-05 · Verify a GitTree Linux download with SHA256SUMS](curriculum/00-start-here/verify-linux-download/) | start here | planned | not yet published |
 | [00-06 · Which Git version does GitTree need? (2.39 or newer)](curriculum/00-start-here/git-version-required/) | start here | planned | not yet published |
 | [00-07 · Sign in to GitTree on first launch (website account)](curriculum/00-start-here/sign-in-first-launch/) | start here | planned | not yet published |
-| [00-08 · Open a Git repository in GitTree (folder or drag and drop)](curriculum/00-start-here/open-a-repository/) | start here | planned | not yet published |
+| [00-08 · Open a Git repository in GitTree (folder or drag and drop)](curriculum/00-start-here/open-a-repository/) | start here | scripted | not yet published |
 | [00-09 · Trust this repository? What GitTree checks before it opens](curriculum/00-start-here/trust-prompt-on-open/) | start here | planned | not yet published |
 | [00-10 · Clone a Git repository by URL in GitTree](curriculum/00-start-here/clone-a-repository/) | start here | planned | not yet published |
-| [00-11 · Create a new Git repository in GitTree (git init)](curriculum/00-start-here/init-a-repository/) | start here | planned | not yet published |
+| [00-11 · Create a new Git repository in GitTree (git init)](curriculum/00-start-here/init-a-repository/) | start here | scripted | not yet published |
 | [00-12 · Recent repositories and the New Tab page in GitTree](curriculum/00-start-here/recent-repositories/) | start here | planned | not yet published |
-| [00-13 · GitTree window tour: sidebar, graph, inspector, drawer](curriculum/00-start-here/tour-of-the-window/) | start here | planned | not yet published |
+| [00-13 · GitTree window tour: sidebar, graph, inspector, drawer](curriculum/00-start-here/tour-of-the-window/) | start here | scripted | not yet published |
 | [01-01 · What is a Git commit? See one in GitTree](curriculum/01-git-foundations/what-is-a-commit/) | git foundations | planned | not yet published |
 | [01-02 · The Git commit graph explained: history is a DAG](curriculum/01-git-foundations/commit-graph-dag/) | git foundations | planned | not yet published |
 | [01-03 · Git branches are just pointers (refs explained)](curriculum/01-git-foundations/branches-are-pointers/) | git foundations | planned | not yet published |
@@ -30,11 +30,11 @@ One folder per episode, grouped by series (see `../ARCHITECTURE.md` for the form
 | [01-10 · What is a Git fast-forward? Move a branch pointer](curriculum/01-git-foundations/what-is-a-fast-forward/) | git foundations | planned | not yet published |
 | [01-11 · Git merge vs rebase: the difference on the graph](curriculum/01-git-foundations/merge-vs-rebase/) | git foundations | planned | not yet published |
 | [01-12 · Git config scopes: system, global and local explained](curriculum/01-git-foundations/git-config-scopes/) | git foundations | planned | not yet published |
-| [02-01 · Stage a file in GitTree (git add explained)](curriculum/02-daily-workflow/stage-a-file/) | daily workflow | planned | not yet published |
+| [02-01 · Stage a file in GitTree (git add explained)](curriculum/02-daily-workflow/stage-a-file/) | daily workflow | scripted | not yet published |
 | [02-02 · Stage a single hunk in GitTree (commit part of a file)](curriculum/02-daily-workflow/stage-a-single-hunk/) | daily workflow | scripted | not yet published |
-| [02-03 · Stage single lines in GitTree (partial commit)](curriculum/02-daily-workflow/stage-single-lines/) | daily workflow | planned | not yet published |
-| [02-04 · Unstage a file in GitTree (undo git add)](curriculum/02-daily-workflow/unstage-a-file/) | daily workflow | planned | not yet published |
-| [02-05 · Make a Git commit in GitTree step by step](curriculum/02-daily-workflow/make-a-commit/) | daily workflow | planned | not yet published |
+| [02-03 · Stage single lines in GitTree (partial commit)](curriculum/02-daily-workflow/stage-single-lines/) | daily workflow | scripted | not yet published |
+| [02-04 · Unstage a file in GitTree (undo git add)](curriculum/02-daily-workflow/unstage-a-file/) | daily workflow | scripted | not yet published |
+| [02-05 · Make a Git commit in GitTree step by step](curriculum/02-daily-workflow/make-a-commit/) | daily workflow | scripted | not yet published |
 | [02-06 · Write better Git commit messages with GitTree hints](curriculum/02-daily-workflow/commit-message-hints/) | daily workflow | planned | not yet published |
 | [02-07 · Amend the last Git commit in GitTree](curriculum/02-daily-workflow/amend-last-commit/) | daily workflow | planned | not yet published |
 | [02-08 · Git commit options: sign-off, skip hooks, other author](curriculum/02-daily-workflow/commit-options/) | daily workflow | planned | not yet published |

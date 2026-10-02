@@ -1,0 +1,32 @@
+Stage single lines in GitTree (partial commit)
+
+
+[Why pick single lines]
+You added a new method, and a few lines above it you changed something unrelated. Git puts both changes in one hunk, so Stage Hunk would take them together. In this video you will pick single lines in GitTree, and stage only the method.
+
+[From hunk to line]
+Last time you staged a whole hunk, one block of changed lines. When two ideas share a hunk, that is too coarse. So GitTree goes one level down: you pick the lines, and only those are staged.
+
+[One hunk, two changes]
+Here is GitTree with a small demo project. Open the working changes, and select the search index file. Its diff is a single hunk with two changes: tags added to the index, and a new size method. Only the size method belongs in this commit.
+
+[Pick the lines]
+Every changed line has a checkbox. Click the first line of the new method. Then hold Shift, and click the last line. Shift picks the whole range between them.
+
+[Stage Lines]
+The toolbar counts five lines picked. Now click Stage Lines, and only those lines move to the staging area.
+
+[One file, two lists]
+The file is now in both lists. Under Unstaged Files, it still holds the tags change. Under Staged Files, it holds only the new method. Click it to check.
+
+[Commit]
+Write a message, and commit. The button says Commit Changes to 1 File, because one file is staged. This commit holds only the new method. Now select the file again. The tags change is still there, ready for its own commit.
+
+[Two things to know]
+Two things to know. If you change your mind, pick lines in the staged copy, and click Unstage Lines. And some changes cannot be split: binary files, renames, Git LFS pointers, mode changes and submodules are always staged whole.
+
+[The same in plain Git]
+In plain Git, git add -p walks through the hunks. Press s to split this one in two, answer n to the first part and y to the second, and git diff --staged shows what will be committed. If changes touch, press e to edit the hunk by hand. GitTree builds that patch for you.
+
+[Recap]
+To recap: pick lines, with Shift to pick a range, click Stage Lines, and only those lines are staged. The rest waits in your working changes. Download GitTree free at gittree.app. Next, how to unstage a file.

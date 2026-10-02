@@ -1,0 +1,30 @@
+Open a Git repository in GitTree (folder or drag and drop)
+
+
+[Why open a repository]
+You start GitTree, and the window is empty. Your project is somewhere on your computer. How do you show it to GitTree? In this video you will open a repository, and see what happens when a folder is not one.
+
+[What a repository is]
+A repository is a folder with a hidden folder inside it, named .git. That hidden folder holds your whole history. The folder around it holds your files. Open a folder like that, and GitTree can show it all.
+
+[The New Tab page]
+This is the New Tab page. It has three cards: Open, for a folder you already have, Clone, to copy one from a web address, and Init, to start a new one. At the bottom, a hint says you can also drop a folder onto the window, and GitTree opens it.
+
+[Open with the folder picker]
+Click Open. A folder picker appears. It is your system's own picker, not GitTree's. Choose the folder that holds your project, the one with a .git inside.
+Type the path, and the list shows its .git folder. Then press Open.
+
+[Your repository opens]
+The repository opens in a new tab, named after its folder. The graph shows its history. GitTree also remembers the folder, for next time.
+
+[Open with Ctrl+O]
+Next time, press Control O to open the picker from any tab. On a Mac, press Command O.
+
+[When the folder is not a repository]
+Now pick a folder that is not a repository. GitTree tells you so. It names the folder, and offers to initialize a repository there, or to choose another folder. It changes nothing on its own. Click Close, and you are back where you were.
+
+[The same in plain Git]
+In plain Git, git rev-parse --git-dir --is-inside-work-tree asks the same question. Inside a repository, it prints the hidden folder, and true. Anywhere else, it stops with: fatal, not a git repository. GitTree asks Git a longer version of this question before it opens a folder.
+
+[Recap]
+To recap: a repository is a folder with a .git inside. Open it with the Open card, with Control O, or by dropping the folder. A folder without one is refused. Download GitTree free at gittree.app. Next, how to reopen a repository from the Recent list.

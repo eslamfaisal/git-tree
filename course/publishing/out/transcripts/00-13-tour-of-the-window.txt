@@ -1,0 +1,32 @@
+GitTree window tour: sidebar, graph, inspector, drawer
+
+
+[Where is everything?]
+You open GitTree and there is a lot on the screen. Where do the branches live? Where do the details of a commit go? In this video you will learn the four areas of the window, and the keys that show and hide them.
+
+[The four areas]
+The window has four areas. The sidebar on the left lists your branches and tags. The graph in the middle shows your history. The inspector on the right shows one commit in detail. And the drawer at the bottom holds the terminal and the activity log.
+
+[The toolbar]
+Along the top runs the toolbar. It holds the actions you use most: undo and redo, pull and push, create a branch, stash, and the terminal. The last three buttons show and hide the sidebar, the drawer and the inspector.
+
+[The sidebar]
+Now the sidebar. It lists your local branches, the remote branches, and your tags. Type in the filter box to find one fast.
+
+[The graph]
+The graph is your history, with the newest commit on top. Each row is one commit. Click a row to select it.
+
+[The inspector]
+The inspector fills in with that commit: who wrote it, when, and which files it changed.
+
+[Show and hide with the keyboard]
+You can hide any area. Press Ctrl+J to fold the sidebar into a thin strip, and press it again to bring it back. Ctrl+K does the same for the inspector. On a Mac, use Command instead of Control.
+
+[The drawer]
+The drawer opens with Alt+T. The Terminal tab is a shell in your repository folder. The Activity Log tab lists the Git commands GitTree has run. Press Alt+T again to close it.
+
+[Escape goes back]
+One more key: Escape. It means Back. Open a file to see its diff, press Escape, and you are on the graph again.
+
+[Recap]
+To recap: the sidebar lists your branches, the graph shows history, the inspector shows one commit, and the drawer holds the terminal. Ctrl+J, Ctrl+K and Alt+T toggle them. Download GitTree free at gittree.app. Next, we look at what a commit is.

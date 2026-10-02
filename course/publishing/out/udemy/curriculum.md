@@ -40,9 +40,15 @@ Check your Git version and read the two screens GitTree shows when Git is missin
 Sign in through the GitTree website from the app, including the manual code fallback.
 
 ### 1.8 Open a Git repository in GitTree (folder or drag and drop)
-3 min · 00-08 · planned
+3 min · 00-08 · scripted
 
 Open an existing repository from the New Tab page, the Open shortcut or a dropped folder.
+
+By the end of this lecture you can:
+- {'Explain what a Git repository is': 'a working folder with a hidden .git folder inside'}
+- Open a repository from the New Tab page with the Open card and the folder picker
+- Open the picker from any tab with Ctrl+O (Cmd+O on a Mac), and know that dropping a folder on the window also works
+- Read the message GitTree shows for a folder that is not a repository
 
 ### 1.9 Trust this repository? What GitTree checks before it opens
 4 min · 00-09 · planned
@@ -55,9 +61,15 @@ Read the trust prompt and choose between Restricted Mode and Trust and Open.
 Clone a repository from a URL into a folder you choose and open it.
 
 ### 1.11 Create a new Git repository in GitTree (git init)
-4 min · 00-11 · planned
+4 min · 00-11 · scripted
 
 Initialise a new repository with a first branch name and an optional .gitignore template and licence.
+
+By the end of this lecture you can:
+- Explain what git init creates (the .git folder and the first branch)
+- Create a repository from the New Tab page with the Init dialog, choosing the folder and the initial branch
+- Add an optional .gitignore template and licence, and know they are written uncommitted
+- Run the same job in the terminal with git init --initial-branch main
 
 ### 1.12 Recent repositories and the New Tab page in GitTree
 3 min · 00-12 · planned
@@ -65,9 +77,15 @@ Initialise a new repository with a first branch name and an optional .gitignore 
 Reopen a repository from the Recent list and remove one from it without deleting files.
 
 ### 1.13 GitTree window tour: sidebar, graph, inspector, drawer
-4 min · 00-13 · planned
+4 min · 00-13 · scripted
 
 Learn where the four areas of the window are and how to toggle each one.
+
+By the end of this lecture you can:
+- Name the four areas of the GitTree window (sidebar, graph, inspector, drawer) and the toolbar along the top
+- Select a commit in the graph and read its details in the inspector
+- Show and hide the sidebar, the inspector and the bottom drawer with Ctrl+J, Ctrl+K and Alt+T (Cmd instead of Ctrl on a Mac)
+- Use Escape to go back from a diff to the graph
 
 ## Section 2: Git foundations: the ideas behind every click
 
@@ -138,9 +156,15 @@ Change a Git setting at the global and the local level from Preferences and see 
 *Stage, commit, amend and review your work with confidence, and park work in progress.*
 
 ### 3.1 Stage a file in GitTree (git add explained)
-3 min · 02-01 · planned
+3 min · 02-01 · scripted
 
 Stage one changed file so that it goes into the next commit and the others do not.
+
+By the end of this lecture you can:
+- Explain the two lists of the Working Changes panel, Unstaged Files and Staged Files
+- Stage one of two changed files with the Stage File button and see it move to Staged Files
+- Commit only the staged file and confirm the other file is still waiting under Unstaged Files
+- Stage the selected file with the S key, and run the same job in the terminal with git add and git status
 
 ### 3.2 Stage a single hunk in GitTree (commit part of a file)
 3.5 min · 02-02 · scripted
@@ -154,19 +178,38 @@ By the end of this lecture you can:
 - Run the same job in the terminal with git add -p
 
 ### 3.3 Stage single lines in GitTree (partial commit)
-4 min · 02-03 · planned
+4 min · 02-03 · scripted
 
 Pick individual changed lines and stage only those.
 
+By the end of this lecture you can:
+- Explain why Stage Hunk is too coarse when two ideas share one hunk
+- Pick a range of changed lines with a click and Shift+click, and stage only those with Stage Lines
+- Check the staged copy of the file, commit it, and confirm the other change is still unstaged
+- Name the kinds of change that are always staged whole, and run the same job with git add -p
+
 ### 3.4 Unstage a file in GitTree (undo git add)
-3 min · 02-04 · planned
+3 min · 02-04 · scripted
 
 Move a staged file back to the unstaged list without losing any edit.
 
+By the end of this lecture you can:
+- Explain what unstaging does, and why it never changes the file on disk
+- Unstage a file in GitTree with the Unstage File button and check it in the Unstaged Files list
+- Unstage a selected file with the U key, and know that Unstage All empties the staging area
+- Run the same job in the terminal with git restore --staged and read git status --short
+
 ### 3.5 Make a Git commit in GitTree step by step
-4 min · 02-05 · planned
+3.5 min · 02-05 · scripted
 
 Write a summary and description and commit the staged changes.
+
+By the end of this lecture you can:
+- Explain that a commit is a snapshot of the staging area, not of the working folder
+- Write a Summary and a Description in the commit composer
+- Commit with the Commit Changes button or with Ctrl+Enter (Cmd+Enter on a Mac)
+- Confirm that a file you did not stage stays in your working changes
+- Run the same job in the terminal with git commit -m and read git log --oneline
 
 ### 3.6 Write better Git commit messages with GitTree hints
 4 min · 02-06 · planned

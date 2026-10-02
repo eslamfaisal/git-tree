@@ -1,0 +1,29 @@
+Create a new Git repository in GitTree (git init)
+
+
+[Why you need a repository]
+You have a new project and no history yet. Until the folder is a Git repository, nothing is tracked, and no commit can be made. In this video you will create a repository with the Init dialog in GitTree, and choose its first branch.
+
+[What git init does]
+The command is git init. It does two things. It creates a hidden folder called .git, where Git keeps your commits and branches. And it names the first branch. A new repository is empty: it has no commits yet.
+
+[Open the Init dialog]
+This is the New Tab page. Click Init, and a dialog opens. Nothing is written until you click Initialize.
+
+[Choose the folder]
+Type the full path of the folder in Location. It can be a new folder, or an empty one.
+
+[Name the first branch]
+Initial branch is main by default. Type another name if you prefer one. Leave Bare repository unchecked: a bare repository has history, but no working files.
+
+[Add starting files]
+You can also add starting files. Pick a .gitignore template, such as Node.js, and a licence, such as MIT, with the copyright holder. GitTree writes both files into the folder, but does not commit them.
+
+[Initialize]
+Keep Open after creating checked, and click Initialize. GitTree opens the new repository. The branch reads No commits yet, because a new repository has no history. The two files we chose are waiting as working changes.
+
+[The same in plain Git]
+In plain Git, you type git init --initial-branch main, then the folder name. Git says it initialized an empty repository. git status confirms that you are on main, with no commits yet.
+
+[Recap]
+To recap: git init turns a folder into a repository and names its first branch. In GitTree, click Init, give a folder path and a branch name, and add starting files if you like. Download GitTree free at gittree.app. Next, the New Tab page and your recent repositories.

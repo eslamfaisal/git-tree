@@ -68,7 +68,7 @@ Understand the ideas every Git operation is built on, each shown with one featur
 - Git merge vs rebase: the difference on the graph (6 min)
 - Git config scopes: system, global and local explained (5 min)
 
-### Chapter 3: Daily workflow: stage, commit, review (103.5 min)
+### Chapter 3: Daily workflow: stage, commit, review (103 min)
 
 Stage, commit, amend and review your work with confidence, and park work in progress.
 
@@ -76,7 +76,7 @@ Stage, commit, amend and review your work with confidence, and park work in prog
 - Stage a single hunk in GitTree (commit part of a file) (3.5 min)
 - Stage single lines in GitTree (partial commit) (4 min)
 - Unstage a file in GitTree (undo git add) (3 min)
-- Make a Git commit in GitTree step by step (4 min)
+- Make a Git commit in GitTree step by step (3.5 min)
 - Write better Git commit messages with GitTree hints (4 min)
 - Amend the last Git commit in GitTree (4 min)
 - Git commit options: sign-off, skip hooks, other author (5 min)

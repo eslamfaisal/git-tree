@@ -77,6 +77,6 @@ exercise:
   - "Create an empty folder, for example ~/recipes, press Ctrl+O and choose it: read the message, then click Close"
   - "In a terminal, run git rev-parse --git-dir --is-inside-work-tree in ~/lumen and in ~/recipes and compare"
   expected: ~/lumen opens in a tab named lumen with its history; ~/recipes is refused; git prints .git and true in lumen, and a fatal error in recipes.
-commands_note: In a terminal, git rev-parse --git-dir --is-inside-work-tree prints the .git folder and true inside a repository, and fatal: not a git repository anywhere else.
+commands_note: "In a terminal, git rev-parse --git-dir --is-inside-work-tree prints the .git folder and true inside a repository, and a fatal error saying it is not a git repository anywhere else."
 social:
   hook: Your project is on your computer, but GitTree shows nothing. Here is how to open a repository, and what a repository really is.

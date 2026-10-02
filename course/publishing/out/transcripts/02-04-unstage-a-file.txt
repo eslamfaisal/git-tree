@@ -1,0 +1,29 @@
+Unstage a file in GitTree (undo git add)
+
+
+[Why unstage a file]
+You staged two files, and then you notice that one of them does not belong in this commit. Maybe it is half finished, or you added it by accident. You do not have to undo the edit. In this video you will unstage a file in GitTree, so it leaves the next commit and keeps every change.
+
+[Unstaging does not touch your work]
+Unstaging does not touch your work. Your edits live in the working folder. The staging area is only a list of what the next commit will hold. Unstaging takes a file off that list, and the file on disk stays exactly as you left it.
+
+[Find the staged files]
+Here is the demo project. In the lesson on staging a file, you learned how a file gets into this list. Two files are staged, the readme and the tags helper, so both would go into the next commit. We want to commit only the readme.
+
+[Click Unstage File]
+Point at the file you want to remove, here the tags helper. A minus button appears at the end of its row, named Unstage File. Click it.
+
+[The file moves to Unstaged Files]
+The tags helper is back under Unstaged Files. Only the readme is left under Staged Files, so only the readme goes into the next commit.
+
+[Your edit is still there]
+Nothing was lost. Open the file, and the function you added is still there, waiting in your working folder.
+
+[The U shortcut]
+There is a faster way. Click a staged file, then press U. It runs the same command, Unstage, and it works whenever the file list has focus. The readme moved back too, and now nothing is staged.
+
+[The same in plain Git]
+In plain Git, the command is git restore --staged, followed by the path. Run git status --short before and after. The first column is the staging area, and the second is the working folder. After the restore, the tags helper has its letter in the second column only. To unstage everything at once, git reset -q does it, and GitTree has an Unstage All button.
+
+[Recap]
+To recap: unstaging takes a file out of the next commit, and never touches your edit. Use the Unstage File button, or press U. Download GitTree free at gittree.app. In the next video, you will write a message and make the commit.

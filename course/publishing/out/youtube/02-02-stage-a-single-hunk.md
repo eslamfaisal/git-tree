@@ -7,6 +7,17 @@
 ```
 Commit only one of two changes in the same file, without touching the other. The staging area (index) decides what a commit contains; a hunk is the unit of a change.
 
+Chapters
+0:00 Why commit only part of a file
+0:14 What is a hunk?
+0:24 The three places Git keeps your work
+0:38 Open the working changes
+0:56 Stage a hunk
+1:04 One file, two lists
+1:22 Commit
+1:43 The same in plain Git: git add -p
+2:01 Two tips
+2:14 Recap
 
 Follow along with the same repository:
 course/demo-repo/build.sh ~/lumen two-hunks
@@ -20,7 +31,7 @@ git add -p
 git diff --staged
 
 Next lesson: Stage single lines in GitTree (partial commit)
-The narrator's voice is a synthetic voice made from the author's own voice.
+The narration is a synthetic voice (text to speech).
 GitTree is not affiliated with any other Git client.
 ```
 
@@ -32,4 +43,4 @@ GitTree is not affiliated with any other Git client.
 
 **Primary keyword**: git stage hunk · **Question**: how do I commit only part of a file in git
 
-**Upload settings**: altered or synthetic content = yes (synthetic narrator voice); playlist = section "02-daily-workflow"; thumbnail = `curriculum/02-daily-workflow/stage-a-single-hunk/thumbnail/thumbnail.jpg`; captions = the episode's `.srt`.
+**Upload settings**: altered or synthetic content = yes (synthetic voice); playlist = section "02-daily-workflow"; thumbnail = `curriculum/02-daily-workflow/stage-a-single-hunk/thumbnail/thumbnail.jpg`; captions = the episode's `.srt`.

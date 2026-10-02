@@ -1,0 +1,30 @@
+Stage a file in GitTree (git add explained)
+
+
+[Why stage a file]
+You changed two files today. One is a new helper in your code. The other is a note in the README. They have nothing to do with each other, so they should not share a commit. In this video you will stage one file in GitTree, and commit only that one.
+
+[Two lists, one rule]
+GitTree shows your changed files in two lists. Unstaged Files are edits that are not part of the next commit. Staged Files are the edits the next commit will contain. Staging a file moves it from the first list to the second.
+
+[Open the working changes]
+Here is GitTree with a small demo project. The working changes row at the top of the graph says that files have changed. Click it.
+Both files wait under Unstaged Files: the README, and the tags file in the source folder. Click the tags file, and GitTree shows its change: a new helper that sorts tags.
+
+[Stage a file]
+Point at the row, and a Stage File button appears. Click it. The whole file moves to the staging area, in one step.
+
+[Check the two lists]
+Now the tags file is under Staged Files. The README is still under Unstaged Files, untouched. The next commit will contain the tags file only.
+
+[Commit]
+Write a commit message, and commit. The button says Commit Changes to 1 File, because only one file is staged. The README is not in this commit. It is still waiting under Unstaged Files, ready for a commit of its own.
+
+[A keyboard shortcut]
+There is a keyboard shortcut too. Select a file in the list, and press S. It moves to Staged Files. And Stage All does the same for every changed file at once.
+
+[The same in plain Git]
+In plain Git, you stage a file with git add and its path. Then git status shows the two lists. The tags file is staged, and the README is not. GitTree runs this for you, with one click.
+
+[Recap]
+To recap: changed files start under Unstaged Files, Stage File moves one to Staged Files, and a commit takes only what is staged. Download GitTree free at gittree.app. Next, how to stage just one hunk of a file.

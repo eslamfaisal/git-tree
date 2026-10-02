@@ -5,8 +5,8 @@ Run `python3 course/tooling/publish.py` after changing `course.yml`, `curriculum
 | | |
 |---|---|
 | Lectures planned | 169 |
-| Lectures with a script | 1 |
-| Lectures with objectives, quiz and exercise (ready to publish) | 1 |
+| Lectures with a script | 8 |
+| Lectures with objectives, quiz and exercise (ready to publish) | 8 |
 | Video, planned length | about 11.0 hours |
 
 - `youtube/`: per-video metadata and the playlists
