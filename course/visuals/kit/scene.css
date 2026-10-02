@@ -1,0 +1,91 @@
+/* GitTree course scene kit. Scenes are plain HTML + CSS animations; the renderer seeks every frame, so the
+   same file renders at any duration: animation lengths and delays are fractions of --d (the beat's seconds).
+   Colours are the app's dark-theme tokens (open-git-tree/packages/design-tokens/themes/ogt-dark.json). */
+:root {
+  --surface-0: #1b1e26; --surface-1: #232730; --surface-2: #2b303b; --surface-3: #343a47;
+  --border: #3e4657; --border-strong: #79839a;
+  --text-1: #e6e9ef; --text-2: #a9b1c1; --text-3: #9ca5b7;
+  --accent: #4c9aff; --accent-solid: #2f6fed; --success: #4cc38a; --warning: #f0a93b; --danger: #f2555a;
+  --add-bg: #16301f; --add-fg: #4cc38a; --del-bg: #331a1d; --del-fg: #f2555a;
+  --lane-1: #15a0bf; --lane-3: #9b59e0; --lane-4: #d645ce; --lane-7: #f0742a;
+  --sx: 1; /* -1 in right-to-left languages: horizontal motion mirrors */
+  --d: 10;
+  --font: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'DejaVu Sans Mono', monospace;
+}
+html[lang='ar'] { --font: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--surface-0); }
+body {
+  font-family: var(--font); color: var(--text-1); position: relative; line-height: 1.3;
+  background:
+    radial-gradient(1100px 620px at 78% -8%, rgba(76, 154, 255, 0.20), transparent 70%),
+    radial-gradient(900px 600px at 6% 108%, rgba(155, 89, 224, 0.14), transparent 70%),
+    linear-gradient(180deg, #171a22, #0e1016);
+}
+body::before { /* a faint dot grid, the way the app's graph sits on a ruled surface */
+  content: ''; position: absolute; inset: 0; opacity: 0.5;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1.4px, transparent 1.6px); background-size: 48px 48px;
+}
+.stage { position: absolute; inset: 0; padding: 96px 120px 150px; }
+.mono { font-family: var(--mono); direction: ltr; unicode-bidi: isolate; }
+.ltr { direction: ltr; unicode-bidi: isolate; }
+.flip { transform: scaleX(var(--sx)); }
+
+/* brand + episode chip */
+.brand { position: absolute; top: 48px; inset-inline-start: 72px; display: flex; align-items: center; gap: 16px; opacity: 0.95; }
+.brand img { width: 52px; height: 52px; }
+.brand b { font-size: 34px; font-weight: 650; letter-spacing: -0.01em; }
+.tag { position: absolute; top: 56px; inset-inline-end: 72px; font-size: 24px; color: var(--text-2); padding: 8px 20px; border: 1.5px solid var(--border); border-radius: 999px; background: rgba(35, 39, 48, 0.7); }
+
+h1 { font-size: 92px; line-height: 1.08; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 64px; line-height: 1.12; font-weight: 680; letter-spacing: -0.015em; }
+p.lead { font-size: 40px; line-height: 1.4; color: var(--text-2); }
+html[lang='ar'] h1, html[lang='ar'] h2 { letter-spacing: 0; line-height: 1.3; }
+html[lang='ar'] p.lead { line-height: 1.7; }
+.accent { color: var(--accent); }
+.good { color: var(--success); }
+.bad { color: var(--danger); }
+.card { background: rgba(35, 39, 48, 0.88); border: 2px solid var(--border); border-radius: 28px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45); }
+.chip { display: inline-flex; align-items: center; gap: 12px; padding: 10px 24px; border-radius: 999px; font-size: 30px; font-weight: 600; background: var(--surface-3); border: 2px solid var(--border-strong); }
+
+/* animation presets: --at = start as a fraction of --d; --len = length as a fraction of --d */
+@keyframes fx-in { from { opacity: 0; transform: translateY(28px) scale(0.985); } to { opacity: 1; transform: none; } }
+@keyframes fx-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fx-pop { 0% { opacity: 0; transform: scale(0.6); } 70% { transform: scale(1.06); } 100% { opacity: 1; transform: none; } }
+@keyframes fx-draw { from { stroke-dashoffset: var(--len-px, 600); } to { stroke-dashoffset: 0; } }
+@keyframes fx-out { to { opacity: 0; transform: translateY(-16px); } }
+.in, .fade, .pop { opacity: 0; animation-fill-mode: both; animation-delay: calc(var(--d) * var(--at, 0) * 1s); animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1); }
+.in { animation-name: fx-in; animation-duration: calc(var(--d) * var(--len, 0.045) * 1s); }
+.fade { animation-name: fx-fade; animation-duration: calc(var(--d) * var(--len, 0.05) * 1s); }
+.pop { animation-name: fx-pop; animation-duration: calc(var(--d) * var(--len, 0.05) * 1s); }
+.draw { stroke-dasharray: var(--len-px, 600); stroke-dashoffset: var(--len-px, 600); animation: fx-draw calc(var(--d) * var(--len, 0.08) * 1s) ease-in-out both; animation-delay: calc(var(--d) * var(--at, 0) * 1s); }
+.out { animation: fx-out calc(var(--d) * 0.04s) ease-in both; animation-delay: calc(var(--d) * var(--out, 0.95) * 1s); }
+
+/* a diff, drawn like the app's */
+.diff { font-family: var(--mono); direction: ltr; unicode-bidi: isolate; font-size: 30px; line-height: 1.55; }
+.diff .ln { display: flex; white-space: pre; padding: 0 22px; }
+.diff .ln i { font-style: normal; width: 64px; color: var(--text-3); text-align: right; padding-right: 22px; flex: none; }
+.diff .add { background: var(--add-bg); } .diff .add b { color: var(--add-fg); font-weight: 400; }
+.diff .del { background: var(--del-bg); } .diff .del b { color: var(--del-fg); font-weight: 400; }
+.diff .ctx { color: var(--text-2); }
+.diff .hdr { color: var(--accent); background: rgba(76, 154, 255, 0.10); }
+.kw { color: #c39bff; } .st { color: #9bd18b; } .fn { color: #7ab6ff; } .cm { color: #9aa3b5; }
+
+/* the presenter, injected by kit.js */
+.presenter { position: absolute; bottom: 44px; inset-inline-end: 64px; display: flex; align-items: center; gap: 22px; z-index: 50; }
+.presenter .who { text-align: start; background: rgba(8, 10, 16, 0.78); border: 1.5px solid rgba(255, 255, 255, 0.14); border-radius: 18px; padding: 12px 22px; }
+.presenter .who b { display: block; font-size: 28px; font-weight: 650; }
+.presenter .who span { display: block; margin-top: 4px; font-size: 21px; color: var(--text-2); line-height: 1.4; }
+.presenter .who b { line-height: 1.4; }
+.presenter .face { position: relative; width: 148px; height: 148px; flex: none; }
+.presenter .face .ring { position: absolute; inset: -9px; border-radius: 50%; border: 4px solid var(--accent); box-shadow: 0 0 calc(10px + var(--speak, 0) * 46px) rgba(76, 154, 255, calc(0.25 + var(--speak, 0) * 0.65)); transform: scale(calc(1 + var(--speak, 0) * 0.06)); }
+.presenter .face .photo { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg, var(--accent-solid), var(--lane-3)); display: grid; place-items: center; font-size: 56px; font-weight: 700; }
+.presenter .face .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+html[dir='rtl'] .presenter { flex-direction: row-reverse; }
+.win { position: absolute; overflow: hidden; }
+.win .bar { display: flex; align-items: center; gap: 14px; padding: 16px 26px; background: var(--surface-2); border-bottom: 2px solid var(--border); font-family: var(--mono); direction: ltr; font-size: 26px; color: var(--text-2); }
+.win .bar .dots { display: flex; gap: 9px; } .win .bar .dots s { width: 15px; height: 15px; border-radius: 50%; background: #5b6272; }
+.hunk { position: relative; border-radius: 14px; margin: 58px 12px 16px; border: 3px solid var(--hc, var(--accent)); background: rgba(255,255,255,0.025); }
+.hunk .lab { position: absolute; top: -50px; inset-inline-end: 18px; padding: 3px 18px; border-radius: 999px; font: 600 24px var(--font); background: var(--hc); color: #0b0d12; line-height: 1.3; }
+.hunk.h1 { --hc: #b07cf0; } .hunk.h2 { --hc: #f08a4a; }
