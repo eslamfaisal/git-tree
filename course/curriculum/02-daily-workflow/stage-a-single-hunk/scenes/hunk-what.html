@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8"><!--KIT--><style>
+.win { inset-inline-start: 120px; top: 170px; width: 1160px; }
+.diff { font-size: 27px; line-height: 1.5; }
+.hdrline { font-size: 25px; }
+.side { position: absolute; top: 170px; inset-inline-start: 1340px; width: 460px; display: grid; gap: 26px; }
+.note { padding: 26px 30px; font-size: 30px; line-height: 1.4; }
+.note b { display: block; font-size: 34px; margin-bottom: 16px; line-height: 1.4; }
+.note.def { border-color: var(--accent); }
+.note.n1 { border-color: #b07cf0; } .note.n1 b { color: #c9a4f6; }
+.note.n2 { border-color: #f08a4a; } .note.n2 b { color: #f5a577; }
+.hunk .lab { font-size: 22px; top: -20px; }
+.hunk .hdr { font-size: 24px; }
+</style></head><body>
+<div class="brand"><img src="{{KIT}}/brand/mark.svg" alt=""><b>GitTree</b></div>
+<div class="tag" data-i="tag"></div>
+
+<div class="win card in" style="--at:.02">
+  <div class="bar"><span class="dots"><s></s><s></s><s></s></span> git diff — src/search/index.ts</div>
+  <div class="diff">
+    <div class="hunk h1 pop" style="--at:.14;--len:.05"><span class="lab">Hunk 1</span>
+      <div class="ln hdr"><i></i>@@ -1,6 +1,7 @@</div>
+      <div class="ln ctx"><i>1</i>&nbsp;import type { Note } from '../note.js';</div>
+      <div class="ln ctx"><i>2</i>&nbsp;import { tokenize } from './tokenize.js';</div>
+      <div class="ln ctx"><i>3</i>&nbsp;</div>
+      <div class="ln add"><i>4</i><b>+</b><span class="cm">/** Inverted index: token -&gt; note ids. */</span></div>
+      <div class="ln ctx"><i>5</i>&nbsp;export class SearchIndex {</div>
+      <div class="ln ctx"><i>6</i>&nbsp;&nbsp;&nbsp;private readonly postings = …</div>
+    </div>
+    <div class="hunk h2 pop" style="--at:.34;--len:.05"><span class="lab">Hunk 2</span>
+      <div class="ln hdr"><i></i>@@ -12,9 +13,10 @@</div>
+      <div class="ln ctx"><i>14</i>&nbsp;&nbsp;&nbsp;}</div>
+      <div class="ln del"><i>16</i><b>-</b>&nbsp;&nbsp;query(text: string): string[] {</div>
+      <div class="ln add"><i>16</i><b>+</b>&nbsp;&nbsp;query(text: string, limit = 20): string[] {</div>
+      <div class="ln ctx"><i>17</i>&nbsp;&nbsp;&nbsp;&nbsp;const sets = …</div>
+      <div class="ln del"><i>19</i><b>-</b>&nbsp;&nbsp;&nbsp;&nbsp;return [...sets[0]].filter(…);</div>
+      <div class="ln add"><i>19</i><b>+</b>&nbsp;&nbsp;&nbsp;&nbsp;const hits = [...sets[0]].filter(…);</div>
+      <div class="ln add"><i>20</i><b>+</b>&nbsp;&nbsp;&nbsp;&nbsp;return hits.slice(0, limit);</div>
+    </div>
+  </div>
+</div>
+
+<div class="side">
+  <div class="note card def in" style="--at:.08"><b data-i="defTitle"></b><span data-i="def"></span></div>
+  <div class="note card n1 in" style="--at:.30"><b data-i="n1t"></b><span data-i="n1"></span></div>
+  <div class="note card n2 in" style="--at:.52"><b data-i="n2t"></b><span data-i="n2"></span></div>
+</div>
+</body></html>
+<script>window.TEXT = {
+ en: { tag: 'Staging · Hunks', defTitle: 'What is a hunk?', def: 'A block of changed lines, plus a few unchanged lines around it.', n1t: 'Hunk 1', n1: 'A new comment above the class.', n2t: 'Hunk 2', n2: 'A new <span class="mono">limit</span> in the query function.' },
+ ar: { tag: 'المرحلة · المقاطع', defTitle: 'ما هو الـ Hunk؟', def: 'كتلة من الأسطر المعدَّلة، مع بضعة أسطر لم تتغير حولها.', n1t: 'Hunk 1', n1: 'تعليقٌ جديد فوق الصنف.', n2t: 'Hunk 2', n2: 'معاملٌ جديد <span class="mono">limit</span> في دالة البحث.' } };</script>

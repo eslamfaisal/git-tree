@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><!--KIT--><style>
+.l { position: absolute; top: 180px; inset-inline-start: 120px; width: 980px; display: grid; gap: 30px; }
+.item { display: flex; gap: 28px; align-items: center; padding: 30px 38px; font-size: 40px; line-height: 1.35; }
+.item .n { flex: none; width: 70px; height: 70px; border-radius: 50%; background: var(--accent-solid); display: grid; place-items: center; font-size: 36px; font-weight: 700; }
+.cta { position: absolute; top: 180px; inset-inline-start: 1210px; width: 590px; height: 640px; padding: 44px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; border-color: var(--accent); }
+.cta img { width: 190px; height: 190px; }
+.cta h2 { font-size: 54px; }
+.cta .url { font: 700 46px var(--mono); color: var(--accent); direction: ltr; }
+.cta .free { font-size: 32px; color: var(--text-2); line-height: 1.5; }
+.next { position: absolute; top: 880px; inset-inline-start: 120px; font-size: 34px; color: var(--text-2); }
+.next b { color: var(--text-1); }
+</style></head><body>
+<div class="brand"><img src="{{KIT}}/brand/mark.svg" alt=""><b>GitTree</b></div>
+<div class="tag" data-i="tag"></div>
+<div class="l">
+  <div class="item card in" style="--at:.04"><div class="n">1</div><div data-i="r1"></div></div>
+  <div class="item card in" style="--at:.22"><div class="n">2</div><div data-i="r2"></div></div>
+  <div class="item card in" style="--at:.40"><div class="n">3</div><div data-i="r3"></div></div>
+</div>
+<div class="cta card pop" style="--at:.58"><img src="{{KIT}}/brand/mark.svg" alt=""><h2 data-i="cta"></h2><div class="url">gittree.app</div><div class="free" data-i="free"></div></div>
+<div class="next in" style="--at:.78" data-i="next"></div>
+</body></html>
+<script>window.TEXT = {
+ en: { tag: 'Staging · Hunks', r1: 'A <b>hunk</b> is a block of changed lines.', r2: '<b>Stage Hunk</b> moves it to the staging area.', r3: 'A commit takes <b>only what is staged</b>.', cta: 'Download GitTree', free: 'Free for macOS, Windows and Linux', next: 'Next: <b>stage individual lines</b>' },
+ ar: { tag: 'المرحلة · المقاطع', r1: 'الـ <b>hunk</b> هو كتلة من الأسطر المعدَّلة.', r2: 'زر <b>Stage Hunk</b> ينقله إلى الـ staging area.', r3: 'الـ commit يأخذ <b>المُجهَّز فقط</b>.', cta: 'حمّل GitTree', free: 'مجانًا على macOS، Windows، Linux', next: 'التالي: <b>تجهيز أسطر محددة</b>' } };</script>

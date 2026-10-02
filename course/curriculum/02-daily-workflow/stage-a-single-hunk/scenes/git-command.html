@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><!--KIT--><style>
+.term { inset-inline-start: 120px; top: 170px; width: 1230px; }
+.term .body { padding: 22px 0 26px; font-family: var(--mono); direction: ltr; font-size: 26px; line-height: 1.5; background: #12151b; }
+.term .l { padding: 0 30px; white-space: pre; color: #c9d1de; }
+.term .prompt { color: var(--success); } .term .cmd { color: #fff; font-weight: 700; }
+.term .a { color: var(--add-fg); } .term .d { color: var(--del-fg); } .term .h { color: var(--accent); } .term .q { color: var(--warning); } .term .dim { color: #7c8598; }
+.term .yn { color: #fff; background: #2f6fed; padding: 0 8px; border-radius: 6px; font-weight: 700; }
+.keys { position: absolute; top: 170px; inset-inline-start: 1410px; width: 390px; display: grid; gap: 18px; }
+.key { display: flex; align-items: center; gap: 22px; padding: 18px 24px; font-size: 29px; }
+.key kbd { font: 700 34px var(--mono); min-width: 64px; text-align: center; padding: 6px 0; border-radius: 12px; background: var(--surface-3); border: 2px solid var(--border-strong); box-shadow: 0 5px 0 #1e2129; }
+.note { position: absolute; top: 880px; inset-inline-start: 120px; font-size: 32px; color: var(--text-2); }
+</style></head><body>
+<div class="brand"><img src="{{KIT}}/brand/mark.svg" alt=""><b>GitTree</b></div>
+<div class="tag" data-i="tag"></div>
+
+<div class="win term card in" style="--at:.02">
+  <div class="bar"><span class="dots"><s></s><s></s><s></s></span> lumen — git 2.43</div>
+  <div class="body">
+    <div class="l fade" style="--at:.06"><span class="prompt">$</span> <span class="cmd">git add -p src/search/index.ts</span></div>
+    <div class="l fade h" style="--at:.14">@@ -1,6 +1,7 @@</div>
+    <div class="l fade dim" style="--at:.14"> import { tokenize } from './tokenize.js';</div>
+    <div class="l fade a" style="--at:.15">+/** Inverted index: token -&gt; ids of the notes that contain it. */</div>
+    <div class="l fade dim" style="--at:.15"> export class SearchIndex {</div>
+    <div class="l fade q" style="--at:.17">(1/2) Stage this hunk [y,n,q,a,d,j,J,g,/,e,?]? <span class="yn pop" style="--at:.26">y</span></div>
+    <div class="l fade h" style="--at:.34">@@ -12,9 +13,10 @@ export class SearchIndex {</div>
+    <div class="l fade d" style="--at:.35">-  query(text: string): string[] {</div>
+    <div class="l fade a" style="--at:.35">+  query(text: string, limit = 20): string[] {</div>
+    <div class="l fade dim" style="--at:.36">   …</div>
+    <div class="l fade q" style="--at:.38">(2/2) Stage this hunk [y,n,q,a,d,K,g,/,s,e,?]? <span class="yn pop" style="--at:.48">n</span></div>
+    <div class="l fade" style="--at:.58"><span class="prompt">$</span> <span class="cmd">git diff --staged</span></div>
+    <div class="l fade a" style="--at:.64">+/** Inverted index: token -&gt; ids of the notes that contain it. */</div>
+    <div class="l fade dim" style="--at:.64">(only hunk 1 is staged)</div>
+  </div>
+</div>
+
+<div class="keys">
+  <div class="key card in" style="--at:.20"><kbd>y</kbd><span data-i="y"></span></div>
+  <div class="key card in" style="--at:.42"><kbd>n</kbd><span data-i="n"></span></div>
+  <div class="key card in" style="--at:.52"><kbd>s</kbd><span data-i="s"></span></div>
+  <div class="key card in" style="--at:.58"><kbd>q</kbd><span data-i="q"></span></div>
+</div>
+<div class="note fade" style="--at:.72" data-i="note"></div>
+</body></html>
+<script>window.TEXT = {
+ en: { tag: 'Staging · Hunks', y: 'stage this hunk', n: 'skip this hunk', s: 'split it into smaller hunks', q: 'quit', note: 'Output shortened. GitTree shows the same hunks, with one button each.' },
+ ar: { tag: 'المرحلة · المقاطع', y: 'أضف هذا الـ hunk إلى المرحلة', n: 'تخطَّ هذا الـ hunk', s: 'قسِّمه إلى أجزاء أصغر', q: 'إنهاء', note: 'الناتج مُختصر. يعرض GitTree الـ hunks نفسها بزرٍّ لكلٍّ منها.' } };</script>
