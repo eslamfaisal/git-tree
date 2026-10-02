@@ -62,7 +62,7 @@ contain only this public repository.
 
 **Actions › release › Run workflow**, with the version tag (`v1.0.0`; the source's version must equal it).
 The workflow checks out the maintainer's private source repository, builds the installers on
-GitHub's macOS, Windows and Ubuntu runners (macOS and Windows are signed when the secrets below are set; the Linux
+GitHub's macOS, Windows and Ubuntu runners (macOS requires Developer ID signing and notarization; Windows is signed when configured; the Linux
 `.deb` and AppImage are not signed, `SHA256SUMS.txt` is how users verify them), checks their sizes, and once
 **all three** exist creates the release
 `vX.Y.Z` here with the files above, `SHA256SUMS.txt` and release notes. It lives in this public
@@ -75,9 +75,15 @@ One-time setup, by the owner (Settings › Environments › New environment `rel
 | Secret in the `release` environment | What |
 |---|---|
 | `SOURCE_REPO_TOKEN` | required: a fine-grained personal access token limited to the private source repository, permission *Contents: Read-only* |
-| `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_API_ISSUER`, `APPLE_API_KEY`, `APPLE_API_KEY_PATH` | optional: Developer ID signing and notarization. Without them the `.dmg` is unsigned and the release notes say so |
+| `APPLE_CERTIFICATE` | base64 of the Developer ID Application `.p12` exported with its private key |
+| `APPLE_CERTIFICATE_PASSWORD` | password used for that `.p12` |
+| `APPLE_SIGNING_IDENTITY` | `Developer ID Application: Eslam Faisal (CDRX96YDNZ)` |
+| `APPLE_API_ISSUER`, `APPLE_API_KEY` | issuer and key ID of a dedicated Git Tree App Store Connect API key with Developer access |
+| `APPLE_API_KEY_P8_BASE64` | base64 of that key's downloaded `AuthKey_<KEYID>.p8` file |
 
-The Linux leg needs no secret of its own.
+The macOS build fails if any Apple credential is missing, if notarization fails, or if the app and
+DMG cannot be verified. The workflow writes the API key to the runner's temporary directory and
+passes its path to Tauri. The Linux leg needs no secret of its own.
 
 Build logs of a public repository are public: a failing build can print file names and compiler
 messages of the private source. Keep the environment's required reviewer on, and never pass the source
