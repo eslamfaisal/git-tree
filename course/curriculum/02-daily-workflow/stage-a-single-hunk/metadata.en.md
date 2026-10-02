@@ -39,6 +39,6 @@ GitTree is not affiliated with any other Git client.
 
 **Pinned comment**: `Try it yourself: course/demo-repo/build.sh ~/lumen two-hunks, then open the folder in GitTree. Which commit did you split first?`
 
-**Thumbnail brief**: left, the presenter's photo; right, a diff with two coloured hunks (purple, orange) and a "Stage Hunk" button; text "ONE HUNK" (max 3 words). Brand colours from `docs/02-design/BRAND.md`.
+**Thumbnail brief**: a diff with two coloured hunks (purple, orange) and a "Stage Hunk" button; text "ONE HUNK" (max 3 words). No photo: the author appears only in the small lecturer bubble inside the video. Brand colours from `docs/02-design/BRAND.md`.
 
 *Chapter times are placeholders until the final voice-over is recorded.*

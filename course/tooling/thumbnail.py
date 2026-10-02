@@ -29,7 +29,7 @@ def main() -> None:
         for lang in ("en", "ar"):
             cfg = {"lang": lang, "d": 1, "presenter": None}
             inject = f'<link rel="stylesheet" href="{(scenes.KIT / "scene.css").as_uri()}"><script>window.__SCENE__={json.dumps(cfg)};</script><script src="{(scenes.KIT / "kit.js").as_uri()}"></script>'
-            page_html = html.replace("<!--KIT-->", inject).replace("{{KIT}}", scenes.KIT.as_uri()).replace("{{PHOTO}}", photo)
+            page_html = html.replace("<!--KIT-->", inject).replace("{{KIT}}", scenes.KIT.as_uri())
             tmp = ep / "thumbnail" / f".tmp-{lang}.html"
             tmp.write_text(page_html)
             page = browser.new_page(viewport={"width": 1280, "height": 720})
