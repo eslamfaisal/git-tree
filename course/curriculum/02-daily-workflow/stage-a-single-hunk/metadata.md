@@ -30,7 +30,7 @@ git add -p src/search/index.ts
 git diff --staged
 
 Next lesson: stage individual lines.
-The narrator's voice is a synthetic voice made from the author's own voice.
+The narration is a synthetic voice (text to speech).
 GitTree is not affiliated with any other Git client.
 ```
 

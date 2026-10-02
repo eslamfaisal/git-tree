@@ -100,7 +100,7 @@ Equivalent git commands
 {cmds}
 
 {('Next lesson: ' + nxt['title']) if nxt else ''}
-The narrator's voice is a synthetic voice made from the author's own voice.
+The narration is a synthetic voice (text to speech).
 GitTree is not affiliated with any other Git client."""
     k = m.get("keywords") or {}
     return f"""# {stem(m)}
@@ -121,7 +121,7 @@ GitTree is not affiliated with any other Git client."""
 
 **Primary keyword**: {k.get('primary', '')} · **Question**: {k.get('question', '')}
 
-**Upload settings**: altered or synthetic content = yes (synthetic narrator voice); playlist = section "{m['series']}"; thumbnail = `curriculum/{m['series']}/{m['slug']}/thumbnail/thumbnail.jpg`; captions = the episode's `.srt`.
+**Upload settings**: altered or synthetic content = yes (synthetic voice); playlist = section "{m['series']}"; thumbnail = `curriculum/{m['series']}/{m['slug']}/thumbnail/thumbnail.jpg`; captions = the episode's `.srt`.
 """
 
 

@@ -5,8 +5,7 @@
 | `compose.py` | Builds one episode in one language: voice, scenes, app footage, captions, encode, quality gate. `--record` records the real-app journey. |
 | `scenes.py` | Renders an HTML scene (`visuals/kit`) to frames, deterministically (seeked animations). |
 | `scene_lint.py` | Layout lint for scenes: no text over text or over a label, nothing outside the safe area. `compose.py` runs it first. |
-| `voice.py` | Voice-over: the cloned narrator (default) or a Piper fallback, per-sentence levelling, calibrated loudness. |
-| `voice_clone.py` | ZipVoice zero-shot cloning of the author's voice and the speaker-similarity score. |
+| `voice.py` | Voice-over: Piper en_US-ryan-high, per-sentence levelling, calibrated loudness. |
 | `quality.py` | Delivery gate: 1080p or higher, 16:9, constant 30 fps, H.264 High, BT.709, AAC 48 kHz, -14 LUFS, true peak, no black frames. |
 | `validate_course.py` | Schema, one-feature rule, English only, trademark terms, storage-tier and size rules. CI runs it. |
 | `generate_index.py` | Rebuilds the table in `README.md` and `episodes.json`. `--check` in CI. |

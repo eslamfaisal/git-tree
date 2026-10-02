@@ -5,4 +5,4 @@ Facts that could not be confirmed from the app's code or by running it. Each mus
 | Episode | Item | Why it is open |
 |---|---|---|
 | all | Behaviour on macOS and Windows | Features are built and green on Linux; macOS and Windows checks are pending per `docs/PROGRESS.md`. Every episode says it was recorded on Linux. |
-| all | The cloned voice's pronunciation of each technical term | Checked per episode against `glossary.md`; add a respelling when it is wrong. |
+| all | The voice's pronunciation of each technical term | Checked per episode against `glossary.md`; add a respelling when it is wrong. |

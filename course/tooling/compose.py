@@ -341,10 +341,9 @@ def main() -> None:
     cache = COURSE / ".work" / "cache"
     plan = yaml.safe_load((ep / "beats.yml").read_text())
     audio_dir = COURSE / "assets" / meta["series"] / f"{meta['id']}-{meta['slug']}" / "audio"
-    voice.prefetch(cache, [(s, r.get("rate")) for r in plan["beats"] for s in voice.sentences(r["vo"])])
     beats = [Beat(r, cache, audio_dir) for r in plan["beats"]]
     total = build_timeline(beats)
-    print(f"{meta['id']} [{voice.backend()} voice] {len(beats)} beats, {total:.1f} s")
+    print(f"{meta['id']} {len(beats)} beats, {total:.1f} s")
 
     import scene_lint
 

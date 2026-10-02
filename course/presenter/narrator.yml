@@ -1,3 +1,0 @@
-# Which voice narrates the course: `piper` (clean Piper en_US-ryan voice) or `clone` (the author's voice, cloned from
-# presenter/voice/sample.* with ZipVoice; needs that sample on the machine).
-voice: piper

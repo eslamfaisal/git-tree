@@ -20,11 +20,11 @@ Follow along: course/demo-repo/build.sh <checkpoint>  (https://github.com/eslamf
 Download GitTree free: https://gittree.app/en/download?utm_source=youtube&utm_medium=video&utm_campaign=<episode-id>
 Equivalent git commands: ...
 Next video: <link>
-The narrator's voice is a synthetic voice made from the author's own voice.
+The narration is a synthetic voice (text to speech).
 GitTree is not affiliated with any other Git client.
 ```
 
-On upload, turn on YouTube's *altered or synthetic content* option (the voice is realistic and synthetic).
+On upload, turn on YouTube's *altered or synthetic content* option (the voice is synthetic).
 
 ## Tags, cards, end screens
 

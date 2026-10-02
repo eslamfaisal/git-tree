@@ -1,4 +1,3 @@
 # Scratch space of tooling/compose.py: voices, caches, renders, the recorded take. Regenerate, never commit.
 .work/
 __pycache__/
-presenter/voice/

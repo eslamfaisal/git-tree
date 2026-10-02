@@ -18,8 +18,8 @@ def spoken_text(text: str) -> str:
 def sentences(text: str) -> list[str]:
     """The beat's sentences, in the display form (captions): one synthesis call and one caption each.
 
-    A fragment under three words ("Click it.") is joined to its neighbour: the cloning engine fails on very short
-    inputs, and a one-line caption flashing by is hard to read anyway."""
+    A fragment under three words ("Click it.") is joined to its neighbour: a one-line caption flashing by is hard to
+    read anyway."""
     parts = [p.strip() for p in SENTENCE_END.split(" ".join(text.split()))]
     out: list[str] = []
     for p in (x for x in parts if x):

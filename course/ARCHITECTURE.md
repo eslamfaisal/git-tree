@@ -13,8 +13,8 @@ voice-over and the published videos. YouTube is where people watch; this reposit
    `open-git-tree/scripts/demo`; there are no mock-ups. Every git command shown was run in the demo repository.
 3. **Accuracy first.** `inventory.md` lists each feature with its source in the app and its status. Anything not shipped
    is excluded; anything unconfirmed is on `verify-list.md`.
-4. **English only.** One script, one voice, one set of captions per episode. The narrator is the author's own voice,
-   cloned from a recording sample (`tooling/voice_clone.py`); a real recording of any beat replaces it.
+4. **English only.** One script, one voice, one set of captions per episode. The narrator is a clean text-to-speech
+   voice (Piper); a real recording of any beat replaces it.
 5. **Quality floor: Full HD.** Videos are delivered at 1080p or better (recordings are captured at 2160p), BT.709, 30 fps,
    -14 LUFS. `tooling/quality.py` checks every delivered file.
 6. **Nothing only on a laptop.** Every asset lives in this repository (`assets/`), in the storage tier its size needs.
