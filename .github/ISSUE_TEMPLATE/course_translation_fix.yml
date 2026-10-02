@@ -1,0 +1,24 @@
+name: Course - translation or wording fix
+description: A better Arabic or English phrase for a course script, caption or title.
+title: "[Course]: "
+labels: [bug]
+body:
+  - type: input
+    id: episode
+    attributes:
+      label: Episode
+      description: The id and title.
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current text
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed text, and why
+    validations:
+      required: true

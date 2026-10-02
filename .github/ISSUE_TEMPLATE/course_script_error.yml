@@ -1,0 +1,26 @@
+name: Course - script or command error
+description: A video or script of the GitTree course says something wrong.
+title: "[Course]: "
+labels: [bug]
+body:
+  - type: input
+    id: episode
+    attributes:
+      label: Episode
+      description: The id and title, for example "02-02 Stage a single hunk".
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options: [English, Arabic, Both]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong?
+      description: Quote the sentence or command and say what happens for you instead. Include the time in the video if you can.
+    validations:
+      required: true

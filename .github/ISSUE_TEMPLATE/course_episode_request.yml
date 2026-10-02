@@ -1,0 +1,23 @@
+name: Course - episode request
+description: Ask for a lesson on one Git concept and the one GitTree feature that does it.
+title: "[Course]: "
+labels: [enhancement]
+body:
+  - type: input
+    id: concept
+    attributes:
+      label: Git concept
+      description: One concept, for example "amend the last commit".
+    validations:
+      required: true
+  - type: input
+    id: feature
+    attributes:
+      label: GitTree feature
+      description: The one feature that does it. A request that names several becomes several videos.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would it help?

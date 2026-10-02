@@ -1,0 +1,11 @@
+# Course media is stored with Git LFS (see course/assets/README.md for the storage tiers and the size budget).
+course/assets/**/*.mp4  filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.webm filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.mov  filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.mkv  filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.wav  filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.flac filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.m4a  filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.mp3  filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.psd  filter=lfs diff=lfs merge=lfs -text
+course/assets/**/*.zip  filter=lfs diff=lfs merge=lfs -text
