@@ -16,14 +16,20 @@ so a size budget is kept below and `tooling/validate_course.py` fails on any non
 
 ## Publishing media (important)
 
-Tier 2 needs `git lfs` and network access to `lfs.github.com`. The sandboxed session that scaffolded the course
-could not reach it (its network policy denies that host), so **no media has been pushed yet**: the pilot's videos were
-delivered for review and their size and sha256 are recorded in the episode's `manifest.json`. From a normal machine:
+Tier 2 needs `git lfs` and network access to `lfs.github.com`. The sandboxed session that builds the course cannot
+reach it (its network policy denies that host). So the **final 1080p lesson video of each episode is committed as a plain
+git file** at `assets/<series>/<id>-<slug>/video/<id>-<slug>.1080p.mp4` (about 10 to 15 MB each, validator limit 50 MB),
+next to its subtitles, chapters and `manifest.json`; `.gitattributes` exempts exactly that pattern from LFS. Voice-over
+stems (FLAC) stay out of git; their size and sha256 are in the manifest.
+
+To move the videos into LFS later (from a normal machine, once the repo holds about 500 MB of video):
 
 ```bash
 git lfs install
-git add course/assets && git commit -m "feat(course): add 02-02 videos" && git push
+git lfs migrate import --include="course/assets/**/*.1080p.mp4" --everything
 ```
+
+and delete the exemption line from `.gitattributes` in the same commit.
 
 ## Layout
 

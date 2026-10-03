@@ -43,8 +43,11 @@ def main() -> None:
             files.append({"path": str(target.relative_to(dest)), "kind": "captions" if src.suffix in (".srt", ".vtt") else "chapters / verification", "tier": "git", "size": target.stat().st_size, "sha256": sha(target)})
         elif src.suffix in (".mp4", ".flac"):
             q = out / (src.stem + ".quality.json")
+            if src.suffix == ".mp4":  # the final lesson video is committed as a plain git file (see .gitattributes)
+                (dest / "video").mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, dest / "video" / src.name)
             entry = {"path": f"{'video' if src.suffix == '.mp4' else 'audio'}/{src.name}", "kind": "video" if src.suffix == ".mp4" else "voice-over",
-                     "tier": "lfs (pending upload)", "size": src.stat().st_size, "sha256": sha(src),
+                     "tier": "git (plain file)" if src.suffix == ".mp4" else "lfs (pending upload)", "size": src.stat().st_size, "sha256": sha(src),
                      "regenerate": f"python3 course/tooling/compose.py {ep.relative_to(COURSE.parent)} --height 1080"}
             if q.exists():
                 entry["quality"] = {k: v for k, v in json.loads(q.read_text()).items() if k in ("width", "height", "fps", "codec", "duration_s", "lufs", "true_peak_db", "pass")}

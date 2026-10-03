@@ -9,3 +9,6 @@ course/assets/**/*.m4a  filter=lfs diff=lfs merge=lfs -text
 course/assets/**/*.mp3  filter=lfs diff=lfs merge=lfs -text
 course/assets/**/*.psd  filter=lfs diff=lfs merge=lfs -text
 course/assets/**/*.zip  filter=lfs diff=lfs merge=lfs -text
+# The final 1080p lesson videos are plain git for now (about 10-15 MB each), so they can be downloaded from the repo
+# without LFS. Move them to LFS later with: git lfs migrate import --include="course/assets/**/*.1080p.mp4"
+course/assets/**/video/*.1080p.mp4 -filter -diff -merge binary

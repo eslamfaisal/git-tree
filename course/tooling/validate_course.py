@@ -24,6 +24,7 @@ ARABIC = re.compile("[\u0600-\u06ff\u0750-\u077f\u08a0-\u08ff\ufb50-\ufdff\ufe70
 BANNED = [re.compile(p, re.I) for p in ("git" + "kraken", "source" + "tree", "git" + "hub desktop", "tower\\b", "smart" + "git")]
 LFS_EXT = {".mp4", ".webm", ".mov", ".mkv", ".wav", ".flac", ".m4a", ".mp3", ".psd", ".zip"}
 SMALL = 1_000_000
+PLAIN_VIDEO_MAX = 50_000_000  # final 1080p lesson videos are plain git files; GitHub warns at 50 MB and rejects 100 MB
 problems: list[str] = []
 
 
@@ -114,7 +115,10 @@ def check_sizes() -> None:
             continue
         rel = str(path.relative_to(repo))
         size = path.stat().st_size
-        if path.suffix in LFS_EXT and rel not in lfs and size > 0:
+        if path.name.endswith(".1080p.mp4") and path.parent.name == "video":
+            if size > PLAIN_VIDEO_MAX:
+                bad(f"{rel}: {size / 1e6:.1f} MB; a plain-git lesson video must stay under {PLAIN_VIDEO_MAX // 1_000_000} MB")
+        elif path.suffix in LFS_EXT and rel not in lfs and size > 0:
             first = path.read_bytes()[:40]
             if not first.startswith(b"version https://git-lfs"):
                 bad(f"{rel}: media must be stored in Git LFS (run 'git lfs track' / commit with LFS installed)")

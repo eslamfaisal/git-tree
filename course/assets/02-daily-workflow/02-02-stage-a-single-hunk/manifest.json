@@ -5,7 +5,7 @@
     {
       "path": "video/02-02-stage-a-single-hunk.1080p.mp4",
       "kind": "video",
-      "tier": "lfs (pending upload)",
+      "tier": "git (plain file)",
       "size": 15079065,
       "sha256": "0478d64aaa3374f0500b5b01484125b2542f65fc59c541e173496223422c97a9",
       "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-single-hunk --height 1080",

@@ -5,7 +5,7 @@
     {
       "path": "video/02-04-unstage-a-file.1080p.mp4",
       "kind": "video",
-      "tier": "lfs (pending upload)",
+      "tier": "git (plain file)",
       "size": 11404286,
       "sha256": "e886713f298deae32035e52d138429f8e6736902e1e006993fcfc12ed639d5a2",
       "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/unstage-a-file --height 1080",

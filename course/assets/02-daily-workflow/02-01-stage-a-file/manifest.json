@@ -5,7 +5,7 @@
     {
       "path": "video/02-01-stage-a-file.1080p.mp4",
       "kind": "video",
-      "tier": "lfs (pending upload)",
+      "tier": "git (plain file)",
       "size": 10682356,
       "sha256": "911be126c850866614bce3f91df6c54a6833fdaf999f44c15cf8644d45c47c46",
       "regenerate": "python3 course/tooling/compose.py course/curriculum/02-daily-workflow/stage-a-file --height 1080",
